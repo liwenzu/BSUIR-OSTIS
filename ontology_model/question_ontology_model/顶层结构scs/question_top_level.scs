@@ -1,0 +1,739 @@
+// 顶层本体结构
+
+questions_knowledge_base
+<- sc_node_not_relation;
+=> nrel_main_idtf: 
+            [База знаний вопросов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Questions knowledge base] (*  <- lang_en;; *);
+=> nrel_main_idtf:
+            [问题知识库] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+              {
+                subjective_questions (* <- sc_node_not_relation;; *);                         
+                objective_questions (* <- sc_node_not_relation;; *)               
+              };
+<- rrel_key_sc_element:
+           ... 
+           (*
+            <- sc_explanation;;
+            <= nrel_sc_text_translation: 
+                   ...
+                   (* 
+                    -> rrel_example:
+                          [База знаний вопросов используется для хранения различных типов тестовых вопросов, включая субъективные и объективные вопросы, которые автоматически генерируются с использованием содержимых базы знаний.] (* <- lang_ru;; *);
+                          [The questions knowledge base are used to store various types of test questions, including subjective and objective questions, that are automatically generated using the contents in the knowledge base.] (* <- lang_en;; *);
+                          [问题知识库用于存贮使用知识库中的内容自动生产的各种类型的测试问题，包括主观题和客观题。] (* <- lang_ch;; *);;
+                   *);;
+           *);;
+
+
+
+objective_questions
+=> nrel_main_idtf:
+            [Объективные вопросы] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Objective questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [客观题] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             choice_questions (* <- sc_node_not_relation;; *);
+             judgement_questions (* <- sc_node_not_relation;; *);
+             fill_in_the_blanks_questions (* <- sc_node_not_relation;; *)
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ... (* 
+                       -> rrel_example:
+                             [Объективные вопросы имеют только один стандартный ответ, и ответ пользователя может быть только правильным или неправильным.] (* <- lang_ru;; *);
+                             [Objective questions have only one standard answer, and the user's answer can only be right or wrong.] (* <- lang_en;; *);
+                             [客观题有唯一的标准答案，用户答案的结果最后只能是对或错。] (* <- lang_ch;; *);;
+                      *);;
+          *);;
+
+
+
+subjective_questions
+=> nrel_main_idtf:
+            [Субъективные вопросы] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Subjective questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [主观题] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             axiomatic_interpretation_questions (* <- sc_node_not_relation;; *);
+             definition_interpretation_questions (* <- sc_node_not_relation;; *);
+             proof_questions (* <- sc_node_not_relation;; *)
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                    -> rrel_example:
+                          [Большинство субъективных вопросов не имеют единого стандартного ответа, в то время как ответ пользователя соответствует требованиям вопроса.] (* <- lang_ru;; *);
+                          [Most subjective questions do not have a single standard answer, as long as the user's answers satisfy the requirements of the questions.] (* <- lang_en;; *);
+                          [大多数主观问题没有唯一的标准答案，只要用户的答案满足问题的要求即可。] (* <- lang_ch;; *);;
+                  *);;
+          *);;
+
+
+
+//选择题结构
+choice_questions
+=> nrel_main_idtf:
+            [Вопросы на выбор] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             choice_questions_based_on_class (* <- sc_node_not_relation;; *);
+             choice_questions_based_on_elements (* <- sc_node_not_relation;; *);
+             choice_questions_based_on_identifiers (* <- sc_node_not_relation;; *);
+             choice_questions_based_on_axiomatics (* <- sc_node_not_relation;; *);
+             choice_questions_based_on_image_examples (* <- sc_node_not_relation;; *);
+             choice_questions_based_on_multiple_relationships (* <- sc_node_not_relation;; *)
+            };
+<= nrel_subdividing:
+            {
+            multiple_choice_questions (* <- sc_node_not_relation;; *);
+            single_choice_questions (* <- sc_node_not_relation;; *)
+            };
+<= nrel_subdividing:
+           {
+           choice_the_correct_option (* <- sc_node_not_relation;; *);
+           choice_the_incorrect_option (* <- sc_node_not_relation;; *)
+           };;
+ 
+
+
+multiple_choice_questions
+=> nrel_main_idtf:
+            [Вопросы на выбор с несколькими вариантами ответа] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Multiple choice questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [多项选择题] (* <- lang_ch;; *);;
+
+
+
+single_choice_questions
+=> nrel_main_idtf:
+            [Вопросы на выбор с одним вариантом ответа] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Single choice questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [单项选择题] (* <- lang_ch;; *);;
+
+
+
+choice_the_correct_option
+=> nrel_main_idtf:
+            [Выбор правильного варианта] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice the correct option] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择正确的选项] (* <- lang_ch;; *);;
+
+
+
+choice_the_incorrect_option
+=> nrel_main_idtf:
+            [Выбор неправильного варианта] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice the incorrect option] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择不正确的选项] (* <-lang_ch;; *);;
+
+
+
+choice_questions_based_on_class
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе классов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on class] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于类] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             choice_questions_based_on_inclusion_relation (* <- sc_node_not_relation;; *);
+             choice_questions_based_on_subdividing_relation (* <- sc_node_not_relation;;  *);
+             choice_questions_based_on_strict_inclusion_relation (* <- sc_node_not_relation;;  *)
+            };;
+
+
+
+choice_questions_based_on_inclusion_relation
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе отношения включения] (* <- lang_ru;;  *);
+=> nrel_main_idtf:
+            [Choice questions based on inclusion relation] (* <- lang_en;;  *);
+=> nrel_main_idtf:
+            [选择题基于包含关系] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_subdividing_relation
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе отношения разбиения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on subdividing relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于细分关系] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_strict_inclusion_relation
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе отношения строгого включения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on strict inclusion relation] (* <- lang_en;; *);
+=>nrel_main_idtf: 
+           [选择题基于严格包含关系] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_elements
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе элементов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on elements] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于元素] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             choice_questions_based_on_binary_relation (* <- sc_node_not_relation;; *);
+             choice_questions_based_on_role_relation (* <- sc_node_not_relation;;  *)
+            };;
+
+
+
+choice_questions_based_on_binary_relation
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе бинарного отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Chocice questions based on binary relation] (* <- lang_en;;  *);
+=> nrel_main_idtf:
+            [选择题基于二元关系] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_role_relation
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе ролевого отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Chocice questions based on role relation] (* <- lang_en;;  *);
+=> nrel_main_idtf:
+            [选择题基于角色关系] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_identifiers
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе идентификаторов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于标识符] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             choice_questions_based_on_set_identifier (* <-sc_node_not_relation;; *);
+             choice_questions_based_on_relation_identifier (* <-sc_node_not_relation;; *)
+            };;
+
+
+
+choice_questions_based_on_set_identifier
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе идентификаторов множеств] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on set identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于集合标识符] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_relation_identifier
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе идентификаторов отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on relation identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于关系标识符] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_axiomatics
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе аксиом] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on axiomatics] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于公理] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_image_examples
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе примера изображения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on image examples] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于示例图] (* <- lang_ch;; *);;
+
+
+
+choice_questions_based_on_multiple_relationships
+=> nrel_main_idtf:
+            [Вопросы на выбор на основе множественного отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Choice questions based on multiple relationships] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [选择题基于多元关系] (* <- lang_ch;; *);;
+
+
+
+// 填空题结构
+fill_in_the_blanks_questions
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             fill_blanks_questions_based_on_class (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_elements (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_identifiers (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_axiomatics (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_image_examples (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_multiple_relationships (* <- sc_node_not_relation;; *)
+            };
+<= nrel_subdividing:
+            {
+             fill_blanks_questions_with_multiple_blanks (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_with_a_blank (* <- sc_node_not_relation;; *)
+            };
+<= nrel_subdividing:
+            {
+             fill_blanks_questions_with_unique_answers (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_with_several_possible_answers (* <- sc_node_not_relation;; *)
+            };;
+
+
+
+fill_blanks_questions_with_multiple_blanks
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов с несколькими вариантами ответа] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions with multiple blanks] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [题空题有多个空白选项] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_with_a_blank
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов с одним вариантом ответа] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions with a blank] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [题空题有一个空白选项] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_with_unique_answers
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов с единственными ответами] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions with unique answers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题有唯一答案] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_with_several_possible_answers
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов с несколькими возможными ответами] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions with several possible answers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题有几个可能的答案] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_class
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе классов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on class] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于类] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             fill_blanks_questions_based_on_inclusion_relation (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_subdividing_relation (* <- sc_node_not_relation;;  *);
+             fill_blanks_questions_based_on_strict_inclusion_relation (* <- sc_node_not_relation;;  *)
+            };;
+
+
+
+fill_blanks_questions_based_on_inclusion_relation
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе отношения включения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on inclusion relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于包含关系] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_subdividing_relation
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе отношения разбиения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on subdividing relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于细分关系] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_strict_inclusion_relation
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе отношения строгого включения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on strict inclusion relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于严格包含关系] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_elements
+=> nrel_main_idtf: 
+            [Вопросы на заполнение пробелов на основе элементов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on elements] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于元素] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             fill_blanks_questions_based_on_binary_relation (* <- sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_role_relation (* <- sc_node_not_relation;; *)
+            };;
+
+
+
+fill_blanks_questions_based_on_binary_relation
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе бинарного отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on binary relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于二元关系] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_role_relation
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе ролевого отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on role relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于角色关系] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_identifiers
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе идентификаторов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于标识符] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             fill_blanks_questions_based_on_set_identifier (* <-sc_node_not_relation;; *);
+             fill_blanks_questions_based_on_relation_identifier (* <-sc_node_not_relation;; *)
+            };;
+
+
+
+fill_blanks_questions_based_on_set_identifier
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе идентификаторов множеств] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on set identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于集合标识符] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_relation_identifier
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе идентификаторов отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on relation identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于关系标识符] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_axiomatics
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе аксиом] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on axiomatics] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于公理] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_image_examples
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе примера изображения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on image examples] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于示例图] (* <- lang_ch;; *);;
+
+
+
+fill_blanks_questions_based_on_multiple_relationships
+=> nrel_main_idtf:
+            [Вопросы на заполнение пробелов на основе множественного отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Fill in the blanks questions based on multiple relationships] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [填空题基于多元关系] (* <- lang_ch;; *);;
+
+
+
+// 判断题结构
+judgement_questions
+=> nrel_main_idtf:
+            [Вопросы суждения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             judgement_questions_based_on_class (* <- sc_node_not_relation;; *);
+             judgement_questions_based_on_elements (* <- sc_node_not_relation;; *);
+             judgement_questions_based_on_identifiers (* <- sc_node_not_relation;; *);
+             judgement_questions_based_on_axiomatics (* <- sc_node_not_relation;; *);
+             judgement_questions_based_on_image_examples (* <- sc_node_not_relation;; *);
+             judgement_questions_based_on_multiple_relationships (* <- sc_node_not_relation;; *)
+            };
+<= nrel_subdividing:
+            {
+             judgement_questions_of_choosing_true (* <- sc_node_not_relation;; *);
+             judgement_questions_of_choosing_false (* <- sc_node_not_relation;; *)
+            };;
+
+
+
+judgement_questions_of_choosing_true
+=> nrel_main_idtf:
+            [Вопросы суждения с ответами "истина"] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions of choosing "true"] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题选择“对”] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_of_choosing_false
+=> nrel_main_idtf:
+            [Вопросы суждения с ответами "ложь"] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions of choosing "false"] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题选择“错”] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_class
+=> nrel_main_idtf:
+            [Вопросы суждения на основе классов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on class] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于类] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             judgement_questions_based_on_inclusion_relation (* <- sc_node_not_relation;; *);
+             judgement_questions_based_on_subdividing_relation (* <- sc_node_not_relation;;  *);
+             judgement_questions_based_on_strict_inclusion_relation (* <- sc_node_not_relation;;  *)
+            };;
+
+
+
+judgement_questions_based_on_inclusion_relation
+=> nrel_main_idtf:
+            [Вопросы суждения на основе отношения включения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on inclusion relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于包含关系] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_subdividing_relation
+=> nrel_main_idtf:
+            [Вопросы суждения на основе отношения разбиения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on subdividing relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于细分关系] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_strict_inclusion_relation
+=> nrel_main_idtf:
+            [Вопросы суждения на основе отношения строгого включения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on strict inclusion relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于严格包含关系] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_elements
+=> nrel_main_idtf: 
+            [Вопросы суждения на основе элементов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on elements] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于元素] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             judgement_questions_based_on_binary_relation (* <- sc_node_not_relation;; *);
+             judgement_questions_based_on_role_relation (* <- sc_node_not_relation;; *)
+            };;
+
+
+
+judgement_questions_based_on_binary_relation
+=> nrel_main_idtf:
+            [Вопросы суждения на основе бинарного отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on binary relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于二元关系] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_role_relation
+=> nrel_main_idtf:
+            [Вопросы суждения на основе ролевого отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on role relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于角色关系] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_identifiers
+=> nrel_main_idtf:
+            [Вопросы суждения на основе идентификаторов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于标识符] (* <- lang_ch;; *);
+<= nrel_section_decomposition:
+            {
+             judgement_questions_based_on_set_identifier (* <-sc_node_not_relation;; *);
+             judgement_questions_based_on_relation_identifier (* <-sc_node_not_relation;; *)
+            };;
+
+
+
+judgement_questions_based_on_set_identifier
+=> nrel_main_idtf:
+            [Вопросы суждения на основе идентификаторов множеств] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on set identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于集合标识符] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_relation_identifier
+=> nrel_main_idtf:
+            [Вопросы суждения на основе идентификаторов отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on relation identifiers] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于关系标识符] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_axiomatics
+=> nrel_main_idtf:
+            [Вопросы суждения на основе аксиом] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on axiomatics] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于公理] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_image_examples
+=> nrel_main_idtf:
+            [Вопросы суждения на основе примера изображения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on image examples] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于示例图] (* <- lang_ch;; *);;
+
+
+
+judgement_questions_based_on_multiple_relationships
+=> nrel_main_idtf:
+            [Вопросы суждения на основе множественного отношения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgement questions based on multiple relationships] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于多元关系] (* <- lang_ch;; *);;
+
+
+
+// 主观题结构
+axiomatic_interpretation_questions
+=> nrel_main_idtf:
+            [Вопросы на толкование теорем] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Axiomatic interpretation questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [公理解释题] (* <- lang_ch;; *);;
+
+
+
+definition_interpretation_questions
+=> nrel_main_idtf:
+            [Вопросы на толкование определений] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Definition interpretation questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [定义解释题] (* <- lang_ch;; *);;
+
+
+
+proof_questions
+=> nrel_main_idtf:
+            [Вопросы на доказательство] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Proof questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [证明题] (* <- lang_ch;; *);;
