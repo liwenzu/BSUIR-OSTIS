@@ -8,7 +8,7 @@ questions_knowledge_base
             [Questions knowledge base] (*  <- lang_en;; *);
 => nrel_main_idtf:
             [问题知识库] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
               {
                 subjective_questions (* <- sc_node_not_relation;; *);                         
                 objective_questions (* <- sc_node_not_relation;; *)               
@@ -36,7 +36,7 @@ objective_questions
             [Objective questions] (* <- lang_en;; *);
 => nrel_main_idtf:
             [客观题] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              choice_questions (* <- sc_node_not_relation;; *);
              judgement_questions (* <- sc_node_not_relation;; *);
@@ -64,7 +64,7 @@ subjective_questions
             [Subjective questions] (* <- lang_en;; *);
 => nrel_main_idtf:
             [主观题] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              axiomatic_interpretation_questions (* <- sc_node_not_relation;; *);
              definition_interpretation_questions (* <- sc_node_not_relation;; *);
@@ -94,7 +94,7 @@ choice_questions
             [Choice questions] (* <- lang_en;; *);
 => nrel_main_idtf:
             [选择题] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              choice_questions_based_on_class (* <- sc_node_not_relation;; *);
              choice_questions_based_on_elements (* <- sc_node_not_relation;; *);
@@ -112,7 +112,20 @@ choice_questions
            {
            choice_the_correct_option (* <- sc_node_not_relation;; *);
            choice_the_incorrect_option (* <- sc_node_not_relation;; *)
-           };;
+           };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (* 
+                   -> rrel_example:
+                         [Вопрос на выбор - это форма объективной оценки, в которой пользователем предлагается выбрать только правильные ответы из списка вариантов.] (* <- lang_ru;; *);
+                         [Multiple choice or objective response is a form of an objective assessment in which respondents are asked to select only correct answers from the choices offered as a list. ] (* <- lang_en;; *);
+                         [选择题是一种题型或方法，指从一组选项当中，选出一个或多个作为正确（或较适合）的答案。] (* <- lang_ch;; *);;                         
+                  *);;
+          *);;
  
 
 
@@ -122,7 +135,20 @@ multiple_choice_questions
 => nrel_main_idtf:
             [Multiple choice questions] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [多项选择题] (* <- lang_ch;; *);;
+            [多项选择题] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (* 
+                   -> rrel_example:
+                         [Выберите несколько ответов в соответствии с требованиями вопроса.] (* <- lang_ru;; *);
+                         [Choose multiple answers as required by the question. ] (* <- lang_en;; *);
+                         [按照题目的要求选择多个正确的答案。] (* <- lang_ch;; *);;                         
+                  *);;
+          *);;
 
 
 
@@ -132,7 +158,20 @@ single_choice_questions
 => nrel_main_idtf:
             [Single choice questions] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [单项选择题] (* <- lang_ch;; *);;
+            [单项选择题] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (* 
+                   -> rrel_example:
+                         [Этот тип вопроса имеет только один правильный вариант ответа.] (* <- lang_ru;; *);
+                         [This type of question has only one correct answer option. ] (* <- lang_en;; *);
+                         [这种类型的问题只有一个正确的答案选项。] (* <- lang_ch;; *);;                         
+                  *);;
+          *);;
 
 
 
@@ -142,7 +181,21 @@ choice_the_correct_option
 => nrel_main_idtf:
             [Choice the correct option] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [选择正确的选项] (* <- lang_ch;; *);;
+            [选择正确的选项] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса относится к выбору правильного ответа, который соответствует требованиям вопроса.] (* <- lang_ru;; *);
+                         [This type of question refers to choosing the correct answer that meets the requirements of the question.] (* <- lang_en;; *);
+                         [这种类型的问题是指选出满足问题要求的正确的答案选项。] (* <- lang_ch;; *);;
+                  *);;        
+          *);;
+
 
 
 
@@ -152,7 +205,20 @@ choice_the_incorrect_option
 => nrel_main_idtf:
             [Choice the incorrect option] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [选择不正确的选项] (* <-lang_ch;; *);;
+            [选择不正确的选项] (* <-lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса относится к выбору неправильного ответа, который соответствует требованиям вопроса.] (* <- lang_ru;; *);
+                         [This type of question refers to the choice of incorrect answers that meet the requirements of the question.] (* <- lang_en;; *);
+                         [这种类型的问题是指选出满足问题要求的不正确的答案选项。] (* <- lang_ch;; *);;
+                  *);;        
+          *);;
 
 
 
@@ -163,12 +229,25 @@ choice_questions_based_on_class
             [Choice questions based on class] (* <- lang_en;; *);
 => nrel_main_idtf:
             [选择题基于类] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              choice_questions_based_on_inclusion_relation (* <- sc_node_not_relation;; *);
              choice_questions_based_on_subdividing_relation (* <- sc_node_not_relation;;  *);
              choice_questions_based_on_strict_inclusion_relation (* <- sc_node_not_relation;;  *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием различных отношений между классами.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using various relationships between classes.] (* <- lang_en;; *);
+                         [这种类型的问题使用类之间的各种关系自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -209,11 +288,24 @@ choice_questions_based_on_elements
             [Choice questions based on elements] (* <- lang_en;; *);
 => nrel_main_idtf:
             [选择题基于元素] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              choice_questions_based_on_binary_relation (* <- sc_node_not_relation;; *);
              choice_questions_based_on_role_relation (* <- sc_node_not_relation;;  *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием различных отношений между элементами.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using various relationships between elements.] (* <- lang_en;; *);
+                         [这种类型的问题使用元素之间的各种关系自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -244,11 +336,24 @@ choice_questions_based_on_identifiers
             [Choice questions based on identifiers] (* <- lang_en;; *);
 => nrel_main_idtf:
             [选择题基于标识符] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              choice_questions_based_on_set_identifier (* <-sc_node_not_relation;; *);
              choice_questions_based_on_relation_identifier (* <-sc_node_not_relation;; *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса автоматически генерирует вопросы, используя несколько идентификаторов, которые имеет класс или отношение.] (* <- lang_ru;; *);
+                         [This type of question automatically generates questions using multiple identifiers that a class or relationship has.] (* <- lang_en;; *);
+                         [这种类型的问题使用集合或关系具有的多个标识符自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -278,7 +383,20 @@ choice_questions_based_on_axiomatics
 => nrel_main_idtf:
             [Choice questions based on axiomatics] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [选择题基于公理] (* <- lang_ch;; *);;
+            [选择题基于公理] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием аксиом, хранящихся в базе знаний.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using axioms stored in the knowledge base.] (* <- lang_en;; *);
+                         [这种类型的问题使用知识库中存储的公理自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -288,7 +406,20 @@ choice_questions_based_on_image_examples
 => nrel_main_idtf:
             [Choice questions based on image examples] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [选择题基于示例图] (* <- lang_ch;; *);;
+            [选择题基于示例图] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопросов генерируется автоматически с использованием примеров изображений, хранящихся в базе знаний.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using sample diagrams stored in the knowledge base.] (* <- lang_en;; *);
+                         [这种类型的问题使用知识库中存储的示例图自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -298,7 +429,20 @@ choice_questions_based_on_multiple_relationships
 => nrel_main_idtf:
             [Choice questions based on multiple relationships] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [选择题基于多元关系] (* <- lang_ch;; *);;
+            [选择题基于多元关系] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием нескольких атрибутов отношений, которые имеют отношения.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using the multiple relationship attributes that relationships have.] (* <- lang_en;; *);
+                         [这种类型的问题使用关系具有的多种关系属性自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -310,7 +454,7 @@ fill_in_the_blanks_questions
             [Fill in the blanks questions] (* <- lang_en;; *);
 => nrel_main_idtf:
             [填空题] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              fill_blanks_questions_based_on_class (* <- sc_node_not_relation;; *);
              fill_blanks_questions_based_on_elements (* <- sc_node_not_relation;; *);
@@ -328,7 +472,20 @@ fill_in_the_blanks_questions
             {
              fill_blanks_questions_with_unique_answers (* <- sc_node_not_relation;; *);
              fill_blanks_questions_with_several_possible_answers (* <- sc_node_not_relation;; *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Вопрос на зополнение пробелов заключается в удалении некоторых ключевых элементов вопроса и оставлении пустых мест, где пользователь должен заполнить правильные ответы в пустых местах.] (* <- lang_ru;; *);
+                         [Fill in the blank question is to remove some of the key elements of the question and leave blank spaces where the user needs to fill in the correct answers in the blank spaces.] (* <- lang_en;; *);
+                         [填空题是将问题中的一些关键元素删除并留出空白位置，用户需要在空白位置填入正确答案的一类问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -338,7 +495,20 @@ fill_blanks_questions_with_multiple_blanks
 => nrel_main_idtf:
             [Fill in the blanks questions with multiple blanks] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [题空题有多个空白选项] (* <- lang_ch;; *);;
+            [题空题有多个空白选项] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Вопросы на заполнение, которые должны быть заполнены несколькими ответами.] (* <- lang_ru;; *);
+                         [Fill in the blanks questions with multiple answers.] (* <- lang_en;; *);
+                         [需要填入多个答案的填空题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -348,7 +518,20 @@ fill_blanks_questions_with_a_blank
 => nrel_main_idtf:
             [Fill in the blanks questions with a blank] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [题空题有一个空白选项] (* <- lang_ch;; *);;
+            [题空题有一个空白选项] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Вопросы на заполнение только нужно заполнить один ответ.] (* <- lang_ru;; *);
+                         [Fill in the blanks questions only need to fill in an answer.] (* <- lang_en;; *);
+                         [填空题只需要填入一个答案。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -358,7 +541,20 @@ fill_blanks_questions_with_unique_answers
 => nrel_main_idtf:
             [Fill in the blanks questions with unique answers] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [填空题有唯一答案] (* <- lang_ch;; *);;
+            [填空题有唯一答案] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Когда количество пробелов равно количеству стандартных ответов, то есть этот тип вопроса имеет единственные ответы.] (* <- lang_ru;; *);
+                         [When the number of blanks is equal to the number of standard answers, this type of question has  unique answers.] (* <- lang_en;; *);
+                         [当填空题空白位置数量和标准答案数量相等时即这类问题有唯一的答案。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -368,7 +564,20 @@ fill_blanks_questions_with_several_possible_answers
 => nrel_main_idtf:
             [Fill in the blanks questions with several possible answers] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [填空题有几个可能的答案] (* <- lang_ch;; *);;
+            [填空题有几个可能的答案] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Когда количество пробелов меньше, чем количество стандартных ответов, то есть этот тип вопроса имеет несколькие возможные ответы.] (* <- lang_ru;; *);
+                         [When the number of blanks is less than the number of standard answers, this type of questions has several possible answers.] (* <- lang_en;; *);
+                         [当填空题空白位置数量小于标准答案数量时，即这类问题有多个可能的答案。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -379,12 +588,25 @@ fill_blanks_questions_based_on_class
             [Fill in the blanks questions based on class] (* <- lang_en;; *);
 => nrel_main_idtf:
             [填空题基于类] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              fill_blanks_questions_based_on_inclusion_relation (* <- sc_node_not_relation;; *);
              fill_blanks_questions_based_on_subdividing_relation (* <- sc_node_not_relation;;  *);
              fill_blanks_questions_based_on_strict_inclusion_relation (* <- sc_node_not_relation;;  *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием различных отношений между классами.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using various relationships between classes.] (* <- lang_en;; *);
+                         [这种类型的问题使用类之间的各种关系自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -425,11 +647,24 @@ fill_blanks_questions_based_on_elements
             [Fill in the blanks questions based on elements] (* <- lang_en;; *);
 => nrel_main_idtf:
             [填空题基于元素] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              fill_blanks_questions_based_on_binary_relation (* <- sc_node_not_relation;; *);
              fill_blanks_questions_based_on_role_relation (* <- sc_node_not_relation;; *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием различных отношений между элементами.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using various relationships between elements.] (* <- lang_en;; *);
+                         [这种类型的问题使用元素之间的各种关系自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -460,11 +695,24 @@ fill_blanks_questions_based_on_identifiers
             [Fill in the blanks questions based on identifiers] (* <- lang_en;; *);
 => nrel_main_idtf:
             [填空题基于标识符] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              fill_blanks_questions_based_on_set_identifier (* <-sc_node_not_relation;; *);
              fill_blanks_questions_based_on_relation_identifier (* <-sc_node_not_relation;; *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса автоматически генерирует вопросы, используя несколько идентификаторов, которые имеет класс или отношение.] (* <- lang_ru;; *);
+                         [This type of question automatically generates questions using multiple identifiers that a class or relationship has.] (* <- lang_en;; *);
+                         [这种类型的问题使用集合或关系具有的多个标识符自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -494,7 +742,20 @@ fill_blanks_questions_based_on_axiomatics
 => nrel_main_idtf:
             [Fill in the blanks questions based on axiomatics] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [填空题基于公理] (* <- lang_ch;; *);;
+            [填空题基于公理] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием аксиом, хранящихся в базе знаний.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using axioms stored in the knowledge base.] (* <- lang_en;; *);
+                         [这种类型的问题使用知识库中存储的公理自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -504,7 +765,20 @@ fill_blanks_questions_based_on_image_examples
 => nrel_main_idtf:
             [Fill in the blanks questions based on image examples] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [填空题基于示例图] (* <- lang_ch;; *);;
+            [填空题基于示例图] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопросов генерируется автоматически с использованием примеров изображений, хранящихся в базе знаний.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using sample diagrams stored in the knowledge base.] (* <- lang_en;; *);
+                         [这种类型的问题使用知识库中存储的示例图自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -514,7 +788,20 @@ fill_blanks_questions_based_on_multiple_relationships
 => nrel_main_idtf:
             [Fill in the blanks questions based on multiple relationships] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [填空题基于多元关系] (* <- lang_ch;; *);;
+            [填空题基于多元关系] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием нескольких атрибутов отношений, которые имеют отношения.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using the multiple relationship attributes that relationships have.] (* <- lang_en;; *);
+                         [这种类型的问题使用关系具有的多种关系属性自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -526,7 +813,7 @@ judgement_questions
             [Judgement questions] (* <- lang_en;; *);
 => nrel_main_idtf:
             [判断题] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              judgement_questions_based_on_class (* <- sc_node_not_relation;; *);
              judgement_questions_based_on_elements (* <- sc_node_not_relation;; *);
@@ -539,7 +826,20 @@ judgement_questions
             {
              judgement_questions_of_choosing_true (* <- sc_node_not_relation;; *);
              judgement_questions_of_choosing_false (* <- sc_node_not_relation;; *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Вопрос суждения-это вопрос выбора "ИСТИНА" или "ЛОЖЬ".] (* <- lang_ru;; *);
+                         [Judgement question is a question of choosing TRUE or FALSE.] (* <- lang_en;; *);
+                         [判断题是一种选择对或错的问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -549,7 +849,20 @@ judgement_questions_of_choosing_true
 => nrel_main_idtf:
             [Judgement questions of choosing "true"] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [判断题选择“对”] (* <- lang_ch;; *);;
+            [判断题选择“对”] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Условия или ключевые элементы, описанные в этом типе вопроса являются правильными.] (* <- lang_ru;; *);
+                         [The conditions or key elements described in this type of question are correct.] (* <- lang_en;; *);
+                         [这类问题所描述的条件或关键元素都是正确的。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -559,7 +872,20 @@ judgement_questions_of_choosing_false
 => nrel_main_idtf:
             [Judgement questions of choosing "false"] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [判断题选择“错”] (* <- lang_ch;; *);;
+            [判断题选择“错”] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Условия или ключевые элементы, описанные в этом типе вопроса, не являются полностью правильными.] (* <- lang_ru;; *);
+                         [The conditions or key elements described in this type of question are not completely correct.] (* <- lang_en;; *);
+                         [这类问题所描述的条件或关键元素不完全正确。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -570,12 +896,25 @@ judgement_questions_based_on_class
             [Judgement questions based on class] (* <- lang_en;; *);
 => nrel_main_idtf:
             [判断题基于类] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              judgement_questions_based_on_inclusion_relation (* <- sc_node_not_relation;; *);
              judgement_questions_based_on_subdividing_relation (* <- sc_node_not_relation;;  *);
              judgement_questions_based_on_strict_inclusion_relation (* <- sc_node_not_relation;;  *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием различных отношений между классами.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using various relationships between classes.] (* <- lang_en;; *);
+                         [这种类型的问题使用类之间的各种关系自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -616,11 +955,24 @@ judgement_questions_based_on_elements
             [Judgement questions based on elements] (* <- lang_en;; *);
 => nrel_main_idtf:
             [判断题基于元素] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              judgement_questions_based_on_binary_relation (* <- sc_node_not_relation;; *);
              judgement_questions_based_on_role_relation (* <- sc_node_not_relation;; *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием различных отношений между элементами.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using various relationships between elements.] (* <- lang_en;; *);
+                         [这种类型的问题使用元素之间的各种关系自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -651,11 +1003,24 @@ judgement_questions_based_on_identifiers
             [Judgement questions based on identifiers] (* <- lang_en;; *);
 => nrel_main_idtf:
             [判断题基于标识符] (* <- lang_ch;; *);
-<= nrel_section_decomposition:
+<= nrel_subdividing:
             {
              judgement_questions_based_on_set_identifier (* <-sc_node_not_relation;; *);
              judgement_questions_based_on_relation_identifier (* <-sc_node_not_relation;; *)
-            };;
+            };
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса автоматически генерирует вопросы, используя несколько идентификаторов, которые имеет класс или отношение.] (* <- lang_ru;; *);
+                         [This type of question automatically generates questions using multiple identifiers that a class or relationship has.] (* <- lang_en;; *);
+                         [这种类型的问题使用集合或关系具有的多个标识符自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -685,7 +1050,20 @@ judgement_questions_based_on_axiomatics
 => nrel_main_idtf:
             [Judgement questions based on axiomatics] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [判断题基于公理] (* <- lang_ch;; *);;
+            [判断题基于公理] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием аксиом, хранящихся в базе знаний.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using axioms stored in the knowledge base.] (* <- lang_en;; *);
+                         [这种类型的问题使用知识库中存储的公理自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -695,7 +1073,20 @@ judgement_questions_based_on_image_examples
 => nrel_main_idtf:
             [Judgement questions based on image examples] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [判断题基于示例图] (* <- lang_ch;; *);;
+            [判断题基于示例图] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопросов генерируется автоматически с использованием примеров изображений, хранящихся в базе знаний.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using sample diagrams stored in the knowledge base.] (* <- lang_en;; *);
+                         [这种类型的问题使用知识库中存储的示例图自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -705,7 +1096,20 @@ judgement_questions_based_on_multiple_relationships
 => nrel_main_idtf:
             [Judgement questions based on multiple relationships] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [判断题基于多元关系] (* <- lang_ch;; *);;
+            [判断题基于多元关系] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса генерируется автоматически с использованием нескольких атрибутов отношений, которые имеют отношения.] (* <- lang_ru;; *);
+                         [This type of question is generated automatically using the multiple relationship attributes that relationships have.] (* <- lang_en;; *);
+                         [这种类型的问题使用关系具有的多种关系属性自动生成问题。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -716,7 +1120,20 @@ axiomatic_interpretation_questions
 => nrel_main_idtf:
             [Axiomatic interpretation questions] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [公理解释题] (* <- lang_ch;; *);;
+            [公理解释题] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса используется для объяснения значения различных аксиом.] (* <- lang_ru;; *);
+                         [This type of question is used to explain the meaning of various axioms.] (* <- lang_en;; *);
+                         [这种类型的问题用于解释各种公理的含义。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -726,7 +1143,20 @@ definition_interpretation_questions
 => nrel_main_idtf:
             [Definition interpretation questions] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [定义解释题] (* <- lang_ch;; *);;
+            [定义解释题] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса используется для объяснения различных определений.] (* <- lang_ru;; *);
+                         [This type of question is used to explain various definitions.] (* <- lang_en;; *);
+                         [这种类型的问题用于解释各种定义。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
 
 
 
@@ -736,4 +1166,17 @@ proof_questions
 => nrel_main_idtf:
             [Proof questions] (* <- lang_en;; *);
 => nrel_main_idtf:
-            [证明题] (* <- lang_ch;; *);;
+            [证明题] (* <- lang_ch;; *);
+<- rrel_key_sc_element:
+          ...
+          (* 
+           <- sc_explanation;;
+           <= nrel_sc_text_translation:
+                  ...
+                  (*
+                   -> rrel_example:
+                         [Этот тип вопроса включает в себя процесс доказательства некоторых теорем.] (* <- lang_ru;; *);
+                         [This type of question involves the proof process of some theorems.] (* <- lang_en;; *);
+                         [这种类型的问题包含一些定理的证明过程。] (* <- lang_ch;; *);; 
+                  *);;
+          *);;
