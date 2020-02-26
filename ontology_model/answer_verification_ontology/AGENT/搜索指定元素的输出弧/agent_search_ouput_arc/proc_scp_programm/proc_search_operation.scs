@@ -1,0 +1,106 @@
+// Объявляем нашу процедуру как scp-программу
+scp_program ->proc_search_operation (*
+// Устанавливаем связь между процедурой и множеством её параметров
+->rrel_params: .proc_search_operation_params (*
+-> rrel_1: rrel_in: _parameter;;
+->rrel_2: rrel_in: _answer;;
+*);;
+// Устанавливаем связь между процедурой и множеством её операторов
+->rrel_operators: .proc_search_operation_operator_set (*
+// Данный оператор принадлежит множеству операторов
+// с атрибутом rrel_init, это означает, что он будет выполняться первым
+->rrel_init: .proc_search_operation_operator1 (*
+<- genEl;;
+-> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _set_elem;;
+=>nrel_goto: .proc_search_operation_operator2;;
+*);;
+// Добавим параметр операции во множество, содержащее конструкцию ответа
+-> .proc_search_operation_operator2 (*
+<- genElStr3;;
+-> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+-> rrel_3: rrel_fixed: rrel_scp_var: _parameter;;
+=>nrel_goto: .proc_search_operation_operator3;;
+*);;
+// Добавим все дуги, выходящие из узла параметра, во множество _set_elem
+-> .proc_search_operation_operator3 (*
+<- searchSetStr3;;
+-> rrel_1: rrel_fixed: rrel_scp_var: _parameter;;
+-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+-> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+-> rrel_set_2: rrel_fixed: rrel_scp_var: _set_elem;;
+-> rrel_set_3: rrel_fixed: rrel_scp_var: _set_elem;;
+=>nrel_then: .proc_search_operation_operator4;;
+=>nrel_else: .proc_search_operation_operator_return;;
+*);;
+// Операторы с четвертого по седьмой представляют собой цикл
+-> .proc_search_operation_operator4 (*
+<- searchElStr3;;
+-> rrel_1: rrel_fixed: rrel_scp_var: _set_elem;;
+-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+-> rrel_3: rrel_assign: rrel_scp_var: _curr_elem;;
+=>nrel_then: .proc_search_operation_operator5;;
+// Если заданная конструкция не найдена, то выйти из цикла
+ =>nrel_else: .proc_search_operation_operator8;;
+//=>nrel_else: .proc_search_all_output_operator_print_result;;
+*);;
+-> .proc_search_operation_operator5 (*
+<- eraseEl;;
+-> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
+=>nrel_goto: .proc_search_operation_operator6;;
+*);;
+// Проверяем, не входит ли найденный элемент во множество системных
+// элементов
+-> .proc_search_operation_operator6 (*
+<- searchElStr3;;
+-> rrel_1: rrel_fixed: rrel_scp_const: system_element;;
+-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+-> rrel_3: rrel_fixed: rrel_scp_var: _curr_elem;;
+// Если элемент входит во множество системных элементов, то вернуться к
+// началуцикла
+=>nrel_then: .proc_search_operation_operator4;;
+=>nrel_else: .proc_search_operation_operator6_1;;
+*);;
+// Проверяем, есть ли в узле с конструкцией ответа найденный элемент
+-> .proc_search_operation_operator6_1 (*
+<- searchElStr3;;
+-> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+-> rrel_3: rrel_fixed: rrel_scp_var: _curr_elem;;
+// Если элемент входит в узел с конструкцией ответа, то вернуться к началу
+// цикла
+=>nrel_then: .proc_search_operation_operator4;;
+=>nrel_else: .proc_search_operation_operator7;;
+*);;
+// Добавляет элемент в ответ и возвращается к началу цикла
+-> .proc_search_operation_operator7 (*
+<- genElStr3;;
+-> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+-> rrel_3: rrel_fixed: rrel_scp_var: _curr_elem;;
+=>nrel_goto: .proc_search_operation_operator4;;
+*);;
+// Переходим к оператору очистки памяти
+
+
+
+-> .proc_search_all_output_operator_print_result (*
+<- printEl;;
+-> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+=> nrel_goto: .proc_search_all_output_operator8;;
+ *);;             
+
+//Очистка памяти, не забываем про атрибут rrel_erase при удаляемом элементе
+-> .proc_search_operation_operator8 (*
+<- eraseEl;;
+-> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _set_elem;;
+// Переходим к оператору завершения операции
+=>nrel_goto: .proc_search_operation_operator_return;;
+*);;
+// Оператор завершения операции
+        -> .proc_search_operation_operator_return 
+                   (*
+                        <- return;;
+                   *);;
+           *);;
+ *);;

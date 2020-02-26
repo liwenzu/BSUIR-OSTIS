@@ -1,0 +1,20 @@
+ui_menu_inclusion_search_operation
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+=> nrel_main_idtf:
+                      [Search for elements that satisfy inclusion relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+                      [Поиск элементов, удовлетворяющих отношению включения] (* <- lang_ru;; *);
+=> ui_nrel_command_template:
+                      [* question_inclusion_search_operation _-> ._question_inclusion_search_operation_instance
+                                                             (*
+                                                                  _-> ui_arg_1;;
+                                                             *);;
+                             ._question_inclusion_search_operation_instance _<- question;;         
+
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Search for elements that satisfy inclusion relation: $ui_arg_1] (* <- lang_en;; *);
+=> ui_nrel_command_lang_template:
+                       [Поиск элементов, удовлетворяющих отношению включения: $ui_agr_1] (* <- lang_ru;; *);;
+
