@@ -1,0 +1,82 @@
+ui_menu_na_question_generation_and_answer_verification
+<- ui_user_command_class_noatom;
+=> nrel_main_idtf:
+                     [Генерация вопросов и проверка ответов] (* <- lang_ru ;; *);
+=> nrel_main_idtf:
+                     [Question generation and answer verification] (* <- lang_en;; *);
+=> nrel_main_idtf:
+                     [问题生成和答案验证] (* <- lang_ch;; *);
+<= nrel_ui_commands_decomposition:
+{
+     ui_menu_na_for_exercises;
+     ui_menu_na_question_generation;
+     ui_menu_na_answer_verification
+};;
+
+
+
+ui_menu_na_for_exercises
+<- ui_user_command_class_noatom;
+=> nrel_main_idtf:
+        [Агент для упражнений] (* <- lang_ru;; *);
+        [Agent for exercises] (* <- lang_en;; *);
+        [练习代理] (* <- lang_ch;; *);
+<= nrel_ui_commands_decomposition:
+{
+        ui_menu_inclusion_search_operation;
+        ui_menu_search_operation
+};;
+
+
+
+ui_menu_na_question_generation
+<-ui_user_command_class_noatom;
+=> nrel_main_idtf:
+        [Генерация вопросов] (* <- lang_ru;; *);
+        [Question generation] (* <- lang_en;; *);
+        [问题生成] (* <- lang_ch;; *);
+<= nrel_ui_commands_decomposition:
+{
+        an_example1
+};;
+
+
+ui_menu_na_answer_verification
+<-ui_user_command_class_noatom;
+=> nrel_main_idtf:
+        [Проверка ответов] (* <- lang_ru;; *);
+        [Answer verification] (* <- lang_en;; *);
+        [答案验证] (* <- lang_ch;; *);
+<= nrel_ui_commands_decomposition:
+{
+        ui_menu_fa_kn_similarity_calculation
+};;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
