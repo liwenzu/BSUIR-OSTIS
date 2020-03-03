@@ -125,7 +125,7 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1;; 
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                                                               -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
-                                                              -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall4;; 
+                                                              -> rrel_set_3: rrel_fixed: rrel_scp_var: _esaall4;; 
                                                               => nrel_then: .proc_fa_kn_similarity_calculation_operator4_5;;
                                                               => nrel_else: .proc_fa_kn_similarity_calculation_operator_print_result;;
                                                                 *);;
@@ -510,7 +510,7 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2;; 
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                                                               -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
-                                                              -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall4;; 
+                                                              -> rrel_set_3: rrel_fixed: rrel_scp_var: _esaall4;; 
                                                               => nrel_then: .proc_fa_kn_similarity_calculation_operator42_5;;
                                                               => nrel_else: .proc_fa_kn_similarity_calculation_operator_print_result;;
                                                                 *);;
@@ -785,6 +785,8 @@ scp_program -> proc_fa_kn_similarity_calculation (*
 //相似度计算部分×××××××××××××××××××××××××××××××××××××××××
 //相似度计算部分×××××××××××××××××××××××××××××××××××××××××
 //相似度计算部分×××××××××××××××××××××××××××××××××××××××××
+
+
                                                   -> .proc_fa_kn_similarity_calculation_operator13 (* 
                                                               <- genEl;;
                                                               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _allsst1;;
@@ -802,11 +804,12 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                                                               -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
                                                               -> rrel_set_3: rrel_fixed: rrel_scp_var: _allsst1;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator13_4;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator13s_4;;
                                                               => nrel_else: .proc_fa_kn_similarity_calculation_operator_print_result;;                                    
                                                                 *);;
 //第二个子结构
-/*                                                  -> .proc_fa_kn_similarity_calculation_operator13_3 (* 
+/*                
+                                  -> .proc_fa_kn_similarity_calculation_operator13_3 (* 
                                                               <- searchSetStr3;;
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _elem2;;
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
@@ -816,7 +819,32 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                               => nrel_else: .proc_fa_kn_similarity_calculation_operator_print_result;;                                    
                                                                 *);;
 */
-//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+//初始值赋值为0，相当与复制一个链接框，并且值为0
+//匹配的数值
+                                                -> .proc_fa_kn_similarity_calculation_operator13s_4 (*
+                                                              <- contAssign;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13s_5;;
+                                                               *);;
+//参考的数值
+                                                -> .proc_fa_kn_similarity_calculation_operator13s_5 (*
+                                                              <- contAssign;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _sumsta_1;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13s_6;;
+                                                               *);;
+//候选的数值
+                                                -> .proc_fa_kn_similarity_calculation_operator13s_6 (*
+                                                              <- contAssign;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _sumcand_1;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_4;;
+                                                               *);;
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 
 //按照正确答案子结构进行循环查找
                                                 -> .proc_fa_kn_similarity_calculation_operator13_4 (*
@@ -825,7 +853,7 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                                                               -> rrel_3: rrel_assign: rrel_scp_var:  _elem;;
                                                               => nrel_then: .proc_fa_kn_similarity_calculation_operator13_5;;
-                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator_print_result;;
+                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator33_5;;
                                                                 *);;
 //生成两个点用于存放子结构中的通用弧和归属弧
                                                   -> .proc_fa_kn_similarity_calculation_operator13_5 (* 
@@ -1048,8 +1076,27 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                 -> .proc_fa_kn_similarity_calculation_operator13_33 (*
                                                               <- print;;
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _iden2;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_34;;
+                                                               *);;
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//统计标准答案子结构数量
+                                                -> .proc_fa_kn_similarity_calculation_operator13_34 (*
+                                                              <- contAdd;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _sumsta;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta_1;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_35;;
+                                                               *);;
+//赋值运算
+                                                -> .proc_fa_kn_similarity_calculation_operator13_35 (*
+                                                              <- varAssign;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _sumsta_1;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta;;
                                                               => nrel_goto: .proc_fa_kn_similarity_calculation_operator23;;
                                                                *);;
+
+
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -1231,220 +1278,120 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                 -> .proc_fa_kn_similarity_calculation_operator23_23 (*
                                                               <- print;;
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _iden22;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator23_1;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33;;
                                                                *);;
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 //第一个结构标识符和第二个结构标识符相似度比较
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//生成一个节点用于存放找到的俄语标识符
-     /*                                             -> .proc_fa_kn_similarity_calculation_operator23_12 (* 
-                                                              <- genEl;;
-                                                              -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _id12;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator23_13;;                                    
-                                                                *);;
-
-                                                -> .proc_fa_kn_similarity_calculation_operator23_13 (*
-                                                              <- genElStr3;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_const: _id12;;
-                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                                                              -> rrel_3: rrel_fixed: rrel_scp_var:  _iden;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator23_12;;
-                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator23_11;;
-                                                                *);;
-*/
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-                                                  -> .proc_fa_kn_similarity_calculation_operator13_101 (* 
+                                                -> .proc_fa_kn_similarity_calculation_operator33 (*
+                                                              <- stringIfEq;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _iden1;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _iden12;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_1;;
+                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator23_1;;
+                                                               *);;
+                                                -> .proc_fa_kn_similarity_calculation_operator33_1 (*
+                                                              <- stringIfEq;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _iden2;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _iden22;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_2;;
+                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator23_1;;
+                                                               *);;
+                                                -> .proc_fa_kn_similarity_calculation_operator33_2 (*
+                                                              <- stringIfEq;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _iden3;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _iden32;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_3;;
+                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator23_1;;
+                                                               *);;
+//$$$$$$$$$$$$$$
+//进行加法计算，计算有几个结构相同;;i++;;
+
+
+
+                                                -> .proc_fa_kn_similarity_calculation_operator33_3 (*
+                                                              <- contAdd;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _summa_1;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_4;;
+                                                               *);;
+//赋值运算
+                                                -> .proc_fa_kn_similarity_calculation_operator33_4 (*
+                                                              <- varAssign;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_4;;
+                                                               *);;
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//统计第用户答案子结构的数量
+                                                -> .proc_fa_kn_similarity_calculation_operator33_5 (* 
                                                               <- searchSetStr3;;
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _elem2;;
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                                                               -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
                                                               -> rrel_set_3: rrel_fixed: rrel_scp_var: _allsst2;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator23_10;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_6;;
                                                               => nrel_else: .proc_fa_kn_similarity_calculation_operator_print_result;;                                    
                                                                 *);;
-
-
-
-
-//用户答案子结构循环开始
-                                                -> .proc_fa_kn_similarity_calculation_operator23_10 (*
+                                                -> .proc_fa_kn_similarity_calculation_operator33_6 (*
                                                               <- searchElStr3;;
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _allsst2;;
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                                                              -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator23_11;;
-                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator13_4;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var:  _elem;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_7;;
+                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator33_10;;
                                                                 *);;
-                                                  -> .proc_fa_kn_similarity_calculation_operator23_11 (* 
+                                                -> .proc_fa_kn_similarity_calculation_operator33_7(* 
                                                               <- eraseEl;;
                                                               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator23_12;;                                    
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_8;;                                    
                                                                 *);;
-                                                -> .proc_fa_kn_similarity_calculation_operator23_12 (*
-                                                              <- searchElStr3;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
-                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                                                              -> rrel_3: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _elm;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator233_13;;
-                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator23_10;;
-                                                                *);;
-
-
-                                                -> .proc_fa_kn_similarity_calculation_operator233_13 (*
-                                                              <- printEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elm;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator23_13;;
-                                                               *);; 
-
-
-
-
-                                                -> .proc_fa_kn_similarity_calculation_operator23_13 (*
-                                                              <- searchElStr3;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _comarc;;
-                                                              -> rrel_2: rrel_assign: rrel_common: rrel_scp_var: _arc;;
-                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _elm;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator13_4;;
-                                                              => nrel_else: .proc_fa_kn_similarity_calculation_return;;
-                                                                *);;
-
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//判断用户答案中归属弧和标准答案相同吗
-                                                -> .proc_fa_kn_similarity_calculation_operator13_14 (*
-                                                              <- searchElStr3;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
-                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                                                              -> rrel_3: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _elm;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator133_133;;
-                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator13_10;;
-                                                                *);;
-
-
-                                                -> .proc_fa_kn_similarity_calculation_operator133_133 (*
-                                                              <- printEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elm;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_15;;
-                                                                *);; 
-
-
-
-                                                -> .proc_fa_kn_similarity_calculation_operator13_15 (*
-                                                              <- searchElStr3;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _posarc;;
-                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _elm;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator13_16;;
-                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator13_10;;
-                                                                *);;
-//查找到了相同的子结构
-                                                -> .proc_fa_kn_similarity_calculation_operator13_16 (*
-                                                              <- printEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _comarc;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_17;;
-                                                                *);;
-                                                  -> .proc_fa_kn_similarity_calculation_operator13_17 (* 
+                                                -> .proc_fa_kn_similarity_calculation_operator33_8 (*
+                                                              <- contAdd;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _sumcand;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand_1;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_9;;
+                                                               *);;
+//赋值运算
+                                                -> .proc_fa_kn_similarity_calculation_operator33_9 (*
+                                                              <- varAssign;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _sumcand_1;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_6;;
+                                                               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//删除生成的节点
+                                                -> .proc_fa_kn_similarity_calculation_operator33_10(* 
                                                               <- eraseEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _comarc;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_18;;                                    
+                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _allsst1;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_11;;                                    
                                                                 *);;
-                                                  -> .proc_fa_kn_similarity_calculation_operator13_18 (* 
+                                                -> .proc_fa_kn_similarity_calculation_operator33_11(* 
                                                               <- eraseEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _posarc;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_4;;                                    
+                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _allsst2;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_12;;                                    
                                                                 *);;
-/*
-                                                -> .proc_fa_kn_similarity_calculation_operator13_10 (*
-                                                              <- printEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _posarc;;
-                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator13_4;;
-                                                                *);;  
-*/
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//召回率；精确度；相似度计算;;;
+                                                -> .proc_fa_kn_similarity_calculation_operator33_12 (*
+                                                              <- printNl;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _sumsta;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_13;;
+                                                               *);;
+                                                -> .proc_fa_kn_similarity_calculation_operator33_13 (*
+                                                              <- printNl;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _sumcand;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_14;;
+                                                               *);;
+                                                -> .proc_fa_kn_similarity_calculation_operator33_14 (*
+                                                              <- printNl;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _summa;;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_return;;
+                                                               *);;
 
 
 
@@ -1467,6 +1414,18 @@ scp_program -> proc_fa_kn_similarity_calculation (*
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
