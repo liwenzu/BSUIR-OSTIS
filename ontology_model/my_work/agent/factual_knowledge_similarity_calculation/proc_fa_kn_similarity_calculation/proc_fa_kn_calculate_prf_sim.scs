@@ -1,0 +1,68 @@
+scp_program -> proc_fa_kn_calculate_prf_sim
+(*
+	-> rrel_params: ...
+	(*
+		-> rrel_1: rrel_in: _summa;; 
+		-> rrel_2: rrel_in: _sumsta;;
+		-> rrel_3: rrel_in: _sumcand;;
+          -> rrel_4: rrel_out: _Psc;;  
+          -> rrel_5: rrel_out: _Rsc;;  
+          -> rrel_6: rrel_out: _Fsc;;  
+	*);;
+
+	-> rrel_operators: ... 
+	(*
+//精确度
+		                         -> rrel_init: .proc_fa_kn_calculate_prf_sim_operator33_15 (*
+                                                             <- contDiv;;
+                                                             -> rrel_1: rrel_assign: rrel_scp_var: _Psc;;
+                                                             -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
+                                                             -> rrel_3: rrel_fixed: rrel_scp_var: _sumcand;;
+                                                             => nrel_goto: .proc_fa_kn_calculate_prf_sim_operator33_16;;
+                                                              *);;
+//召回率
+                                                -> .proc_fa_kn_calculate_prf_sim_operator33_16 (*
+                                                             <- contDiv;;
+                                                             -> rrel_1: rrel_assign: rrel_scp_var: _Rsc;;
+                                                             -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
+                                                             -> rrel_3: rrel_fixed: rrel_scp_var: _sumsta;;
+                                                             => nrel_goto: .proc_fa_kn_calculate_prf_sim_operator33_17;;
+                                                              *);;
+//p+r
+                                                -> .proc_fa_kn_calculate_prf_sim_operator33_17 (*
+                                                              <- contAdd;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _addpr;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _Psc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _Rsc;;
+                                                              => nrel_goto: .proc_fa_kn_calculate_prf_sim_operator33_18;;
+                                                               *);;
+//P*S
+                                                -> .proc_fa_kn_calculate_prf_sim_operator33_18 (*
+                                                              <- contMult;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _mutpr;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _Psc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _Rsc;;
+                                                              => nrel_goto: .proc_fa_kn_calculate_prf_sim_operator33_19;;
+                                                               *);;
+//2*P*S
+                                                -> .proc_fa_kn_calculate_prf_sim_operator33_19 (*
+                                                              <- contMult;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _2mutpr;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _mutpr;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_const: [2];;
+                                                              => nrel_goto: .proc_fa_kn_calculate_prf_sim_operator33_20;;
+                                                               *);;
+//相似度F
+                                                -> .proc_fa_kn_calculate_prf_sim_operator33_20 (*
+                                                             <- contDiv;;
+                                                             -> rrel_1: rrel_assign: rrel_scp_var: _Fsc;;
+                                                             -> rrel_2: rrel_fixed: rrel_scp_var: _2mutpr;;
+                                                             -> rrel_3: rrel_fixed: rrel_scp_var: _addpr;;
+                                                             => nrel_goto: .proc_fa_kn_calculate_prf_sim_operator_return;;
+                                                              *);;
+		-> .proc_fa_kn_calculate_prf_sim_operator_return
+               (*
+               <-return;;
+               *);;
+	*);;
+*);;
