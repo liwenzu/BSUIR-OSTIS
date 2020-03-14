@@ -27,7 +27,7 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                               <- genElStr3;;
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
-                                                              -> rrel_3: rrel_fixed: rrel_scp_const: Question_1;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _parameter;;
                                                               => nrel_goto: .proc_fa_kn_similarity_calculation_operator2_2;;
                                                                 *);;
 
@@ -221,7 +221,7 @@ scp_program -> proc_fa_kn_similarity_calculation (*
 //生成一个在窗口显示相似度的节点
                                                 -> .proc_fa_kn_similarity_calculation_operator33_24 (*
                                                               <- genElStr5;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_const: Question_1;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _parameter;;
                                                               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
                                                               -> rrel_3: rrel_fixed: rrel_scp_var: _Fsc;;
                                                               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
