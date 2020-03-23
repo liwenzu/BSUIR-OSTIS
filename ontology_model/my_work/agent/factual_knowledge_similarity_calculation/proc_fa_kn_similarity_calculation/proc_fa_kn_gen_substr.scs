@@ -281,6 +281,15 @@ scp_program -> proc_fa_kn_gen_substr
                                                               -> rrel_2: rrel_fixed: rrel_scp_var: _curren4_6;;
                                                               -> rrel_3: rrel_assign: rrel_scp_var: _elem;; 
                                                               => nrel_then: .proc_fa_kn_gen_substr_operator8_1;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator8_5ss;;                                    
+                                                                *);;
+//判断三元构造末端是元组吗
+                                                 -> .proc_fa_kn_gen_substr_operator8_5ss(* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_var: _curren4_6;;
+                                                              -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elem;;
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator8_1;;
                                                               => nrel_else: .proc_fa_kn_gen_substr_operator8_5;;                                    
                                                                 *);;
 //将找到的归属弧加入到固定的节点中
@@ -439,7 +448,7 @@ scp_program -> proc_fa_kn_gen_substr
                                                               -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
                                                               -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall4cp;;                      //这个点需要重新删除
                                                               => nrel_then: .proc_fa_kn_gen_substr_operator9_13;;
-                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_5;;                         //@@@@@@@@@@@@这个地方最后要改                                  
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11;;                         //@@@@@@@@@@@@这个地方最后要改                                  
                                                                 *);;
                                                  -> .proc_fa_kn_gen_substr_operator9_13 (* 
                                                               <- searchElStr3;;
@@ -463,7 +472,7 @@ scp_program -> proc_fa_kn_gen_substr
                                                               -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elem;; 
                                                               -> rrel_set_3: rrel_assign: rrel_scp_var: _estuple;;
                                                               => nrel_then: .proc_fa_kn_gen_substr_operator10_1;;
-                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_5;;                         //@@@@@@@@@@@@这个地方最后要改                                  
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11;;                         //@@@@@@@@@@@@这个地方最后要改                                  
                                                                 *);;
 //进行循环查找和循环判定
                                                  -> .proc_fa_kn_gen_substr_operator10_1(* 
@@ -569,8 +578,17 @@ scp_program -> proc_fa_kn_gen_substr
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _curren4_6;;
                                                               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arrsc;;
                                                               -> rrel_3: rrel_fixed: rrel_scp_var: _els2;; 
-                                                              => nrel_then: .proc_fa_kn_gen_substr_operator10_13;;
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator10_13a;;
                                                               => nrel_else: .proc_fa_kn_gen_substr_operator10_10;;                                    
+                                                                *);;
+//判断下边子结构是否具有角色关系
+                                                 -> .proc_fa_kn_gen_substr_operator10_13a(* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _els1;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arrsc;; 
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator10_14a;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator10_13;;                                    
                                                                 *);;
 //将查找到的下部分元组加入到子结构中&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //加入第三个元素
@@ -590,6 +608,40 @@ scp_program -> proc_fa_kn_gen_substr
                                                               => nrel_goto: .proc_fa_kn_gen_substr_operator10_10;;                                  
                                                                 *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//将查找到的具有角色关系的下面子结构加入到分解的结构中
+//加入第二个元素
+                                                 -> .proc_fa_kn_gen_substr_operator10_14a (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arrsc;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator10_14b;;                                  
+                                                                *);;
+//加入第三个元素
+                                                 -> .proc_fa_kn_gen_substr_operator10_14b (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator10_14c;;                                  
+                                                                *);;
+//加入第五个元素
+                                                 -> .proc_fa_kn_gen_substr_operator10_14c (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator10_14d;;                                  
+                                                                *);;
+//加入第四个元素
+                                                 -> .proc_fa_kn_gen_substr_operator10_14d (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator10_10;;                                  
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
                                                   -> .proc_fa_kn_gen_substr_operator10_15 (* 
                                                               <- eraseEl;;
                                                               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _estuple;;
@@ -598,19 +650,214 @@ scp_program -> proc_fa_kn_gen_substr
                                                   -> .proc_fa_kn_gen_substr_operator10_16 (* 
                                                               <- eraseEl;;
                                                               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _esubtup;;
-                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_5;;                                  
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11;;                                  
                                                                 *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//关系的元组结构分解和子结构生成
+//寻找和生成细分结构的
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!出现bug会同时找到rrel_const: rrel_not_binary_tuple,归属弧元素
+                                                 -> .proc_fa_kn_gen_substr_operator11 (* 
+                                                              <- searchSetStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _esaall4;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                                                              -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall4cp;;                      //这个点需要重新删除
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_0;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator12_5;;                                                          
+                                                                *);;
+                                                 -> .proc_fa_kn_gen_substr_operator11_0 (* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _esaall4cp;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _elem;; 
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_01;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_1;;                                                          
+                                                                *);;
+                                                  -> .proc_fa_kn_gen_substr_operator11_01 (* 
+                                                              <- eraseEl;;
+                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_0;;                                  
+                                                                *);;
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&&&&&&&&&&&&&&&&&
+                                                 -> .proc_fa_kn_gen_substr_operator11_1 (* 
+                                                              <- searchSetStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _esaall4cp;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elem;; 
+                                                              -> rrel_set_3: rrel_assign: rrel_scp_var: _estuple;;
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_2;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator12_5;;                                                       
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//进行循环查找和循环判定
+                                                 -> .proc_fa_kn_gen_substr_operator11_2(* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _estuple;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _curren4_6;; 
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_3;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_19;;                   //@@@@@@@@@@@@这个地方最后要改,需要删除这个节点                     
+                                                                *);;
+                                                  -> .proc_fa_kn_gen_substr_operator11_3 (* 
+                                                              <- eraseEl;;
+                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_4;;                                  
+                                                                *);;
+//查找元组节点的通用弧和节点
+                                                 -> .proc_fa_kn_gen_substr_operator11_4(* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_assign: rrel_const: rrel_norole_relation: rrel_scp_var: _els1;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _curren4_6;;
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_4s;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_2;;                              
+                                                                *);;
+//元组下半部分子结构查找
+                                                 -> .proc_fa_kn_gen_substr_operator11_4s (* 
+                                                              <- searchSetStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _curren4_6;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _els2;; 
+                                                              -> rrel_set_3: rrel_assign: rrel_scp_var: _esubtup;;
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_5;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_2;;                                                     
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//先将找到的元组上半部分加入到生成的子结构中
+                                                 -> .proc_fa_kn_gen_substr_operator11_5(* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem1;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _elem;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_6;;                                  
+                                                                *);;
+//加入第一个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_6(* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_7;;                                  
+                                                                *);;
+//加入第二个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_7(* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_8;;                                  
+                                                                *);;
+//加入第三个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_8(* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _curren4_6;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_9;;                                  
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//元组下半部分子结构分解和子结构生成
+                                                 -> .proc_fa_kn_gen_substr_operator11_9(* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _esubtup;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _els2;; 
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_10;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_2;;                                       
+                                                                *);;
+                                                  -> .proc_fa_kn_gen_substr_operator11_10 (* 
+                                                              <- eraseEl;;
+                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_11;;                                  
+                                                                *);;
+                                                 -> .proc_fa_kn_gen_substr_operator11_11(* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _curren4_6;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arrsc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _els2;; 
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_12;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_9;;                                    
+                                                                *);;
+//判断下边子结构是否具有角色关系
+                                                 -> .proc_fa_kn_gen_substr_operator11_12(* 
+                                                              <- searchElStr3;;
+                                                              -> rrel_1: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _els1;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arrsc;; 
+                                                              => nrel_then: .proc_fa_kn_gen_substr_operator11_15;;
+                                                              => nrel_else: .proc_fa_kn_gen_substr_operator11_13;;                                    
+                                                                *);;
+//将查找到的下部分元组加入到子结构中&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//加入第三个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_13 (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_14;;                                  
+                                                                *);;
+//加入第二个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_14(* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arrsc;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_9;;                                  
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//将查找到的具有角色关系的下面子结构加入到分解的结构中
+//加入第二个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_15 (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arrsc;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_16;;                                  
+                                                                *);;
+//加入第三个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_16 (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_17;;                                  
+                                                                *);;
+//加入第五个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_17 (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_18;;                                  
+                                                                *);;
+//加入第四个元素
+                                                 -> .proc_fa_kn_gen_substr_operator11_18 (* 
+                                                              <- genElStr3;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_9;;                                  
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+                                                  -> .proc_fa_kn_gen_substr_operator11_19 (* 
+                                                              <- eraseEl;;
+                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _estuple;;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator12_5;;                                  
+                                                                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //删除_esaall4节点
-                                                  -> .proc_fa_kn_gen_substr_operator11_5 (* 
+                                                  -> .proc_fa_kn_gen_substr_operator12_5 (* 
                                                               <- eraseEl;;
                                                               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _esaall4;;
-                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator11_16;;                                    
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator12_6;;                                     
                                                                 *);;
-                                                  -> .proc_fa_kn_gen_substr_operator11_16 (* 
+                                                  -> .proc_fa_kn_gen_substr_operator12_6 (* 
                                                               <- eraseEl;;
                                                               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _esaall4cp;;                      //@@@@@@@@@@@@这个点最后可以在子函数中删除
                                                               => nrel_goto: .proc_fa_kn_gen_substr_operator_return;;                                  
