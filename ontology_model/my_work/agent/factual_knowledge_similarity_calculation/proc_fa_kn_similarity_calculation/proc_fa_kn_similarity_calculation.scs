@@ -169,7 +169,7 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                 -> .proc_fa_kn_similarity_calculation_operator33_12d (*
                                                               <- ifVarAssign;;
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _sumcand;;
-                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_12;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_12g;;
                                                               => nrel_else: .proc_fa_kn_similarity_calculation_operator33_12e;;
                                                                *);;
                                                 -> .proc_fa_kn_similarity_calculation_operator33_12e (*
@@ -179,6 +179,19 @@ scp_program -> proc_fa_kn_similarity_calculation (*
                                                               => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_12f;;
                                                                *);;
                                                 -> .proc_fa_kn_similarity_calculation_operator33_12f (*
+                                                              <- varAssign;;
+                                                              -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
+                                                              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+                                                              => nrel_goto: .proc_fa_kn_similarity_calculation_operator33_12;;
+                                                               *);;
+//判断是否有匹配值
+                                                -> .proc_fa_kn_similarity_calculation_operator33_12g (*
+                                                              <- ifVarAssign;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _summa;;
+                                                              => nrel_then: .proc_fa_kn_similarity_calculation_operator33_12;;
+                                                              => nrel_else: .proc_fa_kn_similarity_calculation_operator33_12h;;
+                                                               *);;
+                                                -> .proc_fa_kn_similarity_calculation_operator33_12h (*
                                                               <- varAssign;;
                                                               -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
                                                               -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
