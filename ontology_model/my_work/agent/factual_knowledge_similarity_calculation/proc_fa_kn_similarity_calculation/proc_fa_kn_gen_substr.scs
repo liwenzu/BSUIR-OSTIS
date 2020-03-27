@@ -642,14 +642,14 @@ scp_program -> proc_fa_kn_gen_substr
                                                               => nrel_goto: .proc_fa_kn_gen_substr_operator10_10;;                                  
                                                                 *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-                                                  -> .proc_fa_kn_gen_substr_operator10_15 (* 
+                                                 -> .proc_fa_kn_gen_substr_operator10_15 (* 
+                                                              <- printNl;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_const: [为了方便发现错误的程序调试点！！！！！！！！！！！！！！];;
+                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator10_15s;;                                    
+                                                                *);;
+                                                 -> .proc_fa_kn_gen_substr_operator10_15s (* 
                                                               <- eraseEl;;
                                                               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _estuple;;
-                                                              => nrel_goto: .proc_fa_kn_gen_substr_operator10_16;;                                  
-                                                                *);;
-                                                  -> .proc_fa_kn_gen_substr_operator10_16 (* 
-                                                              <- eraseEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _esubtup;;
                                                               => nrel_goto: .proc_fa_kn_gen_substr_operator11;;                                  
                                                                 *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
