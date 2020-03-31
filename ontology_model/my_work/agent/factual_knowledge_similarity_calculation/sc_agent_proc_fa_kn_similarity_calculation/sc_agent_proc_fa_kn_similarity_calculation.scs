@@ -1,7 +1,7 @@
 sc_agent_proc_fa_kn_similarity_calculation
 => nrel_main_idtf: 
             [sc-агент вычисления подобия фактических знаний] (* <- lang_ru;; *);
-            [sc-agent of of factual knowledge similarity calculation] (* <- lang_en;; *);
+            [sc-agent of factual knowledge similarity calculation] (* <- lang_en;; *);
             [sc-agent事实知识相似度计算] (* <- lang_ch;; *);
 <- abstract_sc_agent;
 => nrel_primary_initiation_condition: (sc_event_add_output_arc => question_initiated);
@@ -10,7 +10,7 @@ sc_agent_proc_fa_kn_similarity_calculation
 {
      question_initiated;
      question;
-     question_inclusion_search_operation
+     factual_kn_similarity_calculation
 };
 <- key_sc_element: ... (*
      <- sc_description_of_sc_agent_behavior;;

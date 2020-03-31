@@ -1,0 +1,44 @@
+sc_agent_proc_lo_kn_similarity_calculation
+=> nrel_main_idtf: 
+            [sc-агент вычисления подобия логических знаний] (* <- lang_ru;; *);
+            [sc-agent of logical knowledge similarity calculation] (* <- lang_en;; *);
+            [sc-agent逻辑知识相似度计算] (* <- lang_ch;; *);
+<- abstract_sc_agent;
+=> nrel_primary_initiation_condition: (sc_event_add_output_arc => question_initiated);
+=> nrel_initiation_condition_and_result: (..sc_agent_of_search_operation_initiation_condition => ..sc_agent_of_search_operation_result);
+<= nrel_sc_agent_key_sc_elements:
+{
+     question_initiated;
+     question;
+     logical_kn_similarity_calculation
+};
+<- key_sc_element: ... (*
+     <- sc_description_of_sc_agent_behavior;;
+     <= nrel_sc_text_translation: ...(*
+     ->rrel_example: [Задачей sc-агента вычисления подобия логических знаний является вычисление подобие логических знаний.];;
+       *);;
+*);
+=>nrel_inclusion: ... (*
+                 <- platform_independent_abstract_sc_agent;;
+                 <= nrel_sc_agent_program:
+                         {
+                           agent_proc_lo_kn_similarity_calculation;
+                           proc_lo_kn_similarity_calculation
+                         };; 
+                   -> sc_agent_proc_lo_kn_similarity_calculation_scp (* <- active_sc_agent;; *);;
+         *);;
+..sc_agent_of_search_operation_initiation_condition
+= [*
+logical_kn_similarity_calculation _-> .._question;;
+question_initiated _-> .._question;;
+question _-> .._question;;
+.._question _-> .._parameter;;
+*];;
+..sc_agent_of_search_operation_result
+= [*
+logical_kn_similarity_calculation _-> .._question;;
+question_finished _-> .._question;;
+question _-> .._question;;
+.._question _=>nrel_answer:: .._answer;;
+.._question _-> .._parameter;;
+*];;
