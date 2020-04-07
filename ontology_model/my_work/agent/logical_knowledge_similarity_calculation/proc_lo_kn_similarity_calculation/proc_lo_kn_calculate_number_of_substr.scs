@@ -1,0 +1,201 @@
+scp_program -> proc_lo_kn_calc_number_of_substr
+(*
+	-> rrel_params: ...
+	(*
+		-> rrel_1: rrel_in: _elem1;; 
+		-> rrel_2: rrel_in: _elem2;;
+          -> rrel_3: rrel_out: _summa;;
+          -> rrel_4: rrel_out: _sumsta;;
+          -> rrel_5: rrel_out: _sumcand;;
+	*);;
+
+	-> rrel_operators: ... 
+	(*
+       -> rrel_init: .proc_lo_kn_calc_number_of_substr_operator1 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem1;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_1;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator_return;;                                                         
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//自加部分初始值赋值
+		-> .proc_lo_kn_calc_number_of_substr_operator1_1 (*
+               <- contAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
+               -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_2;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_2 (*
+               <- contAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _sumsta_1;;
+               -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_3;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_3 (*
+               <- contAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _sumcand_1;;
+               -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_4;; 
+               *);;
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+		-> .proc_lo_kn_calc_number_of_substr_operator1_4 (*
+               <- contAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
+               -> rrel_2: rrel_fixed: rrel_scp_const: [1000000];;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_4s;; 
+               *);;
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//统计分解后标准答案的子结构数量
+		-> .proc_lo_kn_calc_number_of_substr_operator1_4s (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_5;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator1_8;;//@@@@@@@@@@@                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_5 (*
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_6;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_6 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumsta;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_7;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_7 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumsta_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_4;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//找出用户答案的所有子结构
+		-> .proc_lo_kn_calc_number_of_substr_operator1_8 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem2;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall2;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_9;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator_return;;                                                         
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//统计分解后用户答案的子结构数量
+		-> .proc_lo_kn_calc_number_of_substr_operator1_9 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall2;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_10;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator_return;;                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_10 (*
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_11;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_11 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumcand;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_12;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_12 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumcand_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_9;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//结构匹配数量计算部分
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+		-> .proc_lo_kn_calc_number_of_substr_operator1_13
+               (*
+               <- printNl;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _sumsta;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_14;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_14
+               (*
+               <- printNl;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _sumcand;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator_return;; 
+               *);;
+*/
+
+
+
+
+
+
+
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+		-> .proc_lo_kn_calc_number_of_substr_operator_return
+               (*
+               <-return;;
+               *);;
+	*);;
+*);;
