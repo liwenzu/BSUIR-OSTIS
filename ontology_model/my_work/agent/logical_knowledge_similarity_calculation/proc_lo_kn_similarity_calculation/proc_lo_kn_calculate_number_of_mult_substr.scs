@@ -1,0 +1,31 @@
+scp_program -> proc_lo_kn_calculate_number_of_mult_substr
+(*
+	-> rrel_params: ...
+	(*
+		-> rrel_1: rrel_in: _suballmed1;; 
+		-> rrel_2: rrel_in: _suballmed2;;
+         // -> rrel_3: rrel_out: _flag;;
+        //  -> rrel_4: rrel_out: _nextnodes1;;
+       //   -> rrel_5: rrel_out: _nextnodes12;;
+	*);;
+	-> rrel_operators: ... 
+	(*
+       -> rrel_init: .proc_lo_kn_calculate_number_of_mult_substr_operator1 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _suballmed1;;
+                     => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator1_1;;                                                       
+                     *);;
+
+	-> .proc_lo_kn_calculate_number_of_mult_substr_operator1_1 (*
+               <- printEl;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _suballmed2;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator_return;;
+               *);;
+
+
+		-> .proc_lo_kn_calculate_number_of_mult_substr_operator_return
+               (*
+               <-return;;
+               *);;
+	*);;
+*);;
