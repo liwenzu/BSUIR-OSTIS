@@ -680,9 +680,44 @@ scp_program -> proc_fa_kn_calc_number_of_substr
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
                                                               -> rrel_2: rrel_fixed: rrel_scp_var: _els12;;
                                                               => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_12;;
-                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_11a;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_11a1;;
                                                                *);;
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//判断节点是常量节点吗，如果则跳到下一个节点
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_11a1 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els1;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_11b1;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_11a;;
+                                                               *);;
+//判断这个点有系统标识符吗
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_11b1 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_6;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_11b2;;
+                                                                *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_11b2 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els12;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_11b3;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_6;;
+                                                               *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_11b3 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els12;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_6;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_12;;
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //判断节点是链接吗，如果是则比较链接内容相同吗
                                                 -> .proc_fa_kn_calc_number_of_substr_operator3_11a (*
                                                               <- ifType;;
@@ -709,10 +744,44 @@ scp_program -> proc_fa_kn_calc_number_of_substr
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;
                                                               -> rrel_2: rrel_fixed: rrel_scp_var: _els22;;
                                                               => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_13;;
-                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_12a;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_12a1;;
                                                                *);;
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //判断节点是链接吗，如果是则比较链接内容相同吗
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_12a1 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els2;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_12b1;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_12a;;
+                                                               *);;
+//判断这个点有系统标识符吗
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_12b1 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_6;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_12b2;;
+                                                                *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_12b2 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els22;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_12b3;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_6;;
+                                                               *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator3_12b3 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els22;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3_6;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3_13;;
+                                                                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
                                                 -> .proc_fa_kn_calc_number_of_substr_operator3_12a (*
                                                               <- ifType;;
                                                               -> rrel_1: rrel_scp_var: rrel_link: _els2;;
@@ -914,9 +983,43 @@ scp_program -> proc_fa_kn_calc_number_of_substr
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
                                                               -> rrel_2: rrel_fixed: rrel_scp_var: _els12;;
                                                               => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_18;;
-                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_17a;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_17a1;;
                                                                *);;
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//判断节点是常量节点吗，如果则跳到下一个节点
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_17a1 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els1;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_17b1;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_17a;;
+                                                               *);;
+//判断这个点有系统标识符吗
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_17b1 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_9;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_17b2;;
+                                                                *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_17b2 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els12;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_17b3;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_9;;
+                                                               *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_17b3 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els12;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_9;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_18;;
+                                                                *);;
 //判断节点是链接吗，如果是则比较链接内容相同吗
                                                 -> .proc_fa_kn_calc_number_of_substr_operator4_17a (*
                                                               <- ifType;;
@@ -943,9 +1046,43 @@ scp_program -> proc_fa_kn_calc_number_of_substr
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;
                                                               -> rrel_2: rrel_fixed: rrel_scp_var: _els22;;
                                                               => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_19;;
-                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_18a;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_18a1;;
                                                                *);;
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//判断节点是常量节点吗，如果则跳到下一个节点
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_18a1 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els2;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_18b1;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_18a;;
+                                                               *);;
+//判断这个点有系统标识符吗
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_18b1 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_9;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_18b2;;
+                                                                *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_18b2 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els22;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_18b3;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_9;;
+                                                               *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator4_18b3 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els22;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator4_9;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator4_19;;
+                                                                *);;
 //判断节点是链接吗，如果是则比较链接内容相同吗
                                                 -> .proc_fa_kn_calc_number_of_substr_operator4_18a (*
                                                               <- ifType;;
@@ -1083,9 +1220,43 @@ scp_program -> proc_fa_kn_calc_number_of_substr
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
                                                               -> rrel_2: rrel_fixed: rrel_scp_var: _els12;;
                                                               => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_10;;
-                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_9a;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_9a1;;
                                                                *);;
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//判断节点是常量节点吗，如果则跳到下一个节点
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_9a1 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els1;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_9b1;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_9a;;
+                                                               *);;
+//判断这个点有系统标识符吗
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_9b1 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_5;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_9b2;;
+                                                                *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_9b2 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els12;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_9b3;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_5;;
+                                                               *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_9b3 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els12;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_5;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_10;;
+                                                                *);;
 //判断节点是链接吗，如果是则比较链接内容相同吗
                                                 -> .proc_fa_kn_calc_number_of_substr_operator5_9a (*
                                                               <- ifType;;
@@ -1112,9 +1283,43 @@ scp_program -> proc_fa_kn_calc_number_of_substr
                                                               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;
                                                               -> rrel_2: rrel_fixed: rrel_scp_var: _els22;;
                                                               => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_11;;
-                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_10a;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_10a1;;
                                                                *);;
 //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+//判断节点是常量节点吗，如果则跳到下一个节点
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_10a1 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els2;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_10b1;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_10a;;
+                                                               *);;
+//判断这个点有系统标识符吗
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_10b1 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_5;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_10b2;;
+                                                                *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_10b2 (*
+                                                              <- ifType;;
+                                                              -> rrel_1: rrel_scp_var: rrel_const: rrel_node: _els22;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_10b3;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_5;;
+                                                               *);;
+                                                -> .proc_fa_kn_calc_number_of_substr_operator5_10b3 (*
+                                                              <- searchElStr5;;
+                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _els22;;
+                                                              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                                                              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                                                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                                                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_system_identifier;;
+                                                              => nrel_then: .proc_fa_kn_calc_number_of_substr_operator5_5;;
+                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator5_11;;
+                                                                *);;
 //判断节点是链接吗，如果是则比较链接内容相同吗
                                                 -> .proc_fa_kn_calc_number_of_substr_operator5_10a (*
                                                               <- ifType;;
