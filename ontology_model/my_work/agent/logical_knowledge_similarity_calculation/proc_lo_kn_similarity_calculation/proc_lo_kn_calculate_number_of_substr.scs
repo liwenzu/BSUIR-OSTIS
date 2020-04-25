@@ -249,6 +249,27 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator2_16b (*
                <- genEl;;
                -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _comsub2;;//最后需要删除这几个点
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_16c;; 
+               *);;
+//生成几个节点用于存储子结构中通用弧起始点和结尾点
+		-> .proc_lo_kn_calc_number_of_substr_operator2_16c (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemstart1;; //最后需要删除这几个点
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_16d;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_16d (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemend1;;//最后需要删除这几个点
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_16e;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_16e (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemstart2;; //最后需要删除这几个点
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_16f;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_16f (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemend2;;//最后需要删除这几个点
                => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_16;; 
                *);;
 //下面进行第一个结构相似度比较
@@ -290,8 +311,45 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                -> rrel_1: rrel_fixed: rrel_scp_var: _comsub2;;
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_3: rrel_fixed: rrel_scp_var: _elemus2;;
-               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_18c;; 
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_18c1;; 
                *);;
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//将结构里面包含的变量赋值到另一节点，用于传递参数，用于判断后面结构里面的变量是否和当前变量是同一变量
+		-> .proc_lo_kn_calc_number_of_substr_operator2_18c1 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemus1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_18c2;; 
+               => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_18c3;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_18c2 (*
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemus1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemvar1;;
+               => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_18c3;; 
+               => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_18c3;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_18c3 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemus2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_18c4;; 
+               => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_18c;;
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_18c4 (*
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemus2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemvar2;;
+               => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_18c;; 
+               => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_18c;; 
+               *);;
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 //生成几个点用于存储标准结构的子结构
 		-> .proc_lo_kn_calc_number_of_substr_operator2_18c (*
                <- genEl;;
@@ -799,7 +857,13 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
 					     -> rrel_1: rrel_fixed: rrel_scp_var: _suball1;;
 					     -> rrel_2: rrel_fixed: rrel_scp_var: _suball2;;
-					     -> rrel_3: rrel_assign: rrel_scp_var: _summam;;
+					     -> rrel_3: rrel_fixed: rrel_scp_var: _elemvar1;;//存储的是变量节点
+					     -> rrel_4: rrel_fixed: rrel_scp_var: _elemvar2;;
+					     -> rrel_5: rrel_fixed: rrel_scp_var: _elemstart1;;
+					     -> rrel_6: rrel_fixed: rrel_scp_var: _elemend1;;
+					     -> rrel_7: rrel_fixed: rrel_scp_var: _elemstart2;;
+					     -> rrel_8: rrel_fixed: rrel_scp_var: _elemend2;;
+					     -> rrel_9: rrel_assign: rrel_scp_var: _summam;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_31bs;;                                                      
@@ -851,7 +915,13 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
 					     -> rrel_1: rrel_fixed: rrel_scp_var: _subifall1;;
 					     -> rrel_2: rrel_fixed: rrel_scp_var: _subifall2;;
-					     -> rrel_3: rrel_assign: rrel_scp_var: _summam;;
+					     -> rrel_3: rrel_fixed: rrel_scp_var: _elemvar1;;//存储的是变量节点
+					     -> rrel_4: rrel_fixed: rrel_scp_var: _elemvar2;;
+					     -> rrel_5: rrel_fixed: rrel_scp_var: _elemstart1;;
+					     -> rrel_6: rrel_fixed: rrel_scp_var: _elemend1;;
+					     -> rrel_7: rrel_fixed: rrel_scp_var: _elemstart2;;
+					     -> rrel_8: rrel_fixed: rrel_scp_var: _elemend2;;
+					     -> rrel_9: rrel_assign: rrel_scp_var: _summam;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_31es;;                                                      
@@ -887,7 +957,13 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
 					     -> rrel_1: rrel_fixed: rrel_scp_var: _subthenall1;;
 					     -> rrel_2: rrel_fixed: rrel_scp_var: _subthenall2;;
-					     -> rrel_3: rrel_assign: rrel_scp_var: _summam;;
+					     -> rrel_3: rrel_fixed: rrel_scp_var: _elemvar1;;//存储的是变量节点
+					     -> rrel_4: rrel_fixed: rrel_scp_var: _elemvar2;;
+					     -> rrel_5: rrel_fixed: rrel_scp_var: _elemstart1;;
+					     -> rrel_6: rrel_fixed: rrel_scp_var: _elemend1;;
+					     -> rrel_7: rrel_fixed: rrel_scp_var: _elemstart2;;
+					     -> rrel_8: rrel_fixed: rrel_scp_var: _elemend2;;
+					     -> rrel_9: rrel_assign: rrel_scp_var: _summam;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_31fs;;                                                      
@@ -910,7 +986,6 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
                => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_31fs3;;
                *);;
-
 		-> .proc_lo_kn_calc_number_of_substr_operator2_31fs3 (*
                <- eraseEl;;
                -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _summam;;
@@ -970,6 +1045,26 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator3_7 (*
                <- eraseEl;;
                -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _subthenall2;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_8;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_8 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemstart1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_9;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_9 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemend1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_10;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_10 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemstart2;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_11;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_11 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemend2;;
                => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator_return;; 
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
