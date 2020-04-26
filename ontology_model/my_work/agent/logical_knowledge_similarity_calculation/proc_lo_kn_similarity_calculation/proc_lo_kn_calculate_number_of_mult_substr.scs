@@ -10,7 +10,8 @@ scp_program -> proc_lo_kn_calculate_number_of_mult_substr
 		-> rrel_6: rrel_in: _elemend1s;;
 		-> rrel_7: rrel_in: _elemstart2s;; 
 		-> rrel_8: rrel_in: _elemend2s;;
-          -> rrel_9: rrel_out: _summam;;
+          -> rrel_9: rrel_in: _corparts;;
+          -> rrel_10: rrel_out: _summam;;
 	*);;
 	-> rrel_operators: ... 
 	(*
@@ -478,7 +479,15 @@ scp_program -> proc_lo_kn_calculate_number_of_mult_substr
                <- varAssign;;
                -> rrel_1: rrel_assign: rrel_scp_var: _summa_1m;;
                -> rrel_2: rrel_fixed: rrel_scp_var: _summam;;
-               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator3;;                                                   
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator3_18;;                                                   
+               *);;
+//将匹配的结构加入到对应的结构中
+	-> .proc_lo_kn_calculate_number_of_mult_substr_operator3_18 (* 
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _corparts;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator3;;                                                       
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -686,7 +695,15 @@ scp_program -> proc_lo_kn_calculate_number_of_mult_substr
                <- varAssign;;
                -> rrel_1: rrel_assign: rrel_scp_var: _summa_1m;;
                -> rrel_2: rrel_fixed: rrel_scp_var: _summam;;
-               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator4;;                                                   
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator4_15;;                                                   
+               *);;
+//将匹配的结构加入到对应的结构中
+	-> .proc_lo_kn_calculate_number_of_mult_substr_operator4_15 (* 
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _corparts;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator4;;                                                       
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -732,7 +749,14 @@ scp_program -> proc_lo_kn_calculate_number_of_mult_substr
                <- varAssign;;
                -> rrel_1: rrel_assign: rrel_scp_var: _summa_1m;;
                -> rrel_2: rrel_fixed: rrel_scp_var: _summam;;
-               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator5;;                                                   
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator5_6;;                                                   
+               *);;
+	-> .proc_lo_kn_calculate_number_of_mult_substr_operator5_6 (* 
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _corparts;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator5;;                                                       
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
