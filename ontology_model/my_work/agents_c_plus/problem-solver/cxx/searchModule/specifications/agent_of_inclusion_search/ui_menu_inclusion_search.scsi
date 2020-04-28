@@ -1,0 +1,20 @@
+
+ui_menu_inclusion_search <- ui_user_command_class_atom; ui_user_command_class_view_kb; ui_one_argument_command_class;;
+ui_menu_inclusion_search
+=> nrel_main_idtf:
+	[Что содержит указанная сущность?]
+	(* <- lang_ru;; *);;
+ui_menu_inclusion_search
+=> nrel_main_idtf:
+	[What the specified entity contains?]
+	(* <- lang_en;; *);;
+ui_menu_inclusion_search => ui_nrel_command_template:
+	[*
+		question_find_inclusion _-> ._question_find_inclusion_instance
+			(*
+				_-> ui_arg_1;;
+			*);;
+		._question_find_inclusion_instance _<- question;;
+	*];;
+ui_menu_inclusion_search => ui_nrel_command_lang_template: [Что содержит $ui_arg_1] (* <- lang_ru;; *);;
+ui_menu_inclusion_search => ui_nrel_command_lang_template: [What the contains $ui_arg_1] (* <- lang_en;; *);;
