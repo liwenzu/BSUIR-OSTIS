@@ -114,7 +114,7 @@ scp_program -> proc_lo_kn_preprocessing_of_aut_num
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
                      => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_4;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator3;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
                      *);;
 //加入到编号节点中
             -> .proc_lo_kn_preprocessing_of_aut_num_operator2_4 (* 
@@ -144,50 +144,338 @@ scp_program -> proc_lo_kn_preprocessing_of_aut_num
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //开始给结构编号
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator1_8 (* 
+//查找第一个链接的结构(有的链接可能包含有两个结构因此需要结构查找)
+//查找包含链接的全部节点
+//找第一个节点
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elem_nbtuz0;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_1a;;                                                  
+                     *);;
+//将第一个关系赋值给中间变量,用于链接编号
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_1a (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed2;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: rrel_0;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_1;;                                                  
+                     *);;
+//将第一个关系赋值给中间变量,用于结构编号
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_1 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: rrel_1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_2;;                                                  
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断当前链接有下一个链接吗？如果有说明有一个结构，如果没有说明有2个链接
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_2 (* 
                      <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator3_3;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator4;;//@@@@说明有2个结构接数组查找                                                        
+                     *);;
+//查找当前结构
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_3 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator3_4;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator3_5;;//@@@@跳到下一个链接点，说明可能这个链接点可能有2个链接点                                                        
+                     *);;
+//给找到的这个结构编号
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_4 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_5;;                                                       
+                     *);;
+//&&&&&&&&&&&&&&&&
+//下一次循环准备
+//寻找角色关系的下一个(链接的角色关系)
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_5 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed2;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator3_6;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_6 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed2;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_7;;                                                  
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_7 (* 
+                     <- searchElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elem_nbtups;;
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator3_8;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明最后一个，没了跳出                                                      
+                     *);;
+//寻找下一个结构角色关系
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_8 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator3_9;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator3_9 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_2;;                                                  
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//一个链接点具有2个结构的编号处理方法(也可能具有多个结构，当前版本只研究2个结构)
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator4_1;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//@@@@说明这个链接点既没有链接，也没有结构。错误/或者也可以跳到下一个节点                                                         
+                     *);;
+//当前版本只能处理if和then的情况，对于更复杂的可以继续添加
+//先找if的情况
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_1 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator1_9;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                         
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_if;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator4_2;;//找到具有if的结构
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator5;;//找是否具有then的结构;                                                       
                      *);;
-
-*/
-
-
-
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator3 (* 
-                     <- printEl;;
+//找到if结构进行标号
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_2 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator4_3;;                                                       
+                     *);;
+//从esall里面删除已经添加的节点，方便下一个结构的添加
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_3 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator4_4;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_4 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator4_5;;
+                     *);;
+//寻找下一个编号
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_5 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator4_6;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_6 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator4_7;;                                                  
+                     *);;
+//开始下一个结构查找并添加
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_7 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator4_8;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                       
+                     *);;
+//添加
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator4_8 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_5;;                                                       
+                     *);;
+//下一次循环准备
+//下一个链接节点查找，和准备下一次搜索
+//寻找角色关系的下一个(链接的角色关系)
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//开始then判断
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_then;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator5_1;;//找到具有then没有if的结构
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator6;;//没有if和没有then的结构;@@@@@@@                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5_1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator5_2;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5_2 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator5_3;;
+                     *);;
+//寻找除了then的另外一个结构点
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5_3 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemcp;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator5_4;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;; //有then不存在其他节点，这种情况不可能。                                                    
+                     *);;
+//将elemcp加入
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5_4 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator5_5;;                                                       
+                     *);;
+//结构编号加一
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5_5 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator5_6;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5_6 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator5_7;;                                                  
+                     *);;
+//添加then，就是elem
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator5_7 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_5;;                                                       
+                     *);;
+//寻找下一个链接结构，为下一个查找准备
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//处理既不具有if也不具有else的两个结构(在这个版本中将会随机分配标号，后续版本中可以视具体情况具体分析)
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator6_1;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator6_5;;   //@@@说明这个节点的结构编号完了，开始查找下一个节点                                                 
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_1 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator6_2;;
+                     *);;
+//加入当前结构
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_2 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator6_3;;                                                       
+                     *);;
+//结构编号加一
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_3 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator6_4;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_4 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator6;;                                                  
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//下一次循环准备(因为结构标号已经相当于在循环中找到了下一个，因此这里不在需要额外计算)
+//寻找角色关系的下一个(链接的角色关系)
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_5 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed2;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator6_6;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);                                                       
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_6 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed2;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator6_7;;                                                  
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_7 (* 
+                     <- searchElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elem_nbtups;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;
- //                    => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_2;;                                                                                                     
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator3_2;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明最后一个链接节点，没了跳出                                                      
                      *);;
-
-
-
-
-
-
-
-
-
-
-
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 		-> .proc_lo_kn_preprocessing_of_aut_num_operator_return
                (*
