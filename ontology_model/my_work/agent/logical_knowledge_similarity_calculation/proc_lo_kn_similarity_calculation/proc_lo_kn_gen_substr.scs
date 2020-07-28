@@ -10,7 +10,12 @@ scp_program -> proc_lo_kn_gen_substr
 	-> rrel_operators: ... 
 	(*
 //查找问题的标准答案和用户答案结构，并显示在窗口中
-       -> rrel_init: .proc_lo_kn_gen_substr_operator1 (* 
+       -> rrel_init: .proc_lo_kn_gen_substr_operator0 (* 
+                     <- printNl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [语义图分解和子结构自动生成函数!];;
+                     => nrel_goto: .proc_lo_kn_gen_substr_operator1;;                                                
+                     *);;
+            -> .proc_lo_kn_gen_substr_operator1 (* 
                      <- searchElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _parameter;;
                      -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
