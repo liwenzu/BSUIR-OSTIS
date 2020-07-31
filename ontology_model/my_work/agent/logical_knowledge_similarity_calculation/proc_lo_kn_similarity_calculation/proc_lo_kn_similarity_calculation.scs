@@ -109,9 +109,75 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 		  -> .proc_lo_kn_similarity_calculation_operator1_3 (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
-			      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
-//			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a1;;
 		           *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//定义域关系的建立(标准答案)
+		  -> .proc_lo_kn_similarity_calculation_operator1_4a1 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_lo_kn_deter_domain_of_definition;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1;;
+				          -> rrel_2: rrel_fixed: rrel_scp_var: _elem_nbtups1;;
+				          -> rrel_3: rrel_fixed: rrel_scp_var: _elem_strus1;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a2;;
+		           *);;
+		  -> .proc_lo_kn_similarity_calculation_operator1_4a2 (*
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a3;;
+		           *);;
+//定义域关系的建立(用户答案)
+		  -> .proc_lo_kn_similarity_calculation_operator1_4a3 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_lo_kn_deter_domain_of_definition;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2;;
+				          -> rrel_2: rrel_fixed: rrel_scp_var: _elem_nbtups2;;
+				          -> rrel_3: rrel_fixed: rrel_scp_var: _elem_strus2;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a4;;
+		           *);;
+		  -> .proc_lo_kn_similarity_calculation_operator1_4a4 (*
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4b1;;
+		           *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//建立映射函数部分
+
+		  -> .proc_lo_kn_similarity_calculation_operator1_4b1 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_lo_kn_mapping_preprocessing;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1;;
+				          -> rrel_2: rrel_fixed: rrel_scp_var: _elems_2;;
+				          -> rrel_3: rrel_fixed: rrel_scp_var: _elem1;;
+				          -> rrel_4: rrel_fixed: rrel_scp_var: _elem2;;
+//                             -> rrel_3: rrel_fixed: rrel_scp_const: nrel_correct_answer;;
+//				          -> rrel_4: rrel_assign: rrel_scp_var: _elem1;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4b2;;
+		           *);;
+		  -> .proc_lo_kn_similarity_calculation_operator1_4b2 (*
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
+//			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_2;;
+		           *);;
+
+
+
+
+
 
 
 
