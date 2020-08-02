@@ -28,6 +28,23 @@ scp_program -> proc_lo_kn_similarity_calculation (*
             -> .proc_lo_kn_similarity_calculation_operator0_3 (* 
                      <- genEl;;
                      -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_strus2;;
+                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4a;;
+                     *);;
+//生成一个节点用于存储变量之间的映射关系
+            -> .proc_lo_kn_similarity_calculation_operator0_4a (* 
+                     <- genEl;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_map;;
+                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4b;;
+                     *);;
+//生成2个节点用于存放用户答案和标准答案中包含变量弧的结构
+            -> .proc_lo_kn_similarity_calculation_operator0_4b (* 
+                     <- genEl;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemsvararc1;;
+                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4c;;
+                     *);;
+            -> .proc_lo_kn_similarity_calculation_operator0_4c (* 
+                     <- genEl;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemsvararc2;;
                      => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -161,8 +178,11 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 				          -> rrel_2: rrel_fixed: rrel_scp_var: _elems_2;;
 				          -> rrel_3: rrel_fixed: rrel_scp_var: _elem1;;
 				          -> rrel_4: rrel_fixed: rrel_scp_var: _elem2;;
-//                             -> rrel_3: rrel_fixed: rrel_scp_const: nrel_correct_answer;;
-//				          -> rrel_4: rrel_assign: rrel_scp_var: _elem1;;
+                             -> rrel_5: rrel_fixed: rrel_scp_var: _elem_map;;
+				          -> rrel_6: rrel_fixed: rrel_scp_var: _elem_strus1;;
+                             -> rrel_7: rrel_fixed: rrel_scp_var: _elem_strus2;;
+				          -> rrel_8: rrel_fixed: rrel_scp_var: _elemsvararc1;;
+                             -> rrel_9: rrel_fixed: rrel_scp_var: _elemsvararc2;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4b2;;
@@ -171,10 +191,8 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
-//			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_2;;
+//			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4b3;;
 		           *);;
-
-
 
 
 
