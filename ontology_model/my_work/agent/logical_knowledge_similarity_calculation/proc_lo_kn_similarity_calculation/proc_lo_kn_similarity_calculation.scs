@@ -45,6 +45,17 @@ scp_program -> proc_lo_kn_similarity_calculation (*
             -> .proc_lo_kn_similarity_calculation_operator0_4c (* 
                      <- genEl;;
                      -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemsvararc2;;
+                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4d;;
+                     *);;
+//生成两个节点用于存放定义域弧
+            -> .proc_lo_kn_similarity_calculation_operator0_4d (* 
+                     <- genEl;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemdedoarc1;;
+                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4e;;
+                     *);;
+            -> .proc_lo_kn_similarity_calculation_operator0_4e (* 
+                     <- genEl;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemdedoarc2;;
                      => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -139,6 +150,7 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1;;
 				          -> rrel_2: rrel_fixed: rrel_scp_var: _elem_nbtups1;;
 				          -> rrel_3: rrel_fixed: rrel_scp_var: _elem_strus1;;
+				          -> rrel_4: rrel_fixed: rrel_scp_var: _elemdedoarc1;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a2;;
@@ -156,6 +168,7 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2;;
 				          -> rrel_2: rrel_fixed: rrel_scp_var: _elem_nbtups2;;
 				          -> rrel_3: rrel_fixed: rrel_scp_var: _elem_strus2;;
+				          -> rrel_4: rrel_fixed: rrel_scp_var: _elemdedoarc2;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a4;;
@@ -193,15 +206,6 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
 //			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4b3;;
 		           *);;
-
-
-
-
-
-
-
-
-
 
 
 

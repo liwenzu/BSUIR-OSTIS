@@ -5,6 +5,7 @@ scp_program -> proc_lo_kn_deter_domain_of_definition
 		-> rrel_1: rrel_in: _elems_1cp;;
 		-> rrel_2: rrel_in: _elem_nbtups;;
           -> rrel_3: rrel_in: _elem_strus;;
+          -> rrel_4: rrel_in: _elemdedoarc;;
 	*);;
 	-> rrel_operators: ... 
 	(*
@@ -79,10 +80,19 @@ scp_program -> proc_lo_kn_deter_domain_of_definition
                      (*
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
-                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_definitional_domain;;
+                     => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator1_7;;
+                     *);;
+//将生成的定义域弧记录下来，方便后续删除
+        		  -> .proc_lo_kn_deter_domain_of_definition_operator1_7
+                     (*
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemdedoarc;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
                      => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator1_1;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -242,10 +252,19 @@ scp_program -> proc_lo_kn_deter_domain_of_definition
                      (*
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp1;;  
-                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemstru1;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_definitional_domain;;
+                     => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_9a;;
+                     *);;
+//将生成的定义域弧记录下来，方便后续删除
+        		  -> .proc_lo_kn_deter_domain_of_definition_operator2_9a
+                     (*
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemdedoarc;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
                      => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_7;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -369,10 +388,19 @@ scp_program -> proc_lo_kn_deter_domain_of_definition
                      (*
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp1;;  
-                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemstru2;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_definitional_domain;;
+                     => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_19a;;
+                     *);;
+//将生成的定义域弧记录下来，方便后续删除
+        		  -> .proc_lo_kn_deter_domain_of_definition_operator2_19a
+                     (*
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemdedoarc;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
                      => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_17;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -465,20 +493,38 @@ scp_program -> proc_lo_kn_deter_domain_of_definition
                      (*
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp1;;  
-                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemstru2;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_definitional_domain;;
+                     => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_27a;;
+                     *);;
+//将生成的定义域弧记录下来，方便后续删除
+        		  -> .proc_lo_kn_deter_domain_of_definition_operator2_27a
+                     (*
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemdedoarc;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
                      => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_27;;
                      *);;
         		  -> .proc_lo_kn_deter_domain_of_definition_operator2_27
                      (*
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp1;;  
-                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemstru1;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_definitional_domain;;
+                     => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_27b;;
+                     *);;
+//将生成的定义域弧记录下来，方便后续删除
+        		  -> .proc_lo_kn_deter_domain_of_definition_operator2_27b
+                     (*
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemdedoarc;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
                      => nrel_goto: .proc_lo_kn_deter_domain_of_definition_operator2_24;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
