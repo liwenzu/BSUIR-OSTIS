@@ -218,9 +218,9 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 					     -> rrel_4: rrel_fixed: rrel_scp_var: _elem_nbtups2;;
 					     -> rrel_5: rrel_fixed: rrel_scp_var: _elem_strus1;;
 					     -> rrel_6: rrel_fixed: rrel_scp_var: _elem_strus2;;
-//					     -> rrel_3: rrel_assign: rrel_scp_var: _summa;;
-//					     -> rrel_4: rrel_assign: rrel_scp_var: _sumsta;;
-//					     -> rrel_5: rrel_assign: rrel_scp_var: _sumcand;;
+					     -> rrel_7: rrel_assign: rrel_scp_var: _summa;;
+					     -> rrel_8: rrel_assign: rrel_scp_var: _sumsta;;
+					     -> rrel_9: rrel_assign: rrel_scp_var: _sumcand;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_5;;
@@ -228,52 +228,10 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 		  -> .proc_lo_kn_similarity_calculation_operator1_5 (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
-//			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_6s;;
-			      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_6;;
 		           *);;
-
-
-
-
-
-
-
-
-
-
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-/*
-		  -> .proc_lo_kn_similarity_calculation_operator1_6s (*
-                     <- ifVarAssign;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _sumcand;;
-                     => nrel_then: .proc_lo_kn_similarity_calculation_operator1_6c;;
-                     => nrel_else: .proc_lo_kn_similarity_calculation_operator1_6a;;
-                     *);;
-		  -> .proc_lo_kn_similarity_calculation_operator1_6a (*
-                      <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _sumcand;;
-                     -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_6b;;
-                     *);;
-		  -> .proc_lo_kn_similarity_calculation_operator1_6b (*
-                      <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
-                     -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_6;;
-                     *);;
-		  -> .proc_lo_kn_similarity_calculation_operator1_6c (*
-                     <- ifVarAssign;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _summa;;
-                     => nrel_then: .proc_lo_kn_similarity_calculation_operator1_6;;
-                     => nrel_else: .proc_lo_kn_similarity_calculation_operator1_6d;;
-                     *);;
-		  -> .proc_lo_kn_similarity_calculation_operator1_6d (*
-                      <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
-                     -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_6;;
-                     *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_6 (*
 		           <- printNl;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _sumsta;;
@@ -368,8 +326,6 @@ scp_program -> proc_lo_kn_similarity_calculation (*
                      -> rrel_3: rrel_fixed: rrel_scp_const: nrel_coefficient;;
                      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
                      *);;
-*/
-
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             -> .proc_lo_kn_similarity_calculation_return (* 
                      <- return;;
