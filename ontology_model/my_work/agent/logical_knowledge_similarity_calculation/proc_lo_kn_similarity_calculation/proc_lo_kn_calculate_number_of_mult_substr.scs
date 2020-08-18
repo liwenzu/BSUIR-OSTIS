@@ -7,6 +7,7 @@ scp_program -> proc_lo_kn_calculate_number_of_mult_substr
 		-> rrel_3: rrel_in: _elem_strus1cp;; 
 		-> rrel_4: rrel_in: _elem_strus2cp;;
           -> rrel_5: rrel_out: _summam;;
+          -> rrel_6: rrel_in: _mathstrucp;;
 	*);;
 	-> rrel_operators: ... 
 	(*
@@ -273,6 +274,13 @@ scp_program -> proc_lo_kn_calculate_number_of_mult_substr
                <- varAssign;;
                -> rrel_1: rrel_assign: rrel_scp_var: _summa_1m;;
                -> rrel_2: rrel_fixed: rrel_scp_var: _summam;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator1_25;;                                                     
+               *);;
+	-> .proc_lo_kn_calculate_number_of_mult_substr_operator1_25 (* 
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _mathstrucp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elemus2;;
                => nrel_goto: .proc_lo_kn_calculate_number_of_mult_substr_operator1_2;;                                                     
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&

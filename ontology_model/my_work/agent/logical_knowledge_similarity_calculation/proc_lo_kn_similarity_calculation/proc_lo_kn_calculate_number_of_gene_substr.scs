@@ -9,8 +9,7 @@ scp_program -> proc_lo_kn_calculate_number_of_gene_substr
 		-> rrel_5: rrel_in: _elem_strus1cp;; 
 		-> rrel_6: rrel_in: _elem_strus2cp;;
           -> rrel_7: rrel_out: _summam;;
-//          -> rrel_4: rrel_out: _nextnodes1;;
-//          -> rrel_5: rrel_out: _nextnodes12;;
+          -> rrel_8: rrel_in: _mathstrucp;;
 	*);;
 	-> rrel_operators: ... 
 	(*
@@ -555,6 +554,13 @@ scp_program -> proc_lo_kn_calculate_number_of_gene_substr
                <- varAssign;;
                -> rrel_1: rrel_assign: rrel_scp_var: _summa_1m;;
                -> rrel_2: rrel_fixed: rrel_scp_var: _summam;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator2_27c;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator2_27c (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _mathstrucp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elemus2;;
                => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator1_2;;
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
