@@ -213,16 +213,8 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 		  -> .proc_lo_kn_similarity_calculation_operator1_4b2 (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
-//			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4;;
-			      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
+			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4;;
 		           *);;
-
-
-
-
-
-
-/*
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //调用子结构相同个数计算函数
@@ -380,7 +372,6 @@ scp_program -> proc_lo_kn_similarity_calculation (*
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elem_nbtups2;;
                      => nrel_goto: .proc_lo_kn_similarity_calculation_operator4_2;;
                      *);;
-
 		  -> .proc_lo_kn_similarity_calculation_operator4_2 (*
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elem_strus1;;
@@ -484,11 +475,6 @@ scp_program -> proc_lo_kn_similarity_calculation (*
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elem_map;;
                      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
                      *);;
-
-
-*/
-
-
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             -> .proc_lo_kn_similarity_calculation_return (* 
                      <- return;;
