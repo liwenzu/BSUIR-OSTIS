@@ -90,6 +90,26 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator0_13b (*
                <- genEl;;
                -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classdisju2;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13c;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator0_13c (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classconju1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13d;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator0_13d (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classconju2;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13e;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator0_13e (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classedge1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13f;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator0_13f (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classedge2;;
                => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13;; 
                *);;
 //给几个初始值赋值为0,防止遇到没有值发生错误
@@ -187,8 +207,8 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta;;
                      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_4;; 
                      *);;
-//判断该子结构是包含等价关系的子结构吗
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断该子结构是包含等价关系的子结构吗
 		-> .proc_lo_kn_calc_number_of_substr_operator1_7 (* 
                      <- searchElStr3;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
@@ -368,15 +388,75 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_4;; 
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//可能有漏掉/错误的情况，但是需要统计子结构数量
-		-> .proc_lo_kn_calc_number_of_substr_operator1_13 (*
+//判断该子结构是包含析取关系的子结构吗
+		-> .proc_lo_kn_calc_number_of_substr_operator1_13 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: nrel_conjunction;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_13a;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator1_14;;                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_13a (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _classconju1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_13a1;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_13a1 (*
                      <- contAdd;;     
                      -> rrel_1: rrel_assign: rrel_scp_var: _sumsta;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta_1;;
                      -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
-                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_13a;; 
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_13a2;; 
                      *);;
-		-> .proc_lo_kn_calc_number_of_substr_operator1_13a (*
+		-> .proc_lo_kn_calc_number_of_substr_operator1_13a2 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumsta_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_4;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断该子结构是包通用变量弧的子结构吗
+		-> .proc_lo_kn_calc_number_of_substr_operator1_14 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_14a;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator1_15;;                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_14a (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _classedge1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_14a1;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_14a1 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumsta;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_14a2;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_14a2 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumsta_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_4;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//可能有漏掉/错误的情况，但是需要统计子结构数量
+		-> .proc_lo_kn_calc_number_of_substr_operator1_15 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumsta;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_15a;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_15a (*
                      <- varAssign;;
                      -> rrel_1: rrel_assign: rrel_scp_var: _sumsta_1;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _sumsta;;
@@ -622,15 +702,75 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_1;; 
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//可能有漏掉/错误的情况，但是需要统计子结构数量
-		-> .proc_lo_kn_calc_number_of_substr_operator2_10 (*
+//判断该子结构是包含析取关系的子结构吗
+		-> .proc_lo_kn_calc_number_of_substr_operator2_10(* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: nrel_conjunction;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_10a;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_11;;                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_10a (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _classconju2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_10a1;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_10a1 (*
                      <- contAdd;;     
                      -> rrel_1: rrel_assign: rrel_scp_var: _sumcand;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand_1;;
                      -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
-                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_10a;; 
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_10a2;; 
                      *);;
-		-> .proc_lo_kn_calc_number_of_substr_operator2_10a (*
+		-> .proc_lo_kn_calc_number_of_substr_operator2_10a2 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumcand_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_1;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断该子结构是包通用变量弧的子结构吗
+		-> .proc_lo_kn_calc_number_of_substr_operator2_11 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_11a;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_12;;                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_11a (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _classedge2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_11a1;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_11a1 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumcand;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_11a2;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_11a2 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumcand_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_1;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//可能有漏掉/错误的情况，但是需要统计子结构数量
+		-> .proc_lo_kn_calc_number_of_substr_operator2_12 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _sumcand;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_12a;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_12a (*
                      <- varAssign;;
                      -> rrel_1: rrel_assign: rrel_scp_var: _sumcand_1;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _sumcand;;
@@ -863,7 +1003,7 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//比较蕴含子结构
+//比较合取子结构
        -> .proc_lo_kn_calc_number_of_substr_operator3_24 (* 
 			      <- call;;
 		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_lo_kn_calculate_number_of_gene_substr;;
@@ -897,28 +1037,82 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      <- varAssign;;
                      -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_28;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//比较析取子结构
+       -> .proc_lo_kn_calc_number_of_substr_operator3_28 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_lo_kn_calculate_number_of_gene_substr;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+					     -> rrel_1: rrel_fixed: rrel_scp_var: _classconju1;;
+					     -> rrel_2: rrel_fixed: rrel_scp_var: _classconju2;;
+					     -> rrel_3: rrel_fixed: rrel_scp_var: _elem_nbtups1me;;
+					     -> rrel_4: rrel_fixed: rrel_scp_var: _elem_nbtups2me;;
+					     -> rrel_5: rrel_fixed: rrel_scp_var: _elem_strus1me;;
+					     -> rrel_6: rrel_fixed: rrel_scp_var: _elem_strus2me;;
+					     -> rrel_7: rrel_assign: rrel_scp_var: _summam;;
+					     -> rrel_8: rrel_fixed: rrel_scp_var: _mathstrume;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_29;;                                            
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_29 (* 
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_30;;                                                      
+                     *);;
+//计算匹配的结构数
+		-> .proc_lo_kn_calc_number_of_substr_operator3_30 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _summa_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _summam;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_31;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_31 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_32;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//比较边结构
+       -> .proc_lo_kn_calc_number_of_substr_operator3_32 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_lo_kn_calculate_number_of_mult_substr;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+					     -> rrel_1: rrel_fixed: rrel_scp_var: _classedge1;;
+					     -> rrel_2: rrel_fixed: rrel_scp_var: _classedge2;;
+					     -> rrel_3: rrel_fixed: rrel_scp_var: _elem_strus1me;;
+					     -> rrel_4: rrel_fixed: rrel_scp_var: _elem_strus2me;;
+					     -> rrel_5: rrel_assign: rrel_scp_var: _summam;;
+					     -> rrel_6: rrel_fixed: rrel_scp_var: _mathstrume;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_33;;                                            
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_33 (* 
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_34;;                                                      
+                     *);;
+//计算匹配的结构数
+		-> .proc_lo_kn_calc_number_of_substr_operator3_34 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _summa_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _summam;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_35;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_35 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
                      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4;; 
                      *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-/*
-       -> .proc_lo_kn_calc_number_of_substr_operator4 (* 
-                     <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _sumsta;;
-                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_1;;                                                        
-                     *);;
-       -> .proc_lo_kn_calc_number_of_substr_operator4_1 (* 
-                     <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _sumcand;;
-                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_2;;                                                        
-                     *);;
-       -> .proc_lo_kn_calc_number_of_substr_operator4_2 (* 
-                     <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _summa;;
-                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator_return;;                                                        
-                     *);;
-
-*/
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //删除生成的节点
@@ -990,6 +1184,26 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator4_13 (*
                <- eraseEl;;
                -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _classdisju2;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_14;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator4_14 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _classconju1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_15;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator4_15 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _classconju2;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_16;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator4_16 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _classedge1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_17;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator4_17 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _classedge2;;
                => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator_return;; 
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
