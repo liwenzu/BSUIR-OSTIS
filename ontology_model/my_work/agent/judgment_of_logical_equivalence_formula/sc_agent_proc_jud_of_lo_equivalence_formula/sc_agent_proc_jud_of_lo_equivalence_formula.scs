@@ -1,0 +1,44 @@
+sc_agent_proc_jud_of_lo_equivalence_formula
+=> nrel_main_idtf: 
+            [sc-агент суждения формулы логической эквивалентности] (* <- lang_ru;; *);
+            [sc-agent of judgment of logical equivalence formula] (* <- lang_en;; *);
+            [sc-agent逻辑等价公式判断] (* <- lang_ch;; *);
+<- abstract_sc_agent;
+=> nrel_primary_initiation_condition: (sc_event_add_output_arc => question_initiated);
+=> nrel_initiation_condition_and_result: (..sc_agent_of_search_operation_initiation_condition => ..sc_agent_of_search_operation_result);
+<= nrel_sc_agent_key_sc_elements:
+{
+     question_initiated;
+     question;
+     judgment_of_logical_equivalence_formula
+};
+<- key_sc_element: ... (*
+     <- sc_description_of_sc_agent_behavior;;
+     <= nrel_sc_text_translation: ...(*
+     ->rrel_example: [Задачей sc-агента суждения формулы логической эквивалентности является суждение формулы логической эквивалентности.];;
+       *);;
+*);
+=>nrel_inclusion: ... (*
+                 <- platform_independent_abstract_sc_agent;;
+                 <= nrel_sc_agent_program:
+                         {
+                           agent_proc_jud_of_lo_equivalence_formula;
+                           proc_jud_of_lo_equivalence_formula
+                         };; 
+                   -> sc_agent_proc_jud_of_lo_equivalence_formula_scp (* <- active_sc_agent;; *);;
+         *);;
+..sc_agent_of_search_operation_initiation_condition
+= [*
+judgment_of_logical_equivalence_formula _-> .._question;;
+question_initiated _-> .._question;;
+question _-> .._question;;
+.._question _-> .._parameter;;
+*];;
+..sc_agent_of_search_operation_result
+= [*
+judgment_of_logical_equivalence_formula _-> .._question;;
+question_finished _-> .._question;;
+question _-> .._question;;
+.._question _=>nrel_answer:: .._answer;;
+.._question _-> .._parameter;;
+*];;

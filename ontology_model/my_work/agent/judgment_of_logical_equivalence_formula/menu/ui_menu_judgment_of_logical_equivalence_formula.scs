@@ -1,0 +1,23 @@
+ui_menu_judgment_of_logical_equivalence_formula
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+=> nrel_main_idtf:
+                      [Суждение формулы логической эквивалентности] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+                      [Judgment of logical equivalence formula] (* <- lang_en;; *);
+=> nrel_main_idtf:
+                      [逻辑等价公式判断] (* <- lang_ch;; *);
+=> ui_nrel_command_template:
+                      [* 
+                         judgment_of_logical_equivalence_formula _-> ._judgment_of_logical_equivalence_formula_instance
+                                                                               (*
+                                                                                   _-> ui_arg_1;;
+                                                                                *);;
+                         ._judgment_of_logical_equivalence_formula_instance _<- question;;
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Суждение формулы логической эквивалентности: $ui_arg_1] (* <- lang_ru;; *);
+=> ui_nrel_command_lang_template:
+                       [Judgment of logical equivalence formula: $ui_arg_1] (* <- lang_en;; *);
+=> ui_nrel_command_lang_template:
+                       [逻辑等价公式判断: $ui_arg_1] (* <- lang_ch;; *);;
