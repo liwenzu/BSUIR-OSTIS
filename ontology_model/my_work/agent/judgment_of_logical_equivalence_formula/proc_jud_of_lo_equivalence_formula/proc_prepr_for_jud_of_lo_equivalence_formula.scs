@@ -1,0 +1,64 @@
+scp_program -> proc_prepr_for_jud_of_lo_equivalence_formula (* 
+   -> rrel_params: .proc_prepr_for_jud_of_lo_equivalence_formula_params (*  
+		-> rrel_1: rrel_in: _parameter;; //标准答案或用户答案的结构
+          -> rrel_2: rrel_in: _correct_answer;;
+          -> rrel_3: rrel_in: _answer;;
+          -> rrel_4: rrel_out: _elems_1cp;;  //答案结构节点
+            *);;
+   -> rrel_operators: .proc_prepr_for_jud_of_lo_equivalence_formula_set (*
+            -> rrel_init: .proc_prepr_for_jud_of_lo_equivalence_formula_operator0 (* 
+                     <- printNl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [逻辑等价公式判断的数据预处理函数];;
+                     => nrel_goto: .proc_prepr_for_jud_of_lo_equivalence_formula_operator1;;
+                     *);;
+//搜索标准答案和用户答案的结构
+            -> .proc_prepr_for_jud_of_lo_equivalence_formula_operator1 (* 
+                      <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _parameter;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elems_1cp;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: _correct_answer;;
+                     => nrel_then: .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_1;;
+                     => nrel_else: .proc_prepr_for_jud_of_lo_equivalence_formula_operator_return;;        
+                     *);;
+            -> .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_1 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_2;;        
+                     *);;
+            -> .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_2 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _parameter;;
+                     => nrel_goto: .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_3;;        
+                     *);;
+            -> .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_3 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: _correct_answer;;
+                     => nrel_goto: .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_4;;        
+                     *);;
+            -> .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_4 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_5;;        
+                     *);;
+            -> .proc_prepr_for_jud_of_lo_equivalence_formula_operator1_5 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc2;;
+                     => nrel_goto: .proc_prepr_for_jud_of_lo_equivalence_formula_operator_return;;        
+                     *);;
+            -> .proc_prepr_for_jud_of_lo_equivalence_formula_operator_return (* 
+                     <- return;;
+                     *);;                                                 
+      *);;  
+*);;
