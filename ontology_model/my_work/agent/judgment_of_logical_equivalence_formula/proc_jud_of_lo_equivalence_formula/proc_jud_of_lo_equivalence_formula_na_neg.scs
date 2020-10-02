@@ -1,13 +1,21 @@
-scp_program -> proc_jud_of_lo_equivalence_formula_eli_imp (* 
-   -> rrel_params: .proc_jud_of_lo_equivalence_formula_eli_imp_params (*  
+scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (* 
+   -> rrel_params: .proc_jud_of_lo_equivalence_formula_na_neg_params (*  
 		-> rrel_1: rrel_in: _elems_1cp;;
             *);;
-   -> rrel_operators: .proc_jud_of_lo_equivalence_formula_eli_imp_set (*
-            -> rrel_init: .proc_jud_of_lo_equivalence_formula_eli_imp_operator0 (* 
+   -> rrel_operators: .proc_jud_of_lo_equivalence_formula_na_neg_set (*
+            -> rrel_init: .proc_jud_of_lo_equivalence_formula_na_neg_operator0 (* 
                      <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_const: [联结词蕴含消去函数];;
-                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [缩小否定词作用范围的函数];;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator_return;;
                      *);;
+
+
+
+
+
+
+
+/*
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //将结构里面的元素全部赋值给另外一个节点
             -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1 (* 
@@ -248,10 +256,14 @@ scp_program -> proc_jud_of_lo_equivalence_formula_eli_imp (*
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
                      *);;
+*/
+
+
+
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator_return (* 
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator_return (* 
                      <- return;;
                      *);;                                                 
       *);;  
