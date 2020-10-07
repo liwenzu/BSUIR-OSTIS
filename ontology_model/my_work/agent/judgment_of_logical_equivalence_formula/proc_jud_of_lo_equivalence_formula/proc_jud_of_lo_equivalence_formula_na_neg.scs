@@ -16,6 +16,13 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator0_2 (* 
                      <- genEl;;
                      -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classpointsub;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator0_3;;
+                     *);;
+//设置一个标志位判断否定出现的奇偶数
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator0_3 (* 
+                     <- contAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _flagnesub;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: [True];;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator1;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -101,6 +108,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_1;;
                      => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator1_7;;
                      *);;
+//也可以不用判断，直接找下一个分支即可
 //判断第一个否定节点在2叉树中的位置(确定是否还有其他否定分支，即是否具有等价的第一个否定节点)
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator2_1 (* 
                      <- searchElStr3;;
@@ -139,7 +147,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
                      -> rrel_set_3: rrel_assign: rrel_scp_var: _elstupsub;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_6;;//3
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_12;;//@@@@@@@@@@@@
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator5;;//@@@@2_12
                      *);;
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator2_6 (* 
                      <- searchElStr3;;
@@ -147,7 +155,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elemmednext;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_7;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator_return;;//@@@@@@@@@@@@@
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator_return;;//@@@@
                      *);;
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator2_7 (* 
                      <- eraseEl;;
@@ -189,8 +197,28 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemmednext;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator3_3a;;//2_8
+                     *);;
+//判断该否定是该分支中的第几个否定
+          -> .proc_jud_of_lo_equivalence_formula_na_neg_operator3_3a (* 
+                     <- stringIfEq;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _flagnesub;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: [True];;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator3_3a1;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_12;;//!!!!!!!!!(这个分支结束后需要再次吧False变为True)
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator3_3a1 (* 
+                     <- contAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _flagnesub;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: [False];;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_8;;
                      *);;
+
+
+
+
+
+
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //判断是存在节点吗
           -> .proc_jud_of_lo_equivalence_formula_na_neg_operator3_4 (* 
@@ -364,6 +392,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator3_15;;
                      *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 
 
@@ -372,13 +401,17 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
 
 
 
+
+
+
+/*
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator3_25 (* 
                      <- printEl;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator3_15;;
 //                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator_return;;
                      *);;
-
+*/
 
 
 
@@ -387,18 +420,6 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
 
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-
-
-
-
-
-
-
-
-
-
 //判断elstup还有弧吗
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator2_8 (* 
                      <- searchElStr3;;
@@ -408,17 +429,12 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_9;;
                      => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_9a;;
                      *);;
-
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator2_9a (* 
                      <- varAssign;;
                      -> rrel_1: rrel_assign: rrel_scp_var: _elemmedsub;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _elemmednext;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_4a;;
                      *);;
-
-
-
-
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator2_9 (* 
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _classpointsub;;  
@@ -442,8 +458,72 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      <- varAssign;;
                      -> rrel_1: rrel_assign: rrel_scp_var: _elemrosub;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
-                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_4a;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_9a;;//2_4a
                      *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//说明是该分支末端的最后一个链接节点
+//判断是否定节点吗
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator5 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: negation;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemmedsub;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator5_1;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator6;;//留有接口，可能是其他节点。
+                     *);;
+//找这个否定点的上一个点
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator5_1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elemmedlast;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemmedsub;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator5_2;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator_return;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator5_2 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmedsub;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator5_3;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator_return;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator5_3 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemmedsub;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator5_4;;
+                     *);;
+//上一个节点和下一个节点之间生成弧
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator5_4 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmedlast;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_12;;
+                     *);;
+
+
+
+
+
+
+
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator5_14 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator2_12;;
+//                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator_return;;
+                     *);;
+
+
+
+
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //先把编号减一
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator2_12 (* 
@@ -495,10 +575,15 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
 
 
 
-
-
-
-
+/*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(这个分支结束后需要再次吧False变为True)
+            -> .proc_jud_of_lo_equivalence_formula_na_neg_operator0_3 (* 
+                     <- contAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _flagnesub;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: [True];;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_na_neg_operator1;;
+                     *);;
+*/
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator22 (* 
                      <- printNl;;
                      -> rrel_1: rrel_fixed: rrel_scp_const: [否定节点@@@@@@@@@@@@@@@];;
@@ -579,7 +664,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_na_neg (*
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_var: _currlast;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_na_neg_operator1_14;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator116;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_na_neg_operator116;;//@@@@@@@@@@@@@
                      *);;
             -> .proc_jud_of_lo_equivalence_formula_na_neg_operator1_14 (* 
                      <- searchElStr3;;
