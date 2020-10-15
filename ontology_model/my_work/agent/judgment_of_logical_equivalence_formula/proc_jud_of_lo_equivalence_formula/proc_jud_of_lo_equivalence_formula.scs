@@ -65,16 +65,24 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 		  -> .proc_jud_of_lo_equivalence_formula_operator1_4a1 (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
-			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1_4a4;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1_4a2;;
 		           *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-
-
-
-
-
+//处理用户答案
+		  -> .proc_jud_of_lo_equivalence_formula_operator1_4a2 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_jud_of_lo_equivalence_formula_mer_con;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1_4a3;;
+		           *);;
+		  -> .proc_jud_of_lo_equivalence_formula_operator1_4a3 (*
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1_4a4;;
+		           *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -92,29 +100,27 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 		  -> .proc_jud_of_lo_equivalence_formula_operator1_4a5 (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
-			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator_return;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1_4a6;;
 		           *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//处理用户答案
+		  -> .proc_jud_of_lo_equivalence_formula_operator1_4a6 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_jud_of_lo_equivalence_formula_mer_dis;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1_4a7;;
+		           *);;
+		  -> .proc_jud_of_lo_equivalence_formula_operator1_4a7 (*
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1_4;;
+		           *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-/*
-
-
 //消去谓词公式中联结词蕴含的函数
 //标准答案
 		  -> .proc_jud_of_lo_equivalence_formula_operator1_4 (* 
@@ -188,9 +194,6 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
-
-
-*/
 
 
 
