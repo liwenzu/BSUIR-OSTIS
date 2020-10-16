@@ -188,11 +188,47 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 		  -> .proc_jud_of_lo_equivalence_formula_operator2_3 (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
-			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator_return;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator2_4;;
 		           *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//逻辑谓词公式中的换名函数
+//标准答案
+		  -> .proc_jud_of_lo_equivalence_formula_operator2_4 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_jud_of_lo_equivalence_formula_rena;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator2_5;;
+		           *);;
+		  -> .proc_jud_of_lo_equivalence_formula_operator2_5 (*
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator_return;;
+		           *);;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
