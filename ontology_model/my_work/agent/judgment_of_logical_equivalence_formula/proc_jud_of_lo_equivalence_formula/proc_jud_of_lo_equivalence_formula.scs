@@ -208,10 +208,25 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 		  -> .proc_jud_of_lo_equivalence_formula_operator2_5 (*
 		           <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator2_6;;
+		           *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//用户答案
+		  -> .proc_jud_of_lo_equivalence_formula_operator2_6 (* 
+			      <- call;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_jud_of_lo_equivalence_formula_rena;;
+		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2;;
+                             -> rrel_2: rrel_fixed: rrel_scp_var: _firsttup2;;
+				          *);;
+		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator2_7;;
+		           *);;
+		  -> .proc_jud_of_lo_equivalence_formula_operator2_7 (*
+		           <- waitReturn;;
+			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator_return;;
 		           *);;
-
-
 
 
 
