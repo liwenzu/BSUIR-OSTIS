@@ -1,7 +1,8 @@
 scp_program -> proc_jud_of_lo_equivalence_formula_rena (* 
    -> rrel_params: .proc_jud_of_lo_equivalence_formula_rena_params (*  
 		-> rrel_1: rrel_in: _elems_1cp;;
-		-> rrel_2: rrel_in: _firsttup;;         
+		-> rrel_2: rrel_in: _firsttup;;
+          -> rrel_3: rrel_out: _esaallgeex;;         
             *);;
    -> rrel_operators: .proc_jud_of_lo_equivalence_formula_rena_set (*
             -> rrel_init: .proc_jud_of_lo_equivalence_formula_rena_operator0 (* 
@@ -54,7 +55,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _elem;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator1_2;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator1_6;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator1_6a;;
                      *);;
             -> .proc_jud_of_lo_equivalence_formula_rena_operator1_2 (* 
                      <- eraseEl;;
@@ -87,6 +88,17 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator1_1;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//记录当前结构中所有的量词和对应的结构
+           -> .proc_jud_of_lo_equivalence_formula_rena_operator1_6a (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _classgeex;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaallgeex;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator1_6;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator_return;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
