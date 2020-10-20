@@ -344,7 +344,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _elem;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_3;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator2_7;;//@@@@@@@@
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator2_7;;
                      *);;
             -> .proc_jud_of_lo_equivalence_formula_rena_operator3_3 (* 
                      <- eraseEl;;
@@ -377,12 +377,90 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _arc;;
                      -> rrel_set_3: rrel_assign: rrel_scp_var: _esaallcom;;
-                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_6;;//@@@@@@@@@@
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_6;;
                      => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator4;;
                      *);;
-
-
-
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//首先找出结构中的通用弧
+           -> .proc_jud_of_lo_equivalence_formula_rena_operator3_6 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaallcom;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _elemcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_7;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator4;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_rena_operator3_7 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator3_8;;
+                     *);;
+//判断弧的两端有需要替换的变量吗
+           -> .proc_jud_of_lo_equivalence_formula_rena_operator3_8 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _els1;;  
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _els2;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_9;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator3_6;;
+                     *);;
+//同时找出这个弧的关系
+           -> .proc_jud_of_lo_equivalence_formula_rena_operator3_9 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_assign: rrel_norole_relation: rrel_scp_var: _els3;;  
+                     -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_10;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator3_6;;
+                     *);;
+           -> .proc_jud_of_lo_equivalence_formula_rena_operator3_10 (* 
+                     <- ifCoin;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _nechaele;; 
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _els1;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_12;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator3_11;;
+                     *);;
+           -> .proc_jud_of_lo_equivalence_formula_rena_operator3_11 (* 
+                     <- ifCoin;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _nechaele;; 
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _els2;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator3_13;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator3_6;;
+                     *);;
+//重新生成一个弧
+            -> .proc_jud_of_lo_equivalence_formula_rena_operator3_12 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _newcre;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;//rrel_const: rrel_common,因为不显示为了方便观察
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator3_14;;
+                     *);;
+//重新生成一个弧
+            -> .proc_jud_of_lo_equivalence_formula_rena_operator3_13 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;//rrel_const: rrel_common,因为不显示为了方便观察
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _newcre;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator3_14;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_rena_operator3_14 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _els3;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;//rrel_var: rrel_access,因为不显示为了方便观察
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator3_15;;
+                     *);;
+           -> .proc_jud_of_lo_equivalence_formula_rena_operator3_15 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemcp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator3_6;;
+                     *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //首先超出结构中的归属弧
            -> .proc_jud_of_lo_equivalence_formula_rena_operator4 (* 
@@ -392,7 +470,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
                      -> rrel_3: rrel_assign: rrel_access: rrel_scp_var: _arc;;
                      -> rrel_set_3: rrel_assign: rrel_scp_var: _esaallarc;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator4_1;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator4_10;;//@@3_2
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator4_10;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
            -> .proc_jud_of_lo_equivalence_formula_rena_operator4_1 (* 
@@ -401,7 +479,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _elemcp;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_rena_operator4_2;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator4_10;;//@@3_2
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_rena_operator4_10;;
                      *);;
             -> .proc_jud_of_lo_equivalence_formula_rena_operator4_2 (* 
                      <- eraseEl;;
@@ -444,7 +522,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
             -> .proc_jud_of_lo_equivalence_formula_rena_operator4_7 (* 
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _newcre;;
-                     -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;//rrel_var: rrel_access,因为不显示为了方便观察
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;//rrel_var: rrel_access,因为不显示为了方便观察
                      -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_var: _elem;;
@@ -454,7 +532,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
             -> .proc_jud_of_lo_equivalence_formula_rena_operator4_8 (* 
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
-                     -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;//rrel_var: rrel_access,因为不显示为了方便观察
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;//rrel_var: rrel_access,因为不显示为了方便观察
                      -> rrel_3: rrel_fixed: rrel_scp_var: _newcre;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_var: _elem;;
@@ -472,29 +550,6 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arcp;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator3_2;;
                      *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
            -> .proc_jud_of_lo_equivalence_formula_rena_operator2_7 (* 
@@ -628,6 +683,29 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //首先找出结构中的归属弧
            -> .proc_jud_of_lo_equivalence_formula_rena_operator6 (* 
@@ -725,11 +803,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_rena (*
 
 
 
-           -> .proc_jud_of_lo_equivalence_formula_rena_operator64 (* 
-                     <- printEl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp;;
-                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_rena_operator6_1;;
-                     *);;
+
 
 
 
