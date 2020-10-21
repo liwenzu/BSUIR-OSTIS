@@ -131,7 +131,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula_qua_for (*
                      -> rrel_1: rrel_fixed: rrel_scp_const: nrel_generality;;  
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemnextcp;;
-                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_15;;
                      => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_14;;
                      *);;
             -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_14(* 
@@ -139,9 +139,285 @@ scp_program -> proc_jud_of_lo_equivalence_formula_qua_for (*
                      -> rrel_1: rrel_fixed: rrel_scp_const: nrel_existence;;  
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemnextcp;;
-                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator3;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_15;;
                      => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator4;;
                      *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断前束量词中的最后一个量词是哪种量词
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_15 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elemnextcp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_16;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_16(* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elemnextcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_17;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_17 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_generality;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemnextcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_19;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_18;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_18(* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_existence;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemnextcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_19;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_20;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_19 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elemnextcp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_16;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_20 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemnext;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elemmed;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_21a;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_21a (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemnext;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arcs;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemnextcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_21;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;
+                     *);;
+//判断当前节点为哪种类型的节点
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_21 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_generality;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemnext;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator1_22;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator1_22 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_existence;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemnext;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator3;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//首先前移全部的任意量词
+        -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemnext;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemcp;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_1;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;//@@@@@@@next
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemtuge;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemnext;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_2;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;//@@@@@@@@@
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_2 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//开始循环前移剩余的任意量词
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemtuge;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemsub;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_4;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;//@@@@@next
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_4 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_5;;
+                     *);;
+//先将这个存在结构中的变量赋值给已经前移的结构中
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_5 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemsub;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemsubcp;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_6;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_6 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemsubcp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_fixed: rrel_scp_var: _elemcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_7;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+//找出当前节点的上一个节点和下一个节点
+           -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_7 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemsub;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _els1;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_8;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_8 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemsubcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_9;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_9 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_10;;
+                     *);;
+//找出下一个节点
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_10 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elsnext;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_11;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_11 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemsub;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elsnext;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_12;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+//找出上一个节点
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_12 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elslast;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemsub;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_13;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+//删除当前结构的节点，和对应的变量结构
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_13 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemsub;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_14;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_14 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemsubcp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_15;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator2_15 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elslast;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elsnext;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator2_3;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+
+
+
+
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator213 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elslast;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;
+                     *);;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator3 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemnextcp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;
+                     *);;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -639,36 +915,6 @@ scp_program -> proc_jud_of_lo_equivalence_formula_qua_for (*
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            -> .proc_jud_of_lo_equivalence_formula_qua_for_operator525 (* 
-                     <- printEl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp;;
-                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_qua_for_operator_return;;
-                     *);;
-
-
-
-
-
-
-
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             -> .proc_jud_of_lo_equivalence_formula_qua_for_operator_return (* 
