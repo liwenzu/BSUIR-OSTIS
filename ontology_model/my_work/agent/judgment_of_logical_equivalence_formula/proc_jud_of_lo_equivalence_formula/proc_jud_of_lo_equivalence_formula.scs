@@ -7,6 +7,17 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
             -> rrel_init: .proc_jud_of_lo_equivalence_formula_operator0 (* 
                      <- printNl;;
                      -> rrel_1: rrel_fixed: rrel_scp_const: [逻辑等价公式判断主函数];;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator0_1;;
+                     *);;
+//生成两个节点用于存储等价关系节点
+            -> .proc_jud_of_lo_equivalence_formula_operator0_1 (* 
+                     <- genEl;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classequi1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator0_2;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_operator0_2 (* 
+                     <- genEl;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classequi2;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator1;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -241,6 +252,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1;;
                              -> rrel_2: rrel_fixed: rrel_scp_var: _esaallgeex1;;
                              -> rrel_3: rrel_fixed: rrel_scp_var: _firsttup1;;
+                             -> rrel_4: rrel_fixed: rrel_scp_var: _classequi1;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator2_9;;
@@ -259,6 +271,7 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2;;
                              -> rrel_2: rrel_fixed: rrel_scp_var: _esaallgeex2;;
                              -> rrel_3: rrel_fixed: rrel_scp_var: _firsttup2;;
+                             -> rrel_4: rrel_fixed: rrel_scp_var: _classequi2;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator2_11;;
@@ -275,9 +288,11 @@ scp_program -> proc_jud_of_lo_equivalence_formula (*
 //标准答案
 		  -> .proc_jud_of_lo_equivalence_formula_operator3 (* 
 			      <- call;;
-		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_jud_of_lo_equivalence_formula_dec_con;;
+		           -> rrel_1: rrel_fixed: rrel_scp_const: proc_jud_of_lo_equivalence_formula_dec_con_dis;;
 		           -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
 				          -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1;;
+                             -> rrel_2: rrel_fixed: rrel_scp_var: _firsttup1;;
+                             -> rrel_3: rrel_fixed: rrel_scp_var: _classequi1;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_jud_of_lo_equivalence_formula_operator3_1;;
