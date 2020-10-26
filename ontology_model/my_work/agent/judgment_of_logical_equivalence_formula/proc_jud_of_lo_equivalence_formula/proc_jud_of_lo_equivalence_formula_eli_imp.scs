@@ -56,19 +56,6 @@ scp_program -> proc_jud_of_lo_equivalence_formula_eli_imp (*
             -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_5 (* 
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
-                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_6;;
-                     *);;
-            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_6 (* 
-                     <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_const: nrel_implication;;
-                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_7;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
-                     *);;
-            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_7 (* 
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_8;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -108,20 +95,6 @@ scp_program -> proc_jud_of_lo_equivalence_formula_eli_imp (*
                      *);;
 //删除弧
             -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_12 (* 
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
-                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_13;;
-                     *);;
-//对于if的删除需要慎重考虑，因为在一个结构中可能包含多个if.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(可以最后判断)
-            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_13 (* 
-                     <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_const: rrel_if;;
-                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_14;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
-                     *);;
-            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_14 (* 
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a;;
@@ -232,20 +205,6 @@ scp_program -> proc_jud_of_lo_equivalence_formula_eli_imp (*
             -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_24 (* 
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
-                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_25;;
-                     *);;
-//对于then的删除需要慎重考虑，因为在一个结构中可能包含多个then.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!(可以最后判断)
-            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_25 (* 
-                     <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_const: rrel_then;;
-                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_26;;
-                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
-                     *);;
-            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_26 (* 
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
