@@ -205,6 +205,53 @@ scp_program -> proc_jud_of_lo_equivalence_formula_eli_imp (*
             -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_24 (* 
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_25;;
+                     *);;
+//判断then的节点为析取节点吗，如果为析取节点则需要删除这个节点
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_25 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_disjunction;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_26;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_26 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaallsub;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_27;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_30;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+           -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_27 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaallsub;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_28;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_30;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_28 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_29;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_29 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_27;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_30 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _els2;;
                      => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
