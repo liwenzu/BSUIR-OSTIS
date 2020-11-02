@@ -1,0 +1,264 @@
+scp_program -> proc_jud_of_lo_equivalence_formula_eli_imp (* 
+   -> rrel_params: .proc_jud_of_lo_equivalence_formula_eli_imp_params (*  
+		-> rrel_1: rrel_in: _elems_1cp;;
+            *);;
+   -> rrel_operators: .proc_jud_of_lo_equivalence_formula_eli_imp_set (*
+            -> rrel_init: .proc_jud_of_lo_equivalence_formula_eli_imp_operator0 (* 
+                     <- printNl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [联结词蕴含消去函数];;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//将结构里面的元素全部赋值给另外一个节点
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator_return;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//寻找所有蕴含关系
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_2;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator_return;;//@@@@
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_2 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_3;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_3 (* 
+                     <- ifType;;
+                     -> rrel_1: rrel_pos_const_perm: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_4;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_4 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_implication;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_5;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//说明有蕴含结构，首先删除蕴含和元组之间的弧，和结构中的蕴含关系
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_5 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_8;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//创建析取关系和元组之间的弧,并加入到指定结构中
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_8 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_disjunction;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_9;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_9 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_10;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_10 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: nrel_disjunction;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_11;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//找到具有if角色关系的结构，并删除if角色关系
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_11 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _els1;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_if;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_12;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     *);;
+//删除弧
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_12 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断els1是否定关系节点吗，如果是说明有2个否定，则不需要创建否定节点，如果不是则需要创建(当前版本至多支持2个否定的判断)
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: negation;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a1;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _els2;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a2;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a2 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _els1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a3;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15a3 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_22;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//生成一个链接节点和否定关系
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_15 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elstup;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_16;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_16 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_17;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_17 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elstup;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_18;;
+                     *);;
+//创建否定关系和链接节点之间的弧
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_18 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: negation;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elstup;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_19;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_19 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_20;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_20 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: negation;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_21;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//生成否定链接节点和结构之间的弧
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_21 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elstup;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_22;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_22 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_23;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//删除then角色关系和弧
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_23 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _els2;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_then;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_24;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_24 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_25;;
+                     *);;
+//判断then的节点为析取节点吗，如果为析取节点则需要删除这个节点
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_25 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_disjunction;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_26;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_26 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaallsub;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_27;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_30;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+           -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_27 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaallsub;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elemcp;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_28;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_30;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_28 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_29;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_29 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_27;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_30 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _els2;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_eli_imp_operator1_1;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_jud_of_lo_equivalence_formula_eli_imp_operator_return (* 
+                     <- return;;
+                     *);;                                                 
+      *);;  
+*);;

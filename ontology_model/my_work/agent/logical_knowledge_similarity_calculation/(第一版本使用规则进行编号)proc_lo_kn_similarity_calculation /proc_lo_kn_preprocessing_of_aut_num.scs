@@ -11,14 +11,9 @@ scp_program -> proc_lo_kn_preprocessing_of_aut_num
 	-> rrel_operators: ... 
 	(*
 //查找问题的标准答案和用户答案结构，并显示在窗口中
-       -> rrel_init: .proc_lo_kn_preprocessing_of_aut_num_operator0 (* 
+       -> rrel_init: .proc_lo_kn_preprocessing_of_aut_num_operator1 (* 
                      <- printNl;;
                      -> rrel_1: rrel_fixed: rrel_scp_const: [逻辑语义图数据预处理程序:自动编号!];;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator0_1;;                                                         
-                     *);;
-       -> .proc_lo_kn_preprocessing_of_aut_num_operator0_1 (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _classpoint;;
                      => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator1_1;;                                                         
                      *);;
 //搜索标准答案和用户答案的结构
@@ -51,7 +46,7 @@ scp_program -> proc_lo_kn_preprocessing_of_aut_num
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elem_nbtuz0;;
                      => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator1_4;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                         
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//@@@@@@@@@@@@@@                                                         
                      *);;
             -> .proc_lo_kn_preprocessing_of_aut_num_operator1_4 (* 
                      <- eraseEl;;
@@ -73,165 +68,232 @@ scp_program -> proc_lo_kn_preprocessing_of_aut_num
                      => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator1_3;;
                      => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator1_7;;                                                         
                      *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//赋值运算,将第一个节点赋值给一个通用变量，方便循环处理
+//将第一个节点加入到指定点
             -> .proc_lo_kn_preprocessing_of_aut_num_operator1_7 (* 
-                     <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
-                     -> rrel_2: rrel_fixed: rrel_scp_var: _elem_nbtuz0;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator1_8;;                                                  
-                     *);;
-//将第一个关系赋值给中间变量
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator1_8 (* 
-                     <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
-                     -> rrel_2: rrel_fixed: rrel_scp_const: rrel_0;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator1_9;;                                                  
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator1_9 (* 
-                     <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _elemro;;
-                     -> rrel_2: rrel_fixed: rrel_scp_const: rrel_1;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2a;;                                                  
-                     *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//开始给链接编号  
-          -> .proc_lo_kn_preprocessing_of_aut_num_operator2a (* 
                      <- genElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elem_nbtups;;
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem_nbtuz0;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2a_1;;                                                  
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_0;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2;;                                                         
                      *);;
+//开始加入剩余的其他链接节点sheaf(刚开始只是适合于集合包含关系，后期可以添加更多的类型和更复杂的结构)
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//赋值运算,将第一个节点赋值给一个通用变量，方便循环处理
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elem_nbtuz0;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_1;;                                                  
+                     *);;
+//将第一个关系赋值给中间变量
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_1 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: rrel_0;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_2;;                                                  
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//开始循环查找
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_2 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_3a;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator3;;//@@@@@跳到结构编号                                                        
+                     *);;
+//判断当前链接节点的下一个节点包含结构吗(如果不包含说明双链接链接结构)
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_3a (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_7m;;//混合链接结构编号(单分支)2_3
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator2_7m;;//跳到双链接结构进行编号2_7                                                        
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//混合结构中也可能包含双链结构，因此也适用于多链编号
+//混合结构中包含双链吗
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_7m (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_3m1;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                         
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_3m1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _els1;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_3m2;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                        
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_3m2 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_3m3;;
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_3m3 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _els1;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_7;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator2_3;;                                                        
+                     *);;
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //寻找角色关系的下一个
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2a_1 (* 
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_3 (* 
                      <- searchElStr5;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
                      -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2a_2;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                       
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_4;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
                      *);;
-          -> .proc_lo_kn_preprocessing_of_aut_num_operator2a_2 (* 
+//加入到编号节点中
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_4 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_nbtups;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_5;;                                                         
+                     *);;
+//赋值下一个关系和节点查找
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_5 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_6;;                                                  
+                     *);;
+//将第一个关系赋值给中间变量
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_6 (* 
                      <- varAssign;;
                      -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2;;                                                  
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_2;;                                                  
                      *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2 (* 
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//双链接结构编号部分(当前版本中只支持一个答案结构中只包含一个这种类型的结构)
+//当前版本只支持随机编号
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_7 (* 
                      <- searchSetStr3;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
-                     -> rrel_set_3: rrel_assign: rrel_scp_var: _elstup;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_1;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator2_7;;                                                       
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_8;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                         
                      *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_1 (* 
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//开始循环编号
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_8 (* 
                      <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elstup;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elemmed;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_2;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                        
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_9;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator3;;//@@@@@跳到结构编号                                                        
                      *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_2 (* 
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_9 (* 
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_3;;                                                  
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_10;;
                      *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_3 (* 
-                     <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elstup;;
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_4;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator2a;;                                                        
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_4 (* 
-                     <- genElStr5;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _classpoint;;  
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_var: _elstup;;
-                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemro;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_5;;                                                  
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_5 (* 
+//先给双链接中的一个进行编号
+//寻找角色关系的下一个
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_10 (* 
                      <- searchElStr5;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemro;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
                      -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
                      -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_6;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                        
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_11;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
                      *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_6 (* 
-                     <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _elemro;;
-                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2a;;                                                  
-                     *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_7 (* 
-                     <- searchElStr5;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _currlast;;
-                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_var: _elemro;;
-                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_8;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                        
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_8 (* 
-                     <- searchElStr5;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _classpoint;;
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_assign: rrel_scp_var: _elemmedcp;;
-                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_5: rrel_fixed: rrel_scp_var: _currlast;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_9;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator3;;                                                        
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_9 (* 
-                     <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmedcp;;
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_assign: rrel_scp_var: _elemmed;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_10;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                                        
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_10 (* 
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_11;;                                                  
-                     *);;
+//加入到编号节点中
             -> .proc_lo_kn_preprocessing_of_aut_num_operator2_11 (* 
-                     <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmedcp;;
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_nbtups;;
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2a;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator2_12;;                                                        
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_12;;                                                         
                      *);;
+//赋值下一个关系和节点查找
             -> .proc_lo_kn_preprocessing_of_aut_num_operator2_12 (* 
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elemmedcp;;
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elem;;
                      => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_13;;                                                  
                      *);;
+//将第一个关系赋值给中间变量
             -> .proc_lo_kn_preprocessing_of_aut_num_operator2_13 (* 
                      <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _elemro;;
-                     -> rrel_2: rrel_fixed: rrel_scp_var: _currlast;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2a;;                                                  
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_14;;                                                  
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//开始循环编号(给双支中的一个单支编号)
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_14 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_15;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator2_8;;                                                        
+                     *);;
+//寻找角色关系的下一个
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_15 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator2_16;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
+                     *);;
+//加入到编号节点中
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_16 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_nbtups;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_17;;                                                         
+                     *);;
+//赋值下一个关系和节点查找
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_17 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_18;;                                                  
+                     *);;
+//将第一个关系赋值给中间变量
+            -> .proc_lo_kn_preprocessing_of_aut_num_operator2_18 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator2_14;;                                                  
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -523,61 +585,8 @@ scp_program -> proc_lo_kn_preprocessing_of_aut_num
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elemmed;;
                      => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator6_5a;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator6_m;;                                             
+                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator6_1a;;                                             
                      *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//当前情况可能包含量词和对应的变量因此先给量词编号
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_m (* 
-                     <- searchElStr5;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed;;
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _elem;;
-                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator6_m1;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator6_1a;;                                                       
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_m1 (* 
-                     <- searchElStr3;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator6_m2;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;                                              
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_m2 (* 
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator6_m3;;
-                     *);;
-//加入当前结构
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_m3 (* 
-                     <- genElStr5;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus;;
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
-                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_5: rrel_fixed: rrel_scp_var: _elemmed1;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator6_m4;;                                                       
-                     *);;
-//结构编号加一
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_m4 (* 
-                     <- searchElStr5;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemmed1;;
-                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
-                     -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
-                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
-                     => nrel_then: .proc_lo_kn_preprocessing_of_aut_num_operator6_m5;;
-                     => nrel_else: .proc_lo_kn_preprocessing_of_aut_num_operator_return;;//说明编号不够用(正常够用11个编号可以);可以调到结构编号;                                                       
-                     *);;
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator6_m5 (* 
-                     <- varAssign;;
-                     -> rrel_1: rrel_assign: rrel_scp_var: _elemmed1;;
-                     -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator6_1a;;                                                  
-                     *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //如果不是等价结构则在当前版本则随机编号
             -> .proc_lo_kn_preprocessing_of_aut_num_operator6_1a (* 
                      <- searchElStr3;;
@@ -787,13 +796,7 @@ scp_program -> proc_lo_kn_preprocessing_of_aut_num
                      => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator3_5;;                                                       
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-            -> .proc_lo_kn_preprocessing_of_aut_num_operator_return (* 
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _classpoint;;
-                     => nrel_goto: .proc_lo_kn_preprocessing_of_aut_num_operator_return1;;                                                       
-                     *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-		-> .proc_lo_kn_preprocessing_of_aut_num_operator_return1
+		-> .proc_lo_kn_preprocessing_of_aut_num_operator_return
                (*
                <-return;;
                *);;
