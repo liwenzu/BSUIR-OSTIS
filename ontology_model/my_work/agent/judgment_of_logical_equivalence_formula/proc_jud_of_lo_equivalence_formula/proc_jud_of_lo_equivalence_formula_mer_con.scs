@@ -76,7 +76,84 @@ scp_program -> proc_jud_of_lo_equivalence_formula_mer_con (*
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
                      => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator3;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断当前节点是否需要合并，比如特殊的换名结构则不需要合并
+//首先找出_els2的上一个结构为任意量词吗
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _curlas;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_1;;
                      => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_generality;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _curlas;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_2;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     *);;
+//判断上一个弧是等价节点吗
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_2 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _curlas1;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _curlas;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_3;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_3 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: nrel_equivalence;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _curlas1;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_4;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_4 (* 
+                     <- searchElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _curlas;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _curlas1;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_5;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_5 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _curlas1;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaallnode;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_6;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_6 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaallnode;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _arc1;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_7;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_7 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_8;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2m_8 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaallnode;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator1_2;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2 (* 
