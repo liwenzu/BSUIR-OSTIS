@@ -1,0 +1,23 @@
+ui_menu_answer_verification
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+=> nrel_main_idtf:
+                      [Проверка ответов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+                      [Answer verification] (* <- lang_en;; *);
+=> nrel_main_idtf:
+                      [答案验证] (* <- lang_ch;; *);
+=> ui_nrel_command_template:
+                      [* 
+                         answer_verification _-> ._answer_verification_instance
+                                                                               (*
+                                                                                   _-> ui_arg_1;;
+                                                                                *);;
+                         ._answer_verification_instance _<- question;;
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Проверка ответов: $ui_arg_1] (* <- lang_ru;; *);
+=> ui_nrel_command_lang_template:
+                       [Answer verification: $ui_arg_1] (* <- lang_en;; *);
+=> ui_nrel_command_lang_template:
+                       [答案验证: $ui_arg_1] (* <- lang_ch;; *);;
