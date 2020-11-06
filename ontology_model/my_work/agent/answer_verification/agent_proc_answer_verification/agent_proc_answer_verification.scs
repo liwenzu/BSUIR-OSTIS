@@ -29,13 +29,8 @@ scp_program -> agent_proc_answer_verification (*
                              -> rrel_1: rrel_fixed: rrel_scp_var: _avquest;;
                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                              -> rrel_3: rrel_assign: rrel_scp_var: _avparam;;  
-                             => nrel_then: .agent_proc_answer_verification_operator4;;
+                             => nrel_then: .agent_proc_answer_verification_operator5;;
                              => nrel_else: .agent_proc_answer_verification_operator_return;;               
-                    *);;
-                   -> .agent_proc_answer_verification_operator4 (* 
-                             <- genEl;;
-                             -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _avanswer;;
-                             => nrel_goto: .agent_proc_answer_verification_operator5;;                                    
                     *);;
                    -> .agent_proc_answer_verification_operator5 (*
                              <- call;;
@@ -43,14 +38,14 @@ scp_program -> agent_proc_answer_verification (*
                              -> rrel_2: rrel_fixed: rrel_scp_const:
                              .agent_proc_answer_verification_operator5_params (*
                              -> rrel_1: rrel_fixed: rrel_scp_var: _avparam;;
-                             -> rrel_2: rrel_fixed: rrel_scp_var: _avanswer;;
+                             -> rrel_2: rrel_assign: rrel_scp_var: _avanswer;;
                                     *);;
-                            -> rrel_3: rrel_assign: rrel_scp_var: _descr;;
+                            -> rrel_3: rrel_assign: rrel_scp_var: _descr3;;
                             =>nrel_goto: .agent_proc_answer_verification_operator6;;
                     *);;   
                    -> .agent_proc_answer_verification_operator6 (*
                              <- waitReturn;;
-                             -> rrel_1: rrel_fixed: rrel_scp_var: _descr;;
+                             -> rrel_1: rrel_fixed: rrel_scp_var: _descr3;;
                              =>nrel_goto: .agent_proc_answer_verification_operator_gen_answer;;
                     *);;
                    -> .agent_proc_answer_verification_operator_gen_answer (* 
@@ -61,7 +56,7 @@ scp_program -> agent_proc_answer_verification (*
                              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
                              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_answer;;
                              => nrel_goto: .agent_proc_answer_verification_operator_return;;
-                    *);;                   
+                    *);;
                    -> .agent_proc_answer_verification_operator_return (*
                              <- return;;      
                    *);;

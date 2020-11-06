@@ -1,7 +1,7 @@
 scp_program -> proc_answer_verification (* 
    -> rrel_params: .proc_answer_verification_params (*  
             -> rrel_1: rrel_in: _avparameterst;;
-            -> rrel_2: rrel_in: _avanswerst;;  
+            -> rrel_2: rrel_out: _agent_answermed;;
             *);;
    -> rrel_operators: .proc_answer_verification_set (*
             -> rrel_init: .proc_answer_verification_operator0 (* 
@@ -10,42 +10,158 @@ scp_program -> proc_answer_verification (*
                      => nrel_goto: .proc_answer_verification_operator1;;
                      *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//代理调用程序
+//首先找到所有相似度节点删除
             -> .proc_answer_verification_operator1 (* 
+                     <- searchSetStr5;;
+			       -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
+			       -> rrel_2: rrel_assign: rrel_common: rrel_scp_var: _arc;;
+			       -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+			       -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+			       -> rrel_5: rrel_fixed: rrel_scp_const: nrel_coefficient;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+                     => nrel_then: .proc_answer_verification_operator1_1;;
+                     => nrel_else: .proc_answer_verification_operator2;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_answer_verification_operator1_1 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     => nrel_then: .proc_answer_verification_operator1_2;;
+                     => nrel_else: .proc_answer_verification_operator2;;
+                     *);;
+            -> .proc_answer_verification_operator1_2 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_answer_verification_operator1_3;;
+                     *);;
+            -> .proc_answer_verification_operator1_3 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_answer_verification_operator1_1;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//代理调用程序
+            -> .proc_answer_verification_operator2 (* 
                     <- call;;
                     -> rrel_1: rrel_fixed: rrel_scp_const: proc_answer_verification_call_agent;;
                     -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
                              -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
                              -> rrel_2: rrel_fixed: rrel_scp_const: logical_kn_similarity_calculation;;
+                             -> rrel_3: rrel_assign: rrel_scp_var: _agent_answermed;;
                              *);;
                      -> rrel_3: rrel_assign: rrel_scp_var: _descr;;
-                     => nrel_goto: .proc_answer_verification_operator1_1;;
+                     => nrel_goto: .proc_answer_verification_operator2_1;;
                      *);;
-            -> .proc_answer_verification_operator1_1 (* 
+            -> .proc_answer_verification_operator2_1 (* 
                      <- waitReturn;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _descr;;
-                     => nrel_goto: .proc_answer_verification_operator1_2;;
+                     => nrel_goto: .proc_answer_verification_operator2_2;;
                      *);;
-
-
-
-            -> .proc_answer_verification_operator1_2 (* 
-                     <- printEl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断相似度是否为1
+            -> .proc_answer_verification_operator2_2 (* 
+			       <- searchElStr5;;
+			       -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
+			       -> rrel_2: rrel_assign: rrel_common: rrel_scp_var: _arc1;;
+			       -> rrel_3: rrel_assign: rrel_scp_var: _simansw;;
+			       -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+			       -> rrel_5: rrel_fixed: rrel_scp_const: nrel_coefficient;;
+                     => nrel_goto: .proc_answer_verification_operator2_3;;
+                     *);;
+            -> .proc_answer_verification_operator2_3 (* 
+                     <- stringIfEq;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _simansw;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: [1.00000];;
+                     => nrel_then: .proc_answer_verification_operator_return;;
+                     => nrel_else: .proc_answer_verification_operator2_4;;
+                     *);;
+//删除相似度弧
+            -> .proc_answer_verification_operator2_4 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_answer_verification_operator3;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//调用等价公式判断代理
+            -> .proc_answer_verification_operator3 (* 
+                    <- call;;
+                    -> rrel_1: rrel_fixed: rrel_scp_const: proc_answer_verification_call_agent;;
+                    -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+                             -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
+                             -> rrel_2: rrel_fixed: rrel_scp_const: judgment_of_logical_equivalence_formula;;
+                             -> rrel_3: rrel_assign: rrel_scp_var: _agent_answereq;;
+                             *);;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _descr;;
+                     => nrel_goto: .proc_answer_verification_operator3_1;;
+                     *);;
+            -> .proc_answer_verification_operator3_1 (* 
+                     <- waitReturn;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _descr;;
+                     => nrel_goto: .proc_answer_verification_operator3_2;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//调用逻辑相似度计算代理
+            -> .proc_answer_verification_operator3_2 (* 
+                    <- call;;
+                    -> rrel_1: rrel_fixed: rrel_scp_const: proc_answer_verification_call_agent;;
+                    -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+                             -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
+                             -> rrel_2: rrel_fixed: rrel_scp_const: logical_kn_similarity_calculation;;
+                             -> rrel_3: rrel_assign: rrel_scp_var: _agent_answermed1;;
+                             *);;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _descr;;
+                     => nrel_goto: .proc_answer_verification_operator3_3;;
+                     *);;
+            -> .proc_answer_verification_operator3_3 (* 
+                     <- waitReturn;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _descr;;
+                     => nrel_goto: .proc_answer_verification_operator3_4;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断相似度为1吗
+            -> .proc_answer_verification_operator3_4 (* 
+			       <- searchElStr5;;
+			       -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
+			       -> rrel_2: rrel_assign: rrel_common: rrel_scp_var: _arc1;;
+			       -> rrel_3: rrel_assign: rrel_scp_var: _simansw1;;
+			       -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+			       -> rrel_5: rrel_fixed: rrel_scp_const: nrel_coefficient;;
+                     => nrel_goto: .proc_answer_verification_operator3_5;;
+                     *);;
+            -> .proc_answer_verification_operator3_5 (* 
+                     <- stringIfEq;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _simansw1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_const: [1.00000];;
+                     => nrel_then: .proc_answer_verification_operator3_6;;
+                     => nrel_else: .proc_answer_verification_operator4;;
+                     *);;
+            -> .proc_answer_verification_operator3_6 (* 
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _agent_answermed;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _agent_answermed1;;
                      => nrel_goto: .proc_answer_verification_operator_return;;
                      *);;
-
-
-
-
-
-
-
-
-
-
-
-
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_answer_verification_operator4 (* 
+			       <- genElStr5;;
+			       -> rrel_1: rrel_fixed: rrel_scp_var: _avparameterst;;
+			       -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
+			       -> rrel_3: rrel_fixed: rrel_scp_var: _simansw;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _agent_answermed;;
+                     => nrel_goto: .proc_answer_verification_operator4_1;;
+                     *);;
+            -> .proc_answer_verification_operator4_1 (* 
+			       <- genElStr5;;
+			       -> rrel_1: rrel_fixed: rrel_scp_const: nrel_coefficient;;
+			       -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+			       -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _agent_answermed;;
+                     => nrel_goto: .proc_answer_verification_operator_return;;
+                     *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             -> .proc_answer_verification_operator_return (* 
                      <- return;;
