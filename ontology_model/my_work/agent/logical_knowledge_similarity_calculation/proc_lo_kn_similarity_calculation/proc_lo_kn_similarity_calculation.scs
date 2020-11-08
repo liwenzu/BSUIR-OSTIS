@@ -345,6 +345,8 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 					     -> rrel_1: rrel_fixed: rrel_scp_var: _elem2;;
 					     -> rrel_2: rrel_fixed: rrel_scp_var: _mathstru;;
 					     -> rrel_3: rrel_fixed: rrel_scp_var: _mismathstru;;
+				          -> rrel_4: rrel_fixed: rrel_scp_var: _answer;;
+				          -> rrel_5: rrel_fixed: rrel_scp_var: _parameter;;
 				          *);;
 		           -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator3_1;;
@@ -392,13 +394,15 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 		  -> .proc_lo_kn_similarity_calculation_operator4_6 (*
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _mathstru;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator4_7;;
+                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator4_8;;
                      *);;
+/*
 		  -> .proc_lo_kn_similarity_calculation_operator4_7 (*
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _mismathstru;;
                      => nrel_goto: .proc_lo_kn_similarity_calculation_operator4_8;;
                      *);;
+*/
 //开始删除定义域弧
 //标准答案
 		  -> .proc_lo_kn_similarity_calculation_operator4_8 (*
