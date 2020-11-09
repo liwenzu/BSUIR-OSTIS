@@ -554,34 +554,6 @@ scp_program -> proc_fa_kn_calc_number_of_substr
                                                               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _incorpart;;
                                                               => nrel_goto: .proc_fa_kn_calc_number_of_substr_operator3;;                                    
                                                                 *);;
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-/*  
-                                               -> .proc_fa_kn_calc_number_of_substr_operator3s (* 
-                                                              <- printNl;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_const: [打印各个结构的节点情况];;
-                                                              => nrel_goto: .proc_fa_kn_calc_number_of_substr_operator3s_s;;                                    
-                                                                *);;
-                                                -> .proc_fa_kn_calc_number_of_substr_operator3s_s (*
-                                                              <- searchElStr3;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _classedge1;;
-                                                              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-                                                             -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
-                                                             => nrel_then: .proc_fa_kn_calc_number_of_substr_operator3s_ss;;
-                                                              => nrel_else: .proc_fa_kn_calc_number_of_substr_operator3;;   
-                                                                *);;
-                                                -> .proc_fa_kn_calc_number_of_substr_operator3s_ss(* 
-                                                              <- eraseEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
-                                                              => nrel_goto: .proc_fa_kn_calc_number_of_substr_operator3s_sss;;                                    
-                                                                *);;
-
-                                                 -> .proc_fa_kn_calc_number_of_substr_operator3s_sss (* 
-                                                              <- printEl;;
-                                                              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
-                                                              => nrel_goto: .proc_fa_kn_calc_number_of_substr_operator3s_s;;                                    
-                                                                *);;
-*/
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 //通用弧相似度开始计算
 //按照正确答案子结构进行循环查找
                                                 -> .proc_fa_kn_calc_number_of_substr_operator3 (*
