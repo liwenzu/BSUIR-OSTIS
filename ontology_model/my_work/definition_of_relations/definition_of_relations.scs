@@ -124,12 +124,25 @@ rrel_known_answer
 
 
 
+nrel_source_fragment
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+          [исходный фрагмент*] (* <- lang_ru;; *);
+          [source fragment*] (* <- lang_en;; *);
+          [原始片段*] (* <- lang_ch;; *);;
 
 
 
-
-
-
+nrel_generated_fragment
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+          [сгенерированный фрагмент*] (* <- lang_ru;; *);
+          [generated fragment*] (* <- lang_en;; *);
+          [生成的片段*] (* <- lang_ch;; *);;
 
 
 
