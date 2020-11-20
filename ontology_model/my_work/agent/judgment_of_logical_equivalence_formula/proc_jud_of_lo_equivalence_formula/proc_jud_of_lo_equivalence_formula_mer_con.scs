@@ -368,11 +368,44 @@ scp_program -> proc_jud_of_lo_equivalence_formula_mer_con (*
             -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2_10 (* 
                      <- searchElStr3;;
                      -> rrel_1: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _elemlast;;  
-                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arcr;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
-                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m;;
                      => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator1_2;;
                      *);;
+//判断当前链接和上一个链接之间的弧有角色关系吗
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _elemro;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arcr;;
+                     => nrel_then: .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m1;;
+                     => nrel_else: .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m1 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _els2;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m2;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m2 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemlast;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arcr;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m3;;
+                     *);;
+            -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11m3 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elemro;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arcr;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_5: rrel_fixed: rrel_scp_var: _elems_1cp;;
+                     => nrel_goto: .proc_jud_of_lo_equivalence_formula_mer_con_operator1_2;;
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
             -> .proc_jud_of_lo_equivalence_formula_mer_con_operator2_11 (* 
                      <- eraseEl;;
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _els2;;
