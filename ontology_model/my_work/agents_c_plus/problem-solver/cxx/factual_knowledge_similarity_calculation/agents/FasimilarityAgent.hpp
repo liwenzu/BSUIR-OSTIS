@@ -17,7 +17,7 @@ namespace facknowsimcalcu
     class FasimilarityAgent : public ScAgent
     {
         SC_CLASS(Agent, Event(Keynodes::factual_kn_similarity_calculation, ScEvent::Type::AddOutputEdge))
-    SC_GENERATED_BODY()
+        SC_GENERATED_BODY()
     };
 
 } // namespace exampleModule
