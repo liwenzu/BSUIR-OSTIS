@@ -18,4 +18,6 @@ add_library(factual_knowledge_similarity_calculation SHARED ${SOURCES} ${HEADERS
 add_dependencies(factual_knowledge_similarity_calculation sc-memory-cpp sc-kpm-common sc-agents-common)
 target_link_libraries(factual_knowledge_similarity_calculation sc-memory-cpp sc-kpm-common sc-agents-common)
 
+SET(CMAKE_BUILD_TYPE Debug)
+
 sc_codegen(factual_knowledge_similarity_calculation ${SC_FA_SIM_CAL_SRC})

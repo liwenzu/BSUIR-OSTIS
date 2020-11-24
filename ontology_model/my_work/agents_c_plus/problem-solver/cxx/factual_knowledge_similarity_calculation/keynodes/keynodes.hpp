@@ -24,8 +24,14 @@ namespace facknowsimcalcu
         SC_PROPERTY(Keynode("factual_kn_similarity_calculation"), ForceCreate)
         static ScAddr factual_kn_similarity_calculation;
 
-//        SC_PROPERTY(Keynode("nrel_inclusion"), ForceCreate)
-//        static ScAddr nrel_inclusion;
+        SC_PROPERTY(Keynode("nrel_correct_answer"), ForceCreate)
+        static ScAddr nrel_correct_answer;
+
+        SC_PROPERTY(Keynode("nrel_user_answer"),ForceCreate)
+        static ScAddr nrel_user_answer;
+
+        SC_PROPERTY(Keynode("nrel_relation_decomposition"),ForceCreate)
+        static ScAddr nrel_relation_decomposition;
     };
 
 } // namespace exampleModule

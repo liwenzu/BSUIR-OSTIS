@@ -12,6 +12,8 @@ namespace facknowsimcalcu
 {
 
     ScAddr Keynodes::factual_kn_similarity_calculation;
-//    ScAddr Myodes::nrel_inclusion;
+    ScAddr Keynodes::nrel_correct_answer;
+    ScAddr Keynodes::nrel_user_answer;
+    ScAddr Keynodes::nrel_relation_decomposition;
 
 }
