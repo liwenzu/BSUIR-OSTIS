@@ -528,7 +528,6 @@ scp_program -> proc_lo_kn_calculate_number_of_gene_substr
                => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
                => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator2_15;;//@@@@2_27a1
                *);;
-
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //开始计算匹配的结构数量
@@ -590,8 +589,17 @@ scp_program -> proc_lo_kn_calculate_number_of_gene_substr
                -> rrel_1: rrel_fixed: rrel_scp_var: _elemus1;;
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_3: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;
-               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3_2;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3_2s;;
                => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator4;;//@(具有角色关系的双结构，留有接口)4
+               *);;
+//判断该角色关系是绑定的变量吗(可能存在绑定的变量的结构具有双结构)  
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3_2s (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemus1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator3_2;;
                *);;
 //判断用户答案结构中有角色关系吗
 		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3_2 (*
@@ -685,6 +693,226 @@ scp_program -> proc_lo_kn_calculate_number_of_gene_substr
                -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
                => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
                => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator2_27a1;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//具有绑定角色关系的双结构处理
+//首先判断用户答案中有绑定变量的角色关系吗
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemus2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_1;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_1 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els1;;
+               -> rrel_4: rrel_assign: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_2;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_2;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_2 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup12;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_3;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_3 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup1cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_4;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_2;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_4 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_5;; 
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_5 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup12cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_6;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_6 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_7;; 
+               *);;
+//寻找编号
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_7 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus1cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _els2;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_8;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_2;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_8 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus2cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _els22;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_9;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+//判断编号相同吗
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_9 (*
+               <- ifCoin;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;; 
+               -> rrel_2: rrel_fixed: rrel_scp_var: _els22;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_10;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//下面开始判断当前结构只包含变量元素吗(如果包含判断映射关系，如果不包含则这两个结构相同)
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_10 (*
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemsub1;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_11;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_2;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_11 (*
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemsub2;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_12;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//变量元素比较
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_12 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemsub1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els1;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_13;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_17;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_13 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_14;;
+               *);;
+//寻找映射元素
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_14 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_15;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+//判断这个点在用户答案结构中吗
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_15 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemsub2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_16;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_16 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_12;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断用户答案结构中还有弧吗
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_17 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemsub2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_18;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//处理剩余的结构(没有角色关系)
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_18 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup1cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els1;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_19;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator3_11;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_19 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_20;; 
+               *);;
+//寻找编号
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_20 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus1cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _els2;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_21;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_2;;
+               *);;
+//寻找用户答案中相对应的结构
+//按照编号寻找
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_21 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus2cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_var: _els2;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_22;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_22 (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup12cp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_23;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_23 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_24;; 
+               *);;
+		-> .proc_lo_kn_calculate_number_of_gene_substr_operator3m_24 (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup12;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_gene_substr_operator1_10;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_gene_substr_operator3m_18;;
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -852,23 +1080,6 @@ scp_program -> proc_lo_kn_calculate_number_of_gene_substr
                -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
                => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator5_3;; 
                *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-//下面可以继续处理双链接结构(提供了接口)
-/*
-		-> .proc_lo_kn_calculate_number_of_gene_substr_operator8 (*
-               <- printEl;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _elstup12cp;;
-               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator11;; 
-               *);;
-
-		-> .proc_lo_kn_calculate_number_of_gene_substr_operator11 (*
-               <- printEl;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _elemus2;;
-               => nrel_goto: .proc_lo_kn_calculate_number_of_gene_substr_operator_return;; 
-               *);;
-*/
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
