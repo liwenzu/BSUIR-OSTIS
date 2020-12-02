@@ -5,70 +5,70 @@ scp_program -> proc_lo_kn_similarity_calculation (*
             *);;
 //生成几个节点用于存放顺序链接sheaf和结构节点
    -> rrel_operators: .proc_lo_kn_similarity_calculation_set (*
-            -> rrel_init: .proc_lo_kn_similarity_calculation_operator0 (* 
-                     <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_const: [逻辑知识相似度计算主函数];;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_0;;
-                     *);;
-            -> .proc_lo_kn_similarity_calculation_operator0_0 (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_nbtups1;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_1;;
-                     *);;
-            -> .proc_lo_kn_similarity_calculation_operator0_1 (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_nbtups2;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_2;;
-                     *);;
-            -> .proc_lo_kn_similarity_calculation_operator0_2 (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_strus1;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_3;;
-                     *);;
-            -> .proc_lo_kn_similarity_calculation_operator0_3 (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_strus2;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4a;;
-                     *);;
+         -> rrel_init: .proc_lo_kn_similarity_calculation_operator0 (* 
+                  <- printNl;;
+                  -> rrel_1: rrel_fixed: rrel_scp_const: [逻辑知识相似度计算主函数];;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_0;;
+                  *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_0 (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_nbtups1;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_1;;
+                  *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_1 (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_nbtups2;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_2;;
+                  *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_2 (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_strus1;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_3;;
+                  *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_3 (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_strus2;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4a;;
+                  *);;
 //生成一个节点用于存储变量之间的映射关系
-            -> .proc_lo_kn_similarity_calculation_operator0_4a (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_map;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4b;;
-                     *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_4a (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elem_map;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4b;;
+                  *);;
 //生成2个节点用于存放用户答案和标准答案中包含变量弧的结构
-            -> .proc_lo_kn_similarity_calculation_operator0_4b (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemsvararc1;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4c;;
-                     *);;
-            -> .proc_lo_kn_similarity_calculation_operator0_4c (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemsvararc2;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4d;;
-                     *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_4b (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemsvararc1;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4c;;
+                  *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_4c (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemsvararc2;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4d;;
+                  *);;
 //生成两个节点用于存放定义域弧
-            -> .proc_lo_kn_similarity_calculation_operator0_4d (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemdedoarc1;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4e;;
-                     *);;
-            -> .proc_lo_kn_similarity_calculation_operator0_4e (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemdedoarc2;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4f;;
-                     *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_4d (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemdedoarc1;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4e;;
+                  *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_4e (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemdedoarc2;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4f;;
+                  *);;
 //生成两个节点用户存放用户答案中匹配和不匹配的子结构
-            -> .proc_lo_kn_similarity_calculation_operator0_4f (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _mathstru;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4g;;
-                     *);;
-            -> .proc_lo_kn_similarity_calculation_operator0_4g (* 
-                     <- genEl;;
-                     -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _mismathstru;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4;;
-                     *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_4f (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _mathstru;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4g;;
+                  *);;
+         -> .proc_lo_kn_similarity_calculation_operator0_4g (* 
+                  <- genEl;;
+                  -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _mismathstru;;
+                  => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_4;;
+                  *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //调用逻辑语义图数据预处理函数
 //先处理标准答案，自动标号
@@ -86,10 +86,10 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_5;;
 		           *);;
 		  -> .proc_lo_kn_similarity_calculation_operator0_5 (*
-		           <- waitReturn;;
+		         <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_6;;
-		           *);;
+		         *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //调用逻辑语义图数据预处理函数
 //处理用户答案，自动标号
@@ -107,10 +107,10 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator0_7;;
 		           *);;
 		  -> .proc_lo_kn_similarity_calculation_operator0_7 (*
-		           <- waitReturn;;
+		         <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1;;
-		           *);;
+		         *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -146,10 +146,10 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_3;;
 		           *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_3 (*
-		           <- waitReturn;;
+		         <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a1;;
-		           *);;
+		         *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -165,10 +165,10 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a2;;
 		           *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_4a2 (*
-		           <- waitReturn;;
+		         <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a3;;
-		           *);;
+		         *);;
 //定义域关系的建立(用户答案)
 		  -> .proc_lo_kn_similarity_calculation_operator1_4a3 (* 
 			      <- call;;
@@ -181,10 +181,10 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4a4;;
 		           *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_4a4 (*
-		           <- waitReturn;;
+		         <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4b1;;
-		           *);;
+		         *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -207,7 +207,7 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4b2;;
 		           *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_4b2 (*
-		           <- waitReturn;;
+		         <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_4;;
 //			      => nrel_goto: .proc_lo_kn_similarity_calculation_return;;
@@ -234,27 +234,27 @@ scp_program -> proc_lo_kn_similarity_calculation (*
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_5;;
 		           *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_5 (*
-		           <- waitReturn;;
+  	            <- waitReturn;;
 			      -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
 			      => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_6;;
-		           *);;
+               *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 		  -> .proc_lo_kn_similarity_calculation_operator1_6 (*
-		           <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _sumsta;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_7;;
-                     *);;
+               <- printNl;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _sumsta;;
+               => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_7;;
+               *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_7 (*
-		           <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _sumcand;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_8;;
-                     *);;
+               <- printNl;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _sumcand;;
+               => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_8;;
+               *);;
 		  -> .proc_lo_kn_similarity_calculation_operator1_8 (*
-		           <- printNl;;
-                     -> rrel_1: rrel_fixed: rrel_scp_var: _summa;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_9;;
-                     *);;
+		         <- printNl;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _summa;;
+               => nrel_goto: .proc_lo_kn_similarity_calculation_operator1_9;;
+               *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -396,13 +396,6 @@ scp_program -> proc_lo_kn_similarity_calculation (*
                      -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _mathstru;;
                      => nrel_goto: .proc_lo_kn_similarity_calculation_operator4_8;;
                      *);;
-/*
-		  -> .proc_lo_kn_similarity_calculation_operator4_7 (*
-                     <- eraseEl;;
-                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _mismathstru;;
-                     => nrel_goto: .proc_lo_kn_similarity_calculation_operator4_8;;
-                     *);;
-*/
 //开始删除定义域弧
 //标准答案
 		  -> .proc_lo_kn_similarity_calculation_operator4_8 (*
