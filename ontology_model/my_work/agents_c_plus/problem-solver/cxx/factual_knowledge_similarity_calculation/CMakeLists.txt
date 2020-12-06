@@ -4,12 +4,14 @@ set(SOURCES
         "factual_knowledge_similarity_calculation.cpp"
         "keynodes/keynodes.cpp"
         "agents/FasimilarityAgent.cpp"
+        "utils/Faprocrss.cpp"
         )
 
 set(HEADERS
         "factual_knowledge_similarity_calculation.hpp"
         "keynodes/keynodes.hpp"
         "agents/FasimilarityAgent.hpp"
+        "utils/Faprocrss.hpp"
         )
 
 include_directories(${SC_FA_SIM_CAL_SRC} ${SC_MEMORY_SRC} ${GLIB2_INCLUDE_DIRS})
