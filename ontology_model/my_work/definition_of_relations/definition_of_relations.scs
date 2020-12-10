@@ -3,9 +3,9 @@ nrel_correct_answer
 <- binary_relation;
 <- relation;
 => nrel_main_idtf:
-          [правильный ответ*] (* <- lang_ru;; *);
-          [correct answer*] (* <- lang_en;; *);
-          [正确答案*] (* <- lang_ch;; *);;
+           [правильный ответ*] (* <- lang_ru;; *);
+           [correct answer*] (* <- lang_en;; *);
+           [正确答案*] (* <- lang_ch;; *);;
 
 
 
@@ -178,6 +178,13 @@ nrel_edge
           [边*] (* <- lang_ch;; *);;
 
 
+
+rrel_cyclic
+<- sc_node_role_relation;
+=> nrel_main_idtf:
+          [цикл'] (* <- lang_ru;; *);
+          [cycle'] (* <- lang_en;; *);
+          [环'] (* <- lang_ch;; *);;
 
 
 
