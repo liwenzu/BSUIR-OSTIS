@@ -9,6 +9,7 @@
 #include <sc-kpm/sc-agents-common/utils/IteratorUtils.hpp>
 #include <sc-kpm/sc-agents-common/utils/AgentUtils.hpp>
 #include <sc-kpm/sc-agents-common/utils/display.hpp>
+#include <sc-kpm/sc-agents-common/utils/CommonUtils.hpp>
 
 #include "FasimilarityAgent.hpp"
 #include "keynodes/keynodes.hpp"
@@ -60,14 +61,16 @@ namespace facknowsimcalcu {
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //相似度计算部分
+            int _summa = 0, _sumsta = 0, _sumcand = 0;
             vector<ScAddr> _allsst1 = IteratorUtils::getAllWithType(ms_context.get(), _elem1, ScType::NodeConstStruct);
-            int _sumsta = _allsst1.size();
+            _sumsta = _allsst1.size();
             vector<ScAddr> _allsst2 = IteratorUtils::getAllWithType(ms_context.get(), _elem2, ScType::NodeConstStruct);
-            int _sumcand = _allsst2.size();
+            _sumcand = _allsst2.size();
 
             vector<ScAddr> _classtup1, _classtup2, _classretup1, _classretup2,
                            _classcomm1, _classcomm2, _classedge1, _classedge2,
-                           _classpost51, _classpost52, _classpost31, _classpost32;
+                           _classpost51, _classpost52, _classpost31, _classpost32,
+                           _mathstru, _mismathstru;
 
 
             for (auto i : _allsst1)
@@ -183,6 +186,181 @@ namespace facknowsimcalcu {
             }
             _classpost32.push_back(i);
         }
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//通用弧相似度开始计算
+        for (auto elem : _classcomm1)
+        {
+            ScAddr _comarc, _els1, _els2, _els3;
+            ScIterator3Ptr it_3 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
+            while (it_3->Next())
+            {
+                _comarc = it_3->Get(2);
+            }
+            _els1 = ms_context->GetEdgeSource(_comarc);
+            _els2 = ms_context->GetEdgeTarget(_comarc);
+            ScIterator3Ptr it_31 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+            while (it_31->Next())
+            {
+                _els3 = it_31->Get(2);
+            }
+            int il = 0;
+            for (auto elemcp : _classcomm2)
+            {
+                il++;
+                ScAddr _els32;
+                ScIterator3Ptr it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
+                while (it_3->Next())
+                {
+                    _comarc = it_3->Get(2);
+                }
+                ScAddr _els12 = ms_context->GetEdgeSource(_comarc);
+                ScAddr _els22 = ms_context->GetEdgeTarget(_comarc);
+                ScIterator3Ptr it_31 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+                while (it_31->Next())
+                {
+                    _els32 = it_31->Get(2);
+                }
+                if (_els1 != _els12)
+                {
+                    if (ms_context->GetElementType(_els1) == ScType::NodeConst
+                        && ms_context->GetElementType(_els12) == ScType::NodeConst)
+                    {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els1, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els12, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    }
+                    else if (ms_context->GetElementType(_els1).IsLink()
+                        && ms_context->GetElementType(_els12).IsLink())
+                    {
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els1);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els12);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+                if (_els2 != _els22)
+                {
+                    if (ms_context->GetElementType(_els2) == ScType::NodeConst
+                        && ms_context->GetElementType(_els22) == ScType::NodeConst)
+                    {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els2, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els22, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    }
+                    else if (ms_context->GetElementType(_els2).IsLink()
+                             && ms_context->GetElementType(_els22).IsLink())
+                    {
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els2);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els22);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+                if (_els3 != _els32)
+                    continue;
+                _summa++;
+                _mathstru.push_back(elemcp);
+                _classcomm2.erase(_classcomm2.begin()+il-1);
+                break;
+            }
+        }
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//归属弧五元结构相似度计算
+        for (auto elem : _classpost51)
+        {
+            ScAddr _comarc, _els1, _els2, _els3;
+            ScIterator3Ptr it_3 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+            while (it_3->Next())
+            {
+                _els3 = it_3->Get(2);
+            }
+            ScIterator3Ptr it_31 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeAccessConstPosPerm);
+            while (it_31->Next())
+            {
+                _comarc = it_31->Get(2);
+                _els1 = ms_context->GetEdgeSource(_comarc);
+                if (_els1 == _els3)
+                    continue;
+                _els2 = ms_context->GetEdgeTarget(_comarc);
+                break;
+            }
+            int il =0 ;
+            for (auto elemcp : _classpost52)
+            {
+                il++;
+                ScAddr _els12, _els22, _els32;
+                ScIterator3Ptr it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                while (it_3->Next())
+                {
+                    _els32 = it_3->Get(2);
+                }
+                ScIterator3Ptr it_31 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeAccessConstPosPerm);
+                while (it_31->Next())
+                {
+                    _comarc = it_31->Get(2);
+                    _els12 = ms_context->GetEdgeSource(_comarc);
+                    if (_els12 == _els32)
+                        continue;
+                    _els22 = ms_context->GetEdgeTarget(_comarc);
+                    break;
+                }
+                if (_els1 != _els12)
+                {
+                    if (ms_context->GetElementType(_els1) == ScType::NodeConst
+                        && ms_context->GetElementType(_els12) == ScType::NodeConst)
+                    {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els1, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els12, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    }
+                    else if (ms_context->GetElementType(_els1).IsLink()
+                             && ms_context->GetElementType(_els12).IsLink())
+                    {
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els1);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els12);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+                if (_els2 != _els22)
+                {
+                    if (ms_context->GetElementType(_els2) == ScType::NodeConst
+                        && ms_context->GetElementType(_els22) == ScType::NodeConst)
+                    {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els2, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els22, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    }
+                    else if (ms_context->GetElementType(_els2).IsLink()
+                             && ms_context->GetElementType(_els22).IsLink())
+                    {
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els2);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els22);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+                if (_els3 != _els32)
+                    continue;
+                _summa++;
+                _mathstru.push_back(elemcp);
+                _classpost52.erase(_classpost52.begin()+il-1);
+                break;
+            }
+        }
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 
 
@@ -190,8 +368,11 @@ namespace facknowsimcalcu {
 
 
 
-//display::printEl(ms_context.get(), arc);
 
+
+
+
+/*
             cout <<_classcomm1.size() << endl;
             cout <<_classedge1.size() << endl;
             cout <<_classpost31.size() << endl;
@@ -199,11 +380,17 @@ namespace facknowsimcalcu {
             cout <<_classretup1.size() << endl;
             cout <<_classtup1.size() << endl;
 
+            cout <<"the same arc:";
+            display::printEl(ms_context.get(), _comarc);
+            cout <<""<< endl;
+
+
+*/
 
         cout <<_sumsta << endl;
 
 
-
+/*
         cout <<_classcomm2.size() << endl;
         cout <<_classedge2.size() << endl;
         cout <<_classpost32.size() << endl;
@@ -212,11 +399,16 @@ namespace facknowsimcalcu {
         cout <<_classtup2.size() << endl;
 
 
-            cout <<_sumcand << endl;
 
+            cout <<"user answer:";
+            display::printEl(ms_context.get(), _comarc);
+            cout <<""<< endl;
+*/
 
+        cout <<_sumcand << endl;
+        cout <<_summa << endl;
 
-
+//        cout <<_mathstru.size() << endl;
 
 
 

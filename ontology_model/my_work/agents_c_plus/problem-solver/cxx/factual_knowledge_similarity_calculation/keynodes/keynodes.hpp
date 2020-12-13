@@ -32,6 +32,9 @@ namespace facknowsimcalcu
 
         SC_PROPERTY(Keynode("nrel_relation_decomposition"),ForceCreate)
         static ScAddr nrel_relation_decomposition;
+
+        SC_PROPERTY(Keynode("nrel_system_identifier"),ForceCreate)
+        static ScAddr nrel_system_identifier;
     };
 
 } // namespace exampleModule

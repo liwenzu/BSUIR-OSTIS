@@ -15,5 +15,6 @@ namespace facknowsimcalcu
     ScAddr Keynodes::nrel_correct_answer;
     ScAddr Keynodes::nrel_user_answer;
     ScAddr Keynodes::nrel_relation_decomposition;
+    ScAddr Keynodes::nrel_system_identifier;
 
 }
