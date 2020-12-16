@@ -560,6 +560,15 @@ scp_program -> proc_lo_kn_gen_substr
                     -> rrel_2: rrel_assign: rrel_access: rrel_scp_var: _arc1;;
                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
                     => nrel_then: .proc_lo_kn_gen_substr_operator3_22;;
+                    => nrel_else: .proc_lo_kn_gen_substr_operator3_22a1;;
+                    *);;
+//判断另一端是变量节点吗
+          -> .proc_lo_kn_gen_substr_operator3_22a1 (* 
+                    <- searchElStr3;;
+                    -> rrel_1: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _els3;;  
+                    -> rrel_2: rrel_assign: rrel_access: rrel_scp_var: _arc1;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22;;
                     => nrel_else: .proc_lo_kn_gen_substr_operator3_28;;
                     *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
