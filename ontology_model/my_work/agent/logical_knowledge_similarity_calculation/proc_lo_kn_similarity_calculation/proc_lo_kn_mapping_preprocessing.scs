@@ -1031,19 +1031,9 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                *);;
 //首先判断他们之间已经存在映射关系了吗
 //因为使用变量通用弧和变量归属弧当前版本不工作，因此只能使用常数值
+//首先判断弧的映射情况
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
           -> .proc_lo_kn_mapping_preprocessing_operator5_19a4
-               (*
-               <- searchElStr5;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
-               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
-               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a6;;//如果有判断第二个点
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_19a5a1;;//如果没有则生成映射关系
-               *);;
-//判断这个关系和其他关系有映射关系吗(标准答案)
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a5a1
                (*
                <- searchElStr5;;
                -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
@@ -1051,11 +1041,21 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
                -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_19a5a2;;//如果没有则生成映射关系
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5m1;;
                *);;
-//判断这个关系和其他关系有映射关系吗(用户答案)
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a5a2
+          -> .proc_lo_kn_mapping_preprocessing_operator5m
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m_1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5m2;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator5m_1
                (*
                <- searchElStr5;;
                -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
@@ -1063,10 +1063,79 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
                -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_19a5;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m_2;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
                *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a5
+          -> .proc_lo_kn_mapping_preprocessing_operator5m_2
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m_3;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator5m_3
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m_4;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator5m_4
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator5m1
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m3;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5m1_1;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator5m1_1
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5m1_2;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator5m1_2
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5m1_3;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//建立映射关系
+          -> .proc_lo_kn_mapping_preprocessing_operator5m1_3
                (*
                <- genElStr5;;
                -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
@@ -1074,53 +1143,18 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
                -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
                -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;;
-               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5_19a6a;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5m1_4;;
                *);;
 //记住这个生成的映射弧(最后需要删除)
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a6a
+          -> .proc_lo_kn_mapping_preprocessing_operator5m1_4
                (*
                <- genElStr3;;
                -> rrel_1: rrel_fixed: rrel_scp_var: _elem_mapcp;;
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
                -> rrel_3: rrel_fixed: rrel_scp_var: _arc;;
-               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5_19a6;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5m1_5;;
                *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a6
-               (*
-               <- searchElStr5;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
-               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
-               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;//如果有判断第二个点
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_19a7a1;;
-               *);;
-//判断这个关系和其他关系有映射关系吗(标准答案)
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a7a1
-               (*
-               <- searchElStr5;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
-               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
-               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_19a7a2;;//如果没有则生成映射关系
-               *);;
-//判断这个关系和其他关系有映射关系吗(用户答案)
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a7a2
-               (*
-               <- searchElStr5;;
-               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
-               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
-               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_19a7;;
-               *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a7
+          -> .proc_lo_kn_mapping_preprocessing_operator5m1_5
                (*
                <- genElStr5;;
                -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;
@@ -1128,9 +1162,9 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
                -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
                -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;;
-               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5_19a8a;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5m1_6;;
                *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a8a
+          -> .proc_lo_kn_mapping_preprocessing_operator5m1_6
                (*
                <- genElStr3;;
                -> rrel_1: rrel_fixed: rrel_scp_var: _elem_mapcp;;
@@ -1138,52 +1172,118 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_3: rrel_fixed: rrel_scp_var: _arc;;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;
                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator5m2
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m2_1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator5m2_1
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5m2_2;;
+               *);;
+//判断两个第一个点之间有弧吗
+          -> .proc_lo_kn_mapping_preprocessing_operator5m2_2
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m1_5;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator5m3
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5m3_1;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator5m3_1
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m3_2;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               *);;
+//判断两个弧第二个点之间有弧吗
+          -> .proc_lo_kn_mapping_preprocessing_operator5m3_2
+               (*
+               <- searchElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els2;;  
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;; 
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5m3_3;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
+               *);;
+//建立映射关系
+          -> .proc_lo_kn_mapping_preprocessing_operator5m3_3
+               (*
+               <- genElStr5;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _els1;;
+               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
+               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_relation_of_mapping;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5m3_4;;
+               *);;
+//记住这个生成的映射弧(最后需要删除)
+          -> .proc_lo_kn_mapping_preprocessing_operator5m3_4
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem_mapcp;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5_19a8;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //开始删除用户答案中的某些节点
           -> .proc_lo_kn_mapping_preprocessing_operator5_19a8
                (*
-               <- searchElStr3;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _stnocomm2;;  
-               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_fixed: rrel_scp_var: _els12;;
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a9;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
-               *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a9
-               (*
-               <- searchElStr3;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _ennocomm2;;  
-               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
-               -> rrel_3: rrel_fixed: rrel_scp_var: _els22;;
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a10;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
-               *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a10
-               (*
                <- eraseEl;;
-               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arcp;;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5_19a11;; 
                *);;
           -> .proc_lo_kn_mapping_preprocessing_operator5_19a11
                (*
                <- eraseEl;;
-               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arcp1;;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5_19a12;; 
                *);;
           -> .proc_lo_kn_mapping_preprocessing_operator5_19a12
                (*
-               <- searchElStr3;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _elemvarcom2;;  
-               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_fixed: rrel_scp_var: _elemmed;;
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator5_19a13;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator5_10;;
-               *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator5_19a13
-               (*
                <- eraseEl;;
-               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arcp2;;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator5;;//@@@@@@5 
                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //变量关系节点映射关系建立@@@@@5_19b
