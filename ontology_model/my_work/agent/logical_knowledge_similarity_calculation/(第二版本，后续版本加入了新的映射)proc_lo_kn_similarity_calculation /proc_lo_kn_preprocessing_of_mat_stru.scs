@@ -1,0 +1,162 @@
+scp_program -> proc_lo_kn_preprocessing_of_mat_stru
+(*
+	-> rrel_params: ...
+	(*
+		-> rrel_1: rrel_in: _elem2cp;; 
+          -> rrel_2: rrel_in: _mathstrume;;
+		-> rrel_3: rrel_in: _mismathstrume;;
+		-> rrel_4: rrel_in: _answer;;
+		-> rrel_5: rrel_in: _parameter;;
+	*);;
+	-> rrel_operators: ... 
+	(*
+//查找问题的标准答案和用户答案结构，并显示在窗口中
+       -> rrel_init: .proc_lo_kn_preprocessing_of_mat_stru_operator0 (* 
+                     <- printNl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [统计用户答案中匹配的子结构和不匹配的子结构的函数!];;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1;;                                                         
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem2cp;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall2;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_mat_stru_operator1_1;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_mat_stru_operator_return;;                                                         
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_1 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _mathstrume;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     -> rrel_set_3: rrel_assign: rrel_scp_var: _mathstrucp;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_mat_stru_operator1_2;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_mat_stru_operator1_10;;                                                        
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_2 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _mathstrucp;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_assign: rrel_scp_var:  _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_mat_stru_operator1_3;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_mat_stru_operator1_6;;                                                         
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_3 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_4;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_4 (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall2;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var:  _elem;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_mat_stru_operator1_5;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_mat_stru_operator1_2;;                                                        
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_5 (* 
+                     <- eraseEl;;
+                     -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_2;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_6 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall2;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     -> rrel_set_3: rrel_fixed: rrel_scp_var: _mismathstrume;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_mat_stru_operator1_7;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_mat_stru_operator1_13;;                                                        
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_7 (* 
+                     <- printNl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [用户答案有匹配部分也有不匹配部分];;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_8;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_8 (* 
+                     <- genElStr5;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _parameter;;  
+                     -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _mismathstrume;;
+                     -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+                     -> rrel_5: rrel_fixed: rrel_scp_const: nrel_incorrect_answer;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_9a;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_9a (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_9b;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_9b (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _arc2;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_9c;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_9c (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _mismathstrume;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_9;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_9 (* 
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;  
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_const: nrel_incorrect_answer;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator_return;;                                                     
+                     *);;
+/*
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_8 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _mathstrume;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_9;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_9 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _mismathstrume;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator_return;;                                                                                          
+                     *);;
+*/
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_10 (* 
+                     <- searchSetStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _esaall2;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+                     -> rrel_set_3: rrel_fixed: rrel_scp_var: _mismathstrume;;
+                     => nrel_then: .proc_lo_kn_preprocessing_of_mat_stru_operator1_11;;
+                     => nrel_else: .proc_lo_kn_preprocessing_of_mat_stru_operator_return;;                                                         
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_11 (* 
+                     <- printNl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [用户答案全部不匹配];;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_12;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_12 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _mismathstrume;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator_return;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_13 (* 
+                     <- printNl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_const: [用户答案全部匹配];;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator1_14;;                                                     
+                     *);;
+            -> .proc_lo_kn_preprocessing_of_mat_stru_operator1_14 (* 
+                     <- printEl;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _mathstrume;;
+                     => nrel_goto: .proc_lo_kn_preprocessing_of_mat_stru_operator_return;;                                                     
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+		-> .proc_lo_kn_preprocessing_of_mat_stru_operator_return
+               (*
+               <-return;;
+               *);;
+	*);;
+*);;

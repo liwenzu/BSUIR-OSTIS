@@ -9,6 +9,8 @@ scp_program -> proc_lo_kn_mapping_preprocessing
           -> rrel_5: rrel_in: _elem_mapcp;;
           -> rrel_6: rrel_in: _elem_strus1cp;;
           -> rrel_7: rrel_in: _elem_strus2cp;;
+          -> rrel_8: rrel_in: _elemstru1;;
+          -> rrel_9: rrel_in: _elemstru2;;
 	*);;
 	-> rrel_operators: ... 
 	(*
@@ -17,56 +19,152 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                     -> rrel_1: rrel_fixed: rrel_scp_const: [潜在同义变量之间映射创建函数!];;
                     => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator1;;                                                                                            
                     *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//找逻辑公式中的所有结构(标准答案)
           -> .proc_lo_kn_mapping_preprocessing_operator1
                (*
-               <- varAssign;;
-               -> rrel_1: rrel_assign: rrel_scp_var: _currelem;;
-               -> rrel_2: rrel_fixed: rrel_scp_const: rrel_1;;
-               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator2_2;; 
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1cp;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemstru;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator_return;;//没有则返回
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator1_1
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_2;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator1_6;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_2
+               (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator1_3;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_3
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _elemcp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_5;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator1_4;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_4
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _elemcp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_5;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator1_1;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_5
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator1_1;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//找逻辑公式中的所有结构(用户答案)
+          -> .proc_lo_kn_mapping_preprocessing_operator1_6
+               (*
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2cp;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemstru;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_7;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator_return;;//没有则返回
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator1_7
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_8;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator2;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_8
+               (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator1_9;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_9
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _elemcp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_11;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator1_10;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_10
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _elemcp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator1_11;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator1_7;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator1_11
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator1_7;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//将保存结构节点的值赋值给另外的节点
+          -> .proc_lo_kn_mapping_preprocessing_operator2
+               (*
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru1;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemstru1cp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator2_1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator_return;;//没有则返回
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator2_1
+               (*
+               <- searchSetStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru2;;  
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+               -> rrel_set_3: rrel_assign: rrel_scp_var: _elemstru2cp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator2_2;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator_return;;//没有则返回
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
           -> .proc_lo_kn_mapping_preprocessing_operator2_2
                (*
-               <- searchElStr5;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _elem_strus1cp;;  
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru1cp;;  
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_3: rrel_assign: rrel_scp_var: _elemcp1;;
-               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_5: rrel_fixed: rrel_scp_var: _currelem;; 
                => nrel_then: .proc_lo_kn_mapping_preprocessing_operator2_3;;
                => nrel_else: .proc_lo_kn_mapping_preprocessing_operator8;;
                *);;
           -> .proc_lo_kn_mapping_preprocessing_operator2_3
                (*
-               <- searchElStr5;;
-               -> rrel_1: rrel_fixed: rrel_scp_var: _currelem;;
-               -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_assign: rrel_scp_var: _currelemcp;;
-               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_5: rrel_fixed: rrel_scp_const: nrel_basic_sequence;;
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator2_3a;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator_return;;
-               *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator2_3a
-               (*
-               <- varAssign;;
-               -> rrel_1: rrel_assign: rrel_scp_var: _currelem;;
-               -> rrel_2: rrel_fixed: rrel_scp_var: _currelemcp;;
-               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator2_3a1;; 
-               *);;
-          -> .proc_lo_kn_mapping_preprocessing_operator2_3a1
-               (*
-               <- searchElStr5;;
-               -> rrel_1: rrel_assign: rrel_const: rrel_not_binary_tuple: rrel_scp_var: _arc;;
-               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp1;;
-               -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
-               -> rrel_5: rrel_fixed: rrel_scp_const: rrel_bind_variables;;
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator2_2;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator2_4;;
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator2_4;; 
                *);;
 //找出当前结构的编号
           -> .proc_lo_kn_mapping_preprocessing_operator2_4
@@ -393,7 +491,6 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_2: rrel_fixed: rrel_scp_const: [True];;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10;; 
                *);;
-//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
           -> .proc_lo_kn_mapping_preprocessing_operator3_14
                (*
                <- genElStr3;;
