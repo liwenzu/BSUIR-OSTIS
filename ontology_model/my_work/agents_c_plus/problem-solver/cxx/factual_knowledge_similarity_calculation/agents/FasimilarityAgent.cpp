@@ -4,6 +4,7 @@
 * (See accompanying file COPYING.MIT or copy at http://opensource.org/licenses/MIT)
 */
 #include <iostream>
+#include <algorithm>
 
 #include <sc-memory/cpp/sc_stream.hpp>
 #include <sc-kpm/sc-agents-common/utils/IteratorUtils.hpp>
@@ -361,9 +362,436 @@ namespace facknowsimcalcu {
             }
         }
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
-
-
-
+//归属弧三元结构相似度计算
+        for (auto elem : _classpost31)
+        {
+            ScAddr _comarc, _els1, _els2;
+            ScIterator3Ptr it_3 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeAccessConstPosPerm);
+            while (it_3->Next())
+            {
+                _comarc = it_3->Get(2);
+            }
+            _els1 = ms_context->GetEdgeSource(_comarc);
+            _els2 = ms_context->GetEdgeTarget(_comarc);
+            int il =0;
+            for (auto elemcp : _classpost32)
+            {
+                il++;
+                ScAddr _els12, _els22;
+                ScIterator3Ptr it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeAccessConstPosPerm);
+                while (it_3->Next())
+                {
+                    _comarc = it_3->Get(2);
+                }
+                _els12 = ms_context->GetEdgeSource(_comarc);
+                _els22 = ms_context->GetEdgeTarget(_comarc);
+                if (_els1 != _els12)
+                {
+                    if (ms_context->GetElementType(_els1) == ScType::NodeConst
+                        && ms_context->GetElementType(_els12) == ScType::NodeConst)
+                    {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els1, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els12, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    }
+                    else if (ms_context->GetElementType(_els1).IsLink()
+                             && ms_context->GetElementType(_els12).IsLink())
+                    {
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els1);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els12);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+                if (_els2 != _els22)
+                {
+                    if (ms_context->GetElementType(_els2) == ScType::NodeConst
+                        && ms_context->GetElementType(_els22) == ScType::NodeConst)
+                    {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els2, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els22, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    }
+                    else if (ms_context->GetElementType(_els2).IsLink()
+                             && ms_context->GetElementType(_els22).IsLink())
+                    {
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els2);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els22);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+                _summa++;
+                _mathstru.push_back(elemcp);
+                _classpost32.erase(_classpost32.begin()+il-1);
+                break;
+            }
+        }
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//细分结构相似度计算，元组结构相似度计算
+        for (auto elem : _classtup1)
+        {
+            ScAddr _comarc, _els1, _els3, _elstup1;
+            ScIterator3Ptr it_3 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
+            while (it_3->Next())
+            {
+                _comarc = it_3->Get(2);
+            }
+            _elstup1 = ms_context->GetEdgeSource(_comarc);
+            _els1= ms_context->GetEdgeTarget(_comarc);
+            it_3 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+            while (it_3->Next())
+            {
+                _els3 = it_3->Get(2);
+            }
+            int il=0;
+            for (auto elemcp : _classtup2)
+            {
+                il++;
+                ScAddr _els12, _els32, _elstup12;
+                ScIterator3Ptr it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
+                while (it_3->Next())
+                {
+                    _comarc = it_3->Get(2);
+                }
+                _elstup12 = ms_context->GetEdgeSource(_comarc);
+                _els12= ms_context->GetEdgeTarget(_comarc);
+                it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+                while (it_3->Next())
+                {
+                    _els32 = it_3->Get(2);
+                }
+                if (_els1 != _els12)
+                {
+                    if (ms_context->GetElementType(_els1) == ScType::NodeConst
+                        && ms_context->GetElementType(_els12) == ScType::NodeConst)
+                    {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els1, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context.get(), _els12, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    }
+                    else if (ms_context->GetElementType(_els1).IsLink()
+                             && ms_context->GetElementType(_els12).IsLink())
+                    {
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els1);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els12);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    else
+                        continue;
+                }
+                if (_els3 != _els32)
+                {
+                    continue;
+                }
+                vector<ScAddr> _elstup1cp, _elstup12cp;
+                _elstup1cp = IteratorUtils::getAllWithType(ms_context.get(), _elstup1, ScType::Unknown);
+                _elstup12cp = IteratorUtils::getAllWithType(ms_context.get(), _elstup12, ScType::Unknown);
+                int s1 = _elstup1cp.size(), s2 = _elstup12cp.size();
+                if (s1 != s2)
+                    continue;
+                for (auto currelem : _elstup1cp)
+                {
+                    ScIterator5Ptr it_5 = ms_context->Iterator5(_elstup1, ScType::EdgeAccessConstPosPerm, currelem,
+                                                               ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                    if(it_5->Next())
+                    {
+                        ScAddr _els4 = it_5->Get(4);
+                        vector<ScAddr>::iterator existence;
+                        existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
+                        if (existence == _elstup12cp.end())
+                        {
+                            if (ms_context->GetElementType(currelem).IsLink())
+                            {
+                                vector<ScAddr> _elstup12cplink;
+                                _elstup12cplink = IteratorUtils::getAllWithType(ms_context.get(), _elstup12, ScType::Link);
+                                for (auto elemlink : _elstup12cplink)
+                                {
+                                    std::string data1 = CommonUtils::readString(ms_context.get(), currelem);
+                                    std::string data2 = CommonUtils::readString(ms_context.get(), elemlink);
+                                    if (data1 != data2)
+                                        continue;
+                                    ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemlink,
+                                                                                 ScType::EdgeAccessConstPosPerm, _els4);
+                                    if (!(it_51->Next()))
+                                        continue;
+                                    goto Step1;
+                                }
+                                goto Step;
+                            }
+                            else
+                                goto Step;
+                        }
+                        ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, currelem,
+                                                                    ScType::EdgeAccessConstPosPerm, _els4);
+                        if (!(it_51->Next()))
+                            goto Step;
+                    }
+                    else
+                    {
+                        vector<ScAddr>::iterator existence;
+                        existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
+                        if (existence == _elstup12cp.end())
+                        {
+                            if (ms_context->GetElementType(currelem).IsLink())
+                            {
+                                vector<ScAddr> _elstup12cplink;
+                                _elstup12cplink = IteratorUtils::getAllWithType(ms_context.get(), _elstup12, ScType::Link);
+                                for (auto elemlink : _elstup12cplink)
+                                {
+                                    std::string data1 = CommonUtils::readString(ms_context.get(), currelem);
+                                    std::string data2 = CommonUtils::readString(ms_context.get(), elemlink);
+                                    if (data1 != data2)
+                                        continue;
+                                    ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemlink,
+                                                                                 ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                                    if (it_51->Next())
+                                        continue;
+                                    goto Step1;
+                                }
+                                goto Step;
+                            }
+                            else
+                                goto Step;
+                        }
+                        ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, currelem,
+                                                                     ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                        if (it_51->Next())
+                            goto Step;
+                    }
+                    Step1: ;
+                }
+                _summa++;
+                _mathstru.push_back(elemcp);
+                _classtup2.erase(_classtup2.begin()+il-1);
+                break;
+                Step: ;
+            }
+        }
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//细分结构相似度计算，元组结构相似度计算
+        for (auto elem : _classretup1)
+        {
+            ScAddr _els1, _elstup1;
+            vector<ScAddr> res = IteratorUtils::getAllWithType(ms_context.get(), elem, ScType::EdgeAccessConstPosPerm);
+            for (auto _comarc : res)
+            {
+                _elstup1 = ms_context->GetEdgeTarget(_comarc);
+                if (!(ms_context->GetElementType(_elstup1) == ScType::NodeConstTuple))
+                    continue;
+                _els1 = ms_context->GetEdgeSource(_comarc);
+            }
+            int il=0;
+            for (auto elemcp : _classretup2)
+            {
+                il++;
+                ScAddr _els12, _elstup12;
+                vector<ScAddr> res = IteratorUtils::getAllWithType(ms_context.get(), elemcp, ScType::EdgeAccessConstPosPerm);
+                for (auto _comarc : res)
+                {
+                    _elstup12 = ms_context->GetEdgeTarget(_comarc);
+                    if (!(ms_context->GetElementType(_elstup12) == ScType::NodeConstTuple))
+                        continue;
+                    _els12 = ms_context->GetEdgeSource(_comarc);
+                }
+                if (_els1 != _els12)
+                    continue;
+                vector<ScAddr> _elstup1cp, _elstup12cp;
+                _elstup1cp = IteratorUtils::getAllWithType(ms_context.get(), _elstup1, ScType::Unknown);
+                _elstup12cp = IteratorUtils::getAllWithType(ms_context.get(), _elstup12, ScType::Unknown);
+                int s1 = _elstup1cp.size(), s2 = _elstup12cp.size();
+                if (s1 != s2)
+                    continue;
+                for (auto currelem : _elstup1cp)
+                {
+                    ScIterator5Ptr it_5 = ms_context->Iterator5(_elstup1, ScType::EdgeAccessConstPosPerm, currelem,
+                                                                ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                    if(it_5->Next())
+                    {
+                        ScAddr _els4 = it_5->Get(4);
+                        vector<ScAddr>::iterator existence;
+                        existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
+                        if (existence == _elstup12cp.end())
+                        {
+                            if (ms_context->GetElementType(currelem).IsLink())
+                            {
+                                vector<ScAddr> _elstup12cplink;
+                                _elstup12cplink = IteratorUtils::getAllWithType(ms_context.get(), _elstup12, ScType::Link);
+                                for (auto elemlink : _elstup12cplink)
+                                {
+                                    std::string data1 = CommonUtils::readString(ms_context.get(), currelem);
+                                    std::string data2 = CommonUtils::readString(ms_context.get(), elemlink);
+                                    if (data1 != data2)
+                                        continue;
+                                    ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemlink,
+                                                                                 ScType::EdgeAccessConstPosPerm, _els4);
+                                    if (!(it_51->Next()))
+                                        continue;
+                                    goto Step1cp;
+                                }
+                                goto Stepcp;
+                            }
+                            else
+                                goto Stepcp;
+                        }
+                        ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, currelem,
+                                                                     ScType::EdgeAccessConstPosPerm, _els4);
+                        if (!(it_51->Next()))
+                            goto Stepcp;
+                    }
+                    else
+                    {
+                        vector<ScAddr>::iterator existence;
+                        existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
+                        if (existence == _elstup12cp.end())
+                        {
+                            if (ms_context->GetElementType(currelem).IsLink())
+                            {
+                                vector<ScAddr> _elstup12cplink;
+                                _elstup12cplink = IteratorUtils::getAllWithType(ms_context.get(), _elstup12, ScType::Link);
+                                for (auto elemlink : _elstup12cplink)
+                                {
+                                    std::string data1 = CommonUtils::readString(ms_context.get(), currelem);
+                                    std::string data2 = CommonUtils::readString(ms_context.get(), elemlink);
+                                    if (data1 != data2)
+                                        continue;
+                                    ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemlink,
+                                                                                 ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                                    if (it_51->Next())
+                                        continue;
+                                    goto Step1cp;
+                                }
+                                goto Stepcp;
+                            }
+                            else
+                                goto Stepcp;
+                        }
+                        ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, currelem,
+                                                                     ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                        if (it_51->Next())
+                            goto Stepcp;
+                    }
+                    Step1cp: ;
+                }
+                _summa++;
+                _mathstru.push_back(elemcp);
+                _classretup2.erase(_classretup2.begin()+il-1);
+                break;
+                Stepcp: ;
+            }
+        }
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//边edge相似度开始计算
+        for (auto elem : _classedge1)
+        {
+            ScAddr _comarc, _els1, _els2, _els3;
+            ScIterator3Ptr it_3 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeUCommonConst);
+            while (it_3->Next())
+            {
+                _comarc = it_3->Get(2);
+            }
+            _els1 = ms_context->GetEdgeSource(_comarc);
+            _els2 = ms_context->GetEdgeTarget(_comarc);
+            it_3 = ms_context->Iterator3(elem, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+            while (it_3->Next())
+            {
+                _els3 = it_3->Get(2);
+            }
+            int il=0;
+            for (auto elemcp : _classedge2)
+            {
+                il++;
+                ScAddr _els12, _els22, _els32;
+                ScIterator3Ptr it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeUCommonConst);
+                while (it_3->Next())
+                {
+                    _comarc = it_3->Get(2);
+                }
+                _els12 = ms_context->GetEdgeSource(_comarc);
+                _els22 = ms_context->GetEdgeTarget(_comarc);
+                it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+                while (it_3->Next())
+                {
+                    _els32 = it_3->Get(2);
+                }
+                if (_els3 != _els32)
+                    continue;
+                if (_els1 != _els12)
+                {
+                    if (_els1 != _els22)
+                    {
+                        if (!(ms_context->GetElementType(_els1).IsLink()))
+                            continue;
+                        if (ms_context->GetElementType(_els12).IsLink())
+                        {
+                            std::string data1 = CommonUtils::readString(ms_context.get(), _els1);
+                            std::string data2 = CommonUtils::readString(ms_context.get(), _els12);
+                            if (data1 == data2)
+                                goto Edge1;
+                        }
+                        if (!(ms_context->GetElementType(_els22).IsLink()))
+                            continue;
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els1);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els22);
+                        if (data1 != data2)
+                            continue;
+//                        goto Edge2;
+ /*
+                        if (_els2 != _els12)
+                        {
+                            if (!(ms_context->GetElementType(_els2).IsLink()))
+                                continue;
+                            if (!(ms_context->GetElementType(_els12).IsLink()))
+                                continue;
+                            std::string data1 = CommonUtils::readString(ms_context.get(), _els2);
+                            std::string data2 = CommonUtils::readString(ms_context.get(), _els12);
+                            if (data1 != data2)
+                                continue;
+                            goto Edge;
+                        }
+ */
+  //                      goto Edge;
+                    }
+ //           Edge2: if (_els2 != _els12)
+                    if (_els2 != _els12)
+                    {
+                        if (!(ms_context->GetElementType(_els2).IsLink()))
+                            continue;
+                        if (!(ms_context->GetElementType(_els12).IsLink()))
+                            continue;
+                        std::string data1 = CommonUtils::readString(ms_context.get(), _els2);
+                        std::string data2 = CommonUtils::readString(ms_context.get(), _els12);
+                        if (data1 != data2)
+                            continue;
+                    }
+                    goto Edge;
+                }
+        Edge1: if (_els2 != _els22)
+                {
+                    if (!(ms_context->GetElementType(_els2).IsLink()))
+                        continue;
+                    if (!(ms_context->GetElementType(_els22).IsLink()))
+                        continue;
+                    std::string data1 = CommonUtils::readString(ms_context.get(), _els2);
+                    std::string data2 = CommonUtils::readString(ms_context.get(), _els22);
+                    if (data1 != data2)
+                        continue;
+                }
+                Edge :
+                _summa++;
+                _mathstru.push_back(elemcp);
+                _classedge2.erase(_classedge2.begin()+il-1);
+                break;
+            }
+        }
 
 
 
