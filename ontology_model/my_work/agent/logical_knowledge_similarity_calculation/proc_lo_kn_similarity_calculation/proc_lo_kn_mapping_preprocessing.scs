@@ -324,6 +324,78 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                (*
                <- genEl;;
                -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _ennoconarc2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i1;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i1
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemvar7com1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i2;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i2
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemvar7com2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i3;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i3
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _stno7comm1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i4;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i4
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _enno7comm1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i5;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i5
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _stno7comm2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i6;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i6
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _enno7comm2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i7;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i7
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemvar5arc1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i8;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i8
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elemvar5arc2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i9;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i9
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _stno5arc1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i10;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i10
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _enno5arc1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i11;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i11
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _stno5arc2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i12;; 
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10i12
+               (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _enno5arc2;;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10i;; 
                *);;
 //设置一个标志位用于判断是否需要执行包含常量的变量弧的映射动作
@@ -369,13 +441,59 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_3: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _elemcp;;
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_14a;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_14a1;;
                => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_18;;//@@@判断有归属变量弧吗
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //如果有通用变量弧则把弧和端点加入到对应的节点中
 //首先把弧加入到对应节点中
 //判断通用变量弧是属于元组结构中的吗(当前版本中对于元组结构和边结构不建立映射关系)
+          -> .proc_lo_kn_mapping_preprocessing_operator3_14a1
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _arc7c;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els3;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_14a2;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_14a;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//多元归属结构处理
+          -> .proc_lo_kn_mapping_preprocessing_operator3_14a2
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemvar7com1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _arc7c;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_14a3;;
+               *);;
+//将弧的端点加入到对应的节点中
+          -> .proc_lo_kn_mapping_preprocessing_operator3_14a3
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _els1;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _arc7c;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els2;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_14a4;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_10;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_14a4
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _stno7comm1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_14a5;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_14a5
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _enno7comm1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
           -> .proc_lo_kn_mapping_preprocessing_operator3_14a
                (*
                <- searchElStr3;;
@@ -383,7 +501,7 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
                -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
                => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_10xx;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_14;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_14b;;
                *);;
 //设置一个标志位用于判断是否需要执行包含常量的变量弧的映射动作
           -> .proc_lo_kn_mapping_preprocessing_operator3_10xx
@@ -392,6 +510,23 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_1: rrel_assign: rrel_scp_var: _flag;;
                -> rrel_2: rrel_fixed: rrel_scp_const: [True];;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10;; 
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator3_14b
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp;;  
+               -> rrel_2: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_14b1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_14;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_14b1
+               (*
+               <- varAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc7c;;
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_14a2;; 
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
           -> .proc_lo_kn_mapping_preprocessing_operator3_14
@@ -447,8 +582,72 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_3: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;
                => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_10xx;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_19b;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator3_19b
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_access :rrel_scp_var: _arc5a;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_19b1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_19c;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//首先把归属弧加入到对应节点中
+          -> .proc_lo_kn_mapping_preprocessing_operator3_19b1
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemvar5arc1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _arc5a;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_19b2;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_19b2
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _els1;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _arc5a;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els2;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_19b3;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_10;;
+               *);;
+//将弧的端点加入到对应的节点中
+          -> .proc_lo_kn_mapping_preprocessing_operator3_19b3
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _stno5arc1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_19b4;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_19b4
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _enno5arc1;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_10;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator3_19c
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_19c1;;
                => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_19;;
                *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_19c1
+               (*
+               <- varAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc5a;;
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator3_19b1;; 
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //判断归属弧端点包含常数点吗(常数点无法用于映射关系的建立)
           -> .proc_lo_kn_mapping_preprocessing_operator3_19
                (*
@@ -563,13 +762,59 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;  
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_3: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _elemcp;;
-               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_4a;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_4a1;;
                => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_8;;//@@@判断有归属变量弧吗
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //如果有通用变量弧则把弧和端点加入到对应的节点中
 //首先把弧加入到对应节点中
 //判断通用变量弧是属于元组结构中的吗(当前版本中对于元组结构和边结构不建立映射关系)
+          -> .proc_lo_kn_mapping_preprocessing_operator4_4a1
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _arc7c;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els3;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_4a2;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_4a;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//多元归属结构处理
+          -> .proc_lo_kn_mapping_preprocessing_operator4_4a2
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemvar7com2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _arc7c;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4_4a3;;
+               *);;
+//将弧的端点加入到对应的节点中
+          -> .proc_lo_kn_mapping_preprocessing_operator4_4a3
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _els1;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _arc7c;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els2;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_4a4;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator4_4a4
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _stno7comm2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4_4a5;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator4_4a5
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _enno7comm2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
           -> .proc_lo_kn_mapping_preprocessing_operator4_4a
                (*
                <- searchElStr3;;
@@ -577,7 +822,7 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
                -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
                => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4xx;;
-               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_4;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_4b;;
                *);;
 //设置一个标志位用于判断是否需要执行包含常量的变量弧的映射动作
           -> .proc_lo_kn_mapping_preprocessing_operator4xx
@@ -587,6 +832,24 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_2: rrel_fixed: rrel_scp_const: [True];;
                => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4;; 
                *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator4_4b
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp;;  
+               -> rrel_2: rrel_assign: rrel_var: rrel_common: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_4b1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_4;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator4_4b1
+               (*
+               <- varAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc7c;;
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4_4a2;; 
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
           -> .proc_lo_kn_mapping_preprocessing_operator4_4
                (*
                <- genElStr3;;
@@ -640,8 +903,72 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                -> rrel_3: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;
                => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4xx;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_9b;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator4_9b
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               -> rrel_3: rrel_assign: rrel_var: rrel_access :rrel_scp_var: _arc5a;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_9b1;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_9c;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//首先把归属弧加入到对应节点中
+          -> .proc_lo_kn_mapping_preprocessing_operator4_9b1
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _elemvar5arc2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _arc5a;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4_9b2;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator4_9b2
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _els1;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _arc5a;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _els2;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_9b3;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4;;
+               *);;
+//将弧的端点加入到对应的节点中
+          -> .proc_lo_kn_mapping_preprocessing_operator4_9b3
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _stno5arc2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4_9b4;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator4_9b4
+               (*
+               <- genElStr3;;
+               -> rrel_1: rrel_fixed: rrel_scp_var: _enno5arc2;;
+               -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4;;
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_mapping_preprocessing_operator4_9c
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4_9c1;;
                => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4_9;;
                *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator4_9c1
+               (*
+               <- varAssign;;
+               -> rrel_1: rrel_assign: rrel_scp_var: _arc5a;;
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               => nrel_goto: .proc_lo_kn_mapping_preprocessing_operator4_9b1;; 
+               *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 //判断归属弧端点包含常数点吗(常数点无法用于映射关系的建立)
           -> .proc_lo_kn_mapping_preprocessing_operator4_9
                (*
