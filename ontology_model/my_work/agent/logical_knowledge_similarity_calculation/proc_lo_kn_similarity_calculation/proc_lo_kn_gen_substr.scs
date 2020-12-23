@@ -559,7 +559,7 @@ scp_program -> proc_lo_kn_gen_substr
                     -> rrel_1: rrel_assign: rrel_norole_relation: rrel_scp_var: _els3;;  
                     -> rrel_2: rrel_assign: rrel_access: rrel_scp_var: _arc1;;
                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
-                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22;;
+                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22m;;
                     => nrel_else: .proc_lo_kn_gen_substr_operator3_22a1;;
                     *);;
 //判断另一端是变量节点吗
@@ -568,8 +568,64 @@ scp_program -> proc_lo_kn_gen_substr
                     -> rrel_1: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _els3;;  
                     -> rrel_2: rrel_assign: rrel_access: rrel_scp_var: _arc1;;
                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
-                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22;;
+                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22m;;
                     => nrel_else: .proc_lo_kn_gen_substr_operator3_28;;
+                    *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//判断属于多重有向边的结构吗
+          -> .proc_lo_kn_gen_substr_operator3_22m (* 
+                    <- searchElStr3;;
+                    -> rrel_1: rrel_assign: rrel_role_relation: rrel_scp_var: _els1;;  
+                    -> rrel_2: rrel_assign: rrel_access: rrel_scp_var: _els2;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22m1;;
+                    => nrel_else: .proc_lo_kn_gen_substr_operator3_22;;
+                    *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_gen_substr_operator3_22m1 (* 
+                    <- searchElStr3;;
+                    -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru;;  
+                    -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22m2;;
+                    => nrel_else: .proc_lo_kn_gen_substr_operator3_7;;
+                    *);;
+          -> .proc_lo_kn_gen_substr_operator3_22m2 (* 
+                    <- genElStr3;;
+                    -> rrel_1: rrel_fixed: rrel_scp_var: _genstruct1;;  
+                    -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _els1;;
+                    => nrel_goto: .proc_lo_kn_gen_substr_operator3_22m3;;
+                    *);;
+          -> .proc_lo_kn_gen_substr_operator3_22m3 (* 
+                    <- genElStr3;;
+                    -> rrel_1: rrel_fixed: rrel_scp_var: _genstruct1;;  
+                    -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _arc2;;
+                    => nrel_goto: .proc_lo_kn_gen_substr_operator3_22m4;;
+                    *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+          -> .proc_lo_kn_gen_substr_operator3_22m4 (* 
+                    <- searchElStr3;;
+                    -> rrel_1: rrel_fixed: rrel_scp_var: _elemstru;;  
+                    -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                    => nrel_then: .proc_lo_kn_gen_substr_operator3_22m5;;
+                    => nrel_else: .proc_lo_kn_gen_substr_operator3_7;;
+                    *);;
+          -> .proc_lo_kn_gen_substr_operator3_22m5 (* 
+                    <- genElStr3;;
+                    -> rrel_1: rrel_fixed: rrel_scp_var: _genstruct1;;  
+                    -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _els2;;
+                    => nrel_goto: .proc_lo_kn_gen_substr_operator3_22m6;;
+                    *);;
+          -> .proc_lo_kn_gen_substr_operator3_22m6 (* 
+                    <- genElStr3;;
+                    -> rrel_1: rrel_fixed: rrel_scp_var: _genstruct1;;  
+                    -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                    -> rrel_3: rrel_fixed: rrel_scp_var: _arc2;;
+                    => nrel_goto: .proc_lo_kn_gen_substr_operator3_22;;
                     *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
           -> .proc_lo_kn_gen_substr_operator3_22 (* 
