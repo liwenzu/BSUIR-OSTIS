@@ -35,6 +35,12 @@ namespace facknowsimcalcu
 
         SC_PROPERTY(Keynode("nrel_system_identifier"),ForceCreate)
         static ScAddr nrel_system_identifier;
+
+        SC_PROPERTY(Keynode("nrel_incorrect_answer"),ForceCreate)
+        static ScAddr nrel_incorrect_answer;
+
+        SC_PROPERTY(Keynode("nrel_coefficient"),ForceCreate)
+        static ScAddr nrel_coefficient;
     };
 
 } // namespace exampleModule

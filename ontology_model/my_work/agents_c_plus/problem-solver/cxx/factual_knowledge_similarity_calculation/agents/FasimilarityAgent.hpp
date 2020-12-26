@@ -18,6 +18,14 @@ namespace facknowsimcalcu
     {
         SC_CLASS(Agent, Event(Keynodes::factual_kn_similarity_calculation, ScEvent::Type::AddOutputEdge))
         SC_GENERATED_BODY()
+
+    private:
+        void SubstructureDecomposition(ScMemoryContext * ms_context,
+                                       ScAddr & elems_1,
+                                       ScAddr & elem1,
+                                       ScAddr & elems_2,
+                                       ScAddr & elem2
+                                       );
     };
 
 } // namespace exampleModule
