@@ -1,0 +1,3 @@
+add_subdirectory(AnswerVerificationPyModule)
+add_subdirectory(HelloScript)
+add_subdirectory(HelloAgent)

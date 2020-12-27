@@ -1,0 +1,87 @@
+Question_1 => nrel_correct_answer: ..struct1;
+           => nrel_user_answer: ..struct2;;
+..struct1
+=[*
+[LWZ]
+<= nrel_inclusion:
+  {
+  [liwenzu1];
+  [liwenzu1];
+  [liwenzu1]
+  };;
+
+  nrel_mapping
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+	[соответствие*] (* <- lang_ru;; *);
+	[mapping*] (* <- lang_en;; *);
+=> nrel_idtf:
+	[наличие соответствия*] (* <- lang_ru;; *);
+<- binary_relation;
+<= nrel_subdividing:
+	{
+		nrel_mapping_between_non_intersecting_sets;
+		nrel_mapping_between_strict_intersecting_sets;
+		nrel_mapping_input_and_output_sets_of_which_coincide
+	};
+<= nrel_subdividing:
+	{
+		nrel_total_mapping;
+		nrel_partial_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_surjection;
+		nrel_non_surjective_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_functional_mapping;
+		nrel_ambiguous_mapping
+	};;
+rrel_1
+->(nrel_functional_mapping -> non_oriented_set);;
+  *];;
+..struct2
+=[*
+[LWZ]
+<= nrel_inclusion:
+{
+  [liwenzu1];
+  [liwenzu1];
+  [liwenzu1]
+};; 
+
+nrel_mapping
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+	[соответствие*] (* <- lang_ru;; *);
+	[mapping*] (* <- lang_en;; *);
+=> nrel_idtf:
+	[наличие соответствия*] (* <- lang_ru;; *);
+<- binary_relation;
+<= nrel_subdividing:
+	{
+		nrel_mapping_between_non_intersecting_sets;
+		nrel_mapping_between_strict_intersecting_sets;
+		nrel_mapping_input_and_output_sets_of_which_coincide
+	};
+<= nrel_subdividing:
+	{
+		nrel_total_mapping;
+		nrel_partial_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_surjection;
+		nrel_non_surjective_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_functional_mapping;
+		nrel_ambiguous_mapping
+	};;
+
+rrel_1
+->(nrel_functional_mapping -> non_oriented_set);;
+*];;

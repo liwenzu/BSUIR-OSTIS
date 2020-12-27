@@ -1,0 +1,24 @@
+ui_menu_fa_kn_similarity_calculation_py
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+<- ui_one_argument_command_class;
+=> nrel_main_idtf:
+                      [Вычисление подобия фактических знаний Py] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+                      [Factual knowledge similarity calculation Py] (* <- lang_en;; *);
+=> nrel_main_idtf:
+                      [事实知识相似度计算Py] (* <- lang_ch;; *);
+=> ui_nrel_command_template:
+                      [*
+                         factual_kn_similarity_calculation_py _-> ._factual_kn_similarity_calculation_instance_py
+                                      (*
+                                       _-> ui_arg_1;;
+                                      *);;
+                         ._factual_kn_similarity_calculation_instance_py _<- question;;
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Вычисление подобия фактических знаний Py: $ui_arg_1] (* <- lang_ru;; *);
+=> ui_nrel_command_lang_template:
+                       [Factual knowledge similarity calculation Py: $ui_arg_1] (* <- lang_en;; *);
+=> ui_nrel_command_lang_template:
+                       [事实知识相似度计算Py: $ui_arg_1] (* <- lang_ch;; *);;
