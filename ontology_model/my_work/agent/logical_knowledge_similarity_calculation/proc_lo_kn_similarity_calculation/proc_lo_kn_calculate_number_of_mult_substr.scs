@@ -235,11 +235,27 @@ scp_program -> proc_lo_kn_calculate_number_of_mult_substr
                -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;
                -> rrel_3: rrel_fixed: rrel_scp_var: _elstup1;;
                => nrel_then: .proc_lo_kn_calculate_number_of_mult_substr_operator1_18;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_mult_substr_operator1_18m;;                                                    
+               *);;
+	-> .proc_lo_kn_calculate_number_of_mult_substr_operator1_18m (* 
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _els3;;
+               -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elstup1;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_mult_substr_operator1_18;;
                => nrel_else: .proc_lo_kn_calculate_number_of_mult_substr_operator1_2;;                                                    
                *);;
 	-> .proc_lo_kn_calculate_number_of_mult_substr_operator1_18 (* 
                <- searchElStr3;;
                -> rrel_1: rrel_assign: rrel_norole_relation: rrel_scp_var: _els32;;
+               -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;
+               -> rrel_3: rrel_fixed: rrel_scp_var: _elstup12;;
+               => nrel_then: .proc_lo_kn_calculate_number_of_mult_substr_operator1_19;;
+               => nrel_else: .proc_lo_kn_calculate_number_of_mult_substr_operator1_19m;;                                                    
+               *);;
+	-> .proc_lo_kn_calculate_number_of_mult_substr_operator1_19m (* 
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_var: rrel_node: rrel_scp_var: _els32;;
                -> rrel_2: rrel_assign: rrel_var: rrel_access: rrel_scp_var: _arc;;
                -> rrel_3: rrel_fixed: rrel_scp_var: _elstup12;;
                => nrel_then: .proc_lo_kn_calculate_number_of_mult_substr_operator1_19;;
