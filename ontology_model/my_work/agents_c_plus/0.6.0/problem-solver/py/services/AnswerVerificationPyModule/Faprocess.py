@@ -152,3 +152,104 @@ class Faprocess:
                 ctx.CreateEdge(ScType.EdgeAccessConstPosPerm, elem, _els3)
                 ctx.CreateEdge(ScType.EdgeAccessConstPosPerm, elem, _arcr)
                 break
+# substructureClassification
+    @staticmethod
+    def SubstructureClassification(ctx, allsst, classedge, classtup, classcomm,
+                                   classretup, classpost5, classpost3):
+        for i in allsst:
+            it_edge = ctx.Iterator3(i, ScType.EdgeAccessConstPosPerm, ScType.EdgeUCommonConst)
+            if it_edge.Next():
+                classedge.append(i)
+                continue
+            it_common = ctx.Iterator3(i, ScType.EdgeAccessConstPosPerm, ScType.EdgeDCommonConst)
+            if it_common.Next():
+                els1, _ = ctx.GetEdgeInfo(it_common.Get(2))
+                if ctx.GetElementType(els1) == ScType.NodeConstTuple:
+                    classtup.append(i)
+                    continue
+                classcomm.append(i)
+                continue
+            it_retup = ctx.Iterator3(i, ScType.EdgeAccessConstPosPerm, ScType.NodeConstNoRole)
+            it_retup1 = ctx.Iterator3(i, ScType.EdgeAccessConstPosPerm, ScType.NodeConstTuple)
+            if it_retup.Next() and it_retup1.Next():
+                classretup.append(i)
+                continue
+            it_post5 = ctx.Iterator3(i, ScType.EdgeAccessConstPosPerm, ScType.NodeConstRole)
+            it_post51 = ctx.Iterator3(i, ScType.EdgeAccessConstPosPerm, ScType.EdgeAccessConstPosPerm)
+            if it_post51.Next() and it_post5.Next():
+                els1 = it_post5.Get(2)
+                els2 = it_post51.Get(2)
+                if ctx.HelperCheckEdge(els1, els2, ScType.EdgeAccessConstPosPerm):
+                    classpost5.append(i)
+                    continue
+                els3, _ = ctx.GetEdgeInfo(els2)
+                if els1 == els3:
+                    classpost5.append(i)
+                    continue
+            classpost3.append(i)
+# CommonSimilarityCalculation
+    @staticmethod
+    def CommonSimilarityCalculation(ctx, classcomm1, classcomm2, summa, mathstru):
+        for elem in classcomm1:
+            _comarc, _els3 = "", ""
+            it_3 = ctx.Iterator3(elem, ScType.EdgeAccessConstPosPerm, ScType.EdgeDCommonConst)
+            while it_3.Next():
+                _comarc = it_3.Get(2)
+            _els1, _els2 = ctx.GetEdgeInfo(_comarc)
+            it_31 = ctx.Iterator3(elem, ScType.EdgeAccessConstPosPerm, ScType.NodeConstNoRole)
+            while it_31.Next():
+                _els3 = it_31.Get(2)
+
+            print("standard answer:")
+            Utils.printEl(ctx, _comarc)
+
+            for elemcp in classcomm2:
+                _els32 = ""
+                it_3 = ctx.Iterator3(elemcp, ScType.EdgeAccessConstPosPerm, ScType.EdgeDCommonConst)
+                while it_3.Next():
+                    _comarc = it_3.Get(2)
+                _els12, _els22 = ctx.GetEdgeInfo(_comarc)
+                it_31 = ctx.Iterator3(elemcp, ScType.EdgeAccessConstPosPerm, ScType.NodeConstNoRole)
+                while it_31.Next():
+                    _els32 = it_31.Get(2)
+                if _els1 != _els12:
+                    if ctx.GetElementType(_els1) == ScType.NodeConst and ctx.GetElementType(_els12) == ScType.NodeConst:
+                        pass
+                    elif ctx.GetElementType(_els1).IsLink and ctx.GetElementType(_els12).IsLink:
+                        data1 = ctx.GetLinkContent(_els1).AsString()
+                        data2 = ctx.GetLinkContent(_els12).AsString()
+                        if data1 != data2:
+                            continue
+                    else:
+                        continue
+                if _els2 != _els22:
+                    if ctx.GetElementType(_els2) == ScType.NodeConst and ctx.GetElementType(_els22) == ScType.NodeConst:
+                        pass
+                    elif ctx.GetElementType(_els2).IsLink and ctx.GetElementType(_els22).IsLink:
+                        data1 = ctx.GetLinkContent(_els2).AsString()
+                        data2 = ctx.GetLinkContent(_els22).AsString()
+                        if data1 != data2:
+                            continue
+                    else:
+                        continue
+                if _els3 != _els32:
+                    continue
+                summa+=1
+                mathstru.append(elemcp)
+                classcomm2.remove(elemcp)
+
+                print("user answer:")
+                Utils.printEl(ctx, _comarc)
+
+                break
+        return summa
+
+
+
+
+
+
+
+
+
+

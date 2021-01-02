@@ -39,14 +39,49 @@ class FasimilarityPyAgent(ScAgent):
 # find the structure of edge
         Faprocess.decompositionEdge(self.module.ctx, _elems_1, _elem1)
         Faprocess.decompositionEdge(self.module.ctx, _elems_2, _elem2)
+# Similarity calculation part
+        _summa, _sumsta, _sumcand = 0, 0, 0
+        _allsst1 = Utils.getAllWithType(self.module.ctx, _elem1, ScType.NodeConstStruct)
+        _allsst2 = Utils.getAllWithType(self.module.ctx, _elem2, ScType.NodeConstStruct)
+        _sumsta = len(_allsst1)
+        _sumcand = len(_allsst2)
+        _classtup1, _classtup2, _classretup1, _classretup2 = [], [], [], []
+        _classcomm1, _classcomm2, _classedge1, _classedge2 = [], [], [], []
+        _classpost51, _classpost52, _classpost31, _classpost32 = [], [], [], []
+        _mathstru, _mismathstru = [], []
+        Faprocess.SubstructureClassification(self.module.ctx, _allsst1, _classedge1, _classtup1,
+                                             _classcomm1, _classretup1, _classpost51, _classpost31)
+        Faprocess.SubstructureClassification(self.module.ctx, _allsst2, _classedge2, _classtup2,
+                                             _classcomm2, _classretup2, _classpost52, _classpost32)
+# CommonSimilarityCalculation
+        _summa= Faprocess.CommonSimilarityCalculation(self.module.ctx, _classcomm1, _classcomm2, _summa, _mathstru)
 
 
 
+
+
+        print("Standard answer:%d" % _sumsta)
+        print("Uswer answer:%d" % _sumsta)
+        print("The matched answer:%d" % _summa)
 
         Utils.finishAgentWork(self.module.ctx, questionNode, answer)
         return ScResult.Ok
 
 #"""
 
-
-
+"""
+        print(len(_classcomm1))
+        print(len(_classedge1))
+        print(len(_classtup1))
+        print(len(_classretup1))
+        print(len(_classpost51))
+        print(len(_classpost31))
+        print("*****************")
+        print(len(_classcomm2))
+        print(len(_classedge2))
+        print(len(_classtup2))
+        print(len(_classretup2))
+        print(len(_classpost52))
+        print(len(_classpost32))
+        print("*****************")
+"""
