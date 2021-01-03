@@ -28,3 +28,10 @@ class Utils:
         result_arc = ctx.CreateEdge(ScType.EdgeDCommonConst, questionNode, answer)
         result_answer = ctx.HelperResolveSystemIdtf("nrel_answer", ScType.NodeConstNoRole)
         ctx.CreateEdge(ScType.EdgeAccessConstPosPerm, result_answer, result_arc)
+    @staticmethod
+    def getFirstByInRelation(ctx, node, relation):
+        element = ScAddr()
+        iterator5 = ctx.Iterator5(node, ScType.EdgeDCommonConst, ScType.Unknown, ScType.EdgeAccessConstPosPerm, relation)
+        while iterator5.Next():
+            element = iterator5.Get(2)
+        return element

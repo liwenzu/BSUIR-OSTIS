@@ -23,7 +23,6 @@ namespace answerVerificationModule
                                     ScAddr & mid_elem
                                     )
     {
-        //为了在窗口显示
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, key_node);
         ScIterator5Ptr iterator5 = IteratorUtils::getIterator5(ms_context, param, key_node,true);
         while(iterator5->Next())
@@ -42,7 +41,6 @@ namespace answerVerificationModule
         }
 
     }
-//首先找出结构中的所有通用弧
      void Faprocess::decompositionCommon(ScMemoryContext * ms_context,
                                             ScAddr & mid_elems,
                                             ScAddr & mid_elem)
@@ -50,7 +48,6 @@ namespace answerVerificationModule
          vector<ScAddr> _class_comm1 = IteratorUtils::getAllWithType(ms_context, mid_elems, ScType::EdgeDCommonConst);
          for (auto i : _class_comm1)
          {
-             //判断通用弧的另一端是元组吗&&&&&&&&&&&&&&&
              ScAddr _els1 = ms_context->GetEdgeSource(i);
              if(ms_context->GetElementType(_els1) == ScType::NodeConstTuple)
                  continue;
@@ -71,7 +68,6 @@ namespace answerVerificationModule
              }
          }
      }
-//找出结构中的所有归属弧(包括带角色关系)(标准答案)
     void Faprocess::decompositionAccwithrole(ScMemoryContext * ms_context,
                                         ScAddr & mid_elems,
                                         ScAddr & mid_elem)
@@ -79,7 +75,6 @@ namespace answerVerificationModule
         vector<ScAddr> _class_arc1 = IteratorUtils::getAllWithType(ms_context, mid_elems, ScType::EdgeAccessConstPosPerm);
         for (auto i : _class_arc1)
         {
-            //查找三元构造另一端是通用弧吗？
             ScAddr _els2 = ms_context->GetEdgeTarget(i);
             ScAddr _els1 = ms_context->GetEdgeSource(i);
             if (ms_context->GetElementType(_els2) == ScType::EdgeDCommonConst
@@ -93,7 +88,6 @@ namespace answerVerificationModule
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els1);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els2);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, i);
-            //判断弧的另一端有角色关系吗
             ScIterator3Ptr it_3 = ms_context->Iterator3(ScType::NodeConstRole, ScType::EdgeAccessConstPosPerm, i);
             while (it_3->Next())
             {
@@ -105,7 +99,6 @@ namespace answerVerificationModule
             }
         }
     }
-
     void Faprocess::decompositionTupleWithSub(ScMemoryContext * ms_context,
                                              ScAddr & mid_elems,
                                              ScAddr & mid_elem)
@@ -127,7 +120,6 @@ namespace answerVerificationModule
             vector<ScAddr> _elemtup = IteratorUtils::getAllWithType(ms_context, i, ScType::Unknown);
             if (_elemtup.empty())
                 continue;
-            //先将找到的元组上半部分加入到生成的子结构中
             ScAddr _elem = ms_context->CreateNode(ScType::NodeConstStruct);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, mid_elem, _elem);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, i);
@@ -135,7 +127,6 @@ namespace answerVerificationModule
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els2);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _arc);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els3);
-            //元组下半部分子结构分解和子结构生成
             for (auto j : _elemtup)
             {
                 ScAddr _arcsu;
@@ -159,7 +150,6 @@ namespace answerVerificationModule
             }
         }
     }
-
     void Faprocess::decompositionTupleWithRelation(ScMemoryContext * ms_context,
                                               ScAddr & mid_elems,
                                               ScAddr & mid_elem)
@@ -204,7 +194,6 @@ namespace answerVerificationModule
             }
         }
     }
-
     void Faprocess::decompositionEdge(ScMemoryContext * ms_context,
                                                    ScAddr & mid_elems,
                                                    ScAddr & mid_elem)
@@ -230,7 +219,6 @@ namespace answerVerificationModule
             }
         }
     }
-
      void Faprocess::SubstructureClassification(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& allsst,
@@ -304,7 +292,6 @@ namespace answerVerificationModule
             int & summa,
             std::vector<ScAddr>& mathstru)
     {
-//通用弧相似度开始计算
         for (auto elem : classcomm1)
         {
             ScAddr _comarc, _els1, _els2, _els3;
@@ -395,7 +382,6 @@ namespace answerVerificationModule
             int & summa,
             std::vector<ScAddr>& mathstru)
     {
-        //归属弧五元结构相似度计算
         for (auto elem : classpost51)
         {
             ScAddr _comarc, _els1, _els2, _els3;
@@ -492,7 +478,6 @@ namespace answerVerificationModule
             int & summa,
             std::vector<ScAddr>& mathstru)
      {
-         //归属弧三元结构相似度计算
          for (auto elem : classpost31)
          {
              ScAddr _comarc, _els1, _els2;
@@ -571,7 +556,6 @@ namespace answerVerificationModule
             int & summa,
             std::vector<ScAddr>& mathstru)
      {
-         //细分结构相似度计算，元组结构相似度计算
          for (auto elem : classtup1)
          {
              ScAddr _comarc, _els1, _els3, _elstup1;
@@ -721,7 +705,6 @@ namespace answerVerificationModule
             int & summa,
             std::vector<ScAddr>& mathstru)
      {
-         //细分结构相似度计算，元组结构相似度计算
          for (auto elem : classretup1)
          {
              ScAddr _els1, _elstup1;
@@ -840,7 +823,6 @@ namespace answerVerificationModule
             int & summa,
             std::vector<ScAddr>& mathstru)
     {
-        //边edge相似度开始计算
         for (auto elem : classedge1)
         {
             ScAddr _comarc, _els1, _els2, _els3;
@@ -936,9 +918,9 @@ namespace answerVerificationModule
         Psc = summa*1.0/sumcand;
         Rsc = summa*1.0/sumsta;
         Fsc = (2*Psc*Rsc*1.0)/(Psc+Rsc);
-        cout <<"精确度: "<<Psc << endl;
-        cout <<"召回率: "<<Rsc << endl;
-        cout <<"相似度: "<<Fsc << endl;
+        cout <<"Precision: "<<Psc << endl;
+        cout <<"Recall: "<<Rsc << endl;
+        cout <<"Similarity: "<<Fsc << endl;
         return Fsc;
     }
     void Faprocess::MatchStructureStatistics(
@@ -949,7 +931,6 @@ namespace answerVerificationModule
             const ScAddr & answer,
             const ScAddr & param)
     {
-        //用户答案不匹配结构和匹配结构信息统计
         for (auto i : mathstru)
         {
             int il=0;
@@ -965,12 +946,12 @@ namespace answerVerificationModule
         }
         mismathstru = allsst2;
         if (mismathstru.size() == 0)
-            cout <<"用户答案全部匹配:" << endl;
+            cout <<"The user answers are all correct:" << endl;
         else if (mathstru.size() == 0)
-            cout <<"用户答案全部不匹配:" << endl;
+            cout <<"The user answers are all incorrect:" << endl;
         else
         {
-            cout <<"用户答案有匹配部分也有不匹配部分:" << endl;
+            cout <<"The user answer is partially correct:" << endl;
             ScAddr node = ms_context->CreateNode(ScType::NodeConst);
             for (auto i : mismathstru)
             {
