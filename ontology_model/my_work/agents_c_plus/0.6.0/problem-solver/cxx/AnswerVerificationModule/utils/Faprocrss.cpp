@@ -945,9 +945,9 @@ namespace answerVerificationModule
             }
         }
         mismathstru = allsst2;
-        if (mismathstru.size() == 0)
+        if (mismathstru.empty())
             cout <<"The user answers are all correct:" << endl;
-        else if (mathstru.size() == 0)
+        else if (mathstru.empty())
             cout <<"The user answers are all incorrect:" << endl;
         else
         {
@@ -978,9 +978,7 @@ namespace answerVerificationModule
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, link);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arc1);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, Keynodes::nrel_coefficient);
-        string str = to_string(Fsc);
-        ScStreamPtr stream;
-        stream.reset(new ScStream((sc_char*)(&str), sizeof(str), SC_STREAM_FLAG_READ | SC_STREAM_FLAG_SEEK));
+        ScStreamPtr stream = ScStreamConverter::StreamFromString(to_string(Fsc));
         ms_context->SetLinkContent(link, stream);
     }
 }
