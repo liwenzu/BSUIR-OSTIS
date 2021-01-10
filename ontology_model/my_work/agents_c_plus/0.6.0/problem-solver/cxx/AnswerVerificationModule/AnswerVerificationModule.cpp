@@ -7,6 +7,7 @@
 #include "AnswerVerificationModule.hpp"
 #include "keynodes/keynodes.hpp"
 #include "agents/FasimilarityAgent.hpp"
+#include "agents/LosimilarityAgent.hpp"
 
 using namespace answerVerificationModule;
 
@@ -18,6 +19,7 @@ sc_result AnswerVerificationModule::InitializeImpl()
         return SC_RESULT_ERROR;
 
     SC_AGENT_REGISTER(FasimilarityAgent)
+    SC_AGENT_REGISTER(LosimilarityAgent)
 
     return SC_RESULT_OK;
 }
@@ -25,6 +27,7 @@ sc_result AnswerVerificationModule::InitializeImpl()
 sc_result AnswerVerificationModule::ShutdownImpl()
 {
     SC_AGENT_UNREGISTER(FasimilarityAgent)
+    SC_AGENT_UNREGISTER(LosimilarityAgent)
 
     return SC_RESULT_OK;
 }

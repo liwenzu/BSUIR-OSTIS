@@ -37,6 +37,17 @@ vector<ScAddr> IteratorUtils::getAllWithType(ScMemoryContext * ms_context, const
   return elementList;
 }
 
+vector<ScAddr> IteratorUtils::getAllWithTypeIn(ScMemoryContext * ms_context, const ScAddr & set, ScType scType)
+{
+    vector<ScAddr> elementList;
+    ScIterator3Ptr iterator3 = ms_context->Iterator3(scType, ScType::EdgeAccessConstPosPerm, set);
+    while (iterator3->Next())
+    {
+        elementList.push_back(iterator3->Get(0));
+    }
+    return elementList;
+}
+
 vector<ScAddr> IteratorUtils::getAllByInRelation(
       ScMemoryContext * ms_context,
       const ScAddr & node,

@@ -45,3 +45,33 @@ nrel_incorrect_answer
 => nrel_main_idtf:
           [неправильный ответ*] (* <- lang_ru;; *);
           [incorrect answer*] (* <- lang_en;; *);;
+
+
+
+rrel_0
+<- sc_node_role_relation;
+<- order_role_relation;
+<- section_subjdomain_ligaments_relations;
+=> nrel_main_idtf:
+        [0'] (* <- lang_ru;; *);
+        [0'] (* <- lang_en;; *);;
+
+
+
+nrel_basic_sequence
+-> (rrel_0 => rrel_1);
+-> (rrel_1 => rrel_2);
+-> (rrel_2 => rrel_3);
+-> (rrel_3 => rrel_4);
+-> (rrel_4 => rrel_5);
+-> (rrel_5 => rrel_6);
+-> (rrel_6 => rrel_7);
+-> (rrel_7 => rrel_8);
+-> (rrel_8 => rrel_9);
+-> (rrel_9 => rrel_10);
+-> (rrel_10 => rrel_11);
+-> (rrel_11 => rrel_12);
+-> (rrel_12 => rrel_13);
+-> (rrel_13 => rrel_14);
+-> (rrel_14 => rrel_15);
+-> (rrel_15 => rrel_16);;

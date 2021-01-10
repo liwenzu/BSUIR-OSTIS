@@ -10,6 +10,7 @@ namespace utils
     class display
     {
     public:
+        static void printNl(ScMemoryContext * ms_context, ScAddr element);
         static void printEl(ScMemoryContext * ms_context, ScAddr element);
     };
 

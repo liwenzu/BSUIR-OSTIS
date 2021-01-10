@@ -18,5 +18,9 @@ namespace answerVerificationModule
     ScAddr Keynodes::nrel_system_identifier;
     ScAddr Keynodes::nrel_incorrect_answer;
     ScAddr Keynodes::nrel_coefficient;
-
+    ScAddr Keynodes::logical_kn_similarity_calculation;
+    ScAddr Keynodes::negation;
+    ScAddr Keynodes::rrel_0;
+    ScAddr Keynodes::rrel_1;
+    ScAddr Keynodes::nrel_basic_sequence;
 }

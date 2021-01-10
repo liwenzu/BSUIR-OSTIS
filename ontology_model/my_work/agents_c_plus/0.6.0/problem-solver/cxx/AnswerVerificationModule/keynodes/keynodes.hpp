@@ -41,6 +41,23 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("nrel_coefficient"),ForceCreate)
         static ScAddr nrel_coefficient;
+
+        SC_PROPERTY(Keynode("logical_kn_similarity_calculation"), ForceCreate)
+        static ScAddr logical_kn_similarity_calculation;
+
+        SC_PROPERTY(Keynode("negation"), ForceCreate)
+        static ScAddr negation;
+
+        SC_PROPERTY(Keynode("rrel_0"), ForceCreate)
+        static ScAddr rrel_0;
+
+        SC_PROPERTY(Keynode("rrel_1"), ForceCreate)
+        static ScAddr rrel_1;
+
+        SC_PROPERTY(Keynode("nrel_basic_sequence"), ForceCreate)
+        static ScAddr nrel_basic_sequence;
+
+
     };
 
 } // namespace exampleModule
