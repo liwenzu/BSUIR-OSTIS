@@ -12,6 +12,7 @@
 #include "LosimilarityAgent.hpp"
 #include "keynodes/keynodes.hpp"
 #include "utils/Faprocrss.hpp"
+#include "utils/Loprocess.hpp"
 
 using namespace std;
 using namespace utils;
@@ -30,59 +31,34 @@ namespace answerVerificationModule {
     ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
     Faprocess::generateTuple(ms_context.get(), answer, param, Keynodes::nrel_correct_answer, _elems_1, _elem1);
     Faprocess::generateTuple(ms_context.get(), answer, param, Keynodes::nrel_user_answer, _elems_2, _elem2);
+//auto numbering sheaf
+    vector<pair<ScAddr,int>> _elem_nbtups1;
+    vector<pair<ScAddr,int>> _elem_nbtups2;
+    Loprocess::AutomaticallyNumberSheaf(ms_context.get(), _elems_1, _elem_nbtups1);
+    Loprocess::AutomaticallyNumberSheaf(ms_context.get(), _elems_2, _elem_nbtups2);
+//auto numbering structure
+    vector<pair<ScAddr,int>> _elem_strus1;
+    vector<pair<ScAddr,int>> _elem_strus2;
+    Loprocess::AutomaticallyNumberStructure(ms_context.get(), _elem_nbtups1, _elem_strus1);
+    Loprocess::AutomaticallyNumberStructure(ms_context.get(), _elem_nbtups2, _elem_strus2);
 
 
-//auto numbering
-    ScAddr _elemmed;
-    ScIterator3Ptr it_3 = ms_context->Iterator3(_elems_1, ScType::EdgeAccessConstPosPerm, Keynodes::negation);
-    if (it_3->Next())
+
+
+
+
+
+
+    for (auto i : _elem_strus1)
     {
-        cout <<"The structure includes negation node" << endl;
+        display::printEl(ms_context.get(), i.first);
+        cout <<"The sequence:"<<i.second <<endl;
     }
-//find the first node
-    vector<ScAddr> _esaall = IteratorUtils::getAllWithType(ms_context.get(), _elems_1, ScType::NodeConstTuple);
-    for (auto elem : _esaall)
+    for (auto i : _elem_strus2)
     {
-        ScIterator3Ptr it_3 = ms_context->Iterator3(ScType::NodeConstTuple, ScType::EdgeAccessConstPosPerm, elem);
-        if (it_3->Next())
-            continue;
-        _elemmed = elem;
-        break;
+        display::printEl(ms_context.get(), i.first);
+        cout <<"The sequence:"<<i.second <<endl;
     }
-    ScAddr _elem_nbtups = ms_context->CreateNode(ScType::NodeConst);
-    ScAddr _elemmed1 = Keynodes::rrel_0;
-    vector<vector<ScAddr>> _classpoint;
-//tree
-     while (1)
-     {
-         while (1)
-         {
-             GenerationUtils::generateRelationBetween(ms_context.get(), _elem_nbtups, _elemmed, _elemmed1);
-             ScIterator5Ptr it_5 = ms_context->Iterator5(_elemmed1, ScType::EdgeDCommonConst, ScType::NodeConstRole,
-                                                         ScType::EdgeAccessConstPosPerm, Keynodes::nrel_basic_sequence);
-             while (it_5->Next())
-             {
-                 _elemmed1 = it_5->Get(2);
-             }
-
-             vector<ScAddr> _elstup = IteratorUtils::getAllWithType(ms_context.get(), _elemmed, ScType::NodeConstTuple);
-             if (_elstup.empty())
-                 break;
-             _elemmed = _elstup.back();
-             _elstup.pop_back();
-             if (_elstup.empty())
-                 continue;
-             _classpoint.push_back(_elstup);
-         }
-         if (_classpoint.empty())
-             break;
-         _elemmed = _classpoint.back().back();
-         _classpoint.back().pop_back();
-         if (_classpoint.back().empty())
-         {
-             _classpoint.pop_back();
-         }
-     }
 
 
 
@@ -93,13 +69,6 @@ namespace answerVerificationModule {
 
 
 
-
-
-
-
-
-
-    cout <<"The length:"<<_esaall.size()<< endl;
 
 
 

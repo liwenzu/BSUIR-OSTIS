@@ -57,6 +57,18 @@ namespace answerVerificationModule
         SC_PROPERTY(Keynode("nrel_basic_sequence"), ForceCreate)
         static ScAddr nrel_basic_sequence;
 
+        SC_PROPERTY(Keynode("rrel_if"), ForceCreate)
+        static ScAddr rrel_if;
+
+        SC_PROPERTY(Keynode("rrel_then"), ForceCreate)
+        static ScAddr rrel_then;
+
+        SC_PROPERTY(Keynode("nrel_equivalence"), ForceCreate)
+        static ScAddr nrel_equivalence;
+
+        SC_PROPERTY(Keynode("rrel_bind_variables"), ForceCreate)
+        static ScAddr rrel_bind_variables;
+
 
     };
 

@@ -1,0 +1,88 @@
+Question_3
+=> nrel_correct_answer:
+    ..structure1;
+=> nrel_user_answer:
+    ..structure2;;
+..structure1
+=
+[*
+..tup1
+<- nrel_generality;
+-> ..tup2
+        (*
+          <- nrel_equivalence;;
+          -> ..stru3 (* <- atomic_existence;;*);;
+          -> ..stru2 (* <- atomic_existence;;*);;
+        *);
+-> rrel_bind_variables:
+..stru1;;
+*];;
+..structure2
+=
+[*
+..tup12
+<- nrel_generality;
+-> ..tup22
+        (*
+          <- nrel_equivalence;;
+          -> ..stru32 (* <- atomic_existence;;*);;
+          -> ..stru22 (* <- atomic_existence;;*);;
+        *);
+-> rrel_bind_variables:
+..stru12;;
+*];;
+..tup1
+<- sc_node_not_binary_tuple;;
+..tup12
+<- sc_node_not_binary_tuple;;
+..tup2
+<- sc_node_not_binary_tuple;;
+..tup22
+<- sc_node_not_binary_tuple;;
+..stru1
+<- sc_node_struct;
+-> _R;;
+..stru12
+<- sc_node_struct;
+-> _S;;
+..stru2
+=
+[* _R _<- binary_partial_order_relation;; *];;
+..stru22
+=
+[* _S _<- binary_partial_order_relation;; *];;
+..stru3
+=
+[*
+_R
+_<- binary_relation;
+_<- reflexive_relation;
+_<- transitive_relation;
+_<- antisymmetric_relation;;
+*];;
+..stru32
+=
+[*
+_S
+_<- binary_relation;
+_<- reflexive_relation;
+_<- transitive_relation;
+_<- antisymmetric_relation;;
+*];;
+binary_partial_order_relation
+<- sc_node_not_relation;;
+_R
+<- sc_node_norole_relation;;
+_S
+<- sc_node_norole_relation;;
+..structure3
+=
+[*
+..tup13
+<- nrel_generality;
+-> ..stru32 (* <- atomic_existence;;*);
+-> rrel_bind_variables:
+..stru12;;
+*];;
+..tup13
+<- sc_node_not_binary_tuple;;

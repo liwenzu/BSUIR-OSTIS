@@ -1,0 +1,173 @@
+Question_2
+=> nrel_correct_answer:
+    ..structure1;
+=> nrel_user_answer:
+    ..structure2;;
+..structure1
+=
+[*
+..tup1
+<- nrel_generality;
+-> ..tup2;
+-> rrel_bind_variables:
+..stru1;;
+..tup2
+<- nrel_equivalence;
+-> ..tup3;
+-> ..stru2 (* <- atomic_existence;;*);;
+..tup3
+<- nrel_generality;
+-> ..tup4;
+-> rrel_bind_variables:
+..stru3;;
+..tup4
+<- nrel_implication;
+-> rrel_if:
+   ..stru4 (* <- atomic_existence;;*);
+-> rrel_then:
+   ..stru5 (* <- atomic_existence;;*);;
+*];;
+..structure2
+=
+[*
+..tup12
+<- nrel_generality;
+-> ..tup22;
+-> rrel_bind_variables:
+..stru12;;
+..tup22
+<- nrel_equivalence;
+-> ..tup32;
+-> ..stru22
+    (*
+        <- atomic_existence;;
+    *);;
+..tup32
+<- nrel_generality;
+-> ..tup42;
+-> rrel_bind_variables:
+..stru32;;
+..tup42
+<- nrel_implication;
+-> rrel_if:
+   ..stru42 (* <- atomic_existence;;*);
+-> rrel_then:
+   ..stru52 (* <- atomic_existence;;*);;
+*];;
+..tup1
+<- sc_node_not_binary_tuple;;
+..tup12
+<- sc_node_not_binary_tuple;;
+..tup2
+<- sc_node_not_binary_tuple;;
+..tup22
+<- sc_node_not_binary_tuple;;
+..tup3
+<- sc_node_not_binary_tuple;;
+..tup32
+<- sc_node_not_binary_tuple;;
+..tup4
+<- sc_node_not_binary_tuple;;
+..tup42
+<- sc_node_not_binary_tuple;;
+..stru1
+<- sc_node_struct;
+-> _A;
+-> _B;;
+..stru12
+<- sc_node_struct;
+-> _C;
+-> _D;;
+..stru3
+<- sc_node_struct;
+-> _a;;
+..stru32
+<- sc_node_struct;
+-> _c;;
+..stru2
+=
+[*
+_A
+_<- set;
+_=> nrel_inclusion::
+_B(*_<- set;;*);;    
+*];;
+..stru22
+=
+[*
+_C
+_<- set;
+_=> nrel_inclusion::
+_D(*_<- set;;*);;
+*];;
+..stru4
+=
+[* _B _-> _a;;*];;
+..stru42
+=
+[*_D _-> _c;;*];;
+..stru5
+=
+[* _A _-> _a;;*];;
+..stru52
+=
+[* _C _-> _c;;*];;
+atomic_existence
+<- sc_node_not_relation;;
+
+
+..structure3
+=
+[*
+exampl_1
+-> exampl_2 (*
+              -> exampl_5
+              (*
+                    -> exampl_11;;
+                    -> exampl_12;;
+                    -> exampl_13 (*
+                       -> exampl_15;;
+                       *);;
+              *);;
+              -> exampl_6;;
+            *);
+-> exampl_3 (*
+              -> exampl_7;;
+              -> exampl_8;;
+            *);
+-> exampl_4 (*
+              -> exampl_9;;
+              -> exampl_10;;
+              -> exampl_14;;
+            *);;
+*];;
+exampl_1
+<- sc_node_not_binary_tuple;;
+exampl_2
+<- sc_node_not_binary_tuple;;
+exampl_3
+<- sc_node_not_binary_tuple;;
+exampl_4
+<- sc_node_not_binary_tuple;;
+exampl_5
+<- sc_node_not_binary_tuple;;
+exampl_6
+<- sc_node_not_binary_tuple;;
+exampl_7
+<- sc_node_not_binary_tuple;;
+exampl_8
+<- sc_node_not_binary_tuple;;
+exampl_9
+<- sc_node_not_binary_tuple;;
+exampl_10
+<- sc_node_not_binary_tuple;;
+exampl_11
+<- sc_node_not_binary_tuple;;
+exampl_12
+<- sc_node_not_binary_tuple;;
+exampl_13
+<- sc_node_not_binary_tuple;;
+exampl_14
+<- sc_node_not_binary_tuple;;
+exampl_15
+<- sc_node_not_binary_tuple;;
