@@ -180,8 +180,18 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator0_13h12 (*
                <- genEl;;
                -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _class7dicomm2;;
-               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13;; 
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13h13;; 
                *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator0_13h13 (*
+               <- genEl;;
+               -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _class7edco1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13h14;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator0_13h14 (*
+              <- genEl;;
+              -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _class7edco2;;
+              => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator0_13;; 
+              *);;
 //给几个初始值赋值为0,防止遇到没有值发生错误
 		-> .proc_lo_kn_calc_number_of_substr_operator0_13 (*
                <- varAssign;;
@@ -383,6 +393,14 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;
                      => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_10abd1;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator1_10c;;                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator1_10c (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator1_10c1;;
                      => nrel_else: .proc_lo_kn_calc_number_of_substr_operator1_10ab;;                                                         
                      *);;
 		-> .proc_lo_kn_calc_number_of_substr_operator1_10ab (* 
@@ -449,6 +467,14 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator1_10abd1 (*
                      <- genElStr3;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _class7dicomm1;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_10a1;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+		-> .proc_lo_kn_calc_number_of_substr_operator1_10c1 (*
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _class7edco1;;
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
                      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator1_10a1;; 
@@ -845,6 +871,14 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_const: rrel_role_relation: rrel_scp_var: _arc;;
                      => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_7abd1;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_7c;;                                                         
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator2_7c (* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator2_7c1;;
                      => nrel_else: .proc_lo_kn_calc_number_of_substr_operator2_7ab;;                                                         
                      *);;
 		-> .proc_lo_kn_calc_number_of_substr_operator2_7ab (* 
@@ -911,6 +945,14 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator2_7abd1 (*
                      <- genElStr3;;
                      -> rrel_1: rrel_fixed: rrel_scp_var: _class7dicomm2;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_7a1;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+		-> .proc_lo_kn_calc_number_of_substr_operator2_7c1 (*
+                     <- genElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _class7edco2;;
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
                      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator2_7a1;; 
@@ -1826,7 +1868,7 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
                      -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
                      => nrel_then: .proc_lo_kn_calc_number_of_substr_operator3_60;;
-                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator4;;                                                    
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator3_64m;;                                                    
                      *);;
               -> .proc_lo_kn_calc_number_of_substr_operator3_60 (* 
 			<- call;;
@@ -1856,6 +1898,49 @@ scp_program -> proc_lo_kn_calc_number_of_substr
                      => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_63;; 
                      *);;
 		-> .proc_lo_kn_calc_number_of_substr_operator3_63 (*
+                     <- varAssign;;
+                     -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_64m;; 
+                     *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+		-> .proc_lo_kn_calc_number_of_substr_operator3_64m(* 
+                     <- searchElStr3;;
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _class7edco1;;
+                     -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+                     -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+                     => nrel_then: .proc_lo_kn_calc_number_of_substr_operator3_64;;
+                     => nrel_else: .proc_lo_kn_calc_number_of_substr_operator4;;                                                    
+                     *);;
+              -> .proc_lo_kn_calc_number_of_substr_operator3_64 (* 
+			<- call;;
+		       -> rrel_1: rrel_fixed: rrel_scp_const: proc_lo_kn_calculate_number_of_mult_substr;;
+		       -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+                            -> rrel_1: rrel_fixed: rrel_scp_var: _class7edco1;;
+                            -> rrel_2: rrel_fixed: rrel_scp_var: _class7edco2;;
+                            -> rrel_3: rrel_fixed: rrel_scp_var: _elem_strus1me;;
+                            -> rrel_4: rrel_fixed: rrel_scp_var: _elem_strus2me;;
+                            -> rrel_5: rrel_assign: rrel_scp_var: _summam;;
+                            -> rrel_6: rrel_fixed: rrel_scp_var: _mathstrume;;
+                            *);;
+		       -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+			=> nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_65;;                                            
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_65 (* 
+		       <- waitReturn;;
+			-> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+			=> nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_66;;                                                      
+                     *);;
+//计算匹配的结构数
+		-> .proc_lo_kn_calc_number_of_substr_operator3_66 (*
+                     <- contAdd;;     
+                     -> rrel_1: rrel_assign: rrel_scp_var: _summa;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _summa_1;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _summam;;
+                     => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator3_67;; 
+                     *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator3_67 (*
                      <- varAssign;;
                      -> rrel_1: rrel_assign: rrel_scp_var: _summa_1;;
                      -> rrel_2: rrel_fixed: rrel_scp_var: _summa;;
@@ -2022,6 +2107,16 @@ scp_program -> proc_lo_kn_calc_number_of_substr
 		-> .proc_lo_kn_calc_number_of_substr_operator4_31 (*
                <- eraseEl;;
                -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _class7dicomm2;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_32;;
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator4_32 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _class7edco1;;
+               => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator4_33;; 
+               *);;
+		-> .proc_lo_kn_calc_number_of_substr_operator4_33 (*
+               <- eraseEl;;
+               -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _class7edco2;;
                => nrel_goto: .proc_lo_kn_calc_number_of_substr_operator_return;;
                *);;
 //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&

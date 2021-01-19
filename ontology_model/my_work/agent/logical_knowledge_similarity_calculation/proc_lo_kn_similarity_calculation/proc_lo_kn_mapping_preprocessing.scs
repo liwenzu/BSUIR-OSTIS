@@ -581,6 +581,15 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
                -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
                => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_10xx;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_10xx1;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator3_10xx1
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator3_10xx;;
                => nrel_else: .proc_lo_kn_mapping_preprocessing_operator3_14b;;
                *);;
 //设置一个标志位用于判断是否需要执行包含常量的变量弧的映射动作
@@ -943,6 +952,15 @@ scp_program -> proc_lo_kn_mapping_preprocessing
                (*
                <- searchElStr3;;
                -> rrel_1: rrel_assign: rrel_var: rrel_not_binary_tuple: rrel_scp_var: _arc;;  
+               -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
+               -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+               => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4xx;;
+               => nrel_else: .proc_lo_kn_mapping_preprocessing_operator4xx1;;
+               *);;
+          -> .proc_lo_kn_mapping_preprocessing_operator4xx1
+               (*
+               <- searchElStr3;;
+               -> rrel_1: rrel_assign: rrel_var: rrel_edge: rrel_scp_var: _arc;;  
                -> rrel_2: rrel_fixed: rrel_scp_var: _elemcp;;
                -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
                => nrel_then: .proc_lo_kn_mapping_preprocessing_operator4xx;;
