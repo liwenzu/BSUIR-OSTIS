@@ -1,0 +1,345 @@
+scp_program -> proc_lo_kn_possible_answer_judgment
+(*
+	-> rrel_params: ...
+	(*
+		-> rrel_1: rrel_in: _elems_1pm;; 
+		-> rrel_2: rrel_in: _user_answer;;
+              -> rrel_3: rrel_in: _parameter;;
+	*);;
+	-> rrel_operators: ... 
+	(*
+       -> rrel_init: .proc_lo_kn_possible_answer_judgment_operator0 (* 
+              <- printNl;;
+              -> rrel_1: rrel_fixed: rrel_scp_const: [从多个标准答案模板中选择一个作为标准答案的函数!];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator0_1;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator0_1 (* 
+              <- varAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumstap;;
+              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator0_2;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator0_2 (* 
+              <- contAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumstap_1;;
+              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator1 (* 
+              <- searchElStr5;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _parameter;;
+              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _elems_2p;;
+              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+              -> rrel_5: rrel_fixed: rrel_scp_var: _user_answer;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_1;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator_return;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_1 (* 
+              <- genElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2p;;
+              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc1;;
+              -> rrel_3: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _elempn2;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_2;;
+              *);;       
+       -> .proc_lo_kn_possible_answer_judgment_operator1_2 (* 
+              <- genElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_const: nrel_key_sc_element;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_var: _arc1;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_3;;
+              *);;
+//找出结构中的所有关键元素(关系，其他角色和类不重要，基本每个结构中都会有)
+       -> .proc_lo_kn_possible_answer_judgment_operator1_3 (* 
+              <- searchSetStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2p;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_const: rrel_norole_relation: rrel_scp_var: _arc;;
+              -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_4;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator1_7;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator1_4 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_const: rrel_norole_relation: rrel_scp_var: _elem;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_5;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator1_7;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_5 (* 
+              <- eraseEl;;
+              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_6;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_6 (* 
+              <- genElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elempn2;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_var: _elem;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_6m;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_6m (* 
+              <- contAdd;;     
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumstap;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _sumstap_1;;
+              -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_6m1;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_6m1 (* 
+              <- varAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumstap_1;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _sumstap;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_4;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator1_7 (* 
+              <- searchSetStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elems_2p;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _arc;;
+              -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_8;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator2;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator1_8 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_const: rrel_struct: rrel_scp_var: _elem;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_9;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator2;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_9 (* 
+              <- eraseEl;;
+              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_10;;                                                        
+              *);;
+//找出每个结构中的所有常量类
+       -> .proc_lo_kn_possible_answer_judgment_operator1_10 (* 
+              <- searchSetStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_const: rrel_not_relation: rrel_scp_var: _arc;;
+              -> rrel_set_3: rrel_assign: rrel_scp_var: _esaallcp;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_11;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator1_8;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator1_11 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _esaallcp;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_const: rrel_not_relation: rrel_scp_var: _elemcp;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_12;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator1_8;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_12 (* 
+              <- eraseEl;;
+              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_13;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_13 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elempn2;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator1_11;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator1_14;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_14 (* 
+              <- genElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elempn2;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_15;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_15 (* 
+              <- contAdd;;     
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumstap;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _sumstap_1;;
+              -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_16;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator1_16 (* 
+              <- varAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumstap_1;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _sumstap;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator1_11;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator2 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elems_1pm;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _elem;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator2_1;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator_return;;//@@@@@@                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_1 (* 
+              <- eraseEl;;
+              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_2;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_2 (* 
+              <- searchElStr5;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+              -> rrel_2: rrel_assign: rrel_const: rrel_common: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _elempn1;;
+              -> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_5: rrel_fixed: rrel_scp_const: nrel_key_sc_element;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator2_3;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator2;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//开始具体子结构处理
+       -> .proc_lo_kn_possible_answer_judgment_operator2_3 (* 
+              <- searchSetStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elempn1;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _arc;;
+              -> rrel_set_3: rrel_assign: rrel_scp_var: _esaall;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator2_4;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator2;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_4 (* 
+              <- varAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumcandp;;
+              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_5;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_5 (* 
+              <- varAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _summap;;
+              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_6;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_6 (* 
+              <- contAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumcandp_1;;
+              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_7;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_7 (* 
+              <- contAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _summap_1;;
+              -> rrel_2: rrel_fixed: rrel_scp_const: [0];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_8;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator2_8 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _esaall;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _elemcp;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator2_9;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator2_15;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_9 (* 
+              <- eraseEl;;
+              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_10;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_10 (* 
+              <- contAdd;;     
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumcandp;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _sumcandp_1;;
+              -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_11;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_11 (* 
+              <- varAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _sumcandp_1;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _sumcandp;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_12;;                                                        
+              *);;
+//判断当前点和用户答案中的关键点匹配吗
+       -> .proc_lo_kn_possible_answer_judgment_operator2_12 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elempn2;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_var: _elemcp;;
+              => nrel_then: .proc_lo_kn_possible_answer_judgment_operator2_13;;
+              => nrel_else: .proc_lo_kn_possible_answer_judgment_operator2_8;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_13 (* 
+              <- contAdd;;     
+              -> rrel_1: rrel_assign: rrel_scp_var: _summap;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _summap_1;;
+              -> rrel_3: rrel_fixed: rrel_scp_const: [1];;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_14;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_14 (* 
+              <- varAssign;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _summap_1;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _summap;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_8;;                                                        
+              *);;
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+//相似度计算
+       -> .proc_lo_kn_possible_answer_judgment_operator2_15 (* 
+              <- call;;
+              -> rrel_1: rrel_fixed: rrel_scp_const: proc_fa_kn_calculate_prf_sim;;
+              -> rrel_2: rrel_fixed: rrel_scp_const: ... (*
+                     -> rrel_1: rrel_fixed: rrel_scp_var: _summap;;
+                     -> rrel_2: rrel_fixed: rrel_scp_var: _sumstap;;
+                     -> rrel_3: rrel_fixed: rrel_scp_var: _sumcandp;;
+                     -> rrel_4: rrel_assign: rrel_scp_var: _Psc;;
+                     -> rrel_5: rrel_assign: rrel_scp_var: _Rsc;;
+                     -> rrel_6: rrel_assign: rrel_scp_var: _Fsc;;
+                     *);;
+              -> rrel_3: rrel_assign: rrel_scp_var: _descr1;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_16;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_16 (* 
+              <- waitReturn;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _descr1;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_17;;                                                        
+              *);;
+
+
+
+
+
+
+
+
+       -> .proc_lo_kn_possible_answer_judgment_operator2_17 (* 
+              <- printNl;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _sumcandp;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_18;;                                                        
+              *);;
+       -> .proc_lo_kn_possible_answer_judgment_operator2_18 (* 
+              <- printNl;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _Fsc;;
+              => nrel_goto: .proc_lo_kn_possible_answer_judgment_operator2_19;;                                                        
+              *);;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+       -> .proc_lo_kn_possible_answer_judgment_operator_return
+              (*
+              <-return;;
+              *);;
+	*);;
+*);;
