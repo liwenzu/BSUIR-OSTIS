@@ -71,8 +71,6 @@ namespace answerVerificationModule {
 
 
 
-
-
     AgentUtils::finishAgentWork(ms_context.get(), questionNode, answer);
     return SC_RESULT_OK;
 }

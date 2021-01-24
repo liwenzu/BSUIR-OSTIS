@@ -1,0 +1,211 @@
+Question_29
+=> nrel_correct_answer:
+    ..structure1;
+=> nrel_user_answer:
+    ..structure2;;
+..structure1
+=
+[*
+..tup1
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru1;
+-> ..tup2 (*
+       <- nrel_equivalence;;
+       -> ..stru2 (*
+            <- atomic_existence;;
+            *);;
+       -> ..tup3 (*
+            <- nrel_generality;;
+            -> rrel_bind_variables: ..stru3;;
+            -> ..tup4 (*
+                <- nrel_implication;;
+                -> rrel_if: ..tup5 (*
+                    <- nrel_conjunction;;
+                    -> ..stru4 (*
+                        <- atomic_existence;;
+                        *);;
+                    -> ..tup6 (*
+                        <- negation;;
+                        -> ..stru5 (*
+                           <- atomic_existence;;
+                           *);;
+                        *);;
+                    *);;
+                -> rrel_then: ..tup7 (*
+                    <- nrel_existence;;
+                    -> rrel_bind_variables: ..stru6;;
+                    -> ..tup8 (*
+                        <- nrel_conjunction;;
+                        -> ..stru7 (*
+                           <- atomic_existence;;
+                           *);;
+                        -> ..tup9 (*
+                            <- negation;;
+                            -> ..stru8 (*
+                               <- atomic_existence;;
+                               *);;
+                            *);;
+                        *);;
+                    *);;
+                *);;
+            *);;
+       *);;
+*];;
+..structure2
+=
+[*
+..tup12
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru12;
+-> ..tup22 (*
+       <- nrel_equivalence;;
+       -> ..stru22 (*
+          <- atomic_existence;;
+          *);;
+       -> ..tup32 (*
+            <- nrel_generality;;
+            -> rrel_bind_variables: ..stru32;;
+            -> ..tup42 (*
+                <- nrel_implication;;
+                -> rrel_if: ..tup52 (*
+                    <- nrel_conjunction;;
+                    -> ..stru42 (*
+                       <- atomic_existence;;
+                       *);;
+                    -> ..tup62 (*
+                        <- negation;;
+                        -> ..stru52 (*
+                           <- atomic_existence;;
+                           *);;
+                        *);;
+                    *);;
+                -> rrel_then: ..tup72 (*
+                    <- nrel_existence;;
+                    -> rrel_bind_variables: ..stru62;;
+                    -> ..tup82 (*
+                        <- nrel_conjunction;;
+                        -> ..stru72 (*
+                           <- atomic_existence;;
+                           *);;
+                        -> ..tup92 (*
+                            <- negation;;
+                            -> ..stru82 (*
+                               <- atomic_existence;;
+                               *);;
+                            *);;
+                        *);;
+                    *);;
+                *);;
+            *);;
+       *);;
+*];;
+..tup1
+<- sc_node_not_binary_tuple;;
+..tup2
+<- sc_node_not_binary_tuple;;
+..tup3
+<- sc_node_not_binary_tuple;;
+..tup4
+<- sc_node_not_binary_tuple;;
+..tup5
+<- sc_node_not_binary_tuple;;
+..tup6
+<- sc_node_not_binary_tuple;;
+..tup7
+<- sc_node_not_binary_tuple;;
+..tup8
+<- sc_node_not_binary_tuple;;
+..tup9
+<- sc_node_not_binary_tuple;;
+..tup12
+<- sc_node_not_binary_tuple;;
+..tup22
+<- sc_node_not_binary_tuple;;
+..tup32
+<- sc_node_not_binary_tuple;;
+..tup42
+<- sc_node_not_binary_tuple;;
+..tup52
+<- sc_node_not_binary_tuple;;
+..tup62
+<- sc_node_not_binary_tuple;;
+..tup72
+<- sc_node_not_binary_tuple;;
+..tup82
+<- sc_node_not_binary_tuple;;
+..tup92
+<- sc_node_not_binary_tuple;;
+..stru1
+<- sc_node_struct;
+-> _X;
+-> _Y;
+-> _F (* <- sc_node_norole_relation;;*);;
+..stru2 = [*
+(_X _=> _Y)
+_=> nrel_relation_of_mapping::_F;
+_<- nrel_injection;;
+*];;
+..stru3
+<- sc_node_struct;
+-> _x1;
+-> _x2;;
+..stru4 = [*
+_X
+_-> _x1;
+_-> _x2;;
+*];;
+..stru5 = [*
+_x2 _<=> nrel_equality:: _x1;;
+*];;
+..stru6
+<- sc_node_struct;
+-> _y1;
+-> _y2;;
+..stru7 = [*
+_y
+_-> _y1;
+_-> _y2;;
+_x1 _=> _F:: _y1;;
+_x2 _=> _F:: _y2;;
+*];;
+..stru8 = [*
+_y2 _<=> nrel_equality:: _y1;;
+*];;
+..stru12
+<- sc_node_struct;
+-> _L;
+-> _M;
+-> _N (* <- sc_node_norole_relation;;*);;
+..stru22 = [*
+(_L _=> _M)
+_=> nrel_relation_of_mapping::_N;
+_<- nrel_injection;;
+*];;
+..stru32
+<- sc_node_struct;
+-> _l1;
+-> _l2;;
+..stru42 = [*
+_L
+_-> _l1;
+_-> _l2;;
+*];;
+..stru52 = [*
+_l2 _<=> nrel_equality:: _l1;;
+*];;
+..stru62
+<- sc_node_struct;
+-> _m1;
+-> _m2;;
+..stru72 = [*
+_M
+_-> _m1;
+_-> _m2;;
+_l1 _=> _F:: _m1;;
+_l2 _=> _F:: _m2;;
+*];;
+..stru82 = [*
+_m1 _<=> nrel_equality:: _m1;;
+*];;

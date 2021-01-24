@@ -1,0 +1,123 @@
+Question_28
+=> nrel_correct_answer:
+    ..structure1;
+=> nrel_user_answer:
+    ..structure2;
+=> nrel_possible_answer:
+    ..structure3;;
+..structure1
+=
+[*
+..tup1
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru1;
+-> ..tup2 (*
+       <- nrel_equivalence;;
+       -> ..stru2 (*
+            <- atomic_existence;;
+            *);;
+       -> ..stru3 (*
+            <- atomic_existence;;
+            *);;
+       *);;
+*];;
+..structure1
+=> nrel_key_sc_element:
+       ... (*
+           -> transitive_relation;;
+           -> symmetric_relation;;
+           -> reflexive_relation;;
+           -> equivalence_relation;;
+           -> nrel_generality;;
+           -> nrel_equivalence;;
+           *);;
+..structure2
+=
+[*
+..tup12
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru12;
+-> ..tup22 (*
+       <- nrel_equivalence;;
+       -> ..stru22 (*
+            <- atomic_existence;;
+            *);;
+       -> ..stru32 (*
+            <- atomic_existence;;
+            *);;
+       *);;
+*];;
+..structure3
+=
+[*
+..tup13
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru13;
+-> ..tup23 (*
+       <- nrel_equivalence;;
+       -> ..stru23 (*
+            <- atomic_existence;;
+            *);;
+       -> ..stru33 (*
+            <- atomic_existence;;
+            *);;
+       *);;
+*];;
+..structure3
+=> nrel_key_sc_element:
+       ... (*
+           -> transitive_relation;;
+           -> tolerance_relation;;
+           -> equivalence_relation;;
+           -> nrel_generality;;
+           -> nrel_equivalence;;
+           *);;
+..tup1
+<- sc_node_not_binary_tuple;;
+..tup2
+<- sc_node_not_binary_tuple;;
+..tup12
+<- sc_node_not_binary_tuple;;
+..tup22
+<- sc_node_not_binary_tuple;;
+..tup13
+<- sc_node_not_binary_tuple;;
+..tup23
+<- sc_node_not_binary_tuple;;
+..stru1
+<- sc_node_struct;
+-> _R (* <- sc_node_norole_relation;;*);;
+..stru2 = [*
+equivalence_relation _-> _R;;
+*];;
+..stru3 = [*
+_R
+_<- transitive_relation;
+_<- symmetric_relation;
+_<- reflexive_relation;;
+*];;
+..stru12
+<- sc_node_struct;
+-> _R (* <- sc_node_norole_relation;;*);;
+..stru22 = [*
+equivalence_relation _-> _R;;
+*];;
+..stru32 = [*
+_R
+_<- transitive_relation;
+_<- tolerance_relation;;
+*];;
+..stru13
+<- sc_node_struct;
+-> _R (* <- sc_node_norole_relation;;*);;
+..stru23 = [*
+equivalence_relation _-> _R;;
+*];;
+..stru33 = [*
+_R
+_<- transitive_relation;
+_<- tolerance_relation;;
+*];;

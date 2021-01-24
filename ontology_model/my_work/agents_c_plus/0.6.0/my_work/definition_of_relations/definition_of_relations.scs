@@ -75,3 +75,37 @@ nrel_basic_sequence
 -> (rrel_13 => rrel_14);
 -> (rrel_14 => rrel_15);
 -> (rrel_15 => rrel_16);;
+
+
+
+nrel_symmetric_sets_difference
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;;
+
+
+
+nrel_equality
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;;
+
+
+
+nrel_possible_answer
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [возможный ответ*] (* <- lang_ru;; *);
+        [possible answer*] (* <- lang_en;; *);;
+
+
+
+nrel_key_sc_element
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [ключевой sc элемент*] (* <- lang_ru;; *);
+        [key sc element*] (* <- lang_en;; *);;

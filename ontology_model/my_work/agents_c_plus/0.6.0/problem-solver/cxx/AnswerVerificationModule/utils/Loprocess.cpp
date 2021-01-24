@@ -7,6 +7,7 @@
 #include "keynodes/keynodes.hpp"
 #include <sc-agents-common/utils/CommonUtils.hpp>
 #include <algorithm>
+#include <sc-agents-common/utils/display.hpp>
 
 using namespace utils;
 
@@ -17,11 +18,28 @@ namespace answerVerificationModule {
     {
 //auto numbering
         ScAddr _elemmed;
+        vector<ScAddr> edgenegation;
+        vector<ScAddr> nodenegation;
         ScIterator3Ptr it_3 = ms_context->Iterator3(mid_elems, ScType::EdgeAccessConstPosPerm, Keynodes::negation);
         if (it_3->Next())
         {
-            //TODO
-            cout <<"The structure includes negation node" << endl;
+            vector<ScAddr> _esaall = IteratorUtils::getAllWithType(ms_context, mid_elems, ScType::EdgeAccessConstPosPerm);
+            for (auto elem : _esaall)
+            {
+                if (ms_context->GetElementType(ms_context->GetEdgeSource(elem)) == ScType::NodeConstTuple &&
+                    ms_context->GetElementType(ms_context->GetEdgeTarget(elem)) == ScType::NodeConstTuple)
+                {
+                    if (ms_context->HelperCheckEdge(Keynodes::negation, ms_context->GetEdgeTarget(elem), ScType::EdgeAccessConstPosPerm))
+                    {
+                        vector<ScAddr> _esaall1 = IteratorUtils::getAllWithType(ms_context, ms_context->GetEdgeSource(elem), ScType::NodeConstTuple);
+                        if (_esaall1.size() > 1)
+                        {
+                            edgenegation.push_back(elem);
+                            nodenegation.push_back(ms_context->GetEdgeSource(elem));
+                        }
+                    }
+                }
+            }
         }
 //find the first node
         vector<ScAddr> _esaall = IteratorUtils::getAllWithType(ms_context, mid_elems, ScType::NodeConstTuple);
@@ -36,28 +54,84 @@ namespace answerVerificationModule {
         vector<vector<ScAddr>> _classpoint;
         int _elemmed1=0;
 //tree
-        while (1)
+        while (true)
         {
-            while (1)
+            while (true)
             {
                 elem_nbtups.push_back(make_pair(_elemmed, _elemmed1++));
                 vector<ScAddr> _elstup = IteratorUtils::getAllWithType(ms_context, _elemmed, ScType::NodeConstTuple);
                 if (_elstup.empty())
                     break;
-                _elemmed = _elstup.back();
-                _elstup.pop_back();
-                if (_elstup.empty())
-                    continue;
-                _classpoint.push_back(_elstup);
+                if (_elstup.size() > 1)
+                {
+                    ScIterator5Ptr it_5if = IteratorUtils::getIterator5(ms_context, _elemmed, Keynodes::rrel_if, true);
+                    ScIterator5Ptr it_5then = IteratorUtils::getIterator5(ms_context, _elemmed, Keynodes::rrel_then, true);
+                    if (it_5if->Next() && it_5then->Next())
+                    {
+                        _elemmed = it_5if->Get(2);
+                        int i=0;
+                        for (auto currelem : _elstup)
+                        {
+                            ++i;
+                            if (currelem == _elemmed)
+                            {
+                                _elstup.erase(_elstup.begin()+i-1);
+                                break;
+                            }
+                        }
+                        _classpoint.push_back(_elstup);
+                    } else
+                    {
+                        vector<ScAddr>::iterator it;
+                        it = find(nodenegation.begin(), nodenegation.end(), _elemmed);
+                        if (it != nodenegation.end())
+                        {
+                            int num = count(nodenegation.begin(), nodenegation.end(), _elemmed);
+                            if (num >1 )
+                            {
+                                //TODO;
+                                cout << " The numbers of negation are:" << num <<endl;
+                                _elemmed = _elstup.back();
+                                _elstup.pop_back();
+                                _classpoint.push_back(_elstup);
+                            } else
+                            {
+                                for (auto currelem : edgenegation)
+                                {
+                                    if (_elemmed == ms_context->GetEdgeSource(currelem))
+                                    {
+                                        _elemmed = ms_context->GetEdgeTarget(currelem);
+                                        break;
+                                    }
+                                }
+                                int i=0;
+                                for (auto currelem : _elstup)
+                                {
+                                    ++i;
+                                    if (currelem == _elemmed)
+                                    {
+                                        _elstup.erase(_elstup.begin()+i-1);
+                                        break;
+                                    }
+                                }
+                                _classpoint.push_back(_elstup);
+                            }
+                        } else
+                        {
+                            _elemmed = _elstup.back();
+                            _elstup.pop_back();
+                            _classpoint.push_back(_elstup);
+                        }
+                    }
+                } else
+                    _elemmed = _elstup.back();
             }
             if (_classpoint.empty())
                 break;
             _elemmed = _classpoint.back().back();
             _classpoint.back().pop_back();
             if (_classpoint.back().empty())
-            {
                 _classpoint.pop_back();
-            }
         }
     }
     void Loprocess::AutomaticallyNumberStructure(ScMemoryContext * ms_context,

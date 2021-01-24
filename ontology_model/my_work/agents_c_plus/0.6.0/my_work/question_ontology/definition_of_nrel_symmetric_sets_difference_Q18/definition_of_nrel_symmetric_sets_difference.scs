@@ -1,0 +1,165 @@
+Question_18
+=> nrel_correct_answer:
+    ..structure1;
+=> nrel_user_answer:
+    ..structure2;;
+..structure1
+=
+[*
+..tup1
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru1;
+-> ..tup2 (*
+       <- nrel_equivalence;;
+       -> ..stru2 (*
+          <- atomic_existence;;
+          *);;
+       -> ..tup3 (*
+            <- nrel_generality;;
+            -> rrel_bind_variables: ..stru3;;
+            -> ..tup4 (*
+                <- nrel_implication;;
+                -> rrel_if: ..stru4 (*
+                            <- atomic_existence;;
+                            *);;
+                -> rrel_then: ..tup5 (*
+                    <- nrel_conjunction;;
+                    -> ..tup6 (*
+                        <- negation;;
+                        -> ..stru5 (*
+                           <- atomic_existence;;
+                           *);;
+                        *);;
+                    -> ..tup7 (*
+                        <- nrel_disjunction;;
+                        -> ..stru6 (*
+                           <- atomic_existence;;
+                           *);;
+                        -> ..stru7 (*
+                           <- atomic_existence;;
+                           *);;
+                        *);;
+                    *);;
+                *);;
+            *);;
+       *);;
+*];;
+..structure2
+=
+[*
+..tup12
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru12;
+-> ..tup22 (*
+       <- nrel_equivalence;;
+       -> ..stru22;;
+       -> ..tup32 (*
+            <- nrel_generality;;
+            -> rrel_bind_variables: ..stru32;;
+            -> ..tup42 (*
+                <- nrel_implication;;
+                -> rrel_if: ..stru42;;
+                -> rrel_then: ..tup52 (*
+                    <- nrel_conjunction;;
+                    -> ..tup62 (*
+                        <- negation;;
+                        -> ..stru52;;
+                        *);;
+                    -> ..tup72 (*
+                        <- nrel_disjunction;;
+                        -> ..stru62;;
+                        -> ..stru72;;
+                        *);;
+                    *);;
+                *);;
+            *);;
+       *);;
+*];;
+..tup1
+<- sc_node_not_binary_tuple;;
+..tup2
+<- sc_node_not_binary_tuple;;
+..tup3
+<- sc_node_not_binary_tuple;;
+..tup4
+<- sc_node_not_binary_tuple;;
+..tup5
+<- sc_node_not_binary_tuple;;
+..tup6
+<- sc_node_not_binary_tuple;;
+..tup7
+<- sc_node_not_binary_tuple;;
+..tup12
+<- sc_node_not_binary_tuple;;
+..tup22
+<- sc_node_not_binary_tuple;;
+..tup32
+<- sc_node_not_binary_tuple;;
+..tup42
+<- sc_node_not_binary_tuple;;
+..tup52
+<- sc_node_not_binary_tuple;;
+..tup62
+<- sc_node_not_binary_tuple;;
+..tup72
+<- sc_node_not_binary_tuple;;
+..stru1
+<- sc_node_struct;
+-> _A;
+-> _B;
+-> _C;;
+..stru2 = [*
+set
+_-> _A;
+_-> _B;
+_-> _C;;
+(_A _<=> _B) _=> nrel_symmetric_sets_difference::_C;;
+*];;
+..stru3
+<- sc_node_struct;
+-> _x;;
+..stru4 = [*
+_C _-> _x;;
+*];;
+..stru5 = [*
+_x
+_<- _A;
+_<- _B;;
+*];;
+..stru6 = [*
+_B _-> _x;;
+*];;
+..stru7 = [*
+_A _-> _x;;
+*];;
+..stru12
+<- sc_node_struct;
+-> _E;
+-> _F;
+-> _G;;
+..stru22 = [*
+set
+_-> _E;
+_-> _F;
+_-> _G;;
+(_E _<=> _F) _=> nrel_symmetric_sets_difference::_G;;
+*];;
+..stru32
+<- sc_node_struct;
+-> _y;;
+..stru42 = [*
+_G _-> _y;;
+*];;
+..stru52 = [*
+_y
+_<- _E;
+_<- _F;;
+*];;
+..stru62 = [*
+_F _-> _y;;
+*];;
+..stru72 = [*
+_E _-> _y;;
+*];;
