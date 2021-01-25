@@ -29,6 +29,8 @@ public:
 
   static vector<ScAddr> getAllByInRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);
 
+  static vector<ScAddr> getAllByOutRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);
+
   static ScAddr getFirstByInRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);
 
   static ScAddr getFirstByOutRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);

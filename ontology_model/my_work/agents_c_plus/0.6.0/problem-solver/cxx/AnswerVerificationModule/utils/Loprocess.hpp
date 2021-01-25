@@ -21,6 +21,9 @@ namespace answerVerificationModule
                 ScMemoryContext * ms_context,
                 std::vector<pair<ScAddr,int> >& elem_nbtups,
                 std::vector<pair<ScAddr,int> >& elem_strus);
+        static void JudgmentPossibleAnswer(
+                ScMemoryContext * ms_context,
+                const ScAddr & param);
     };
 }
 

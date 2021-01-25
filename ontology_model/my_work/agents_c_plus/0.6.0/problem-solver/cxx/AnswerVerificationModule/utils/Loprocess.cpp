@@ -5,6 +5,7 @@
 #include "Loprocess.hpp"
 #include <sc-agents-common/utils/IteratorUtils.hpp>
 #include "keynodes/keynodes.hpp"
+#include "Faprocrss.hpp"
 #include <sc-agents-common/utils/CommonUtils.hpp>
 #include <algorithm>
 #include <sc-agents-common/utils/display.hpp>
@@ -213,6 +214,72 @@ namespace answerVerificationModule {
                 for (auto elem : _esaall)
                 {
                     elem_strus.push_back(make_pair(elem, ++_elemmed1));
+                }
+            }
+        }
+    }
+    void Loprocess::JudgmentPossibleAnswer(ScMemoryContext * ms_context, const ScAddr & param)
+    {
+        vector<ScAddr> elems_1p = IteratorUtils::getAllByOutRelation(ms_context, param, Keynodes::nrel_possible_answer);
+        ScAddr elemUser = IteratorUtils::getFirstByOutRelation(ms_context, param, Keynodes::nrel_user_answer);
+        ScAddr elemStandard = IteratorUtils::getFirstByOutRelation(ms_context, param, Keynodes::nrel_correct_answer);
+        ScAddr element = IteratorUtils::getFirstByOutRelation(ms_context, elemUser, Keynodes::nrel_key_sc_element);
+        if (!elems_1p.empty() && !element.IsValid() && elemUser.IsValid() && elemStandard.IsValid())
+        {
+            elems_1p.insert(elems_1p.end(),elemStandard);
+            int numberStandard = 0;
+            ScAddr possibleNode2 = ms_context->CreateNode(ScType::NodeConst);
+            GenerationUtils::generateRelationBetween(ms_context, elemUser, possibleNode2, Keynodes::nrel_key_sc_element);
+            vector<ScAddr> elementAll2 = IteratorUtils::getAllWithType(ms_context, elemUser, ScType::NodeConstNoRole);
+            vector<ScAddr> allStruct = IteratorUtils::getAllWithType(ms_context, elemUser, ScType::NodeConstStruct);
+            for (auto elem : allStruct)
+            {
+                vector<ScAddr> elementClass = IteratorUtils::getAllWithType(ms_context, elem, ScType::NodeConstClass);
+                if (elementClass.empty())
+                    continue;
+                elementAll2.insert(elementAll2.end(), elementClass.begin(), elementClass.end());
+            }
+            for (auto elem : elementAll2)
+            {
+                if (ms_context->HelperCheckEdge(possibleNode2, elem, ScType::EdgeAccessConstPosPerm))
+                    continue;
+                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, possibleNode2, elem);
+                ++numberStandard;
+            }
+            map<float, ScAddr> simMp;
+            for (auto elem : elems_1p)
+            {
+                int numberCandidate = 0, numberMatched = 0;
+                ScAddr possibleNode1 = IteratorUtils::getFirstByOutRelation(ms_context, elem, Keynodes::nrel_key_sc_element);
+                vector<ScAddr> elementAll1 = IteratorUtils::getAllWithType(ms_context, possibleNode1, ScType::Unknown);
+                for (auto elemCp : elementAll1)
+                {
+                    ++numberCandidate;
+                    if (ms_context->HelperCheckEdge(possibleNode2, elemCp, ScType::EdgeAccessConstPosPerm))
+                        ++numberMatched;
+                }
+                float sim = Faprocess::SimilarityCalculation(numberMatched, numberCandidate, numberStandard);
+                simMp.insert(make_pair(sim, elem));
+            }
+            auto elemBig = simMp.end();
+            --elemBig;
+            ScIterator5Ptr it_5 = ms_context->Iterator5(param, ScType::EdgeDCommonConst, elemBig->second, ScType::EdgeAccessConstPosPerm, Keynodes::nrel_correct_answer);
+            if (!it_5->Next())
+            {
+                ScIterator5Ptr it_51 = ms_context->Iterator5(param, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, Keynodes::nrel_correct_answer);
+                while (it_51->Next())
+                {
+                    ScAddr arc = it_51->Get(1);
+                    ScAddr elemCp = it_51->Get(2);
+                    ms_context->EraseElement(arc);
+                    GenerationUtils::generateRelationBetween(ms_context, param, elemCp, Keynodes::nrel_possible_answer);
+                }
+                it_51 = ms_context->Iterator5(param, ScType::EdgeDCommonConst, elemBig->second, ScType::EdgeAccessConstPosPerm, Keynodes::nrel_possible_answer);
+                while (it_51->Next())
+                {
+                    ScAddr arc = it_51->Get(1);
+                    ms_context->EraseElement(arc);
+                    GenerationUtils::generateRelationBetween(ms_context, param, elemBig->second, Keynodes::nrel_correct_answer);
                 }
             }
         }

@@ -27,6 +27,9 @@ namespace answerVerificationModule {
     if (!param.IsValid())
         return SC_RESULT_ERROR_INVALID_PARAMS;
     ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
+//Judgement possible answer
+    Loprocess::JudgmentPossibleAnswer(ms_context.get(), param);
+//generate the basic structures
     ScAddr _elems_1, _elems_2, _elem1, _elem2;
     ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
     Faprocess::generateTuple(ms_context.get(), answer, param, Keynodes::nrel_correct_answer, _elems_1, _elem1);
@@ -48,7 +51,6 @@ namespace answerVerificationModule {
 
 
 
-
     for (auto i : _elem_strus1)
     {
         display::printEl(ms_context.get(), i.first);
@@ -59,7 +61,6 @@ namespace answerVerificationModule {
         display::printEl(ms_context.get(), i.first);
         cout <<"The sequence:"<<i.second <<endl;
     }
-
 
 
 

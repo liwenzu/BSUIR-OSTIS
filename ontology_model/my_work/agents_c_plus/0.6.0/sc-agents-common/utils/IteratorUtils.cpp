@@ -62,6 +62,19 @@ vector<ScAddr> IteratorUtils::getAllByInRelation(
   return elementList;
 }
 
+vector<ScAddr> IteratorUtils::getAllByOutRelation(
+            ScMemoryContext * ms_context,
+            const ScAddr & node,
+            const ScAddr & relation)
+{
+    vector<ScAddr> elementList;
+    ScIterator5Ptr iterator5 = IteratorUtils::getIterator5(ms_context, node, relation);
+    while (iterator5->Next())
+    {
+        elementList.push_back(iterator5->Get(2));
+    }
+    return elementList;
+}
 
 ScAddr IteratorUtils::getFirstByInRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation)
 {

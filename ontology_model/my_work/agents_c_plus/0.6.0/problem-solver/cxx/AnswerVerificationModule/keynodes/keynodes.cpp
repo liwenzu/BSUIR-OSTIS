@@ -27,4 +27,6 @@ namespace answerVerificationModule
     ScAddr Keynodes::rrel_then;
     ScAddr Keynodes::nrel_equivalence;
     ScAddr Keynodes::rrel_bind_variables;
+    ScAddr Keynodes::nrel_possible_answer;
+    ScAddr Keynodes::nrel_key_sc_element;
 }

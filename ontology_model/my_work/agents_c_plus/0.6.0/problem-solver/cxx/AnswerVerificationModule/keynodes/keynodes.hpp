@@ -69,6 +69,12 @@ namespace answerVerificationModule
         SC_PROPERTY(Keynode("rrel_bind_variables"), ForceCreate)
         static ScAddr rrel_bind_variables;
 
+        SC_PROPERTY(Keynode("nrel_possible_answer"), ForceCreate)
+        static ScAddr nrel_possible_answer;
+
+        SC_PROPERTY(Keynode("nrel_key_sc_element"), ForceCreate)
+        static ScAddr nrel_key_sc_element;
+
 
     };
 
