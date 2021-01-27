@@ -109,3 +109,22 @@ nrel_key_sc_element
 => nrel_main_idtf:
         [ключевой sc элемент*] (* <- lang_ru;; *);
         [key sc element*] (* <- lang_en;; *);;
+
+
+
+concept_empty_graph
+<- sc_node_not_relation;;
+
+
+
+concept_pseudograph
+<- sc_node_not_relation;;
+
+
+
+rrel_vertex
+<- sc_node_role_relation;
+=> nrel_main_idtf:
+        [вершина'] (* <- lang_ru;; *);
+        [vertex'] (* <- lang_en;; *);
+        [顶点'] (* <- lang_ch;; *);;
