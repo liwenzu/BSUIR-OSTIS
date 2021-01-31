@@ -57,7 +57,6 @@ namespace answerVerificationModule {
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct, elsTup.first);
         }
         vector<ScAddr> elsTupCp = IteratorUtils::getAllWithType(ms_context.get(), elsTup.first, ScType::Unknown);
-        //TODO record the structure
         for (auto elemStruct : elsTupCp)
         {
             ScAddr arc;
@@ -86,7 +85,6 @@ namespace answerVerificationModule {
                     ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elemStruct);
                     ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(0));
                     ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
-                    //TODO record the structure
                 }
                 it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, ScType::EdgeAccessVarPosPerm);
                 if (it_31->Next())
@@ -103,7 +101,6 @@ namespace answerVerificationModule {
                             ms_context->GetElementType(els1) == ScType::EdgeDCommonVar)
                             continue;
                         ScAddr genStruct1 = ms_context->CreateNode(ScType::NodeConstStruct);
-                        //TODO record the structure
                         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem1, genStruct1);
                         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elemStruct);
                         ScIterator3Ptr it_32 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els1);
@@ -241,13 +238,219 @@ namespace answerVerificationModule {
                              }
                          }
                     }
-
-
-
-
-
-
-                    //TODO
+//find the structure of arc
+                    commArc = IteratorUtils::getAllWithType(ms_context.get(), elemStruct, ScType::EdgeAccessVarPosPerm);
+                    for (auto elem : commArc)
+                    {
+                        ScAddr els1, els2;
+                        els1 = ms_context->GetEdgeSource(elem);
+                        els2 = ms_context->GetEdgeTarget(elem);
+                        if (ms_context->GetElementType(els2) == ScType::EdgeDCommonVar || ms_context->GetElementType(els2) == ScType::EdgeUCommonVar ||
+                            ms_context->GetElementType(els2) == ScType::EdgeAccessVarPosPerm || ms_context->GetElementType(els1) == ScType::NodeVarTuple)
+                            continue;
+                        ScAddr genStruct1 = ms_context->CreateNode(ScType::NodeConstStruct);
+                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem1, genStruct1);
+                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elemStruct);
+                        it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els1);
+                        while (it_3->Next())
+                        {
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els1);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                        }
+                        it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els2);
+                        while (it_3->Next())
+                        {
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els2);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                        }
+                        it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, elem);
+                        while (it_3->Next())
+                        {
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elem);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                        }
+                        it_3 = ms_context->Iterator3(ScType::NodeRole, ScType::EdgeAccessVarPosPerm, elem);
+                        if (it_3->Next())
+                        {
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_3->Get(0));
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(0));
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_3->Get(1));
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                        }
+                    }
+//find the structure of edge
+                    commArc = IteratorUtils::getAllWithType(ms_context.get(), elemStruct, ScType::EdgeUCommonVar);
+                    for (auto elem : commArc)
+                    {
+                        ScAddr els1, els2;
+                        els1 = ms_context->GetEdgeSource(elem);
+                        els2 = ms_context->GetEdgeTarget(elem);
+                        ScAddr genStruct1 = ms_context->CreateNode(ScType::NodeConstStruct);
+                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem1, genStruct1);
+                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elemStruct);
+                        it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els1);
+                        while (it_3->Next())
+                        {
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els1);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                        }
+                        it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, elem);
+                        while (it_3->Next())
+                        {
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elem);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                        }
+                        it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els2);
+                        while (it_3->Next())
+                        {
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els2);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                        }
+                        it_3 = ms_context->Iterator3(ScType::NodeNoRole, ScType::EdgeAccessVarPosPerm, elem);
+                        it_31 = ms_context->Iterator3(ScType::NodeVar, ScType::EdgeAccessVarPosPerm, elem);
+                        ScIterator5Ptr it_5 = ms_context->Iterator5(elem, ScType::EdgeDCommonVar, ScType::NodeVar, ScType::EdgeAccessVarPosPerm, ScType::NodeNoRole);
+                        if (it_3->Next() || it_31->Next())
+                        {
+                            ScAddr els3 = it_3->Get(0).IsValid()? it_3->Get(0):it_31->Get(0);
+                            arc = it_3->Get(1).IsValid()? it_3->Get(1):it_31->Get(1);
+                            it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els3);
+                            while (it_3->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els3);
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                            }
+                            it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, arc);
+                            while (it_3->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, arc);
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                            }
+                            it_3 = ms_context->Iterator3(ScType::NodeRole, ScType::EdgeAccessVarPosPerm, arc);
+                            if (it_3->Next())
+                            {
+                                it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_3->Get(0));
+                                while (it_31->Next())
+                                {
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(0));
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                                }
+                                it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_3->Get(1));
+                                while (it_31->Next())
+                                {
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                                }
+                            }
+                        }
+                        else if (it_5->Next())
+                        {
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_5->Get(1));
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_5->Get(1));
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_5->Get(2));
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_5->Get(2));
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_5->Get(3));
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_5->Get(3));
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_5->Get(4));
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_5->Get(4));
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                        }
+                    }
+//find the structure with tuple
+                    it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, ScType::NodeVarTuple);
+                    if (it_3->Next())
+                    {
+                        commArc = IteratorUtils::getAllWithType(ms_context.get(), elemStruct, ScType::EdgeDCommonVar);
+                        for (auto elem : commArc)
+                        {
+                            ScAddr els1, els2;
+                            els1 = ms_context->GetEdgeSource(elem);
+                            els2 = ms_context->GetEdgeTarget(elem);
+                            if (ms_context->GetElementType(els1) != ScType::NodeVarTuple)
+                                continue;
+                            ScAddr genStruct1 = ms_context->CreateNode(ScType::NodeConstStruct);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem1, genStruct1);
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elemStruct);
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els1);
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els1);
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, elem);
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elem);
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                            it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els2);
+                            while (it_31->Next())
+                            {
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els2);
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                            }
+                            it_3 = ms_context->Iterator3(ScType::NodeNoRole, ScType::EdgeAccessVarPosPerm, elem);
+                            while (it_3->Next())
+                            {
+                                ScAddr els3 = it_3->Get(0);
+                                arc = it_3->Get(1);
+                                it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, els3);
+                                while (it_31->Next())
+                                {
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, els3);
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                                }
+                                it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, arc);
+                                while (it_31->Next())
+                                {
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, arc);
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                                }
+                            }
+                            vector<ScAddr> elemStructCp = IteratorUtils::getAllWithTypeVar(ms_context.get(), els1, ScType::Unknown);
+                            for (auto elemCp : elemStructCp)
+                            {
+                                it_3 = ms_context->Iterator3(els1, ScType::EdgeAccessVarPosPerm, elemCp);
+                                while (it_3->Next())
+                                {
+                                    it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, elemCp);
+                                    while (it_31->Next())
+                                    {
+                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, elemCp);
+                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                                    }
+                                    it_31 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, it_3->Get(1));
+                                    while (it_31->Next())
+                                    {
+                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_3->Get(1));
+                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, genStruct1, it_31->Get(1));
+                                    }
+                                }
+                            }
+                        }
+                    }
                 } else{
                     it_3 = ms_context->Iterator3(elemStruct, ScType::EdgeAccessConstPosPerm, ScType::Unknown);
                     while (it_3->Next())
@@ -260,16 +463,7 @@ namespace answerVerificationModule {
                         }
                     }
                 }
-
-
-
-
-
-
-
             }
-
-
         }
     }
 
