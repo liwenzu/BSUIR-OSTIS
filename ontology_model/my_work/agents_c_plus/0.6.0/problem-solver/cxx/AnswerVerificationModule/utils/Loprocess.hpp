@@ -24,6 +24,11 @@ namespace answerVerificationModule
         static void JudgmentPossibleAnswer(
                 ScMemoryContext * ms_context,
                 const ScAddr & param);
+        static void SubstructureDecomposition(
+                ScMemoryContext * ms_context,
+                const std::vector<pair<ScAddr,int> >& elem_nbtups,
+                ScAddr & mid_elem
+                );
     };
 }
 
