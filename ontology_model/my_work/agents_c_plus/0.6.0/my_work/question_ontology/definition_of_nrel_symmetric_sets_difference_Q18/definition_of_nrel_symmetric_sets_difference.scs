@@ -54,23 +54,33 @@ Question_18
        ..stru12;
 -> ..tup22 (*
        <- nrel_equivalence;;
-       -> ..stru22;;
+       -> ..stru22 (*
+          <- atomic_existence;;
+          *);;
        -> ..tup32 (*
             <- nrel_generality;;
             -> rrel_bind_variables: ..stru32;;
             -> ..tup42 (*
                 <- nrel_implication;;
-                -> rrel_if: ..stru42;;
+                -> rrel_if: ..stru42 (*
+                            <- atomic_existence;;
+                            *);;
                 -> rrel_then: ..tup52 (*
                     <- nrel_conjunction;;
                     -> ..tup62 (*
                         <- negation;;
-                        -> ..stru52;;
+                        -> ..stru52 (*
+                           <- atomic_existence;;
+                           *);;
                         *);;
                     -> ..tup72 (*
                         <- nrel_disjunction;;
-                        -> ..stru62;;
-                        -> ..stru72;;
+                        -> ..stru62 (*
+                           <- atomic_existence;;
+                           *);;
+                        -> ..stru72 (*
+                           <- atomic_existence;;
+                           *);;
                         *);;
                     *);;
                 *);;
@@ -110,6 +120,7 @@ Question_18
 -> _A;
 -> _B;
 -> _C;;
+/*
 ..stru2cp = [*
 set
 _-> _A;
@@ -121,6 +132,7 @@ _-> _A;
 _-> _B;;
 *];;
 .._tuper <- sc_node_not_binary_tuple;;
+*/
 ..stru2 = [*
 set
 _-> _A;
