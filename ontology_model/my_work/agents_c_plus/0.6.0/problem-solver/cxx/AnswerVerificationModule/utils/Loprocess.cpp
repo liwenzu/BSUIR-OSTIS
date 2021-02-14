@@ -13,9 +13,8 @@
 using namespace utils;
 
 namespace answerVerificationModule {
-    void Loprocess::AutomaticallyNumberSheaf(ScMemoryContext * ms_context,
-                                             const ScAddr & mid_elems,
-                                             std::vector<pair<ScAddr,int> >& elem_nbtups)
+
+    void Loprocess::AutomaticallyNumberSheaf(ScMemoryContext * ms_context, const ScAddr & mid_elems, std::vector<pair<ScAddr,int> >& elem_nbtups)
     {
 //auto numbering
         ScAddr _elemmed;
@@ -135,9 +134,8 @@ namespace answerVerificationModule {
                 _classpoint.pop_back();
         }
     }
-    void Loprocess::AutomaticallyNumberStructure(ScMemoryContext * ms_context,
-                                                 std::vector<pair<ScAddr,int> >& elem_nbtups,
-                                                 std::vector<pair<ScAddr,int> >& elem_strus)
+
+    void Loprocess::AutomaticallyNumberStructure(ScMemoryContext * ms_context, std::vector<pair<ScAddr,int> >& elem_nbtups, std::vector<pair<ScAddr,int> >& elem_strus)
     {
         int _elemmed1=0;
         for(auto _elemmed : elem_nbtups)
@@ -218,6 +216,7 @@ namespace answerVerificationModule {
             }
         }
     }
+
     void Loprocess::JudgmentPossibleAnswer(ScMemoryContext * ms_context, const ScAddr & param)
     {
         vector<ScAddr> elems_1p = IteratorUtils::getAllByOutRelation(ms_context, param, Keynodes::nrel_possible_answer);
@@ -284,6 +283,7 @@ namespace answerVerificationModule {
             }
         }
     }
+
     void Loprocess::SubstructureDecomposition(ScMemoryContext * ms_context, const std::vector<pair<ScAddr,int> >& elem_nbtups, ScAddr & mid_elem)
     {
         for (auto elsTup : elem_nbtups)
@@ -708,4 +708,112 @@ namespace answerVerificationModule {
             }
         }
     }
+
+    void Loprocess::DetermineScopeQuantifier(ScMemoryContext * ms_context, const std::vector<pair<ScAddr,int> >& elem_strus, std::vector<ScAddr>& elemDeDoArc)
+    {
+        for (auto elem : elem_strus)
+        {
+            ScIterator5Ptr it_5 = ms_context->Iterator5(ScType::NodeConstTuple, ScType::EdgeAccessConstPosPerm, elem.first, ScType::EdgeAccessConstPosPerm, Keynodes::rrel_bind_variables);
+            if (it_5->Next())
+            {
+                ScAddr elemMed = it_5->Get(0);
+                vector<vector<ScAddr>> classPoint;
+                while (true)
+                {
+                    while (true)
+                    {
+                        vector<ScAddr> elemStructCp = IteratorUtils::getAllWithType(ms_context, elemMed, ScType::NodeConstStruct);
+                        for (auto elemCp : elemStructCp)
+                        {
+                            ScIterator5Ptr it_51 = ms_context->Iterator5(elemMed, ScType::EdgeAccessConstPosPerm, elemCp, ScType::EdgeAccessConstPosPerm, Keynodes::rrel_bind_variables);
+                            if(!it_51->Next())
+                            {
+                                ScAddr arc = GenerationUtils::generateRelationBetweenReturnArc(ms_context, elemCp, elem.first, Keynodes::nrel_definitional_domain);
+                                elemDeDoArc.push_back(arc);
+                            }
+                        }
+                        vector<ScAddr> elsTup = IteratorUtils::getAllWithType(ms_context, elemMed, ScType::NodeConstTuple);
+                        if (elsTup.empty())
+                            break;
+                        elemMed = elsTup.back();
+                        elsTup.pop_back();
+                        if (elsTup.empty())
+                            continue;
+                        classPoint.push_back(elsTup);
+                    }
+                    if (classPoint.empty())
+                        break;
+                    elemMed = classPoint.back().back();
+                    classPoint.back().pop_back();
+                    if (classPoint.back().empty())
+                        classPoint.pop_back();
+                }
+            }
+        }
+    }
+
+    void Loprocess::RemoveUnnecessaryElements(ScMemoryContext * ms_context, std::vector<ScAddr>& elemDeDoArc)
+    {
+        while (!elemDeDoArc.empty())
+        {
+            ScAddr elem = elemDeDoArc.back();
+            elemDeDoArc.pop_back();
+            ms_context->EraseElement(elem);
+        }
+    }
+
+    void Loprocess::CreateMapping(ScMemoryContext * ms_context, const ScAddr & mid_elems1, const ScAddr & mid_elems2,
+                                  const ScAddr & mid_elem1, const ScAddr & mid_elem2, std::vector<ScAddr>& elemMap,
+                                  const std::vector<pair<ScAddr,int> >& elem_strus1,
+                                  const std::vector<pair<ScAddr,int> >& elem_strus2)
+    {
+        for (auto elem : elem_strus1)
+        {
+            ScAddr elemCp1 = elem.first;
+            int elemMed1 = elem.second;
+            ScIterator5Ptr it_5 = ms_context->Iterator5(ScType::NodeConstTuple, ScType::EdgeAccessConstPosPerm, elemCp1, ScType::EdgeAccessConstPosPerm, Keynodes::rrel_bind_variables);
+            if (!it_5->Next())
+            {
+                if (elemMed1 > elem_strus2.size())
+                    continue;
+                ScAddr elemCp2 = elem_strus2[elemMed1-1].first;
+                vector<ScAddr> elemDeDo1 = IteratorUtils::getAllByOutRelation(ms_context, elemCp1, Keynodes::nrel_definitional_domain);
+                vector<ScAddr> elemDeDo2 = IteratorUtils::getAllByOutRelation(ms_context, elemCp2, Keynodes::nrel_definitional_domain);
+                vector<ScAddr> elemDeVar1;
+                vector<ScAddr> elemDeVar2;
+                for (auto elemLo : elemDeDo1)
+                {
+                    vector<ScAddr> element = IteratorUtils::getAllWithType(ms_context, elemLo, ScType::NodeVar);
+                    elemDeVar1.insert(elemDeVar1.end(), element.begin(), element.end());
+                }
+                for (auto elemLo : elemDeDo2)
+                {
+                    vector<ScAddr> element = IteratorUtils::getAllWithType(ms_context, elemLo, ScType::NodeVar);
+                    elemDeVar2.insert(elemDeVar2.end(), element.begin(), element.end());
+                }
+
+
+//start the 3 step
+
+
+//                for (auto i : elemDeVar1)
+//                    display::printNl(ms_context, i);
+//                cout << "" <<endl;
+//                cout << "***************************" <<endl;
+//                for (auto i : elemDeVar2)
+//                    display::printNl(ms_context, i);
+//                cout << "" <<endl;
+//                cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXX" <<endl;
+
+
+
+
+//                cout << " Create Mapping 1" << ":" << elemMed1 <<endl;
+//                cout << " Create Mapping 2" << ":" << elem_strus2[elemMed1-1].second <<endl;
+            }
+
+
+        }
+    }
+
 }

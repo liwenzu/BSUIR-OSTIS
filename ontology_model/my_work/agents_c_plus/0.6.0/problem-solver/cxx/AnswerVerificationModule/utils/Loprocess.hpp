@@ -29,6 +29,25 @@ namespace answerVerificationModule
                 const std::vector<pair<ScAddr,int> >& elem_nbtups,
                 ScAddr & mid_elem
                 );
+        static void DetermineScopeQuantifier(
+                ScMemoryContext * ms_context,
+                const std::vector<pair<ScAddr,int> >& elem_strus,
+                std::vector<ScAddr>& elemDeDoArc
+                );
+        static void RemoveUnnecessaryElements(
+                ScMemoryContext * ms_context,
+                std::vector<ScAddr>& elemDeDoArc
+                );
+        static void CreateMapping(
+                ScMemoryContext * ms_context,
+                const ScAddr & mid_elems1,
+                const ScAddr & mid_elems2,
+                const ScAddr & mid_elem1,
+                const ScAddr & mid_elem2,
+                std::vector<ScAddr>& elemMap,
+                const std::vector<pair<ScAddr,int> >& elem_strus1,
+                const std::vector<pair<ScAddr,int> >& elem_strus2
+                );
     };
 }
 

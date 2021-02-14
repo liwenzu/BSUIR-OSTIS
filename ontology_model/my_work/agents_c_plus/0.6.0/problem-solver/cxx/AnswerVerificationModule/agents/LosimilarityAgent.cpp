@@ -48,6 +48,30 @@ namespace answerVerificationModule {
     Loprocess::SubstructureDecomposition(ms_context.get(), _elem_nbtups1, _elem1);
     Loprocess::SubstructureDecomposition(ms_context.get(), _elem_nbtups2, _elem2);
 // determine the domain of definition
+    vector<ScAddr> elemDeDoArc1;
+    vector<ScAddr> elemDeDoArc2;
+    Loprocess::DetermineScopeQuantifier(ms_context.get(), _elem_strus1, elemDeDoArc1);
+    Loprocess::DetermineScopeQuantifier(ms_context.get(), _elem_strus2, elemDeDoArc2);
+// Create mapping
+    vector<ScAddr> elemMap;
+    Loprocess::CreateMapping(ms_context.get(), _elems_1, _elems_2, _elem1, _elem2, elemMap, _elem_strus1, _elem_strus2);
+// calculate the matched substructures
+
+
+
+
+
+
+
+
+
+
+// remove unnecessary elements
+    Loprocess::RemoveUnnecessaryElements(ms_context.get(), elemDeDoArc1);
+    Loprocess::RemoveUnnecessaryElements(ms_context.get(), elemDeDoArc2);
+
+
+
 
 
 
@@ -63,7 +87,6 @@ namespace answerVerificationModule {
         display::printEl(ms_context.get(), i.first);
         cout <<"The sequence:"<<i.second <<endl;
     }
-
 */
 
 

@@ -29,4 +29,5 @@ namespace answerVerificationModule
     ScAddr Keynodes::rrel_bind_variables;
     ScAddr Keynodes::nrel_possible_answer;
     ScAddr Keynodes::nrel_key_sc_element;
+    ScAddr Keynodes::nrel_definitional_domain;
 }

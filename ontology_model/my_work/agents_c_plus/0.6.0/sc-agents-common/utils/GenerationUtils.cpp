@@ -65,4 +65,18 @@ bool GenerationUtils::generateRelationBetween(
   }
   return isSuccess;
 }
+
+ScAddr GenerationUtils::generateRelationBetweenReturnArc(
+        ScMemoryContext * ms_context,
+        ScAddr const & start,
+        ScAddr const & finish,
+        ScAddr const & relation)
+{
+    bool isRole = CommonUtils::checkType(ms_context, relation, ScType::NodeConstRole);
+    ScType arcType = isRole ? ScType::EdgeAccessConstPosPerm : ScType::EdgeDCommonConst;
+    ScAddr arc = ms_context->CreateEdge(arcType, start, finish);
+    if (arc.IsValid())
+        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, relation, arc);
+    return arc;
+}
 }

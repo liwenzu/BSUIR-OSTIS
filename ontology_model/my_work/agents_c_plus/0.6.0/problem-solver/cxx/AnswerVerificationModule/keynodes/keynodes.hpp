@@ -75,7 +75,8 @@ namespace answerVerificationModule
         SC_PROPERTY(Keynode("nrel_key_sc_element"), ForceCreate)
         static ScAddr nrel_key_sc_element;
 
-
+        SC_PROPERTY(Keynode("nrel_definitional_domain"), ForceCreate)
+        static ScAddr nrel_definitional_domain;
     };
 
 } // namespace exampleModule

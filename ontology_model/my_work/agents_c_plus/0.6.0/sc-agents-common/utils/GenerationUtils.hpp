@@ -34,5 +34,11 @@ public:
         ScAddr const & start,
         ScAddr const & finish,
         ScAddr const & relation);
+
+    static ScAddr generateRelationBetweenReturnArc(
+            ScMemoryContext * ms_context,
+            ScAddr const & start,
+            ScAddr const & finish,
+            ScAddr const & relation);
 };
 }
