@@ -791,28 +791,209 @@ namespace answerVerificationModule {
                     vector<ScAddr> element = IteratorUtils::getAllWithType(ms_context, elemLo, ScType::NodeVar);
                     elemDeVar2.insert(elemDeVar2.end(), element.begin(), element.end());
                 }
-
-
 //start the 3 step
+                vector<ScAddr> elemCp1Sub = IteratorUtils::getAllWithTypeIn(ms_context, elemCp1, ScType::NodeConstStruct);
+                vector<ScAddr> elemCp2Sub = IteratorUtils::getAllWithTypeIn(ms_context, elemCp2, ScType::NodeConstStruct);
+                if (!elemCp1Sub.empty() && !elemCp2Sub.empty())
+                {
+//generate node and set  flag
+                    vector<ScAddr> elemVarCom1, elemVarCom2, elemVarArc1, elemVarArc2, elemConArc1, elemConArc2;
+                    vector<ScAddr> stNoCom1, enNoCom1, stNoArc1, enNoArc1, stNoCom2, enNoCom2, stNoArc2, enNoArc2, stNoConArc1, enNoConArc1, stNoConArc2, enNoConArc2;
+                    vector<ScAddr> elemVar7Com1, elemVar7Com2, elemVar5Arc1, elemVar5Arc2, elemVar7DiCom1, elemVar7DiCom2;
+                    vector<ScAddr> stNo7Com1, enNo7Com1, stNo7Com2, enNo7Com2, stNo5Arc1, enNo5Arc1,  stNo5Arc2, enNo5Arc2, stNo7Dicom1, enNo7Dicom1, stNo7Dicom2, enNo7Dicom2;
+                    bool mapFlag = false;
+//standard answer
+                    for (auto lo_elem : elemCp1Sub)
+                    {
+                        if (!ms_context->HelperCheckEdge(mid_elem1, lo_elem, ScType::EdgeAccessConstPosPerm))
+                            continue;
+                        ScIterator3Ptr it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonVar);
+                        if (it_lo3->Next())
+                        {
+                            ScAddr lo_elemCp = it_lo3->Get(2);
+                            it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::NodeRole);
+                            if (it_lo3->Next())
+                            {
+                                elemVar7DiCom1.push_back(lo_elemCp);
+                                stNo7Dicom1.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                enNo7Dicom1.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                cout << " var comm 7di"<< endl;
+                            } else{
+                                if (ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::EdgeDCommonVar)
+                                {
+                                   elemVar7Com1.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                   stNo7Com1.push_back(ms_context->GetEdgeSource(ms_context->GetEdgeSource(lo_elemCp)));
+                                   enNo7Com1.push_back(ms_context->GetEdgeTarget(ms_context->GetEdgeSource(lo_elemCp)));
+//                                    cout << " var comm 71"<< endl;
+                                } else
+                                {
+                                    if (ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::NodeVarTuple ||
+                                        ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::EdgeUCommonVar)
+                                        mapFlag = true;
+                                    else
+                                    {
+                                        it_lo3 = ms_context->Iterator3(lo_elemCp, ScType::EdgeDCommonVar, ScType::NodeVar);
+                                        ScIterator3Ptr it_lo31 = ms_context->Iterator3(ScType::NodeNoRole, ScType::EdgeAccessVarPosPerm, lo_elemCp);
+                                        if (it_lo3->Next() && !it_lo31->Next())
+                                        {
+                                            elemVar7Com1.push_back(lo_elemCp);
+                                            stNo7Com1.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNo7Com1.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << " var comm 72"<< endl;
+                                        } else{
+                                            elemVarCom1.push_back(lo_elemCp);
+                                            stNoCom1.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNoCom1.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << " var comm"<< endl;
+                                        }
+                                    }
+                                }
+                            }
+                        } else{
+                            it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeAccessVarPosPerm);
+                            ScAddr lo_elemCp;
+                            if (it_lo3->Next())
+                                lo_elemCp = it_lo3->Get(2);
+                            if (!lo_elemCp.IsValid())
+                                continue;
+                            it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeUCommonVar);
+                            if (!it_lo3->Next())
+                            {
+                                if (ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::NodeConstRole &&
+                                    ms_context->GetElementType(ms_context->GetEdgeTarget(lo_elemCp)) == ScType::EdgeAccessVarPosPerm)
+                                {
+                                    elemVar5Arc1.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+                                    stNo5Arc1.push_back(ms_context->GetEdgeSource(ms_context->GetEdgeTarget(lo_elemCp)));
+                                    enNo5Arc1.push_back(ms_context->GetEdgeTarget(ms_context->GetEdgeTarget(lo_elemCp)));
+//                                    cout << " var arc 51"<< endl;
+                                } else{
+                                    it_lo3 = ms_context->Iterator3(ScType::NodeConstRole, ScType::EdgeAccessVarPosPerm, lo_elemCp);
+                                    if (it_lo3->Next())
+                                    {
+                                        elemVar5Arc1.push_back(lo_elemCp);
+                                        stNo5Arc1.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                        enNo5Arc1.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                        cout << " var arc 52"<< endl;
+                                    } else{
+                                        ScAddr els1 = ms_context->GetEdgeSource(lo_elemCp);
+                                        if (ms_context->GetElementType(els1).IsVar())
+                                        {
+                                            elemVarArc1.push_back(lo_elemCp);
+                                            stNoArc1.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNoArc1.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << " var arc "<< endl;
+                                        }
+                                        else{
+                                            elemConArc1.push_back(lo_elemCp);
+                                            stNoConArc1.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNoConArc1.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << " const arc "<< endl;
+                                        }
+                                    }
+                                }
+                            } else mapFlag = true;
+                        }
+                    }
+//user answer
+                    for (auto lo_elem : elemCp2Sub)
+                    {
+                        if (!ms_context->HelperCheckEdge(mid_elem2, lo_elem, ScType::EdgeAccessConstPosPerm))
+                            continue;
+                        ScIterator3Ptr it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonVar);
+                        if (it_lo3->Next())
+                        {
+                            ScAddr lo_elemCp = it_lo3->Get(2);
+                            it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::NodeRole);
+                            if (it_lo3->Next())
+                            {
+                                elemVar7DiCom2.push_back(lo_elemCp);
+                                stNo7Dicom2.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                enNo7Dicom2.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                cout << " user var comm 7di"<< endl;
+                            } else{
+                                if (ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::EdgeDCommonVar)
+                                {
+                                    elemVar7Com2.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                    stNo7Com2.push_back(ms_context->GetEdgeSource(ms_context->GetEdgeSource(lo_elemCp)));
+                                    enNo7Com2.push_back(ms_context->GetEdgeTarget(ms_context->GetEdgeSource(lo_elemCp)));
+//                                    cout << "user var comm 71"<< endl;
+                                } else
+                                {
+                                    if (ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::NodeVarTuple ||
+                                        ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::EdgeUCommonVar)
+                                        mapFlag = true;
+                                    else
+                                    {
+                                        it_lo3 = ms_context->Iterator3(lo_elemCp, ScType::EdgeDCommonVar, ScType::NodeVar);
+                                        ScIterator3Ptr it_lo31 = ms_context->Iterator3(ScType::NodeNoRole, ScType::EdgeAccessVarPosPerm, lo_elemCp);
+                                        if (it_lo3->Next() && !it_lo31->Next())
+                                        {
+                                            elemVar7Com2.push_back(lo_elemCp);
+                                            stNo7Com2.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNo7Com2.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << "user var comm 72"<< endl;
+                                        } else{
+                                            elemVarCom2.push_back(lo_elemCp);
+                                            stNoCom2.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNoCom2.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << "user var comm"<< endl;
+                                        }
+                                    }
+                                }
+                            }
+                        } else{
+                            it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeAccessVarPosPerm);
+                            ScAddr lo_elemCp;
+                            if (it_lo3->Next())
+                                lo_elemCp = it_lo3->Get(2);
+                            if (!lo_elemCp.IsValid())
+                                continue;
+                            it_lo3 = ms_context->Iterator3(lo_elem, ScType::EdgeAccessConstPosPerm, ScType::EdgeUCommonVar);
+                            if (!it_lo3->Next())
+                            {
+                                if (ms_context->GetElementType(ms_context->GetEdgeSource(lo_elemCp)) == ScType::NodeConstRole &&
+                                    ms_context->GetElementType(ms_context->GetEdgeTarget(lo_elemCp)) == ScType::EdgeAccessVarPosPerm)
+                                {
+                                    elemVar5Arc2.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+                                    stNo5Arc2.push_back(ms_context->GetEdgeSource(ms_context->GetEdgeTarget(lo_elemCp)));
+                                    enNo5Arc2.push_back(ms_context->GetEdgeTarget(ms_context->GetEdgeTarget(lo_elemCp)));
+//                                    cout << "user var arc 51"<< endl;
+                                } else{
+                                    it_lo3 = ms_context->Iterator3(ScType::NodeConstRole, ScType::EdgeAccessVarPosPerm, lo_elemCp);
+                                    if (it_lo3->Next())
+                                    {
+                                        elemVar5Arc2.push_back(lo_elemCp);
+                                        stNo5Arc2.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                        enNo5Arc2.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                        cout << "user var arc 52"<< endl;
+                                    } else{
+                                        ScAddr els1 = ms_context->GetEdgeSource(lo_elemCp);
+                                        if (ms_context->GetElementType(els1).IsVar())
+                                        {
+                                            elemVarArc2.push_back(lo_elemCp);
+                                            stNoArc2.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNoArc2.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << "user var arc "<< endl;
+                                        }
+                                        else {
+                                            elemConArc2.push_back(lo_elemCp);
+                                            stNoConArc2.push_back(ms_context->GetEdgeSource(lo_elemCp));
+                                            enNoConArc2.push_back(ms_context->GetEdgeTarget(lo_elemCp));
+//                                            cout << "user const arc "<< endl;
+                                        }
+                                    }
+                                }
+                            } else mapFlag = true;
+                        }
+                    }
+//                    cout << " ******************************** "<< endl;
+//start 5_adm
 
 
-//                for (auto i : elemDeVar1)
-//                    display::printNl(ms_context, i);
-//                cout << "" <<endl;
-//                cout << "***************************" <<endl;
-//                for (auto i : elemDeVar2)
-//                    display::printNl(ms_context, i);
-//                cout << "" <<endl;
-//                cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXX" <<endl;
 
 
-
-
-//                cout << " Create Mapping 1" << ":" << elemMed1 <<endl;
-//                cout << " Create Mapping 2" << ":" << elem_strus2[elemMed1-1].second <<endl;
+                }
             }
-
-
         }
     }
 

@@ -15,13 +15,19 @@ namespace utils
         {
             std::string data;
             data = ms_context->HelperGetSystemIdtf(element);
-            std::cout << data;
+            if (data.empty())
+                std::cout << element.Hash();
+            else
+                std::cout << data;
         }
 
         else if (type.IsLink())
         {
             std::string data = CommonUtils::readString(ms_context, element);
-            std::cout << data;
+            if (data.empty())
+                std::cout << element.Hash();
+            else
+                std::cout << data;
         }
         else
         {
