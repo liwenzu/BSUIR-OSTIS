@@ -1,0 +1,23 @@
+ui_menu_question_generation
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+=> nrel_main_idtf:
+                      [Генерация объективных вопросов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+                      [Generation of objective questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+                      [客观问题生成] (* <- lang_ch;; *);
+=> ui_nrel_command_template:
+                      [* 
+                        question_generation _-> ._question_generation_instance
+                                                                            (*
+                                                                                _-> ui_arg_1;;
+                                                                            *);;
+                        ._question_generation_instance _<- question;;
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Генерация объективных вопросов: $ui_arg_1] (* <- lang_ru;; *);
+=> ui_nrel_command_lang_template:
+                       [Generation of objective questions: $ui_arg_1] (* <- lang_en;; *);
+=> ui_nrel_command_lang_template:
+                       [客观问题生成: $ui_arg_1] (* <- lang_ch;; *);;
