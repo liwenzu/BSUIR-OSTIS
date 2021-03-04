@@ -40,6 +40,106 @@ scp_program -> proc_question_generation (*
 
 
 
+
+
+       -> .proc_question_generation_operator1_3 (* 
+              <- genElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_const: concept_directed_tree;;
+              => nrel_goto: .proc_question_generation_operator1_4;;
+              *);;
+       -> .proc_question_generation_operator1_4 (* 
+              <- genElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_const: nrel_inclusion;;
+              => nrel_goto: .proc_question_generation_operator1_5;;
+              *);;
+
+
+
+
+
+       -> .proc_question_generation_operator1_5 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _elemcp;;
+              => nrel_then: .proc_question_generation_operator1_6;;
+              => nrel_else: .proc_question_generation_operator_return;;
+              *);;
+       -> .proc_question_generation_operator1_6 (* 
+              <- eraseEl;;
+              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+              => nrel_goto: .proc_question_generation_operator1_7;;
+              *);;
+       -> .proc_question_generation_operator1_7 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _currelem;;
+              => nrel_then: .proc_question_generation_operator1_8;;
+              => nrel_else: .proc_question_generation_operator_return;;//1_5
+              *);;
+
+
+       -> .proc_question_generation_operator1_8 (* 
+              <- eraseEl;;
+              -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc;;
+              => nrel_goto: .proc_question_generation_operator1_9;;
+              *);;
+       -> .proc_question_generation_operator1_9 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_assign: rrel_scp_var: _arc;;
+              -> rrel_2: rrel_fixed: rrel_scp_var: _currelem;;
+              -> rrel_3: rrel_assign: rrel_scp_var: _currelemcp;;
+              => nrel_then: .proc_question_generation_operator1_10;;
+              => nrel_else: .proc_question_generation_operator1_7;;
+              *);;
+
+
+
+
+       -> .proc_question_generation_operator1_10 (* 
+              <- searchElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_var: _currelemcp;;
+              => nrel_then: .proc_question_generation_operator1_7;;
+              => nrel_else: .proc_question_generation_operator1_11;;
+              *);;
+
+
+
+
+
+
+       -> .proc_question_generation_operator1_11 (* 
+              <- genElStr3;;
+              -> rrel_1: rrel_fixed: rrel_scp_var: _answer;;
+              -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+              -> rrel_3: rrel_fixed: rrel_scp_var: _currelemcp;;
+              => nrel_goto: .proc_question_generation_operator1_7;;
+              *);;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        // -> .proc_question_generation_operator1_3 (* 
        //        <- searchElStr3;;
        //        -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
@@ -88,11 +188,11 @@ scp_program -> proc_question_generation (*
 
 
 
-       -> .proc_question_generation_operator1_3 (* 
-              <- printEl;;
-              -> rrel_1: rrel_fixed: rrel_scp_var: _elemcp;;
-              => nrel_goto: .proc_question_generation_operator_return;;
-              *);;
+       // -> .proc_question_generation_operator1_3 (* 
+       //        <- printEl;;
+       //        -> rrel_1: rrel_fixed: rrel_scp_var: _elem;;
+       //        => nrel_goto: .proc_question_generation_operator_return;;
+       //        *);;
 
 
 
