@@ -1,0 +1,34 @@
+@contour0 = [*
+	@pair0 = (..node0 _-> .._node0);;
+*];;
+@contour1 = [*
+	@pair1 = (_op5 _=> _op4);;
+	@pair2 = (_op4 _=> _op3);;
+	@pair3 = (_op4 _=> _op2);;
+	@pair4 = (_op4 _=> _op1);;
+	@pair5 = (nrel_inclusion _-> @pair3);;
+	@pair6 = (nrel_inclusion _-> @pair2);;
+	@pair7 = (nrel_inclusion _-> @pair4);;
+	@pair8 = (nrel_inclusion _-> @pair1);;
+*];;
+@pair9 = (statement_generation -> nrel_inclusion);;
+@pair10 = (rrel_key_sc_element -> @pair9);;
+@pair11 = (@contour1 => @contour0);;
+@pair12 = (statement_generation -> @pair11);;
+@pair13 = (rrel_main_key_sc_element -> @pair12);;
+@pair14 = (nrel_implication -> @pair11);;
+@pair15 = (statement -> statement_generation);;
+..node0 <- sc_node_class;;
+.._node0 <- sc_node;;
+_op5 <- sc_node_class;;
+_op2 <- sc_node_class;;
+_op3 <- sc_node_class;;
+_op1 <- sc_node_class;;
+nrel_inclusion <- sc_node_norole_relation;;
+_op4 <- sc_node_class;;
+statement_generation <- sc_node;;
+nrel_inclusion <- sc_node_norole_relation;;
+statement <- sc_node_class;;
+rrel_main_key_sc_element <- sc_node_role_relation;;
+nrel_implication <- sc_node_norole_relation;;
+rrel_key_sc_element <- sc_node_role_relation;;

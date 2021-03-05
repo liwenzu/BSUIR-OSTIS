@@ -7,7 +7,7 @@
 //#include <sc-memory/cpp/sc_stream.hpp>
 #include <sc-agents-common/utils/IteratorUtils.hpp>
 #include <sc-agents-common/utils/AgentUtils.hpp>
-
+#include <sc-agents-common/utils/display.hpp>
 #include "InclusionSearchAgent.hpp"
 #include "myodes/myodes.hpp"
 
@@ -32,7 +32,7 @@ namespace searchModule {
 
         ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
-        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, Myodes::nrel_inclusion);
+/*        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, Myodes::nrel_inclusion);
 
         ScIterator5Ptr iterator5 = IteratorUtils::getIterator5(ms_context.get(), param, Myodes::nrel_inclusion, true);
         while (iterator5->Next()) {
@@ -41,7 +41,21 @@ namespace searchModule {
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, sheaf);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, iterator5->Get(3));
             //     IteratorUtils::addSetToOutline(ms_context.get(), sheaf, answer);
+        }*/
+
+
+        ScIterator5Ptr it_5 = IteratorUtils::getIterator5(ms_context.get(), param, Myodes::rrel_main_key_sc_element);
+        ScAddr elem, initStruct, resultStruct;
+        if (it_5->Next())
+        {
+            elem = it_5->Get(2);
+            initStruct = ms_context->GetEdgeSource(elem);
+            resultStruct = ms_context->GetEdgeTarget(elem);
         }
+
+        display::printEl(ms_context.get(), initStruct);
+
+
 
         AgentUtils::finishAgentWork(ms_context.get(), questionNode, answer);
         return SC_RESULT_OK;

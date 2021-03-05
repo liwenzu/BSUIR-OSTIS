@@ -12,5 +12,6 @@ namespace searchModule
 
     ScAddr Myodes::question_find_inclusion;
     ScAddr Myodes::nrel_inclusion;
+    ScAddr Myodes::rrel_main_key_sc_element;
 
 }
