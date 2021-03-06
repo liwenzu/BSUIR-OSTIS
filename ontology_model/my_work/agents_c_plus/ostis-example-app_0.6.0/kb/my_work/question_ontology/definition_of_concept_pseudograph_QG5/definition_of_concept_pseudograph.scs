@@ -1,0 +1,93 @@
+Question_Graph_5
+=> nrel_correct_answer:
+    ..structure1;
+=> nrel_user_answer:
+    ..structure2;;
+..structure1
+=
+[*
+..tup1
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru1;
+-> ..tup2 (*
+        <- nrel_equivalence;;
+        -> ..stru2 (*
+            <- atomic_existence;;
+            *);;
+        -> ..tup3 (*
+            <- nrel_existence;;
+            -> rrel_bind_variables:
+                ..stru3;;
+            -> ..stru4 (*
+                <- atomic_existence;;
+                *);;
+            *);; 
+        *);;
+*];;
+..structure2
+=
+[*
+..tup12
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru12;
+-> ..tup22 (*
+        <- nrel_equivalence;;
+        -> ..stru22 (*
+            <- atomic_existence;;
+            *);;
+        -> ..tup32 (*
+            <- nrel_existence;;
+            -> rrel_bind_variables:
+                ..stru32;;
+            -> ..stru42 (*
+                <- atomic_existence;;
+                *);;
+            *);; 
+        *);;
+*];;
+..tup1
+<- sc_node_not_binary_tuple;;
+..tup2
+<- sc_node_not_binary_tuple;;
+..tup3
+<- sc_node_not_binary_tuple;;
+..tup12
+<- sc_node_not_binary_tuple;;
+..tup22
+<- sc_node_not_binary_tuple;;
+..tup32
+<- sc_node_not_binary_tuple;;
+..stru1
+<- sc_node_struct;
+-> _H;;
+..stru2 = [*
+concept_pseudograph _-> _H;;
+*];;
+..stru3
+<- sc_node_struct;
+-> _V;
+-> _V1;;
+..stru4 = [*
+_H _-> rrel_vertex:: _V; _V1;;
+_H _-> rrel_edge:: (_V _<=> _V1); (_V _<=> _V1);;
+*];;
+..stru12
+<- sc_node_struct;
+-> _G;;
+..stru22 = [*
+concept_pseudograph _-> _G;;
+*];;
+..stru32
+<- sc_node_struct;
+-> _C;
+-> _C1;;
+..stru42 = [*
+_G _-> rrel_vertex:: _C; _C1;;
+_G _-> rrel_edge:: (_C _<=> _C1); (_C _<=> _C1);;
+*];;
+
+
+
+

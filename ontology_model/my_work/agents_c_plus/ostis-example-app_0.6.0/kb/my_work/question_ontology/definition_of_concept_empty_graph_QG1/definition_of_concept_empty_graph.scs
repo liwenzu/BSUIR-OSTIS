@@ -1,0 +1,77 @@
+Question_Graph_1
+=> nrel_correct_answer:
+    ..structure1;
+=> nrel_user_answer:
+    ..structure2;;
+..structure1
+=
+[*
+..tup1
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru1;
+-> ..tup2 (*
+        <- nrel_equivalence;;
+        -> ..stru2 (*
+            <- atomic_existence;;
+            *);;
+        -> ..tup3 (*
+            <- negation;;
+            -> ..stru3 (*
+                <- atomic_existence;;
+                *);;
+            *);; 
+        *);;
+*];;
+..structure2
+=
+[*
+..tup12
+<- nrel_generality;
+-> rrel_bind_variables:
+       ..stru12;
+-> ..tup22 (*
+        <- nrel_equivalence;;
+        -> ..stru22 (*
+            <- atomic_existence;;
+            *);;
+        -> ..tup32 (*
+            <- negation;;
+            -> ..stru32 (*
+                <- atomic_existence;;
+                *);;
+            *);; 
+        *);;
+*];;
+..tup1
+<- sc_node_not_binary_tuple;;
+..tup2
+<- sc_node_not_binary_tuple;;
+..tup3
+<- sc_node_not_binary_tuple;;
+..tup12
+<- sc_node_not_binary_tuple;;
+..tup22
+<- sc_node_not_binary_tuple;;
+..tup32
+<- sc_node_not_binary_tuple;;
+..stru1
+<- sc_node_struct;
+-> _G;;
+..stru2 = [*
+concept_empty_graph _-> _G;;
+*];;
+..stru3 = [*
+_G 
+_-> rrel_edge:: .._els1;;
+*];;
+..stru12
+<- sc_node_struct;
+-> _H;;
+..stru22 = [*
+concept_empty_graph _-> _H;;
+*];;
+..stru32 = [*
+_H 
+_-> rrel_edge:: .._els12;;
+*];;

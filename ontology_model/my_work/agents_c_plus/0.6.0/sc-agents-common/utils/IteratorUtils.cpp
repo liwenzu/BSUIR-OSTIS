@@ -37,28 +37,6 @@ vector<ScAddr> IteratorUtils::getAllWithType(ScMemoryContext * ms_context, const
   return elementList;
 }
 
-vector<ScAddr> IteratorUtils::getAllWithTypeVar(ScMemoryContext * ms_context, const ScAddr & set, ScType scType)
-{
-    vector<ScAddr> elementList;
-    ScIterator3Ptr iterator3 = ms_context->Iterator3(set, ScType::EdgeAccessVarPosPerm, scType);
-    while (iterator3->Next())
-    {
-        elementList.push_back(iterator3->Get(2));
-    }
-    return elementList;
-}
-
-vector<ScAddr> IteratorUtils::getAllWithTypeIn(ScMemoryContext * ms_context, const ScAddr & set, ScType scType)
-{
-    vector<ScAddr> elementList;
-    ScIterator3Ptr iterator3 = ms_context->Iterator3(scType, ScType::EdgeAccessConstPosPerm, set);
-    while (iterator3->Next())
-    {
-        elementList.push_back(iterator3->Get(0));
-    }
-    return elementList;
-}
-
 vector<ScAddr> IteratorUtils::getAllByInRelation(
       ScMemoryContext * ms_context,
       const ScAddr & node,
@@ -71,20 +49,6 @@ vector<ScAddr> IteratorUtils::getAllByInRelation(
     elementList.push_back(iterator5->Get(0));
   }
   return elementList;
-}
-
-vector<ScAddr> IteratorUtils::getAllByOutRelation(
-            ScMemoryContext * ms_context,
-            const ScAddr & node,
-            const ScAddr & relation)
-{
-    vector<ScAddr> elementList;
-    ScIterator5Ptr iterator5 = IteratorUtils::getIterator5(ms_context, node, relation);
-    while (iterator5->Next())
-    {
-        elementList.push_back(iterator5->Get(2));
-    }
-    return elementList;
 }
 
 ScAddr IteratorUtils::getFirstByInRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation)

@@ -25,13 +25,7 @@ public:
 
   static vector<ScAddr> getAllWithType(ScMemoryContext * ms_context, const ScAddr & set, ScType scType);
 
-  static vector<ScAddr> getAllWithTypeVar(ScMemoryContext * ms_context, const ScAddr & set, ScType scType);
-
-  static vector<ScAddr> getAllWithTypeIn(ScMemoryContext * ms_context, const ScAddr & set, ScType scType);
-
   static vector<ScAddr> getAllByInRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);
-
-  static vector<ScAddr> getAllByOutRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);
 
   static ScAddr getFirstByInRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);
 

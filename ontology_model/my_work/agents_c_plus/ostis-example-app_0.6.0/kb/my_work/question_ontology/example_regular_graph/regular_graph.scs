@@ -1,0 +1,173 @@
+Question_1 => nrel_correct_answer: ..struct1;
+           => nrel_user_answer: ..struct2;;
+..elem1
+<- sc_node_not_binary_tuple;;
+..elem2
+<- sc_node_not_binary_tuple;;
+..elem3
+<- sc_node_not_binary_tuple;;
+..elem4
+<- sc_node_not_binary_tuple;;
+..struct1
+=[*
+[LWZ]
+<= nrel_inclusion:
+  {
+  [liwenzu1];
+  [liwenzu1];
+  [liwenzu1]
+  };;
+nrel_mapping
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+	[соответствие*] (* <- lang_ru;; *);
+	[mapping*] (* <- lang_en;; *);
+=> nrel_idtf:
+	[наличие соответствия*] (* <- lang_ru;; *);
+<- binary_relation;
+<= nrel_subdividing:
+	{
+		nrel_mapping_between_non_intersecting_sets;
+		nrel_mapping_between_strict_intersecting_sets;
+		nrel_mapping_input_and_output_sets_of_which_coincide
+	};
+<= nrel_subdividing:
+	{
+		nrel_total_mapping;
+		nrel_partial_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_surjection;
+		nrel_non_surjective_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_functional_mapping;
+		nrel_ambiguous_mapping
+	};;
+rrel_1
+->(nrel_functional_mapping -> non_oriented_set);;
+[BSUIR]
+<= nrel_subdividing:
+..elem1
+(*
+-> rrel_1:
+[NNT];;
+-> rrel_2:
+[office];;
+-> nrel_functional_mapping;;
+*);;
+nrel_functional_mapping
+-> ..elem3
+(*
+-> rrel_1:
+nrel_subdividing;;
+-> nrel_inclusion;;
+-> [zxcv];;
+*);;
+infinite_set
+<=> nrel_equivalence:
+finite_set;;
+[LWZ]
+<=> nrel_equivalence:
+[LIWENZU];;
+nrel_subdividing
+=> nrel_main_idtf:
+...;;
+...
+=> nrel_main_idtf:
+[generate];;
+...
+-> rrel_1:
+[china];;
+[1234]
+-> rrel_2:
+...;;
+...
+-> [qwer];;
+[rewq]
+-> ...;;
+  *];;
+..struct2
+=[*
+[LWZ]
+<= nrel_inclusion:
+{
+  [liwenzu1];
+  [liwenzu1];
+  [liwenzu1]
+};;
+nrel_mapping
+<- sc_node_norole_relation;
+=> nrel_main_idtf:
+	[соответствие*] (* <- lang_ru;; *);
+	[mapping*] (* <- lang_en;; *);
+=> nrel_idtf:
+	[наличие соответствия*] (* <- lang_ru;; *);
+<- binary_relation;
+<= nrel_subdividing:
+	{
+		nrel_mapping_between_non_intersecting_sets;
+		nrel_mapping_between_strict_intersecting_sets;
+		nrel_mapping_input_and_output_sets_of_which_coincide
+	};
+<= nrel_subdividing:
+	{
+		nrel_total_mapping;
+		nrel_partial_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_surjection;
+		nrel_non_surjective_mapping
+	};
+<= nrel_subdividing:
+	{
+		nrel_functional_mapping;
+		nrel_ambiguous_mapping
+	};;
+rrel_1
+->(nrel_functional_mapping -> non_oriented_set);;
+[BSUIR]
+<= nrel_subdividing:
+..elem2
+(*
+-> rrel_1:
+[NNT];;
+-> rrel_3:
+[office];;
+-> nrel_functional_mapping;;
+*);;
+nrel_functional_mapping
+-> ..elem4
+(*
+-> rrel_1:
+nrel_subdividing;;
+-> nrel_inclusion;;
+-> rrel_2:
+[zxcv];;
+*);;
+infinite_set
+<=> nrel_equivalence:
+finite_set;;
+[LIWENZU]
+<=> nrel_equivalence:
+[LWZ];;
+nrel_subdividing
+=> nrel_main_idtf:
+...;;
+...
+=> nrel_main_idtf:
+[generate1];;
+...
+-> rrel_1:
+[china];;
+[1234]
+-> rrel_2:
+...;;
+...
+-> [qwer];;
+[rewq]
+-> ...;;
+*];;

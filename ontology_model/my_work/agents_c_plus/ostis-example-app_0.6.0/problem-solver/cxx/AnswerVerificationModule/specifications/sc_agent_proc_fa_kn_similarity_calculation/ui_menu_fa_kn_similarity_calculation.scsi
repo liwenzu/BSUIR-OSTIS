@@ -1,0 +1,20 @@
+ui_menu_fa_kn_similarity_calculation
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+<- ui_one_argument_command_class;
+=> nrel_main_idtf:
+                      [Вычисление подобия фактических знаний] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+                      [Factual knowledge similarity calculation] (* <- lang_en;; *);
+=> ui_nrel_command_template:
+                      [*
+                         factual_kn_similarity_calculation _-> ._factual_kn_similarity_calculation_instance
+                                      (*
+                                       _-> ui_arg_1;;
+                                      *);;
+                         ._factual_kn_similarity_calculation_instance _<- question;;
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Вычисление подобия фактических знаний: $ui_arg_1] (* <- lang_ru;; *);
+=> ui_nrel_command_lang_template:
+                       [Factual knowledge similarity calculation: $ui_arg_1] (* <- lang_en;; *);;
