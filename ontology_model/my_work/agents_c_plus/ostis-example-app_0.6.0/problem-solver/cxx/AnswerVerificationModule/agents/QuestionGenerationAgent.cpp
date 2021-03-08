@@ -26,44 +26,41 @@ namespace answerVerificationModule {
             if (!param.IsValid())
                 return SC_RESULT_ERROR_INVALID_PARAMS;
             ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
-            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
-
+//            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
 
             ScAddr initStruct = LogicRuleUtils::getIfStatement(ms_context.get(), param);
             ScAddr resultStruct = LogicRuleUtils::getElseStatement(ms_context.get(), param);
 
-
             ScTemplate initStructTemplate;
-            if (ms_context->HelperBuildTemplate(initStructTemplate, initStruct)) {
+            if (ms_context->HelperBuildTemplate(initStructTemplate, initStruct))
+            {
                 ScTemplateSearchResult searchResult;
-                if (ms_context->HelperSearchTemplate(initStructTemplate, searchResult)) {
+                if (ms_context->HelperSearchTemplate(initStructTemplate, searchResult))
+                {
 
                     cout << "Hello searchResult" << endl;
-
                     cout << searchResult.Size() << endl;
 
-                    for (int i=0; i<1; i++)
+                    ScTemplate resultStructTemplate;
+                    ScTemplateParams  templateParams;
+                    string str = "12345";
+                    string str1="_op";
+                    ScTemplateSearchResultItem searchResultItem(searchResult[0]);
+                    for (int i=0; i<5; i++)
                     {
-                        ScTemplateSearchResultItem searchResultItem = searchResult[i];
-                        for (int j=0; j<searchResultItem.Size();j++)
-                        {
-                            ScAddr elem = searchResultItem[j];
-
-                            if (!ms_context->HelperCheckEdge(answer, elem, ScType::EdgeAccessConstPosPerm))
-                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
-
-
-
-
-//                            Display::printNl(ms_context.get(),elem);
-//                            cout << " " << endl;
-                        }
-
-//                        cout << "***************************************" << endl;
-
+                        ScAddr elem = searchResultItem[str1+str[i]];
+                        templateParams.Add(str1+str[i], elem);
                     }
+                    ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
+                    ScTemplateGenResult genResult;
+                    if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams))
+                    {
+                        cout << "Hello genResult" << endl;
+                        cout << genResult.Size() << endl;
 
-
+                        for (int i=0; i<genResult.Size(); i++)
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[i]);
+                    }
                 }
             }
 
@@ -75,3 +72,31 @@ namespace answerVerificationModule {
     }
 }
 
+
+
+//                    for (int i=0; i<1; i++)
+//                    {
+//                        ScTemplateSearchResultItem searchResultItem = searchResult[i];
+//
+//                        ScAddr elem1 = searchResultItem["_op1"];
+//                        Display::printNl(ms_context.get(), elem1);
+//                        cout << " " << endl;
+//                        ScAddr elem2 = searchResultItem["_op2"];
+//                        Display::printNl(ms_context.get(), elem2);
+//                        cout << " " << endl;
+//                        ScAddr elem3 = searchResultItem["_op3"];
+//                        Display::printNl(ms_context.get(), elem3);
+//                        cout << " " << endl;
+//                        ScAddr elem4 = searchResultItem["_op4"];
+//                        Display::printNl(ms_context.get(), elem4);
+//                        cout << " " << endl;
+//                        ScAddr elem5 = searchResultItem["_op5"];
+//                        Display::printNl(ms_context.get(), elem5);
+//                        cout << " " << endl;
+//                        for (int j=0; j<searchResultItem.Size();j++)
+//                        {
+//                            ScAddr elem = searchResultItem[j];
+//                            if (!ms_context->HelperCheckEdge(answer, elem, ScType::EdgeAccessConstPosPerm))
+//                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
+//                        }
+//                    }
