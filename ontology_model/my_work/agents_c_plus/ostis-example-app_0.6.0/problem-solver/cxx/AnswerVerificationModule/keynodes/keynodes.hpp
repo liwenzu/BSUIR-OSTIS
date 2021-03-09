@@ -83,6 +83,12 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("rrel_main_key_sc_element"), ForceCreate)
         static ScAddr rrel_main_key_sc_element;
+
+        SC_PROPERTY(Keynode("subject_domain_of_actions_and_tasks"), ForceCreate)
+        static ScAddr subject_domain_of_actions_and_tasks;
+
+        SC_PROPERTY(Keynode("nrel_inclusion"), ForceCreate)
+        static ScAddr nrel_inclusion;
     };
 
 } // namespace exampleModule

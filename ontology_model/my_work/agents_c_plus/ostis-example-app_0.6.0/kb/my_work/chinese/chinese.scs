@@ -1,0 +1,14 @@
+languages
+->lang_ch(*=>nrel_main_idtf:[简体中文](*<-lang_ch;;*);
+                            [Chinese language](*<-lang_en;;*);
+                            [Китайский язык](*<-lang_ru;;*);;
+                            
+         *);;
+
+lang_ch<-sc_node_not_relation;;
+
+lang_en
+=>nrel_main_idtf:[英语](*<-lang_ch;;*);;
+
+lang_ru
+=>nrel_main_idtf:[俄语](*<-lang_ch;;*);;

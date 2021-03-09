@@ -32,6 +32,10 @@ namespace answerVerificationModule {
             ScAddr resultStruct = LogicRuleUtils::getElseStatement(ms_context.get(), param);
 
             ScTemplate initStructTemplate;
+//            ScTemplateParams  templateParams1;
+//            templateParams1.Add("_subject_domain_of_actions_and_tasks", Keynodes::subject_domain_of_actions_and_tasks);
+//            templateParams1.Add("_nrel_inclusion", Keynodes::nrel_inclusion);
+
             if (ms_context->HelperBuildTemplate(initStructTemplate, initStruct))
             {
                 ScTemplateSearchResult searchResult;
@@ -60,6 +64,8 @@ namespace answerVerificationModule {
 
                         for (int i=0; i<genResult.Size(); i++)
                             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[i]);
+                        ScAddr elem = genResult["_question_number"];
+                        ms_context->HelperSetSystemIdtf("Q_Generated_1", elem);
                     }
                 }
             }
