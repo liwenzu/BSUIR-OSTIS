@@ -6,6 +6,7 @@
 
 #include "AnswerVerificationModule.hpp"
 #include "keynodes/keynodes.hpp"
+#include "keynodes/genKeynodes.hpp"
 #include "agents/FasimilarityAgent.hpp"
 #include "agents/LosimilarityAgent.hpp"
 #include "agents/QuestionGenerationAgent.hpp"
@@ -17,6 +18,8 @@ SC_IMPLEMENT_MODULE(AnswerVerificationModule)
 sc_result AnswerVerificationModule::InitializeImpl()
 {
     if (!answerVerificationModule::Keynodes::InitGlobal())
+        return SC_RESULT_ERROR;
+    if (!answerVerificationModule::GenKeynodes::InitGlobal())
         return SC_RESULT_ERROR;
 
     SC_AGENT_REGISTER(FasimilarityAgent)

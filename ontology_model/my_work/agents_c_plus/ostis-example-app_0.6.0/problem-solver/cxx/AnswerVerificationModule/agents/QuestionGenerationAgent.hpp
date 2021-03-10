@@ -3,11 +3,11 @@
 * Distributed under the MIT License
 * (See accompanying file COPYING.MIT or copy at http://opensource.org/licenses/MIT)
 */
+
 #pragma once
-
 #include <sc-memory/kpm/sc_agent.hpp>
-
 #include "keynodes/keynodes.hpp"
+#include "keynodes/genKeynodes.hpp"
 #include "QuestionGenerationAgent.generated.hpp"
 
 namespace answerVerificationModule
@@ -15,7 +15,7 @@ namespace answerVerificationModule
 
     class QuestionGenerationAgent : public ScAgent
     {
-        SC_CLASS(Agent, Event(Keynodes::question_generation, ScEvent::Type::AddOutputEdge))
+        SC_CLASS(Agent, Event(GenKeynodes::question_generation, ScEvent::Type::AddOutputEdge))
         SC_GENERATED_BODY()
     };
 

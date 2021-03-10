@@ -7,9 +7,9 @@
 #pragma once
 
 #include <sc-memory/kpm/sc_agent.hpp>
-
 #include "keynodes/keynodes.hpp"
 #include "FasimilarityAgent.generated.hpp"
+
 
 namespace answerVerificationModule
 {
