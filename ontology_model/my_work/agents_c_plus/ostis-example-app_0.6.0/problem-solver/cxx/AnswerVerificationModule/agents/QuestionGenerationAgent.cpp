@@ -15,6 +15,7 @@
 #include "sc-agents-common/utils/LogicRuleUtils.hpp"
 #include "utils/IteratorUtilsLocal.hpp"
 #include <algorithm>
+#include <random>
 
 
 
@@ -46,13 +47,16 @@ namespace answerVerificationModule {
 
                     cout << "Hello searchResult" << endl;
                     cout << searchResult.Size() << endl;
+//Check for duplicate elements
+                     vector<ScAddr> elemDuplicate;
 
+//                    int  questionNumber = 0;
 
-
-                    for (int i=0; i<searchResult.Size(); i+=600)
+                    for (int i=0; i<searchResult.Size(); i++)
                     {
                         ScTemplateSearchResultItem searchResultItem = searchResult[i];
                         ScAddr keyElem = searchResultItem["_opkq"];
+                        ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
                         vector<ScAddr> keyElemList;
                         ScIterator5Ptr it_5 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
                         if (it_5->Next())
@@ -61,11 +65,21 @@ namespace answerVerificationModule {
                             auto  it = find(keyElemList.begin(), keyElemList.end(), keyElem);
                             if (it != keyElemList.end())
                                 keyElemList.erase(it);
+//Remove duplicate elements
+                            int delI = 0;
+                            for (auto elemLocal : keyElemList)
+                            {
+                                if (ms_context->HelperCheckEdge(keyElem, elemLocal, ScType::EdgeDCommonConst))
+                                    keyElemList.erase(keyElemList.begin()+delI);
+                                delI++;
+                            }
                         }
                         else
                             keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, GenKeynodes::nrel_inclusion);
-                        if (keyElemList.size() >2 )
+                        auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                        if (keyElemList.size() >2 && elemRelation == GenKeynodes::nrel_inclusion && itDup == elemDuplicate.end())
                         {
+//                            questionNumber++;
                             ScTemplate resultStructTemplate;
                             ScTemplateParams  templateParams;
                             ScAddr correctElem = searchResultItem["_opcs"];
@@ -73,7 +87,7 @@ namespace answerVerificationModule {
                             templateParams.Add("_opcs", correctElem);
                             string str = "123";
                             string str1="_op";
-
+                            shuffle(keyElemList.begin(), keyElemList.end(), std::mt19937(std::random_device()()));
                             for (int j=0; j<3; j++)
                             {
                                 ScAddr elem = keyElemList[j];
@@ -93,11 +107,13 @@ namespace answerVerificationModule {
                                 string strQuestion = "Generated_Question";
                                 string strNum = to_string(num);
                                 ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+
+
+                                elemDuplicate.push_back(keyElem);
+
+//                            if (questionNumber > 3) break;
+//                                break;
                             }
-//                            if (i > 3) break;
-
-
-
                         }
                     }
 
