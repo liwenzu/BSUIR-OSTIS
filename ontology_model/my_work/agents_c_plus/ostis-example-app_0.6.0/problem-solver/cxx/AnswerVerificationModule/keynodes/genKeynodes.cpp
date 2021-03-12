@@ -15,4 +15,6 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::rrel_key_sc_element;
     ScAddr GenKeynodes::choice_the_correct_option;
     ScAddr GenKeynodes::objective_questions;
+    ScAddr GenKeynodes::multiple_choice_questions_with_multiple_options;
+    ScAddr GenKeynodes::multiple_choice_questions_with_single_option;
 }

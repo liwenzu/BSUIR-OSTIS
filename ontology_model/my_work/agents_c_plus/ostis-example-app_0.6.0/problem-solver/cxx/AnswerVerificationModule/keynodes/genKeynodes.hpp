@@ -42,5 +42,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("objective_questions"), ForceCreate)
         static ScAddr objective_questions;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_with_multiple_options"), ForceCreate)
+        static ScAddr multiple_choice_questions_with_multiple_options;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_with_single_option"), ForceCreate)
+        static ScAddr multiple_choice_questions_with_single_option;
     };
 }
