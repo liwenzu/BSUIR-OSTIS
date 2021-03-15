@@ -49,6 +49,7 @@ namespace answerVerificationModule {
                     cout << searchResult.Size() << endl;
 
 
+
                     if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_with_single_option, ScType::EdgeAccessConstPosPerm))
                     {
                         //Check for duplicate elements
@@ -127,6 +128,20 @@ namespace answerVerificationModule {
                             vector<ScAddr> keyElemListCorrect;
                             keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, GenKeynodes::nrel_inclusion);
                             keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), GenKeynodes::subject_domain_of_actions_and_tasks, GenKeynodes::rrel_not_maximum_studied_object_class);
+                            auto  it = find(keyElemList.begin(), keyElemList.end(), keyElem);
+                            if (it != keyElemList.end())
+                                keyElemList.erase(it);
+                            it = find(keyElemListCorrect.begin(), keyElemListCorrect.end(), keyElem);
+                            if (it != keyElemListCorrect.end())
+                                keyElemListCorrect.erase(it);
+//Remove duplicate elements
+                            int delI = 0;
+                            for (auto elemLocal : keyElemListCorrect)
+                            {
+                                if (ms_context->HelperCheckEdge(keyElem, elemLocal, ScType::EdgeDCommonConst))
+                                    keyElemListCorrect.erase(keyElemListCorrect.begin()+delI);
+                                delI++;
+                            }
                             auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
                             if (keyElemList.size() > 2 && keyElemListCorrect.size() > 2 && elemRelation == GenKeynodes::nrel_inclusion && itDup == elemDuplicate.end())
                             {
@@ -138,12 +153,24 @@ namespace answerVerificationModule {
                                 string str2="_opcs";
                                 shuffle(keyElemList.begin(), keyElemList.end(), std::mt19937(std::random_device()()));
                                 shuffle(keyElemListCorrect.begin(), keyElemListCorrect.end(), std::mt19937(std::random_device()()));
-                                for (int j=0; j<2; j++)
+                                ScIterator5Ptr it_51 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
+                                if (it_51->Next())
                                 {
-                                    ScAddr elem = keyElemList[j];
-                                    templateParams.Add(str1+str[j], elem);
-                                    elem = keyElemListCorrect[j];
-                                    templateParams.Add(str2+str[j], elem);
+                                    for (int j=0; j<2; j++)
+                                    {
+                                        ScAddr elem = keyElemList[j];
+                                        templateParams.Add(str2+str[j], elem);
+                                        elem = keyElemListCorrect[j];
+                                        templateParams.Add(str1+str[j], elem);
+                                    }
+                                } else{
+                                    for (int j=0; j<2; j++)
+                                    {
+                                        ScAddr elem = keyElemList[j];
+                                        templateParams.Add(str1+str[j], elem);
+                                        elem = keyElemListCorrect[j];
+                                        templateParams.Add(str2+str[j], elem);
+                                    }
                                 }
                                 ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
                                 ScTemplateGenResult genResult;
@@ -164,6 +191,11 @@ namespace answerVerificationModule {
                             }
                         }
                     }
+
+
+
+
+
                 }
             }
 
@@ -174,57 +206,3 @@ namespace answerVerificationModule {
             return SC_RESULT_OK;
     }
 }
-
-
-
-//                    for (int i=0; i<1; i++)
-//                    {
-//                        ScTemplateSearchResultItem searchResultItem = searchResult[i];
-//
-//                        ScAddr elem1 = searchResultItem["_op1"];
-//                        Display::printNl(ms_context.get(), elem1);
-//                        cout << " " << endl;
-//                        ScAddr elem2 = searchResultItem["_op2"];
-//                        Display::printNl(ms_context.get(), elem2);
-//                        cout << " " << endl;
-//                        ScAddr elem3 = searchResultItem["_op3"];
-//                        Display::printNl(ms_context.get(), elem3);
-//                        cout << " " << endl;
-//                        ScAddr elem4 = searchResultItem["_op4"];
-//                        Display::printNl(ms_context.get(), elem4);
-//                        cout << " " << endl;
-//                        ScAddr elem5 = searchResultItem["_op5"];
-//                        Display::printNl(ms_context.get(), elem5);
-//                        cout << " " << endl;
-//                        for (int j=0; j<searchResultItem.Size();j++)
-//                        {
-//                            ScAddr elem = searchResultItem[j];
-//                            if (!ms_context->HelperCheckEdge(answer, elem, ScType::EdgeAccessConstPosPerm))
-//                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
-//                        }
-//                    }
-
-
-
-/*                    ScTemplate resultStructTemplate;
-                    ScTemplateParams  templateParams;
-                    string str = "12345";
-                    string str1="_op";
-                    ScTemplateSearchResultItem searchResultItem(searchResult[0]);
-                    for (int i=0; i<5; i++)
-                    {
-                        ScAddr elem = searchResultItem[str1+str[i]];
-                        templateParams.Add(str1+str[i], elem);
-                    }
-                    ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
-                    ScTemplateGenResult genResult;
-                    if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams))
-                    {
-                        cout << "Hello genResult" << endl;
-                        cout << genResult.Size() << endl;
-
-                        for (int i=0; i<genResult.Size(); i++)
-                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[i]);
-                        ScAddr elem = genResult["_question_number"];
-                        ms_context->HelperSetSystemIdtf("Q_Generated_1", elem);
-                    }*/
