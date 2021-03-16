@@ -24,6 +24,15 @@ using namespace utils;
 
 namespace answerVerificationModule {
 
+    bool cmp(ScAddr a, ScAddr b)
+    {
+        return a.Hash() > b.Hash();
+    }
+    bool equalScAddr(ScAddr a, ScAddr b)
+    {
+        return a.Hash() == b.Hash();
+    }
+
     SC_AGENT_IMPLEMENTATION(QuestionGenerationAgent) {
             if (!edgeAddr.IsValid())
                 return SC_RESULT_ERROR;
@@ -47,8 +56,6 @@ namespace answerVerificationModule {
 
                     cout << "Hello searchResult" << endl;
                     cout << searchResult.Size() << endl;
-
-
 
                     if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_with_single_option, ScType::EdgeAccessConstPosPerm))
                     {
@@ -124,10 +131,34 @@ namespace answerVerificationModule {
                             ScTemplateSearchResultItem searchResultItem = searchResult[i];
                             ScAddr keyElem = searchResultItem["_opkq"];
                             ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
+                            ScAddr elemOptionCS = searchResultItem["_opcs1"];
+                            ScAddr elemOption1 = searchResultItem["_op1"];
                             vector<ScAddr> keyElemList;
                             vector<ScAddr> keyElemListCorrect;
                             keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, GenKeynodes::nrel_inclusion);
                             keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), GenKeynodes::subject_domain_of_actions_and_tasks, GenKeynodes::rrel_not_maximum_studied_object_class);
+
+
+                            if ((!ms_context->HelperCheckEdge(keyElem, elemOptionCS, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(GenKeynodes::subject_domain_of_actions_and_tasks, elemOptionCS, ScType::EdgeAccessConstPosPerm))
+                                || (!ms_context->HelperCheckEdge(keyElem, elemOption1, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(GenKeynodes::subject_domain_of_actions_and_tasks, elemOption1, ScType::EdgeAccessConstPosPerm)))
+                            {
+                                vector<ScAddr> elemCsListSub;
+                                for (auto elemCs : keyElemList)
+                                {
+                                    vector<ScAddr> elemCsList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemCs, GenKeynodes::nrel_inclusion);
+                                    for (auto elemCsCp : elemCsList)
+                                        elemCsListSub.push_back(elemCsCp);
+                                }
+                                keyElemList.insert(keyElemList.end(), elemCsListSub.begin(), elemCsListSub.end());
+                            }
+
+
+                            sort(keyElemList.begin(), keyElemList.end(), cmp);
+                            keyElemList.erase(unique(keyElemList.begin(), keyElemList.end(), equalScAddr), keyElemList.end());
+                            sort(keyElemListCorrect.begin(), keyElemListCorrect.end(), cmp);
+                            keyElemListCorrect.erase(unique(keyElemListCorrect.begin(), keyElemListCorrect.end(), equalScAddr), keyElemListCorrect.end());
+
+
                             auto  it = find(keyElemList.begin(), keyElemList.end(), keyElem);
                             if (it != keyElemList.end())
                                 keyElemList.erase(it);
