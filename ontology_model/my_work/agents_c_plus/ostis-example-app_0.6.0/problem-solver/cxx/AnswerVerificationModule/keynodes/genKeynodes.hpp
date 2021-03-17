@@ -48,5 +48,8 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("multiple_choice_questions_with_single_option"), ForceCreate)
         static ScAddr multiple_choice_questions_with_single_option;
+
+        SC_PROPERTY(Keynode("nrel_subdividing"), ForceCreate)
+        static ScAddr nrel_subdividing;
     };
 }

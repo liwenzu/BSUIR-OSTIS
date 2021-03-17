@@ -17,4 +17,5 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::objective_questions;
     ScAddr GenKeynodes::multiple_choice_questions_with_multiple_options;
     ScAddr GenKeynodes::multiple_choice_questions_with_single_option;
+    ScAddr GenKeynodes::nrel_subdividing;
 }
