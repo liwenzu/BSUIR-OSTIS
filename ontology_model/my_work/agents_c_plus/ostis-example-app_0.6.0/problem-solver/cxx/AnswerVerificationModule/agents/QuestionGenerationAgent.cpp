@@ -224,30 +224,52 @@ namespace answerVerificationModule {
                    }
                 } else if (ms_context->HelperCheckEdge(param, GenKeynodes::nrel_subdividing,
                                                        ScType::EdgeAccessConstPosPerm)) {
-                    cout << "nrel_subdividing" << endl;
-
-
-
+                    vector<ScAddr> elemDuplicate;
                     for (int i = 0; i < searchResult.Size(); i++) {
                         ScTemplateSearchResultItem searchResultItem = searchResult[i];
-                        for (int j = 0; j < searchResultItem.Size(); j++) {
-                            ScAddr elem = searchResultItem[j];
-                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
+                        ScAddr keyElem = searchResultItem["_opkq"];
+                        ScAddr elemRelation = searchResultItem["_nrel_subdividing"];
+                        auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                        if (elemRelation == GenKeynodes::nrel_subdividing && itDup == elemDuplicate.end()) {
+                            ScTemplate resultStructTemplate;
+                            ScTemplateParams templateParams;
+                            templateParams.Add("_opkq", keyElem);
+                            string str = "123";
+                            string str1 = "_op";
+                            string str2 = "_opcs";
+                            for (int j = 0; j < 2; j++) {
+                                ScAddr elem = searchResultItem[str1 + str[j]];
+                                templateParams.Add(str1 + str[j], elem);
+                                elem = searchResultItem[str2 + str[j]];;
+                                templateParams.Add(str2 + str[j], elem);
+                            }
+                            ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
+                            ScTemplateGenResult genResult;
+                            if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                cout << "Hello genResult" << endl;
+                                cout << genResult.Size() << endl;
+                                for (int k = 0; k < genResult.Size(); k++)
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                ScAddr elem = genResult["_question_number"];
+                                vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                int num = objectQuestion.size();
+                                string strQuestion = "Generated_Question";
+                                string strNum = to_string(num);
+                                ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                elemDuplicate.push_back(keyElem);
+                            }
                         }
                     }
 
 
-
-
-
-
-
-
-
-
-
-
                 }
+
+
+
+
+
+
+
             }
         }
 
