@@ -228,9 +228,13 @@ namespace answerVerificationModule {
                     for (int i = 0; i < searchResult.Size(); i++) {
                         ScTemplateSearchResultItem searchResultItem = searchResult[i];
                         ScAddr keyElem = searchResultItem["_opkq"];
-                        ScAddr elemRelation = searchResultItem["_nrel_subdividing"];
+//                        ScAddr elemRelation = searchResultItem["_nrel_subdividing"];
+                        ScAddr elemTuple1 = searchResultItem["_tuple1"];
+                        ScAddr elemTuple2 = searchResultItem["_tuple2"];
+                        vector<ScAddr> elemTuple1List = IteratorUtils::getAllWithType(ms_context.get(), elemTuple1, ScType::Unknown);
+                        vector<ScAddr> elemTuple2List = IteratorUtils::getAllWithType(ms_context.get(), elemTuple2, ScType::Unknown);
                         auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
-                        if (elemRelation == GenKeynodes::nrel_subdividing && itDup == elemDuplicate.end()) {
+                        if (itDup == elemDuplicate.end() && elemTuple1List.size() == 2 && elemTuple2List.size() == 2) {
                             ScTemplate resultStructTemplate;
                             ScTemplateParams templateParams;
                             templateParams.Add("_opkq", keyElem);
@@ -260,6 +264,21 @@ namespace answerVerificationModule {
                             }
                         }
                     }
+
+
+
+
+/*                    for (int i=0; i<1; i++)
+                    {
+                        ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                        for (int j=0; j<searchResultItem.Size();j++)
+                        {
+                            ScAddr elem = searchResultItem[j];
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
+                        }
+                    }*/
+
+
 
 
                 }
