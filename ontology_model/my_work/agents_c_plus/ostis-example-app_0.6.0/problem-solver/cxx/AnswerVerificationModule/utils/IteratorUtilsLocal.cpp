@@ -48,4 +48,15 @@ namespace answerVerificationModule
         }
         return elementList;
     }
+
+    ScAddr IteratorUtilsLocal::getFirstWithType(ScMemoryContext *ms_context, const ScAddr & set, ScType scType)
+    {
+        ScAddr element;
+        ScIterator3Ptr iterator3 = ms_context->Iterator3(set, ScType::EdgeAccessConstPosPerm, scType);
+        if (iterator3->Next())
+        {
+            element = iterator3->Get(2);
+        }
+        return element;
+    }
 }

@@ -42,12 +42,9 @@ namespace answerVerificationModule {
             return SC_RESULT_ERROR_INVALID_PARAMS;
         ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
 //      ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
-
         ScAddr initStruct = LogicRuleUtils::getIfStatement(ms_context.get(), param);
         ScAddr resultStruct = LogicRuleUtils::getElseStatement(ms_context.get(), param);
-
         ScTemplate initStructTemplate;
-
         if (ms_context->HelperBuildTemplate(initStructTemplate, initStruct))
         {
             ScTemplateSearchResult searchResult;
@@ -57,14 +54,13 @@ namespace answerVerificationModule {
                 cout << "Hello searchResult" << endl;
                 cout << searchResult.Size() << endl;
 
-
-                if (ms_context->HelperCheckEdge(param, GenKeynodes::nrel_inclusion,
-                                                ScType::EdgeAccessConstPosPerm)) {
+                ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
+                if (ms_context->HelperCheckEdge(param, GenKeynodes::nrel_inclusion, ScType::EdgeAccessConstPosPerm) ||
+                    ms_context->HelperCheckEdge(param, GenKeynodes::nrel_strict_inclusion, ScType::EdgeAccessConstPosPerm)) {
+                   ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                    if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_with_single_option, ScType::EdgeAccessConstPosPerm))
                    {
-                       //Check for duplicate elements
-                        vector<ScAddr> elemDuplicate;
-//                      int  questionNumber = 0;
+                       vector<ScAddr> elemDuplicate;
                        for (int i=0; i<searchResult.Size(); i++)
                        {
                            ScTemplateSearchResultItem searchResultItem = searchResult[i];
@@ -74,26 +70,24 @@ namespace answerVerificationModule {
                            ScIterator5Ptr it_5 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
                            if (it_5->Next())
                            {
-                               keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), GenKeynodes::subject_domain_of_actions_and_tasks, GenKeynodes::rrel_not_maximum_studied_object_class);
+                               keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, GenKeynodes::rrel_not_maximum_studied_object_class);
                                auto  it = find(keyElemList.begin(), keyElemList.end(), keyElem);
                                if (it != keyElemList.end())
                                    keyElemList.erase(it);
-//Remove duplicate elements
                                int delI = 0;
                                for (auto elemLocal : keyElemList)
                                {
-                                   ScIterator5Ptr  it_51 = ms_context->Iterator5(keyElem, ScType::EdgeDCommonConst, elemLocal, ScType::EdgeAccessConstPosPerm, GenKeynodes::nrel_inclusion);
+                                   ScIterator5Ptr  it_51 = ms_context->Iterator5(keyElem, ScType::EdgeDCommonConst, elemLocal, ScType::EdgeAccessConstPosPerm, relationStruct);
                                    if (it_51->Next())
                                        keyElemList.erase(keyElemList.begin()+delI);
                                    delI++;
                                }
                            }
                            else
-                               keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, GenKeynodes::nrel_inclusion);
+                               keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
                            auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
-                           if (keyElemList.size() >2 && elemRelation == GenKeynodes::nrel_inclusion && itDup == elemDuplicate.end())
+                           if (keyElemList.size() >2 && elemRelation == relationStruct && itDup == elemDuplicate.end())
                            {
-   //                            questionNumber++;
                                ScTemplate resultStructTemplate;
                                ScTemplateParams  templateParams;
                                ScAddr correctElem = searchResultItem["_opcs"];
@@ -122,8 +116,6 @@ namespace answerVerificationModule {
                                    string strNum = to_string(num);
                                    ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
                                    elemDuplicate.push_back(keyElem);
-   //                            if (questionNumber > 3) break;
-   //                                break;
                                }
                            }
                        }
@@ -228,7 +220,6 @@ namespace answerVerificationModule {
                     for (int i = 0; i < searchResult.Size(); i++) {
                         ScTemplateSearchResultItem searchResultItem = searchResult[i];
                         ScAddr keyElem = searchResultItem["_opkq"];
-//                        ScAddr elemRelation = searchResultItem["_nrel_subdividing"];
                         ScAddr elemTuple1 = searchResultItem["_tuple1"];
                         ScAddr elemTuple2 = searchResultItem["_tuple2"];
                         vector<ScAddr> elemTuple1List = IteratorUtils::getAllWithType(ms_context.get(), elemTuple1, ScType::Unknown);
@@ -244,7 +235,7 @@ namespace answerVerificationModule {
                             for (int j = 0; j < 2; j++) {
                                 ScAddr elem = searchResultItem[str1 + str[j]];
                                 templateParams.Add(str1 + str[j], elem);
-                                elem = searchResultItem[str2 + str[j]];;
+                                elem = searchResultItem[str2 + str[j]];
                                 templateParams.Add(str2 + str[j], elem);
                             }
                             ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
@@ -264,11 +255,11 @@ namespace answerVerificationModule {
                             }
                         }
                     }
+                } /*else if (ms_context->HelperCheckEdge(param, GenKeynodes::nrel_strict_inclusion,
+                                                       ScType::EdgeAccessConstPosPerm)) {
 
 
-
-
-/*                    for (int i=0; i<1; i++)
+                    for (int i=0; i<1; i++)
                     {
                         ScTemplateSearchResultItem searchResultItem = searchResult[i];
                         for (int j=0; j<searchResultItem.Size();j++)
@@ -276,12 +267,14 @@ namespace answerVerificationModule {
                             ScAddr elem = searchResultItem[j];
                             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
                         }
-                    }*/
+                    }
 
 
 
+                }*/
 
-                }
+
+
 
 
 

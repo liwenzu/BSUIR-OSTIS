@@ -18,4 +18,6 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::multiple_choice_questions_with_multiple_options;
     ScAddr GenKeynodes::multiple_choice_questions_with_single_option;
     ScAddr GenKeynodes::nrel_subdividing;
+    ScAddr GenKeynodes::nrel_strict_inclusion;
+    ScAddr GenKeynodes::subject_domain_of_sets;
 }

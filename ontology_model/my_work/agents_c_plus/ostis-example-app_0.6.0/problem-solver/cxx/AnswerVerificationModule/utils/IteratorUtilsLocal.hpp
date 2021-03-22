@@ -24,5 +24,7 @@ namespace answerVerificationModule
         static vector<ScAddr> getAllWithTypeIn(ScMemoryContext * ms_context, const ScAddr & set, ScType scType);
 
         static vector<ScAddr> getAllByOutRelation(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation);
+
+        static ScAddr getFirstWithType(ScMemoryContext * ms_context, const ScAddr & set, ScType scType);
     };
 }

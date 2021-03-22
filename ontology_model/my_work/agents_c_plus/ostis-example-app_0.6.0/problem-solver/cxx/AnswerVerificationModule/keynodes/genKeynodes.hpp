@@ -51,5 +51,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("nrel_subdividing"), ForceCreate)
         static ScAddr nrel_subdividing;
+
+        SC_PROPERTY(Keynode("nrel_strict_inclusion"), ForceCreate)
+        static ScAddr nrel_strict_inclusion;
+
+        SC_PROPERTY(Keynode("subject_domain_of_sets"), ForceCreate)
+        static ScAddr subject_domain_of_sets;
     };
 }
