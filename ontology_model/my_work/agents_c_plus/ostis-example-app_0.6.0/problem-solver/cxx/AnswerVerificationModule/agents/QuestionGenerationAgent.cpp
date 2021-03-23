@@ -131,15 +131,15 @@ namespace answerVerificationModule {
                            ScAddr elemOption1 = searchResultItem["_op1"];
                            vector<ScAddr> keyElemList;
                            vector<ScAddr> keyElemListCorrect;
-                           keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, GenKeynodes::nrel_inclusion);
-                           keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), GenKeynodes::subject_domain_of_actions_and_tasks, GenKeynodes::rrel_not_maximum_studied_object_class);
-                           if ((!ms_context->HelperCheckEdge(keyElem, elemOptionCS, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(GenKeynodes::subject_domain_of_actions_and_tasks, elemOptionCS, ScType::EdgeAccessConstPosPerm))
-                               || (!ms_context->HelperCheckEdge(keyElem, elemOption1, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(GenKeynodes::subject_domain_of_actions_and_tasks, elemOption1, ScType::EdgeAccessConstPosPerm)))
+                           keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
+                           keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, GenKeynodes::rrel_not_maximum_studied_object_class);
+                           if ((!ms_context->HelperCheckEdge(keyElem, elemOptionCS, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(elemSubDomain, elemOptionCS, ScType::EdgeAccessConstPosPerm))
+                               || (!ms_context->HelperCheckEdge(keyElem, elemOption1, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(elemSubDomain, elemOption1, ScType::EdgeAccessConstPosPerm)))
                            {
                                vector<ScAddr> elemCsListSub;
                                for (auto elemCs : keyElemList)
                                {
-                                   vector<ScAddr> elemCsList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemCs, GenKeynodes::nrel_inclusion);
+                                   vector<ScAddr> elemCsList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemCs, relationStruct);
                                    for (auto elemCsCp : elemCsList)
                                        elemCsListSub.push_back(elemCsCp);
                                }
@@ -166,7 +166,7 @@ namespace answerVerificationModule {
                            if (it != keyElemListCorrect.end())
                                keyElemListCorrect.erase(it);
                            auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
-                           if (keyElemList.size() > 2 && keyElemListCorrect.size() > 2 && elemRelation == GenKeynodes::nrel_inclusion && itDup == elemDuplicate.end())
+                           if (keyElemList.size() > 2 && keyElemListCorrect.size() > 2 && elemRelation == relationStruct && itDup == elemDuplicate.end())
                            {
                                ScTemplate resultStructTemplate;
                                ScTemplateParams  templateParams;
