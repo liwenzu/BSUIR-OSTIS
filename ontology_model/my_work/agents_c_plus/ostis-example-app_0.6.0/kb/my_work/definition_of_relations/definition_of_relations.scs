@@ -148,3 +148,18 @@ nrel_incorrect_option
 => nrel_main_idtf:
         [неправильный вариант*] (* <- lang_ru;; *);
         [incorrect option*] (* <- lang_en;; *);;
+
+
+
+nrel_author
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [автор*] (* <- lang_ru;; *);
+        [author*] (* <- lang_en;; *);;
+
+
+
+concept_scientist
+<- sc_node_class;;

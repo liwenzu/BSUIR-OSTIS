@@ -57,5 +57,14 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("subject_domain_of_sets"), ForceCreate)
         static ScAddr subject_domain_of_sets;
+
+        SC_PROPERTY(Keynode("nrel_mapping"), ForceCreate)
+        static ScAddr nrel_mapping;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_based_on_binary_relation"), ForceCreate)
+        static ScAddr multiple_choice_questions_based_on_binary_relation;
+
+        SC_PROPERTY(Keynode("nrel_author"), ForceCreate)
+        static ScAddr nrel_author;
     };
 }
