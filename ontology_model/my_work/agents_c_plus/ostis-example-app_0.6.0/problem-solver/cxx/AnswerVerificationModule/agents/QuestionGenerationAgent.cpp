@@ -338,14 +338,19 @@ namespace answerVerificationModule {
                                 string str1 = "_opn";
                                 string str2 = "_opcsn";
                                 shuffle(keyElemListCorrectSub.begin(), keyElemListCorrectSub.end(), std::mt19937(std::random_device()()));
-                                for (int j = 0; j < 2; j++) {
-                                    ScAddr elem = searchResultItem[str1 + str[j]];
-                                    templateParams.Add(str1 + str[j], elem);
-
-
-
-
-                                    templateParams.Add(str2 + str[j], keyElemListCorrectSub[j]);
+                                ScIterator5Ptr it_51 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
+                                if (it_51->Next()) {
+                                    for (int j = 0; j < 2; j++) {
+                                        ScAddr elem = searchResultItem[str2 + str[j]];
+                                        templateParams.Add(str2 + str[j], elem);
+                                        templateParams.Add(str1 + str[j], keyElemListCorrectSub[j]);
+                                    }
+                                } else{
+                                    for (int j = 0; j < 2; j++) {
+                                        ScAddr elem = searchResultItem[str1 + str[j]];
+                                        templateParams.Add(str1 + str[j], elem);
+                                        templateParams.Add(str2 + str[j], keyElemListCorrectSub[j]);
+                                    }
                                 }
                                 ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
                                 ScTemplateGenResult genResult;
@@ -366,10 +371,6 @@ namespace answerVerificationModule {
                         }
                     }
                 }
-
-
-
-
 
 
 
