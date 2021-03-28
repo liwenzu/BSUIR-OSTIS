@@ -318,6 +318,7 @@ namespace answerVerificationModule {
                             ScAddr keyElem = searchResultItem["_opkqn"];
                             ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
                             auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                            vector<ScAddr> keyElemList = IteratorUtils::getAllByInRelation(ms_context.get(), keyElem, elemRelation);
                             vector<ScAddr> keyElemListCorrect = IteratorUtils::getAllWithType(ms_context.get(), elemSubDomain, ScType::NodeConst);
                             auto it = find(keyElemListCorrect.begin(), keyElemListCorrect.end(), keyElem);
                             if (it != keyElemListCorrect.end())
@@ -327,10 +328,10 @@ namespace answerVerificationModule {
                             for (auto currElem : keyElemListCorrect)
                             {
                                 keyElemListCorrectSub = IteratorUtils::getAllByInRelation(ms_context.get(), currElem, relationStruct);
-                                if (keyElemListCorrectSub.size() > 2)
+                                if (keyElemListCorrectSub.size() >= 2)
                                     break;
                             }
-                            if (itDup == elemDuplicate.end() && elemRelation == relationStruct && keyElemListCorrectSub.size() > 2) {
+                            if (itDup == elemDuplicate.end() && elemRelation == relationStruct && keyElemListCorrectSub.size() >= 2 && keyElemList.size() >= 2) {
                                 ScTemplate resultStructTemplate;
                                 ScTemplateParams templateParams;
                                 templateParams.Add("_opkqn", keyElem);
@@ -338,17 +339,16 @@ namespace answerVerificationModule {
                                 string str1 = "_opn";
                                 string str2 = "_opcsn";
                                 shuffle(keyElemListCorrectSub.begin(), keyElemListCorrectSub.end(), std::mt19937(std::random_device()()));
+                                shuffle(keyElemList.begin(), keyElemList.end(), std::mt19937(std::random_device()()));
                                 ScIterator5Ptr it_51 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
                                 if (it_51->Next()) {
                                     for (int j = 0; j < 2; j++) {
-                                        ScAddr elem = searchResultItem[str2 + str[j]];
-                                        templateParams.Add(str2 + str[j], elem);
+                                        templateParams.Add(str2 + str[j], keyElemList[j]);
                                         templateParams.Add(str1 + str[j], keyElemListCorrectSub[j]);
                                     }
                                 } else{
                                     for (int j = 0; j < 2; j++) {
-                                        ScAddr elem = searchResultItem[str1 + str[j]];
-                                        templateParams.Add(str1 + str[j], elem);
+                                        templateParams.Add(str1 + str[j], keyElemList[j]);
                                         templateParams.Add(str2 + str[j], keyElemListCorrectSub[j]);
                                     }
                                 }
