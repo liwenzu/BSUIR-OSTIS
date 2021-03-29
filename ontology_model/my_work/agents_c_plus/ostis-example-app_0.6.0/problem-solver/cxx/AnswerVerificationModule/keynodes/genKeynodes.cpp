@@ -23,4 +23,7 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::nrel_mapping;
     ScAddr GenKeynodes::multiple_choice_questions_based_on_binary_relation;
     ScAddr GenKeynodes::nrel_author;
+    ScAddr GenKeynodes::nrel_idtf;
+    ScAddr GenKeynodes::nrel_main_idtf;
+    ScAddr GenKeynodes::lang_ru;
 }

@@ -66,5 +66,14 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("nrel_author"), ForceCreate)
         static ScAddr nrel_author;
+
+        SC_PROPERTY(Keynode("nrel_idtf"), ForceCreate)
+        static ScAddr nrel_idtf;
+
+        SC_PROPERTY(Keynode("nrel_main_idtf"), ForceCreate)
+        static ScAddr nrel_main_idtf;
+
+        SC_PROPERTY(Keynode("lang_ru"), ForceCreate)
+        static ScAddr lang_ru;
     };
 }
