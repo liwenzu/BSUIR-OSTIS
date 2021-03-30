@@ -397,7 +397,24 @@ namespace answerVerificationModule {
                                 if (it != keyElemList.end())
                                     keyElemList.erase(it);
                             } else {
-                                //todo
+                                ScIterator5Ptr it_5l = ms_context->Iterator5(keyElem, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, relationStruct);
+                                while (it_5l->Next()) {
+                                    if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5l->Get(2), ScType::EdgeAccessConstPosPerm))
+                                        keyElemList.push_back(it_5l->Get(2));
+                                }
+                                vector<ScAddr> keyElemListSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, roleStruct);
+                                auto it = find(keyElemListSub.begin(), keyElemListSub.end(), keyElem);
+                                if (it != keyElemListSub.end())
+                                    keyElemListSub.erase(it);
+                                shuffle(keyElemListSub.begin(), keyElemListSub.end(), std::mt19937(std::random_device()()));
+                                ScAddr elemSub = keyElemListSub[0];
+                                it_5l = ms_context->Iterator5(elemSub, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, GenKeynodes::nrel_main_idtf);
+                                while (it_5l->Next()) {
+                                    if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5l->Get(2), ScType::EdgeAccessConstPosPerm)) {
+                                        elemOptionCS = it_5l->Get(2);
+                                        break;
+                                    }
+                                }
                             }
                             auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
                             if (keyElemList.size() > 2 && itDup == elemDuplicate.end()) {
@@ -408,16 +425,22 @@ namespace answerVerificationModule {
                                 string str = "123";
                                 string str1 = "_opn";
                                 shuffle(keyElemList.begin(), keyElemList.end(), std::mt19937(std::random_device()()));
-                                for (int j = 0; j < 3; j++) {
-                                    ScAddr elem = keyElemList[j];
-                                    vector<ScAddr> idtfList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elem, GenKeynodes::nrel_main_idtf);
-                                    for (auto elemCp : idtfList) {
-                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemCp, ScType::EdgeAccessConstPosPerm)) {
-                                            elem = elemCp;
-                                            break;
+                                ScIterator5Ptr it_5c = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
+                                if (it_5c->Next()) {
+                                    for (int j = 0; j < 3; j++) {
+                                        ScAddr elem = keyElemList[j];
+                                        vector<ScAddr> idtfList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elem, GenKeynodes::nrel_main_idtf);
+                                        for (auto elemCp : idtfList) {
+                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                elem = elemCp;
+                                                break;
+                                            }
                                         }
+                                        templateParams.Add(str1 + str[j], elem);
                                     }
-                                    templateParams.Add(str1 + str[j], elem);
+                                } else{
+                                    for (int j = 0; j < 3; j++)
+                                        templateParams.Add(str1 + str[j], keyElemList[j]);
                                 }
                                 ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
                                 ScTemplateGenResult genResult;
@@ -439,7 +462,6 @@ namespace answerVerificationModule {
                     } else{
                         //todo
                     }
-
 
 
 
