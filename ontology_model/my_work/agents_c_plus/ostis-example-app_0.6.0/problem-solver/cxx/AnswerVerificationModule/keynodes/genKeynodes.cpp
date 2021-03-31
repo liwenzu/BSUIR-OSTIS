@@ -26,4 +26,6 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::nrel_idtf;
     ScAddr GenKeynodes::nrel_main_idtf;
     ScAddr GenKeynodes::lang_ru;
+    ScAddr GenKeynodes::multiple_choice_questions_based_on_set_identifier;
+    ScAddr GenKeynodes::multiple_choice_questions_based_on_relation_identifier;
 }

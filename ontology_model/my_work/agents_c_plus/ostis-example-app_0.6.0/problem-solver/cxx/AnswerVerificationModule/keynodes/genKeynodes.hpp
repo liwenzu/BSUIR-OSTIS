@@ -75,5 +75,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("lang_ru"), ForceCreate)
         static ScAddr lang_ru;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_based_on_set_identifier"), ForceCreate)
+        static ScAddr multiple_choice_questions_based_on_set_identifier;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_based_on_relation_identifier"), ForceCreate)
+        static ScAddr multiple_choice_questions_based_on_relation_identifier;
     };
 }
