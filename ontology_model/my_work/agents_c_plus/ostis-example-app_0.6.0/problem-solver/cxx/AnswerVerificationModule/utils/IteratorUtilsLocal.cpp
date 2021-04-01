@@ -2,6 +2,7 @@
 // Created by root on 3/6/21.
 //
 #include <sc-agents-common/utils/IteratorUtils.hpp>
+#include <sc-agents-common/utils/CommonUtils.hpp>
 
 #include <sc-memory/sc_iterator.hpp>
 
@@ -58,5 +59,18 @@ namespace answerVerificationModule
             element = iterator3->Get(2);
         }
         return element;
+    }
+
+    vector<ScAddr> IteratorUtilsLocal::getAllByOutRelationWithType(ScMemoryContext *ms_context,
+                const ScAddr &set,
+                ScAddr const & relation,
+                ScType scType) {
+        vector<ScAddr> elementList;
+        bool isRole = CommonUtils::checkType(ms_context, relation, ScType::NodeConstRole);
+        ScType arcType = isRole ? ScType::EdgeAccessConstPosPerm : ScType::EdgeDCommonConst;
+        ScIterator5Ptr iterator5 = ms_context->Iterator5(set, arcType, scType, ScType::EdgeAccessConstPosPerm, relation);
+        while (iterator5->Next())
+            elementList.push_back(iterator5->Get(2));
+        return elementList;
     }
 }
