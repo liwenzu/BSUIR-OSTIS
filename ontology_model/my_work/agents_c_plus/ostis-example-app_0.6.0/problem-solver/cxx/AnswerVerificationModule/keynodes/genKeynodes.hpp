@@ -81,5 +81,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("multiple_choice_questions_based_on_relation_identifier"), ForceCreate)
         static ScAddr multiple_choice_questions_based_on_relation_identifier;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_based_on_axiomatics"), ForceCreate)
+        static ScAddr multiple_choice_questions_based_on_axiomatics;
+
+        SC_PROPERTY(Keynode("observation"), ForceCreate)
+        static ScAddr observation;
     };
 }
