@@ -30,4 +30,5 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::multiple_choice_questions_based_on_relation_identifier;
     ScAddr GenKeynodes::multiple_choice_questions_based_on_axiomatics;
     ScAddr GenKeynodes::observation;
+    ScAddr GenKeynodes::multiple_choice_questions_based_on_image_examples;
 }

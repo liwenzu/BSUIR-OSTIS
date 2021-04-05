@@ -87,5 +87,8 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("observation"), ForceCreate)
         static ScAddr observation;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_based_on_image_examples"), ForceCreate)
+        static ScAddr multiple_choice_questions_based_on_image_examples;
     };
 }

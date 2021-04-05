@@ -737,8 +737,83 @@ namespace answerVerificationModule {
                             }
                         }
                     }
-                }
+                } else if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_based_on_image_examples, ScType::EdgeAccessConstPosPerm)) {
+                    elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
+                    ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstRole);
+                    vector<ScAddr> elemDuplicate;
+                    for (int i = 0; i < searchResult.Size(); i++) {
+                        ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                        ScAddr keyElem = searchResultItem["_opkqn"];
+                        ScAddr elemOptionCS = searchResultItem["_opcs"];
+                        ScAddr roleStructCp;
+                        ScIterator3Ptr it_3 = ms_context->Iterator3(initStruct, ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                        while  (it_3->Next())
+                        {
+                            if(it_3->Get(2) != roleStruct)
+                                roleStructCp = it_3->Get(2);
+                        }
+                        vector<ScAddr> keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, roleStructCp);
+                        auto it = find(keyElemList.begin(), keyElemList.end(), elemOptionCS);
+                        if (it != keyElemList.end())
+                            keyElemList.erase(it);
+                        auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                        if (keyElemList.size() > 2 && itDup == elemDuplicate.end()) {
+                            ScTemplate resultStructTemplate;
+                            ScTemplateParams templateParams;
+                            templateParams.Add("_opkqn", keyElem);
+                            string str = "123";
+                            string str1 = "_op";
+                            string str2 = "_opcs";
+                            shuffle(keyElemList.begin(), keyElemList.end(), std::mt19937(std::random_device()()));
+                            ScIterator5Ptr it_5 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::multiple_choice_questions_with_single_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
+                            if (it_5->Next()) {
+                                templateParams.Add(str2, elemOptionCS);
+                                for (int j=0; j<3; j++)
+                                    templateParams.Add(str1 + str[j], keyElemList[j]);
+                            } else {
+                                templateParams.Add(str1, elemOptionCS);
+                                for (int j = 0; j < 3; j++)
+                                    templateParams.Add(str2 + str[j], keyElemList[j]);
+                            }
+                            ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
+                            ScTemplateGenResult genResult;
+                            if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                cout << "Hello genResult" << endl;
+                                cout << genResult.Size() << endl;
+                                for (int k = 0; k < genResult.Size(); k++)
+                                    ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                ScAddr elem = genResult["_question_number"];
+                                vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                int num = objectQuestion.size();
+                                string strQuestion = "Generated_Question";
+                                string strNum = to_string(num);
+                                ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                elemDuplicate.push_back(keyElem);
+                            }
+                        }
+                    }
 
+
+
+
+
+
+
+
+
+/*                    for (int i=0; i<searchResult.Size(); i++)
+                    {
+                        ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                        for (int j=0; j<searchResultItem.Size();j++)
+                        {
+                            ScAddr elem = searchResultItem[j];
+                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
+                        }
+                    }*/
+
+
+
+                }
 
 
 
