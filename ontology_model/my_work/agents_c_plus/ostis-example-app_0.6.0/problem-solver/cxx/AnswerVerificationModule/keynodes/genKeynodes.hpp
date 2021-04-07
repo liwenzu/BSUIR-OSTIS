@@ -90,5 +90,14 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("multiple_choice_questions_based_on_image_examples"), ForceCreate)
         static ScAddr multiple_choice_questions_based_on_image_examples;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions_based_on_relation_attributes"), ForceCreate)
+        static ScAddr multiple_choice_questions_based_on_relation_attributes;
+
+        SC_PROPERTY(Keynode("binary_relation"), ForceCreate)
+        static ScAddr binary_relation;
+
+        SC_PROPERTY(Keynode("relation"), ForceCreate)
+        static ScAddr relation;
     };
 }
