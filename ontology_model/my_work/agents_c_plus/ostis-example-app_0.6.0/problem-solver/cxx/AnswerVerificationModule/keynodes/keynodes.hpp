@@ -83,6 +83,9 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("rrel_3"), ForceCreate)
         static ScAddr rrel_3;
+
+        SC_PROPERTY(Keynode("rrel_4"), ForceCreate)
+        static ScAddr rrel_4;
     };
 
 } // namespace exampleModule

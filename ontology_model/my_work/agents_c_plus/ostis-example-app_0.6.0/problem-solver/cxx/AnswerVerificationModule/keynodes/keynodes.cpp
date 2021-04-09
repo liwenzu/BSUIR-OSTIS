@@ -32,4 +32,5 @@ namespace answerVerificationModule
     ScAddr Keynodes::nrel_definitional_domain;
     ScAddr Keynodes::rrel_2;
     ScAddr Keynodes::rrel_3;
+    ScAddr Keynodes::rrel_4;
 }
