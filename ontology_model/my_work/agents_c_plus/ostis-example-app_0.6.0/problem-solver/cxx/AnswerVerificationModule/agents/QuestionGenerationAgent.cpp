@@ -150,14 +150,11 @@ namespace answerVerificationModule {
                            sort(keyElemListCorrect.begin(), keyElemListCorrect.end(), cmp);
                            keyElemListCorrect.erase(unique(keyElemListCorrect.begin(), keyElemListCorrect.end(), equalScAddr), keyElemListCorrect.end());
 //Remove duplicate elements
-                           for (auto itr = keyElemList.begin(); itr != keyElemList.end(); ++itr) {
-                               auto itr1 = find(keyElemListCorrect.begin(), keyElemListCorrect.end(), *itr);
+                           for (auto itr : keyElemList) {
+                               auto itr1 = find(keyElemListCorrect.begin(), keyElemListCorrect.end(), itr);
                                if (itr1 != keyElemListCorrect.end()) {
-//                                    itr = keyElemList.erase(itr);
                                    keyElemListCorrect.erase(itr1);
                                }
-//                                else
-//                                    ++itr;
                            }
                            auto  it = find(keyElemList.begin(), keyElemList.end(), keyElem);
                            if (it != keyElemList.end())
@@ -949,57 +946,169 @@ namespace answerVerificationModule {
                                     string str2 = "_op";
                                     if (keyElemList.size() == 3) {
                                         ScAddr resultStructCpSub = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStruct, Keynodes::rrel_3);
-
-
-
-                                        continue;
-
-
+                                        std::uniform_int_distribution<unsigned long long> distr(2, 3);
+                                        int randNumber = distr(eng);
+                                        if (ms_context->HelperCheckEdge(param, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm)) {
+                                            for (int r = randNumber; r > 0; r--) {
+                                                keyElemListCorrect.push_back(keyElemList.back());
+                                                keyElemList.pop_back();
+                                            }
+                                            for (auto currElem : keyElemList) {
+                                                ScAddr elemTup;
+                                                vector<ScAddr> elemTupList = IteratorUtilsLocal::getAllWithTypeIn(ms_context.get(), currElem, ScType::NodeConstTuple);
+                                                for (auto tup : elemTupList) {
+                                                    if (ms_context->HelperCheckEdge(tup, GenKeynodes::binary_relation, ScType::EdgeDCommonConst) ||
+                                                        ms_context->HelperCheckEdge(tup, GenKeynodes::relation, ScType::EdgeDCommonConst)) {
+                                                        elemTup = tup;
+                                                        break;
+                                                    }
+                                                }
+                                                vector<ScAddr> keyElemListCorrectSub = IteratorUtils::getAllWithType(ms_context.get(), elemTup, ScType::NodeConstClass);
+                                                for (auto currElemCp : keyElemListCorrectSub) {
+                                                    string strElem = ms_context->HelperGetSystemIdtf(currElemCp);
+                                                    if (currElem != currElemCp && strElem[0] != 'p') {
+                                                        keyElemListIncorrect.push_back(currElemCp);
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (randNumber == 2) {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_2);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
+                                                for (int j = 0; j < 3-randNumber; j++)
+                                                    templateParams.Add(str2 + str[j], keyElemListIncorrect[j]);
+                                            } else {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_3);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
+                                            }
+                                        } else {
+                                            for (int r = 3-randNumber; r > 0; r--) {
+                                                keyElemListCorrect.push_back(keyElemList.back());
+                                                keyElemList.pop_back();
+                                            }
+                                            for (auto currElem : keyElemList) {
+                                                ScAddr elemTup;
+                                                vector<ScAddr> elemTupList = IteratorUtilsLocal::getAllWithTypeIn(ms_context.get(), currElem, ScType::NodeConstTuple);
+                                                for (auto tup : elemTupList) {
+                                                    if (ms_context->HelperCheckEdge(tup, GenKeynodes::binary_relation, ScType::EdgeDCommonConst) ||
+                                                        ms_context->HelperCheckEdge(tup, GenKeynodes::relation, ScType::EdgeDCommonConst)) {
+                                                        elemTup = tup;
+                                                        break;
+                                                    }
+                                                }
+                                                vector<ScAddr> keyElemListCorrectSub = IteratorUtils::getAllWithType(ms_context.get(), elemTup, ScType::NodeConstClass);
+                                                for (auto currElemCp : keyElemListCorrectSub) {
+                                                    string strElem = ms_context->HelperGetSystemIdtf(currElemCp);
+                                                    if (currElem != currElemCp && strElem[0] != 'p') {
+                                                        keyElemListIncorrect.push_back(currElemCp);
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (randNumber == 2) {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_2);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListIncorrect[j]);
+                                                for (int j = 0; j < 3-randNumber; j++)
+                                                    templateParams.Add(str2 + str[j], keyElemListCorrect[j]);
+                                            } else {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_3);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListIncorrect[j]);
+                                            }
+                                        }
                                     } else {
                                         ScAddr resultStructCpSub = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStruct, Keynodes::rrel_4);
                                         std::uniform_int_distribution<unsigned long long> distr(2, 4);
                                         int randNumber = distr(eng);
-                                        for (int r = randNumber; r > 0; r--) {
-                                            keyElemListCorrect.push_back(keyElemList.back());
-                                            keyElemList.pop_back();
-                                        }
-                                        for (auto currElem : keyElemList) {
-                                            ScAddr elemTup;
-                                            vector<ScAddr> elemTupList = IteratorUtilsLocal::getAllWithTypeIn(ms_context.get(), currElem, ScType::NodeConstTuple);
-                                            for (auto tup : elemTupList) {
-                                                if (ms_context->HelperCheckEdge(tup, GenKeynodes::binary_relation, ScType::EdgeDCommonConst) ||
-                                                    ms_context->HelperCheckEdge(tup, GenKeynodes::relation, ScType::EdgeDCommonConst)) {
-                                                    elemTup = tup;
-                                                    break;
+                                        if (ms_context->HelperCheckEdge(param, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm)) {
+                                            for (int r = randNumber; r > 0; r--) {
+                                                keyElemListCorrect.push_back(keyElemList.back());
+                                                keyElemList.pop_back();
+                                            }
+                                            for (auto currElem : keyElemList) {
+                                                ScAddr elemTup;
+                                                vector<ScAddr> elemTupList = IteratorUtilsLocal::getAllWithTypeIn(ms_context.get(), currElem, ScType::NodeConstTuple);
+                                                for (auto tup : elemTupList) {
+                                                    if (ms_context->HelperCheckEdge(tup, GenKeynodes::binary_relation, ScType::EdgeDCommonConst) ||
+                                                        ms_context->HelperCheckEdge(tup, GenKeynodes::relation, ScType::EdgeDCommonConst)) {
+                                                        elemTup = tup;
+                                                        break;
+                                                    }
+                                                }
+                                                vector<ScAddr> keyElemListCorrectSub = IteratorUtils::getAllWithType(ms_context.get(), elemTup, ScType::NodeConstClass);
+                                                for (auto currElemCp : keyElemListCorrectSub) {
+                                                    string strElem = ms_context->HelperGetSystemIdtf(currElemCp);
+                                                    if (currElem != currElemCp && strElem[0] != 'p') {
+                                                        keyElemListIncorrect.push_back(currElemCp);
+                                                        break;
+                                                    }
                                                 }
                                             }
-                                            vector<ScAddr> keyElemListCorrectSub = IteratorUtils::getAllWithType(ms_context.get(), elemTup, ScType::NodeConstClass);
-                                            for (auto currElemCp : keyElemListCorrectSub) {
-                                                string strElem = ms_context->HelperGetSystemIdtf(currElemCp);
-                                                if (currElem != currElemCp && strElem[0] != 'p') {
-                                                    keyElemListIncorrect.push_back(currElemCp);
-                                                    break;
+                                            if (randNumber == 2) {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_2);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
+                                                for (int j = 0; j < 4-randNumber; j++)
+                                                    templateParams.Add(str2 + str[j], keyElemListIncorrect[j]);
+                                            }
+                                            else if (randNumber == 3) {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_3);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
+                                                for (int j = 0; j < 4-randNumber; j++)
+                                                    templateParams.Add(str2 + str[j], keyElemListIncorrect[j]);
+                                            }
+                                            else {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_4);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
+                                            }
+                                        } else {
+                                            for (int r = 4-randNumber; r > 0; r--) {
+                                                keyElemListCorrect.push_back(keyElemList.back());
+                                                keyElemList.pop_back();
+                                            }
+                                            for (auto currElem : keyElemList) {
+                                                ScAddr elemTup;
+                                                vector<ScAddr> elemTupList = IteratorUtilsLocal::getAllWithTypeIn(ms_context.get(), currElem, ScType::NodeConstTuple);
+                                                for (auto tup : elemTupList) {
+                                                    if (ms_context->HelperCheckEdge(tup, GenKeynodes::binary_relation, ScType::EdgeDCommonConst) ||
+                                                        ms_context->HelperCheckEdge(tup, GenKeynodes::relation, ScType::EdgeDCommonConst)) {
+                                                        elemTup = tup;
+                                                        break;
+                                                    }
+                                                }
+                                                vector<ScAddr> keyElemListCorrectSub = IteratorUtils::getAllWithType(ms_context.get(), elemTup, ScType::NodeConstClass);
+                                                for (auto currElemCp : keyElemListCorrectSub) {
+                                                    string strElem = ms_context->HelperGetSystemIdtf(currElemCp);
+                                                    if (currElem != currElemCp && strElem[0] != 'p') {
+                                                        keyElemListIncorrect.push_back(currElemCp);
+                                                        break;
+                                                    }
                                                 }
                                             }
-                                        }
-                                        if (randNumber == 2) {
-                                            resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_2);
-                                            for (int j = 0; j < randNumber; j++)
-                                                templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
-                                            for (int j = 0; j < 4-randNumber; j++)
-                                                templateParams.Add(str2 + str[j], keyElemListIncorrect[j]);
-                                        }
-                                        else if (randNumber == 3) {
-                                            resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_3);
-                                            for (int j = 0; j < randNumber; j++)
-                                                templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
-                                            for (int j = 0; j < 4-randNumber; j++)
-                                                templateParams.Add(str2 + str[j], keyElemListIncorrect[j]);
-                                        }
-                                        else {
-                                            resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_4);
-                                            for (int j = 0; j < randNumber; j++)
-                                                templateParams.Add(str1 + str[j], keyElemListCorrect[j]);
+                                            if (randNumber == 2) {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_2);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListIncorrect[j]);
+                                                for (int j = 0; j < 4-randNumber; j++)
+                                                    templateParams.Add(str2 + str[j], keyElemListCorrect[j]);
+                                            }
+                                            else if (randNumber == 3) {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_3);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListIncorrect[j]);
+                                                for (int j = 0; j < 4-randNumber; j++)
+                                                    templateParams.Add(str2 + str[j], keyElemListCorrect[j]);
+                                            }
+                                            else {
+                                                resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructCpSub, Keynodes::rrel_4);
+                                                for (int j = 0; j < randNumber; j++)
+                                                    templateParams.Add(str1 + str[j], keyElemListIncorrect[j]);
+                                            }
                                         }
                                     }
                                     ms_context->HelperBuildTemplate(resultStructTemplate, resultStructCp);
@@ -1030,11 +1139,6 @@ namespace answerVerificationModule {
 
 
 
-/*                        for (int i = 0; i < searchResult.Size(); i++) {
-                            ScTemplateSearchResultItem searchResultItem = searchResult[i];
-                            for (int j = 0; j < searchResultItem.Size(); j++)
-                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, searchResultItem[j]);
-                        }*/
 
 
 
