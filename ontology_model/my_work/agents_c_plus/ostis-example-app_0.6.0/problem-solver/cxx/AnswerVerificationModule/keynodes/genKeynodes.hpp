@@ -99,5 +99,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("relation"), ForceCreate)
         static ScAddr relation;
+
+        SC_PROPERTY(Keynode("multiple_choice_questions"), ForceCreate)
+        static ScAddr multiple_choice_questions;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions;
     };
 }
