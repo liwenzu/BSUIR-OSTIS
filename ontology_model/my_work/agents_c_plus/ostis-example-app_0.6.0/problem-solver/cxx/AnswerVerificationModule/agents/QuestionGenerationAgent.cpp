@@ -1133,13 +1133,68 @@ namespace answerVerificationModule {
                         }
                     }
                 } else if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions, ScType::EdgeAccessConstPosPerm)) {
+                    if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_inclusion_relation, ScType::EdgeAccessConstPosPerm)) {
+                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
+                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
+                        vector<ScAddr> elemDuplicate;
+                        for (int i = 0; i < searchResult.Size(); i++) {
+                            ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                            ScAddr keyElem = searchResultItem["_opkq"];
+                            ScAddr elemOptionCS = searchResultItem["_opcs"];
+                            ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
+                            vector<ScAddr> keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
+                            vector<ScAddr> keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemOptionCS, relationStruct);
+                            auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                            if (keyElemList.size() == 1 && keyElemListCorrect.empty() && elemRelation == relationStruct && itDup == elemDuplicate.end()) {
+                                vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemList[0], GenKeynodes::nrel_main_idtf);
+                                for (auto currElem : keyElemListCorrectSub) {
+                                    if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElem, ScType::EdgeAccessConstPosPerm)) {
+                                        elemOptionCS = currElem;
+                                        break;
+                                    }
+                                }
+                                ScTemplate resultStructTemplate;
+                                ScTemplateParams templateParams;
+                                templateParams.Add("_opkq", keyElem);
+                                templateParams.Add("_opcsn", elemOptionCS);
+                                ms_context->HelperBuildTemplate(resultStructTemplate, resultStruct);
+                                ScTemplateGenResult genResult;
+                                if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                    cout << "Hello genResult" << endl;
+                                    cout << genResult.Size() << endl;
+                                    for (int k = 0; k < genResult.Size(); k++)
+                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                    ScAddr elem = genResult["_question_number"];
+                                    vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                    int num = objectQuestion.size();
+                                    string strQuestion = "Generated_Question";
+                                    string strNum = to_string(num);
+                                    ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                    elemDuplicate.push_back(keyElem);
+                                }
+                            }
 
 
 
-                    cout << "-------------------------" << endl;
 
 
-                    //todo
+
+
+
+
+                        }
+                    } else {
+                        //todo
+
+
+
+
+
+
+
+
+                    }
                 }
 
 

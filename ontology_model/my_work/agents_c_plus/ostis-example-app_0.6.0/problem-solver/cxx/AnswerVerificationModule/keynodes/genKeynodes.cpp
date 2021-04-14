@@ -36,4 +36,5 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::relation;
     ScAddr GenKeynodes::multiple_choice_questions;
     ScAddr GenKeynodes::fill_in_the_blank_questions;
+    ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_inclusion_relation;
 }

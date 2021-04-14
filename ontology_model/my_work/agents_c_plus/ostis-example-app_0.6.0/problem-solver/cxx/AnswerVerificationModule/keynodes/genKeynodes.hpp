@@ -105,5 +105,8 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("fill_in_the_blank_questions"), ForceCreate)
         static ScAddr fill_in_the_blank_questions;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_inclusion_relation"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_based_on_inclusion_relation;
     };
 }
