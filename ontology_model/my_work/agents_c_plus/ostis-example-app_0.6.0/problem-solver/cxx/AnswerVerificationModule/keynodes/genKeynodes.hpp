@@ -108,5 +108,17 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_inclusion_relation"), ForceCreate)
         static ScAddr fill_in_the_blank_questions_based_on_inclusion_relation;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_with_a_blank"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_with_a_blank;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_with_unique_answers"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_with_unique_answers;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_with_several_possible_answers"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_with_several_possible_answers;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_with_multiple_blanks"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_with_multiple_blanks;
     };
 }
