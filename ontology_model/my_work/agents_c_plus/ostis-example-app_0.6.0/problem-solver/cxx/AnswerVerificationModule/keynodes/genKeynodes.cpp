@@ -41,8 +41,5 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::fill_in_the_blank_questions_with_unique_answers;
     ScAddr GenKeynodes::fill_in_the_blank_questions_with_several_possible_answers;
     ScAddr GenKeynodes::fill_in_the_blank_questions_with_multiple_blanks;
-
-
-
-
+    ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_strict_inclusion_relation;
 }

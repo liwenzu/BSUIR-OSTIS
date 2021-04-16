@@ -1136,7 +1136,8 @@ namespace answerVerificationModule {
                         }
                     }
                 } else if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions, ScType::EdgeAccessConstPosPerm)) {
-                    if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_inclusion_relation, ScType::EdgeAccessConstPosPerm)) {
+                    if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_inclusion_relation, ScType::EdgeAccessConstPosPerm) ||
+                        ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_strict_inclusion_relation, ScType::EdgeAccessConstPosPerm)) {
                         ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
                         ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
