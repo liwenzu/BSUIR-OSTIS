@@ -1138,8 +1138,6 @@ namespace answerVerificationModule {
                 } else if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions, ScType::EdgeAccessConstPosPerm)) {
                     if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_inclusion_relation, ScType::EdgeAccessConstPosPerm) ||
                         ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_strict_inclusion_relation, ScType::EdgeAccessConstPosPerm)) {
-                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                         if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_with_a_blank, ScType::EdgeAccessConstPosPerm) &&
                             ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_with_unique_answers, ScType::EdgeAccessConstPosPerm)) {
@@ -1232,8 +1230,121 @@ namespace answerVerificationModule {
                                 }
                             }
                         }
-                    } else {
-                        //todo
+                    } else if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_subdividing_relation, ScType::EdgeAccessConstPosPerm)) {
+                        ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
+                        std::random_device rd;
+                        std::mt19937_64 eng(rd());
+                        vector<ScAddr> elemDuplicate;
+                        for (int i = 0; i < searchResult.Size(); i++) {
+                            ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                            ScAddr keyElem = searchResultItem["_opkq"];
+                            ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
+                            vector<ScAddr> tupleList = IteratorUtils::getAllByInRelation(ms_context.get(), keyElem, relationStruct);
+                            auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                            if (!tupleList.empty() && elemRelation == relationStruct && itDup == elemDuplicate.end()) {
+
+                                Display::printNl(ms_context.get(), keyElem);
+                                cout << endl;
+
+
+                                ScTemplate resultStructTemplate;
+                                ScTemplateParams templateParams;
+                                templateParams.Add("_opkq", keyElem);
+                                int randNumber;
+                                vector<ScAddr> tupleListSub;
+                                if (tupleList.size() == 1) {
+                                    randNumber = 1;
+                                    tupleListSub = tupleList;
+                                }
+                                else {
+                                    std::uniform_int_distribution<unsigned long long> distr(1, 2);
+                                    randNumber = distr(eng);
+                                    shuffle(tupleList.begin(), tupleList.end(), std::mt19937(std::random_device()()));
+                                    for (int j = 0; j < randNumber; j++) {
+                                        tupleListSub.push_back(tupleList.back());
+                                        tupleList.pop_back();
+                                    }
+                                }
+                                string str = "12345678";
+                                string str1 = "_opcsn";
+                                string strRole = "rrel_";
+                                int allNumberOption;
+                                if (tupleListSub.size() == 1 ) {
+                                    vector<ScAddr> keyElemListSub = IteratorUtils::getAllWithType(ms_context.get(), tupleListSub[0], ScType::Unknown);
+                                    allNumberOption = keyElemListSub.size();
+                                    shuffle(keyElemListSub.begin(), keyElemListSub.end(), std::mt19937(std::random_device()()));
+                                    vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub.back(), GenKeynodes::nrel_main_idtf);
+                                    for (auto currElemCp : keyElemListCorrectSub) {
+                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            templateParams.Add(str1+str[0], currElemCp);
+                                            break;
+                                        }
+                                    }
+                                    keyElemListSub.pop_back();
+                                    for (int j = 0; j < keyElemListSub.size(); j++) {
+                                        keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub[j], GenKeynodes::nrel_main_idtf);
+                                        for (auto currElemCp : keyElemListCorrectSub) {
+                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                templateParams.Add(str1+str[j+1], currElemCp);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                } else {
+                                    vector<ScAddr> keyElemListSub1 = IteratorUtils::getAllWithType(ms_context.get(), tupleListSub[0], ScType::Unknown);
+                                    vector<ScAddr> keyElemListSub2 = IteratorUtils::getAllWithType(ms_context.get(), tupleListSub[1], ScType::Unknown);
+                                    allNumberOption = keyElemListSub1.size();
+                                    allNumberOption += keyElemListSub2.size();
+                                    shuffle(keyElemListSub1.begin(), keyElemListSub1.end(), std::mt19937(std::random_device()()));
+                                    shuffle(keyElemListSub2.begin(), keyElemListSub2.end(), std::mt19937(std::random_device()()));
+                                    vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub1.back(), GenKeynodes::nrel_main_idtf);
+                                    for (auto currElemCp : keyElemListCorrectSub) {
+                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            templateParams.Add(str1+str[0], currElemCp);
+                                            break;
+                                        }
+                                    }
+                                    keyElemListSub1.pop_back();
+                                    keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub2.back(), GenKeynodes::nrel_main_idtf);
+                                    for (auto currElemCp : keyElemListCorrectSub) {
+                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            templateParams.Add(str1+str[1], currElemCp);
+                                            break;
+                                        }
+                                    }
+                                    keyElemListSub2.pop_back();
+                                    keyElemListSub1.insert(keyElemListSub1.end(), keyElemListSub2.begin(), keyElemListSub2.end());
+                                    for (int j = 0; j < keyElemListSub1.size(); j++) {
+                                        keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub1[j], GenKeynodes::nrel_main_idtf);
+                                        for (auto currElemCp : keyElemListCorrectSub) {
+                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                templateParams.Add(str1+str[j+2], currElemCp);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                string strArrySize = to_string(randNumber);
+                                ScAddr elementRole = ms_context->HelperResolveSystemIdtf(strRole+strArrySize, ScType::NodeConstRole);
+                                ScAddr resultStructSub = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStruct, elementRole);
+                                strArrySize = to_string(allNumberOption);
+                                elementRole = ms_context->HelperResolveSystemIdtf(strRole+strArrySize, ScType::NodeConstRole);
+                                ScAddr resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructSub, elementRole);
+                                ms_context->HelperBuildTemplate(resultStructTemplate, resultStructCp);
+                                ScTemplateGenResult genResult;
+                                if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                    cout << "Hello genResult" << endl;
+                                    cout << genResult.Size() << endl;
+                                    for (int k = 0; k < genResult.Size(); k++)
+                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                    ScAddr elem = genResult["_question_number"];
+                                    vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                    int num = objectQuestion.size();
+                                    string strQuestion = "Generated_Question";
+                                    string strNum = to_string(num);
+                                    ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                    elemDuplicate.push_back(keyElem);
+                                }
 
 
 
@@ -1242,6 +1353,13 @@ namespace answerVerificationModule {
 
 
 
+
+
+
+
+
+                            }
+                        }
                     }
                 }
 

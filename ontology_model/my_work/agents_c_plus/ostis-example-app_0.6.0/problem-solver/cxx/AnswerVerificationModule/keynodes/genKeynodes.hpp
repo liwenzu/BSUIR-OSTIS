@@ -123,5 +123,8 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_strict_inclusion_relation"), ForceCreate)
         static ScAddr fill_in_the_blank_questions_based_on_strict_inclusion_relation;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_subdividing_relation"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_based_on_subdividing_relation;
     };
 }
