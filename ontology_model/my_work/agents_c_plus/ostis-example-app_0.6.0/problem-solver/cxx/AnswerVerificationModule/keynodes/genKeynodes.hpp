@@ -126,5 +126,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_subdividing_relation"), ForceCreate)
         static ScAddr fill_in_the_blank_questions_based_on_subdividing_relation;
+
+        SC_PROPERTY(Keynode("rrel_known_answer"), ForceCreate)
+        static ScAddr rrel_known_answer;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_binary_relation"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_based_on_binary_relation;
     };
 }
