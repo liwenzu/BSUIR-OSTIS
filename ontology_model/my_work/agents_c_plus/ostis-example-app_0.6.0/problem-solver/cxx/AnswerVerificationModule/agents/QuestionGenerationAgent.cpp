@@ -1496,25 +1496,40 @@ namespace answerVerificationModule {
                                 vector<ScAddr> keyElementCorrectList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
                                 auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
                                 if (itDup == elemDuplicate.end() && !keyElementCorrectList.empty() && keyElementCorrectList.size() < 7) {
-
-                                    cout << keyElementCorrectList.size() << endl;
-
-                                    for (int j=0; j<searchResultItem.Size();j++)
-                                    {
-                                        ScAddr elem = searchResultItem[j];
-                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
+                                    ScTemplate resultStructTemplate;
+                                    ScTemplateParams templateParams;
+                                    templateParams.Add("_opkq", keyElem);
+                                    string strRole = "rrel_";
+                                    string str = "123456";
+                                    string str1 = "_opcsn";
+                                    for (auto it = keyElementCorrectList.begin(); it != keyElementCorrectList.end();) {
+                                        if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, *it, ScType::EdgeAccessConstPosPerm))
+                                            keyElementCorrectList.erase(it);
+                                        else
+                                            it++;
                                     }
-
-                                    cout << "--------------------" << endl;
-
-
-
-
-
-
-
-
-
+                                    if (keyElementCorrectList.empty())
+                                        continue;
+                                    for (int j = 0; j < keyElementCorrectList.size(); j++)
+                                        templateParams.Add(str1 + str[j], keyElementCorrectList[j]);
+                                    string strArrySize = to_string(keyElementCorrectList.size());
+                                    ScAddr elementRole = ms_context->HelperResolveSystemIdtf(strRole+strArrySize, ScType::NodeConstRole);
+                                    ScAddr resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStruct, elementRole);
+                                    ms_context->HelperBuildTemplate(resultStructTemplate, resultStructCp);
+                                    ScTemplateGenResult genResult;
+                                    if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                        cout << "Hello genResult" << endl;
+                                        cout << genResult.Size() << endl;
+                                        for (int k = 0; k < genResult.Size(); k++)
+                                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                        ScAddr elem = genResult["_question_number"];
+                                        vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                        int num = objectQuestion.size();
+                                        string strQuestion = "Generated_Question";
+                                        string strNum = to_string(num);
+                                        ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                        elemDuplicate.push_back(keyElem);
+                                    }
                                 }
                             }
                         } else {
