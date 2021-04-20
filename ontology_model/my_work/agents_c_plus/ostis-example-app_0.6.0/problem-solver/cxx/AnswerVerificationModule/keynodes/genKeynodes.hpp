@@ -132,5 +132,8 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_binary_relation"), ForceCreate)
         static ScAddr fill_in_the_blank_questions_based_on_binary_relation;
+
+        SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_set_identifier"), ForceCreate)
+        static ScAddr fill_in_the_blank_questions_based_on_set_identifier;
     };
 }

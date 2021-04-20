@@ -1441,16 +1441,71 @@ namespace answerVerificationModule {
                                 ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
                                 vector<ScAddr> keyElementCorrectList = IteratorUtils::getAllByInRelation(ms_context.get(), keyElem, relationStruct);
                                 auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
-                                if (elemRelation == relationStruct && itDup == elemDuplicate.end() && !keyElementCorrectList.empty() && keyElementCorrectList.size() < 6 ) {
-
-
-
+                                if (elemRelation == relationStruct && itDup == elemDuplicate.end() && keyElementCorrectList.size() < 6 &&
+                                    ((!keyElementCorrectList.empty() && ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_with_unique_answers, ScType::EdgeAccessConstPosPerm)) ||
+                                    (keyElementCorrectList.size() > 2 && ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_with_several_possible_answers, ScType::EdgeAccessConstPosPerm)))             ) {
+                                    ScTemplate resultStructTemplate;
+                                    ScTemplateParams templateParams;
+                                    templateParams.Add("_opkqn", keyElem);
+                                    string strRole = "rrel_";
+                                    string str = "12345";
+                                    string str1 = "_opcsn";
+                                    vector<ScAddr> keyElemList;
+                                    for (auto currElem : keyElementCorrectList) {
+                                        vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), currElem, GenKeynodes::nrel_main_idtf);
+                                        for (auto currElemCp : keyElemListCorrectSub) {
+                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                keyElemList.push_back(currElemCp);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if ((keyElemList.empty() && ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_with_unique_answers, ScType::EdgeAccessConstPosPerm)) ||
+                                        (keyElemList.size() < 3 && ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_with_several_possible_answers, ScType::EdgeAccessConstPosPerm)))
+                                        continue;
+                                    for (int j = 0; j < keyElemList.size(); j++)
+                                        templateParams.Add(str1 + str[j], keyElemList[j]);
+                                    string strArrySize = to_string(keyElemList.size());
+                                    ScAddr elementRole = ms_context->HelperResolveSystemIdtf(strRole+strArrySize, ScType::NodeConstRole);
+                                    ScAddr resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStruct, elementRole);
+                                    ms_context->HelperBuildTemplate(resultStructTemplate, resultStructCp);
+                                    ScTemplateGenResult genResult;
+                                    if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                        cout << "Hello genResult" << endl;
+                                        cout << genResult.Size() << endl;
+                                        for (int k = 0; k < genResult.Size(); k++)
+                                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                        ScAddr elem = genResult["_question_number"];
+                                        vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                        int num = objectQuestion.size();
+                                        string strQuestion = "Generated_Question";
+                                        string strNum = to_string(num);
+                                        ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                        elemDuplicate.push_back(keyElem);
+                                    }
+                                }
+                            }
+                        }
+                    } else if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_based_on_set_identifier, ScType::EdgeAccessConstPosPerm)) {
+                        ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
+                        if (ms_context->HelperCheckEdge(param, GenKeynodes::fill_in_the_blank_questions_with_unique_answers, ScType::EdgeAccessConstPosPerm)) {
+                            vector<ScAddr> elemDuplicate;
+                            for (int i = 0; i < searchResult.Size(); i++) {
+                                ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                                ScAddr keyElem = searchResultItem["_opkq"];
+                                vector<ScAddr> keyElementCorrectList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
+                                auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                                if (itDup == elemDuplicate.end() && !keyElementCorrectList.empty() && keyElementCorrectList.size() < 7) {
 
                                     cout << keyElementCorrectList.size() << endl;
 
+                                    for (int j=0; j<searchResultItem.Size();j++)
+                                    {
+                                        ScAddr elem = searchResultItem[j];
+                                        ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
+                                    }
 
-
-
+                                    cout << "--------------------" << endl;
 
 
 
@@ -1462,23 +1517,21 @@ namespace answerVerificationModule {
 
                                 }
                             }
+                        } else {
+
+
+
+
+
+
+
+
+
+
+
+
+                            //todo
                         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     }
                 }
 
