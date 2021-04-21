@@ -46,4 +46,6 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::rrel_known_answer;
     ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_binary_relation;
     ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_set_identifier;
+    ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_relation_identifier;
+    ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_axiomatics;
 }
