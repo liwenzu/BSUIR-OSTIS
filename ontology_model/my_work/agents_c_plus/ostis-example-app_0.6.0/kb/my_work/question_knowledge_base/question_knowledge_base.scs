@@ -403,8 +403,80 @@ fill_in_the_blank_questions_based_on_relation_attributes
 
 
 
+judgment_questions
+<- sc_node_class;
+=> nrel_main_idtf:
+            [Вопросы суждения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgment questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题] (* <- lang_ch;; *);;
 
 
+
+judgment_questions_of_choosing_true
+<- sc_node_class;
+=> nrel_main_idtf:
+            [Вопросы суждения с ответами "истина"] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgment questions of choosing "true"] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题选择“对”] (* <- lang_ch;; *);;
+
+
+
+judgment_questions_of_choosing_false
+<- sc_node_class;
+=> nrel_main_idtf:
+            [Вопросы суждения с ответами "ложь"] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgment questions of choosing "false"] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题选择“错”] (* <- lang_ch;; *);;
+
+
+
+judgment_questions_based_on_class
+<- sc_node_class;
+=> nrel_main_idtf:
+            [Вопросы суждения на основе классов] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgment questions based on class] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于类] (* <- lang_ch;; *);;
+
+
+
+judgment_questions_based_on_inclusion_relation
+<- sc_node_class;
+=> nrel_main_idtf:
+            [Вопросы суждения на основе отношения включения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgment questions based on inclusion relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于包含关系] (* <- lang_ch;; *);;
+
+
+
+judgment_questions_based_on_subdividing_relation
+<- sc_node_class;
+=> nrel_main_idtf:
+            [Вопросы суждения на основе отношения разбиения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgment questions based on subdividing relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于细分关系] (* <- lang_ch;; *);;
+
+
+
+judgment_questions_based_on_strict_inclusion_relation
+<- sc_node_class;
+=> nrel_main_idtf:
+            [Вопросы суждения на основе отношения строгого включения] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Judgment questions based on strict inclusion relation] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [判断题基于严格包含关系] (* <- lang_ch;; *);;
 
 
 

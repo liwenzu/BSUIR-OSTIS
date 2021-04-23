@@ -50,5 +50,7 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_axiomatics;
     ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_image_examples;
     ScAddr GenKeynodes::fill_in_the_blank_questions_based_on_relation_attributes;
+    ScAddr GenKeynodes::judgment_questions;
+    ScAddr GenKeynodes::judgment_questions_based_on_inclusion_relation;
 
 }

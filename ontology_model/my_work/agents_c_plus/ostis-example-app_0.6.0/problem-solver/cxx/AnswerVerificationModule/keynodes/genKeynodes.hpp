@@ -147,5 +147,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("fill_in_the_blank_questions_based_on_relation_attributes"), ForceCreate)
         static ScAddr fill_in_the_blank_questions_based_on_relation_attributes;
+
+        SC_PROPERTY(Keynode("judgment_questions"), ForceCreate)
+        static ScAddr judgment_questions;
+
+        SC_PROPERTY(Keynode("judgment_questions"), ForceCreate)
+        static ScAddr judgment_questions_based_on_inclusion_relation;
     };
 }
