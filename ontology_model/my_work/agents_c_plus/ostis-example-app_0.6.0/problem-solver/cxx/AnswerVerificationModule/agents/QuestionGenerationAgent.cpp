@@ -1723,7 +1723,8 @@ namespace answerVerificationModule {
                         }
                     }
                 } else if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions, ScType::EdgeAccessConstPosPerm)) {
-                    if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_inclusion_relation, ScType::EdgeAccessConstPosPerm)) {
+                    if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_inclusion_relation, ScType::EdgeAccessConstPosPerm) ||
+                        ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_strict_inclusion_relation, ScType::EdgeAccessConstPosPerm)) {
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                         ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
                         ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
@@ -1883,7 +1884,13 @@ namespace answerVerificationModule {
                                 }
                             }
                         }
-                    } else {
+                    } else if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_subdividing_relation, ScType::EdgeAccessConstPosPerm)) {
+                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
+                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
+                        vector<ScAddr> elemDuplicate;
+                        for (int i = 0; i < searchResult.Size(); i++) {
+                            ScTemplateSearchResultItem searchResultItem = searchResult[i];
 
 
 
@@ -1894,7 +1901,21 @@ namespace answerVerificationModule {
 
 
 
-                        //todo
+
+
+
+                            for (int j = 0; j < searchResultItem.Size(); j++) {
+                                ScAddr elem = searchResultItem[j];
+                                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, elem);
+                            }
+                        }
+
+
+
+
+
+
+
                     }
                 }
 

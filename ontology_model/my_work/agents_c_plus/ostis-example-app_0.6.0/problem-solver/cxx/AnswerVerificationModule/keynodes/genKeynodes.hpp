@@ -159,5 +159,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("judgment_questions_of_choosing_true"), ForceCreate)
         static ScAddr judgment_questions_of_choosing_true;
+
+        SC_PROPERTY(Keynode("judgment_questions_based_on_strict_inclusion_relation"), ForceCreate)
+        static ScAddr judgment_questions_based_on_strict_inclusion_relation;
+
+        SC_PROPERTY(Keynode("judgment_questions_based_on_subdividing_relation"), ForceCreate)
+        static ScAddr judgment_questions_based_on_subdividing_relation;
     };
 }
