@@ -56,5 +56,6 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::judgment_questions_of_choosing_true;
     ScAddr GenKeynodes::judgment_questions_based_on_strict_inclusion_relation;
     ScAddr GenKeynodes::judgment_questions_based_on_subdividing_relation;
+    ScAddr GenKeynodes::judgment_questions_based_on_binary_relation;
 
 }

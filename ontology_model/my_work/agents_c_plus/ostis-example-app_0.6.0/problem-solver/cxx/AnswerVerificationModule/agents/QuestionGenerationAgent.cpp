@@ -2002,13 +2002,116 @@ namespace answerVerificationModule {
                                 }
                             }
                         }
-
-
-
-
-
-
-
+                    } else if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_binary_relation, ScType::EdgeAccessConstPosPerm)) {
+                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstClass);
+                        ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
+                        std::random_device rd;
+                        std::mt19937_64 eng(rd());
+                        if (ms_context->HelperCheckEdge(param, Keynodes::rrel_1, ScType::EdgeAccessConstPosPerm)) {
+                            vector<ScAddr> elemDuplicate;
+                            for (int i = 0; i < searchResult.Size(); i++) {
+                                ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                                ScAddr keyElem = searchResultItem["_opkqn"];
+                                ScAddr elemOptionCS = searchResultItem["_opcsn"];
+                                ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
+                                vector<ScAddr> keyElemCorrectList = IteratorUtils::getAllWithType(ms_context.get(), elemSubDomain, ScType::NodeConst);
+                                auto it = find(keyElemCorrectList.begin(), keyElemCorrectList.end(), elemOptionCS);
+                                if (it != keyElemCorrectList.end())
+                                    keyElemCorrectList.erase(it);
+                                std::uniform_int_distribution<unsigned long long> distr(0, 1);
+                                int trueOrFalse = distr(eng);
+                                auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                                if (elemRelation == relationStruct && itDup == elemDuplicate.end() && !keyElemCorrectList.empty()) {
+                                    ScTemplate resultStructTemplate;
+                                    ScTemplateParams  templateParams;
+                                    templateParams.Add("_opkqn", keyElem);
+                                    string strRole = "rrel_";
+                                    if (!trueOrFalse) {
+                                        shuffle(keyElemCorrectList.begin(), keyElemCorrectList.end(), std::mt19937(std::random_device()()));
+                                        elemOptionCS = keyElemCorrectList.front();
+                                    }
+                                    templateParams.Add("_opn", elemOptionCS);
+                                    string strArrySize = to_string(trueOrFalse);
+                                    ScAddr elementRole = ms_context->HelperResolveSystemIdtf(strRole+strArrySize, ScType::NodeConstRole);
+                                    ScAddr resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStruct, elementRole);
+                                    ms_context->HelperBuildTemplate(resultStructTemplate, resultStructCp);
+                                    ScTemplateGenResult genResult;
+                                    if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                        cout << "Hello genResult" << endl;
+                                        cout << genResult.Size() << endl;
+                                        for (int k = 0; k < genResult.Size(); k++)
+                                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                        ScAddr elem = genResult["_question_number"];
+                                        vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                        int num = objectQuestion.size();
+                                        string strQuestion = "Generated_Question";
+                                        string strNum = to_string(num);
+                                        ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                        elemDuplicate.push_back(keyElem);
+                                    }
+                                }
+                            }
+                        } else if (ms_context->HelperCheckEdge(param, Keynodes::rrel_2, ScType::EdgeAccessConstPosPerm)) {
+                            vector<ScAddr> elemDuplicate;
+                            for (int i = 0; i < searchResult.Size(); i++) {
+                                ScTemplateSearchResultItem searchResultItem = searchResult[i];
+                                ScAddr keyElem = searchResultItem["_opkqn"];
+                                ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
+                                vector<ScAddr> keyElemList = IteratorUtils::getAllByInRelation(ms_context.get(), keyElem, relationStruct);
+                                vector<ScAddr> keyElemCorrectList = IteratorUtils::getAllWithType(ms_context.get(), elemSubDomain, ScType::NodeConst);
+                                auto it = find(keyElemCorrectList.begin(), keyElemCorrectList.end(), keyElem);
+                                if (it != keyElemCorrectList.end())
+                                    keyElemCorrectList.erase(it);
+                                std::uniform_int_distribution<unsigned long long> distr(0, 1);
+                                int trueOrFalse = distr(eng);
+                                auto itDup = find(elemDuplicate.begin(), elemDuplicate.end(), keyElem);
+                                if (elemRelation == relationStruct && itDup == elemDuplicate.end() && ((trueOrFalse && !keyElemList.empty()) || (!trueOrFalse && !keyElemCorrectList.empty()))) {
+                                    ScTemplate resultStructTemplate;
+                                    ScTemplateParams  templateParams;
+                                    templateParams.Add("_opkqn", keyElem);
+                                    string str = "12345678";
+                                    string str1= "_opn";
+                                    string strRole = "rrel_";
+                                    int ArrySize = 0;
+                                    if (trueOrFalse) {
+                                        ArrySize = keyElemList.size();
+                                        if (ArrySize > 5)
+                                            continue;
+                                        for (int j = 0; j < ArrySize; j++)
+                                            templateParams.Add(str1 + str[j], keyElemList[j]);
+                                    } else {
+                                        shuffle(keyElemCorrectList.begin(), keyElemCorrectList.end(), std::mt19937(std::random_device()()));
+                                        vector<ScAddr> keyElemListSub = IteratorUtils::getAllByInRelation(ms_context.get(), keyElemCorrectList.front(), relationStruct);
+                                        ArrySize = keyElemListSub.size();
+                                        if (ArrySize > 5 || ArrySize == 0)
+                                            continue;
+                                        for (int j = 0; j < ArrySize; j++)
+                                            templateParams.Add(str1 + str[j], keyElemListSub[j]);
+                                    }
+                                    string strArrySize = to_string(trueOrFalse);
+                                    ScAddr elementRole = ms_context->HelperResolveSystemIdtf(strRole+strArrySize, ScType::NodeConstRole);
+                                    ScAddr resultStructSub = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStruct, elementRole);
+                                    strArrySize = to_string(ArrySize);
+                                    elementRole = ms_context->HelperResolveSystemIdtf(strRole+strArrySize, ScType::NodeConstRole);
+                                    ScAddr resultStructCp = IteratorUtils::getFirstByOutRelation(ms_context.get(), resultStructSub, elementRole);
+                                    ms_context->HelperBuildTemplate(resultStructTemplate, resultStructCp);
+                                    ScTemplateGenResult genResult;
+                                    if (ms_context->HelperGenTemplate(resultStructTemplate, genResult, templateParams)) {
+                                        cout << "Hello genResult" << endl;
+                                        cout << genResult.Size() << endl;
+                                        for (int k = 0; k < genResult.Size(); k++)
+                                            ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, genResult[k]);
+                                        ScAddr elem = genResult["_question_number"];
+                                        vector<ScAddr> objectQuestion = IteratorUtils::getAllWithType(ms_context.get(), GenKeynodes::objective_questions, ScType::NodeConst);
+                                        int num = objectQuestion.size();
+                                        string strQuestion = "Generated_Question";
+                                        string strNum = to_string(num);
+                                        ms_context->HelperSetSystemIdtf(strQuestion + strNum, elem);
+                                        elemDuplicate.push_back(keyElem);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 

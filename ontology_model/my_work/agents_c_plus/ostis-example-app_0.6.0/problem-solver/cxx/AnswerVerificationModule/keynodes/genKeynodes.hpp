@@ -165,5 +165,8 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("judgment_questions_based_on_subdividing_relation"), ForceCreate)
         static ScAddr judgment_questions_based_on_subdividing_relation;
+
+        SC_PROPERTY(Keynode("judgment_questions_based_on_binary_relation"), ForceCreate)
+        static ScAddr judgment_questions_based_on_binary_relation;
     };
 }
