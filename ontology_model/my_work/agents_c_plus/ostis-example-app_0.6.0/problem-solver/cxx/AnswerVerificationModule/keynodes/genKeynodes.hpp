@@ -168,5 +168,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("judgment_questions_based_on_binary_relation"), ForceCreate)
         static ScAddr judgment_questions_based_on_binary_relation;
+
+        SC_PROPERTY(Keynode("judgment_questions_based_on_set_identifiers"), ForceCreate)
+        static ScAddr judgment_questions_based_on_set_identifiers;
+
+        SC_PROPERTY(Keynode("judgment_questions_based_on_relation_identifiers"), ForceCreate)
+        static ScAddr judgment_questions_based_on_relation_identifiers;
     };
 }
