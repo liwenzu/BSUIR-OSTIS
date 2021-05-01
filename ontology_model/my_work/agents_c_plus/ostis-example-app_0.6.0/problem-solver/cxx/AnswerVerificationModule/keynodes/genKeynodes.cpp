@@ -59,5 +59,6 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::judgment_questions_based_on_binary_relation;
     ScAddr GenKeynodes::judgment_questions_based_on_set_identifiers;
     ScAddr GenKeynodes::judgment_questions_based_on_relation_identifiers;
+    ScAddr GenKeynodes::judgment_questions_based_on_axiomatics;
 
 }
