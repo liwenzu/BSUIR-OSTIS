@@ -177,5 +177,11 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("judgment_questions_based_on_axiomatics"), ForceCreate)
         static ScAddr judgment_questions_based_on_axiomatics;
+
+        SC_PROPERTY(Keynode("judgment_questions_based_on_image_examples"), ForceCreate)
+        static ScAddr judgment_questions_based_on_image_examples;
+
+        SC_PROPERTY(Keynode("judgment_questions_based_on_relation_attributes"), ForceCreate)
+        static ScAddr judgment_questions_based_on_relation_attributes;
     };
 }
