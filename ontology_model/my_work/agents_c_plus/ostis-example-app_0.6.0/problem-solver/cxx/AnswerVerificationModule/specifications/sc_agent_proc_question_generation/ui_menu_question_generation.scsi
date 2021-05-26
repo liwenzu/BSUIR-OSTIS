@@ -10,11 +10,13 @@ ui_menu_question_generation
                       [*
                         question_generation _-> ._question_generation_instance
                                                                             (*
-                                                                                _-> ui_arg_1;;
+                                                                               _-> rrel_1:: ui_arg_1;;
+                                                                               _-> rrel_2:: ui_arg_2;;
+                                                                               _-> rrel_3:: ui_arg_3;;
                                                                             *);;
                         ._question_generation_instance _<- question;;
                       *];
 => ui_nrel_command_lang_template:
-                       [Генерация объективных вопросов: $ui_arg_1] (* <- lang_ru;; *);
+                       [Генерация объективных вопросов: $ui_arg_1, $ui_arg_2, $ui_arg_3] (* <- lang_ru;; *);
 => ui_nrel_command_lang_template:
-                       [Generation of objective questions: $ui_arg_1] (* <- lang_en;; *);;
+                       [Generation of objective questions: $ui_arg_1, $ui_arg_2, $ui_arg_3] (* <- lang_en;; *);;

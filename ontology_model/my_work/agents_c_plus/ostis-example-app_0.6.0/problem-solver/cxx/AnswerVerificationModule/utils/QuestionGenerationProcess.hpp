@@ -10,7 +10,13 @@ namespace answerVerificationModule
     class QuestionGenerationProcess
     {
     public:
-        static void findAllElement(ScMemoryContext * ms_context, const  ScAddr &node, std::vector<ScAddr> &keyElemListCp, const ScAddr & relation);
+        static void findAllElement(ScMemoryContext *ms_context, const ScAddr &node, std::vector<ScAddr> &keyElemListCp,
+                                   const ScAddr &relation);
+
+        static void templateGeneration(ScMemoryContext *ms_context, const ScTemplate &resultStructTemplate,
+                                       const ScTemplateParams &templateParams, std::vector<ScAddr> &elemDuplicate,
+                                       const ScAddr &answer, const ScAddr &keyElem);
+
     };
 }
 
