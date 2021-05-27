@@ -134,7 +134,7 @@ namespace answerVerificationModule {
                                 vector<ScAddr> keyElemList;
                                 vector<ScAddr> keyElemListCorrect;
                                 keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
-                                keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, GenKeynodes::rrel_not_maximum_studied_object_class);
+                                keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, roleStruct);
                                 if ((!ms_context->HelperCheckEdge(keyElem, elemOptionCS, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(elemSubDomain, elemOptionCS, ScType::EdgeAccessConstPosPerm))
                                     || (!ms_context->HelperCheckEdge(keyElem, elemOption1, ScType::EdgeDCommonConst) && !ms_context->HelperCheckEdge(elemSubDomain, elemOption1, ScType::EdgeAccessConstPosPerm)))
                                 {

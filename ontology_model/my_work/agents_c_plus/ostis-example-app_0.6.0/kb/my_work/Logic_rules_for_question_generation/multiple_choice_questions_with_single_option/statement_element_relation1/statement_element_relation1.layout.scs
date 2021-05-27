@@ -5,225 +5,93 @@
 	..point3
 };;
 ..point0
-	=> nrel_x: [1322];
-	=> nrel_y: [688];
+	=> nrel_x: [217];
+	=> nrel_y: [451];
 	=> nrel_basic_sequence: ..point3;;
 ..point1
-	=> nrel_x: [671];
-	=> nrel_y: [688];
+	=> nrel_x: [443];
+	=> nrel_y: [451];
 	=> nrel_basic_sequence: ..point0;;
 ..point2
-	=> nrel_x: [671];
-	=> nrel_y: [403];
+	=> nrel_x: [443];
+	=> nrel_y: [639];
 	=> nrel_basic_sequence: ..point1;;
 ..point3
-	=> nrel_x: [1322];
-	=> nrel_y: [403];
+	=> nrel_x: [217];
+	=> nrel_y: [639];
 	=> nrel_basic_sequence: ..point2;;
-_opcsn
+_opkqn
 	=> nrel_scg_representation: ..scgNode0;;
 ..scgNode0
-	=> nrel_x: [781.799];
-	=> nrel_y: [471.5];
+	=> nrel_x: [419];
+	=> nrel_y: [469];
 	=> nrel_idtf_pos: [1];;
-objective_questions
+.._node0
 	=> nrel_scg_representation: ..scgNode1;;
 ..scgNode1
-	=> nrel_x: [921.8];
-	=> nrel_y: [526.5];
-	=> nrel_idtf_pos: [3];;
-_opn2
+	=> nrel_x: [419.5];
+	=> nrel_y: [615.5];
+	=> nrel_idtf_pos: [0];;
+_opcsn
 	=> nrel_scg_representation: ..scgNode2;;
 ..scgNode2
-	=> nrel_x: [700.799];
-	=> nrel_y: [524.5];
-	=> nrel_idtf_pos: [0];;
-multiple_choice_questions_with_single_option
+	=> nrel_x: [299.5];
+	=> nrel_y: [615.5];
+	=> nrel_idtf_pos: [4];;
+_opn1
 	=> nrel_scg_representation: ..scgNode3;;
 ..scgNode3
-	=> nrel_x: [921.8];
-	=> nrel_y: [561.5];
-	=> nrel_idtf_pos: [0];;
-nrel_incorrect_option
+	=> nrel_x: [300];
+	=> nrel_y: [469];
+	=> nrel_idtf_pos: [4];;
+concept_scientist
 	=> nrel_scg_representation: ..scgNode4;;
 ..scgNode4
-	=> nrel_x: [838.299];
-	=> nrel_y: [573];
+	=> nrel_x: [418.5];
+	=> nrel_y: [546.5];
 	=> nrel_idtf_pos: [1];;
-nrel_correct_option
+_nrel_inclusion
 	=> nrel_scg_representation: ..scgNode5;;
 ..scgNode5
-	=> nrel_x: [832.799];
-	=> nrel_y: [439.5];
+	=> nrel_x: [350];
+	=> nrel_y: [532];
 	=> nrel_idtf_pos: [4];;
-rrel_key_sc_element
-	=> nrel_scg_representation: ..scgNode6;;
-..scgNode6
-	=> nrel_x: [875.299];
-	=> nrel_y: [426];
-	=> nrel_idtf_pos: [2];;
-multiple_choice_questions_based_on_binary_relation
-	=> nrel_scg_representation: ..scgNode7;;
-..scgNode7
-	=> nrel_x: [921.8];
-	=> nrel_y: [623.5];
-	=> nrel_idtf_pos: [0];;
-_opkqn
-	=> nrel_scg_representation: ..scgNode8;;
-..scgNode8
-	=> nrel_x: [918.8];
-	=> nrel_y: [471.5];
-	=> nrel_idtf_pos: [1];;
-_opn1
-	=> nrel_scg_representation: ..scgNode9;;
-..scgNode9
-	=> nrel_x: [700.799];
-	=> nrel_y: [496.5];
-	=> nrel_idtf_pos: [0];;
-.._node0
-	=> nrel_scg_representation: ..scgNode10;;
-..scgNode10
-	=> nrel_x: [784.799];
-	=> nrel_y: [525.5];
-	=> nrel_idtf_pos: [0];;
-_opn3
-	=> nrel_scg_representation: ..scgNode11;;
-..scgNode11
-	=> nrel_x: [700.799];
-	=> nrel_y: [551.5];
-	=> nrel_idtf_pos: [0];;
-_question_number
-	=> nrel_scg_representation: ..scgNode12;;
-..scgNode12
-	=> nrel_x: [867.299];
-	=> nrel_y: [526];
-	=> nrel_idtf_pos: [0];;
-choice_the_incorrect_option
-	=> nrel_scg_representation: ..scgNode13;;
-..scgNode13
-	=> nrel_x: [922.8];
-	=> nrel_y: [592.5];
-	=> nrel_idtf_pos: [0];;
-multiple_choice_questions
-	=> nrel_scg_representation: ..scgNode14;;
-..scgNode14
-	=> nrel_x: [921.5];
-	=> nrel_y: [653.5];
-	=> nrel_idtf_pos: [0];;
-@scgPair0 = (..scgNode12 _=> ..scgNode0);;
+@scgPair0 = (..scgNode4 _-> ..scgNode1);;
 @pair0
 	=> nrel_scg_representation: @scgPair0;;
 @scgPair0
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair1 = (..scgNode5 _-> @scgPair0);;
+@scgPair1 = (..scgNode3 _=> ..scgNode0);;
 @pair1
 	=> nrel_scg_representation: @scgPair1;;
 @scgPair1
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.373893];;
-@scgPair2 = (..scgNode3 _-> ..scgNode12);;
+	=> nrel_end_ratio: [0];;
+@scgPair2 = (..scgNode5 _-> @scgPair1);;
 @pair2
 	=> nrel_scg_representation: @scgPair2;;
 @scgPair2
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair2 => nrel_decomposition: {
-	..point4
-};;
-..point4
-	=> nrel_x: [867.299];
-	=> nrel_y: [561];;
-@scgPair3 = (..scgNode10 _-> ..scgNode9);;
+	=> nrel_end_ratio: [0.405];;
+@scgPair3 = (..scgNode2 _=> ..scgNode1);;
 @pair3
 	=> nrel_scg_representation: @scgPair3;;
 @scgPair3
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair4 = (..scgNode13 _-> ..scgNode12);;
+@scgPair4 = (..scgNode5 _-> @scgPair3);;
 @pair4
 	=> nrel_scg_representation: @scgPair4;;
 @scgPair4
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair4 => nrel_decomposition: {
-	..point5
-};;
-..point5
-	=> nrel_x: [867.299];
-	=> nrel_y: [592];;
-@scgPair5 = (..scgNode10 _=> ..scgNode12);;
+	=> nrel_end_ratio: [0.405941];;
+@scgPair5 = (..scgNode4 _-> ..scgNode0);;
 @pair5
 	=> nrel_scg_representation: @scgPair5;;
 @scgPair5
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair6 = (..scgNode4 _-> @scgPair5);;
-@pair6
-	=> nrel_scg_representation: @scgPair6;;
-@scgPair6
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.692929];;
-@scgPair7 = (..scgNode10 _-> ..scgNode11);;
-@pair7
-	=> nrel_scg_representation: @scgPair7;;
-@scgPair7
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair8 = (..scgNode7 _-> ..scgNode12);;
-@pair8
-	=> nrel_scg_representation: @scgPair8;;
-@scgPair8
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair8 => nrel_decomposition: {
-	..point6
-};;
-..point6
-	=> nrel_x: [867.299];
-	=> nrel_y: [623];;
-@scgPair9 = (..scgNode10 _-> ..scgNode2);;
-@pair9
-	=> nrel_scg_representation: @scgPair9;;
-@scgPair9
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair10 = (..scgNode1 _-> ..scgNode12);;
-@pair10
-	=> nrel_scg_representation: @scgPair10;;
-@scgPair10
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair11 = (..scgNode12 _-> ..scgNode8);;
-@pair11
-	=> nrel_scg_representation: @scgPair11;;
-@scgPair11
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair11 => nrel_decomposition: {
-	..point7
-};;
-..point7
-	=> nrel_x: [867.299];
-	=> nrel_y: [472];;
-@scgPair12 = (..scgNode6 _-> @scgPair11);;
-@pair12
-	=> nrel_scg_representation: @scgPair12;;
-@scgPair12
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [1.19092];;
-@scgPair13 = (..scgNode14 _-> ..scgNode12);;
-@pair13
-	=> nrel_scg_representation: @scgPair13;;
-@scgPair13
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair13 => nrel_decomposition: {
-	..point8
-};;
-..point8
-	=> nrel_x: [867];
-	=> nrel_y: [653.5];;
 @contour0 <- concept_scg_contour;;
 @contour0 => nrel_including: {
 	..scgNode0;
@@ -232,6 +100,169 @@ multiple_choice_questions
 	..scgNode3;
 	..scgNode4;
 	..scgNode5;
+	@scgPair0;
+	@scgPair2;
+	@scgPair1;
+	@scgPair4;
+	@scgPair3;
+	@scgPair5
+};;
+@contour1 => nrel_decomposition: {
+	..point4;
+	..point5;
+	..point6;
+	..point7
+};;
+..point4
+	=> nrel_x: [210];
+	=> nrel_y: [669];
+	=> nrel_basic_sequence: ..point7;;
+..point5
+	=> nrel_x: [454];
+	=> nrel_y: [669];
+	=> nrel_basic_sequence: ..point4;;
+..point6
+	=> nrel_x: [454];
+	=> nrel_y: [899];
+	=> nrel_basic_sequence: ..point5;;
+..point7
+	=> nrel_x: [210];
+	=> nrel_y: [899];
+	=> nrel_basic_sequence: ..point6;;
+concept_scientist
+	=> nrel_scg_representation: ..scgNode6;;
+..scgNode6
+	=> nrel_x: [433];
+	=> nrel_y: [812];
+	=> nrel_idtf_pos: [4];;
+_nrel_inclusion
+	=> nrel_scg_representation: ..scgNode7;;
+..scgNode7
+	=> nrel_x: [342.5];
+	=> nrel_y: [771.5];
+	=> nrel_idtf_pos: [1];;
+_opkqn
+	=> nrel_scg_representation: ..scgNode8;;
+..scgNode8
+	=> nrel_x: [433.5];
+	=> nrel_y: [734.5];
+	=> nrel_idtf_pos: [1];;
+.._node1
+	=> nrel_scg_representation: ..scgNode9;;
+..scgNode9
+	=> nrel_x: [434];
+	=> nrel_y: [881];
+	=> nrel_idtf_pos: [0];;
+_opn1
+	=> nrel_scg_representation: ..scgNode10;;
+..scgNode10
+	=> nrel_x: [314.5];
+	=> nrel_y: [683.5];
+	=> nrel_idtf_pos: [4];;
+_opn2
+	=> nrel_scg_representation: ..scgNode11;;
+..scgNode11
+	=> nrel_x: [314.5];
+	=> nrel_y: [709.5];
+	=> nrel_idtf_pos: [4];;
+_opn3
+	=> nrel_scg_representation: ..scgNode12;;
+..scgNode12
+	=> nrel_x: [314.5];
+	=> nrel_y: [734.5];
+	=> nrel_idtf_pos: [4];;
+_opcsn
+	=> nrel_scg_representation: ..scgNode13;;
+..scgNode13
+	=> nrel_x: [314];
+	=> nrel_y: [881];
+	=> nrel_idtf_pos: [4];;
+@scgPair6 = (..scgNode6 _-> ..scgNode9);;
+@pair6
+	=> nrel_scg_representation: @scgPair6;;
+@scgPair6
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair7 = (..scgNode6 _-> ..scgNode8);;
+@pair7
+	=> nrel_scg_representation: @scgPair7;;
+@scgPair7
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair8 = (..scgNode12 _=> ..scgNode8);;
+@pair8
+	=> nrel_scg_representation: @scgPair8;;
+@scgPair8
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair9 = (..scgNode7 _-> @scgPair8);;
+@pair9
+	=> nrel_scg_representation: @scgPair9;;
+@scgPair9
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.695];;
+@scgPair9 => nrel_decomposition: {
+	..point8
+};;
+..point8
+	=> nrel_x: [393.5];
+	=> nrel_y: [771.5];;
+@scgPair10 = (..scgNode11 _=> ..scgNode8);;
+@pair10
+	=> nrel_scg_representation: @scgPair10;;
+@scgPair10
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair10 => nrel_decomposition: {
+	..point9
+};;
+..point9
+	=> nrel_x: [433.5];
+	=> nrel_y: [709.5];;
+@scgPair11 = (..scgNode7 _-> @scgPair10);;
+@pair11
+	=> nrel_scg_representation: @scgPair11;;
+@scgPair11
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.406393];;
+@scgPair11 => nrel_decomposition: {
+	..point10
+};;
+..point10
+	=> nrel_x: [368.5];
+	=> nrel_y: [771.5];;
+@scgPair12 = (..scgNode10 _=> ..scgNode8);;
+@pair12
+	=> nrel_scg_representation: @scgPair12;;
+@scgPair12
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair12 => nrel_decomposition: {
+	..point11
+};;
+..point11
+	=> nrel_x: [433.5];
+	=> nrel_y: [683.5];;
+@scgPair13 = (..scgNode7 _-> @scgPair12);;
+@pair13
+	=> nrel_scg_representation: @scgPair13;;
+@scgPair13
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.16895];;
+@scgPair14 = (..scgNode13 _=> ..scgNode9);;
+@pair14
+	=> nrel_scg_representation: @scgPair14;;
+@scgPair14
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair15 = (..scgNode7 _-> @scgPair14);;
+@pair15
+	=> nrel_scg_representation: @scgPair15;;
+@scgPair15
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.188119];;
+@contour1 <- concept_scg_contour;;
+@contour1 => nrel_including: {
 	..scgNode6;
 	..scgNode7;
 	..scgNode8;
@@ -240,178 +271,258 @@ multiple_choice_questions
 	..scgNode11;
 	..scgNode12;
 	..scgNode13;
-	..scgNode14;
-	@scgPair0;
-	@scgPair1;
-	@scgPair2;
-	@scgPair3;
-	@scgPair4;
-	@scgPair5;
 	@scgPair6;
 	@scgPair7;
-	@scgPair8;
 	@scgPair9;
-	@scgPair10;
+	@scgPair8;
 	@scgPair11;
+	@scgPair10;
+	@scgPair13;
 	@scgPair12;
-	@scgPair13
+	@scgPair15;
+	@scgPair14
 };;
-@contour1 => nrel_decomposition: {
-	..point9;
-	..point10;
-	..point11;
-	..point12
+@contour2 => nrel_decomposition: {
+	..point12;
+	..point13;
+	..point14;
+	..point15
 };;
-..point9
-	=> nrel_x: [210];
-	=> nrel_y: [669];
-	=> nrel_basic_sequence: ..point12;;
-..point10
-	=> nrel_x: [454];
-	=> nrel_y: [669];
-	=> nrel_basic_sequence: ..point9;;
-..point11
-	=> nrel_x: [454];
-	=> nrel_y: [899];
-	=> nrel_basic_sequence: ..point10;;
 ..point12
-	=> nrel_x: [210];
-	=> nrel_y: [899];
-	=> nrel_basic_sequence: ..point11;;
-_opcsn
+	=> nrel_x: [1322];
+	=> nrel_y: [688];
+	=> nrel_basic_sequence: ..point15;;
+..point13
+	=> nrel_x: [671];
+	=> nrel_y: [688];
+	=> nrel_basic_sequence: ..point12;;
+..point14
+	=> nrel_x: [671];
+	=> nrel_y: [403];
+	=> nrel_basic_sequence: ..point13;;
+..point15
+	=> nrel_x: [1322];
+	=> nrel_y: [403];
+	=> nrel_basic_sequence: ..point14;;
+multiple_choice_questions_based_on_elements
+	=> nrel_scg_representation: ..scgNode14;;
+..scgNode14
+	=> nrel_x: [952.5];
+	=> nrel_y: [490.5];
+	=> nrel_idtf_pos: [5];;
+multiple_choice_questions_based_on_binary_relation
 	=> nrel_scg_representation: ..scgNode15;;
 ..scgNode15
-	=> nrel_x: [314];
-	=> nrel_y: [881];
-	=> nrel_idtf_pos: [4];;
-_opn3
+	=> nrel_x: [921.8];
+	=> nrel_y: [623.5];
+	=> nrel_idtf_pos: [0];;
+rrel_key_sc_element
 	=> nrel_scg_representation: ..scgNode16;;
 ..scgNode16
-	=> nrel_x: [314.5];
-	=> nrel_y: [734.5];
-	=> nrel_idtf_pos: [4];;
-_opn2
+	=> nrel_x: [875.299];
+	=> nrel_y: [426];
+	=> nrel_idtf_pos: [2];;
+nrel_correct_option
 	=> nrel_scg_representation: ..scgNode17;;
 ..scgNode17
-	=> nrel_x: [314.5];
-	=> nrel_y: [709.5];
+	=> nrel_x: [832.799];
+	=> nrel_y: [439.5];
 	=> nrel_idtf_pos: [4];;
-_opn1
+nrel_incorrect_option
 	=> nrel_scg_representation: ..scgNode18;;
 ..scgNode18
-	=> nrel_x: [314.5];
-	=> nrel_y: [683.5];
-	=> nrel_idtf_pos: [4];;
-.._node1
+	=> nrel_x: [838.299];
+	=> nrel_y: [573];
+	=> nrel_idtf_pos: [1];;
+multiple_choice_questions_with_single_option
 	=> nrel_scg_representation: ..scgNode19;;
 ..scgNode19
-	=> nrel_x: [434];
-	=> nrel_y: [881];
+	=> nrel_x: [921.8];
+	=> nrel_y: [561.5];
 	=> nrel_idtf_pos: [0];;
-_opkqn
+_opn2
 	=> nrel_scg_representation: ..scgNode20;;
 ..scgNode20
-	=> nrel_x: [433.5];
-	=> nrel_y: [734.5];
-	=> nrel_idtf_pos: [1];;
-_nrel_inclusion
+	=> nrel_x: [700.799];
+	=> nrel_y: [524.5];
+	=> nrel_idtf_pos: [0];;
+objective_questions
 	=> nrel_scg_representation: ..scgNode21;;
 ..scgNode21
-	=> nrel_x: [342.5];
-	=> nrel_y: [771.5];
-	=> nrel_idtf_pos: [1];;
-concept_scientist
+	=> nrel_x: [921.8];
+	=> nrel_y: [526.5];
+	=> nrel_idtf_pos: [3];;
+multiple_choice_questions
 	=> nrel_scg_representation: ..scgNode22;;
 ..scgNode22
-	=> nrel_x: [433];
-	=> nrel_y: [812];
-	=> nrel_idtf_pos: [4];;
-@scgPair14 = (..scgNode15 _=> ..scgNode19);;
-@pair14
-	=> nrel_scg_representation: @scgPair14;;
-@scgPair14
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair15 = (..scgNode21 _-> @scgPair14);;
-@pair15
-	=> nrel_scg_representation: @scgPair15;;
-@scgPair15
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.188119];;
-@scgPair16 = (..scgNode18 _=> ..scgNode20);;
+	=> nrel_x: [921.5];
+	=> nrel_y: [653.5];
+	=> nrel_idtf_pos: [0];;
+choice_the_incorrect_option
+	=> nrel_scg_representation: ..scgNode23;;
+..scgNode23
+	=> nrel_x: [922.8];
+	=> nrel_y: [592.5];
+	=> nrel_idtf_pos: [0];;
+_question_number
+	=> nrel_scg_representation: ..scgNode24;;
+..scgNode24
+	=> nrel_x: [867.299];
+	=> nrel_y: [526];
+	=> nrel_idtf_pos: [0];;
+_opn3
+	=> nrel_scg_representation: ..scgNode25;;
+..scgNode25
+	=> nrel_x: [700.799];
+	=> nrel_y: [551.5];
+	=> nrel_idtf_pos: [0];;
+.._node2
+	=> nrel_scg_representation: ..scgNode26;;
+..scgNode26
+	=> nrel_x: [784.799];
+	=> nrel_y: [525.5];
+	=> nrel_idtf_pos: [0];;
+_opn1
+	=> nrel_scg_representation: ..scgNode27;;
+..scgNode27
+	=> nrel_x: [700.799];
+	=> nrel_y: [496.5];
+	=> nrel_idtf_pos: [0];;
+_opkqn
+	=> nrel_scg_representation: ..scgNode28;;
+..scgNode28
+	=> nrel_x: [918.8];
+	=> nrel_y: [471.5];
+	=> nrel_idtf_pos: [1];;
+_opcsn
+	=> nrel_scg_representation: ..scgNode29;;
+..scgNode29
+	=> nrel_x: [781.799];
+	=> nrel_y: [471.5];
+	=> nrel_idtf_pos: [1];;
+@scgPair16 = (..scgNode14 _-> ..scgNode24);;
 @pair16
 	=> nrel_scg_representation: @scgPair16;;
 @scgPair16
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair16 => nrel_decomposition: {
-	..point13
-};;
-..point13
-	=> nrel_x: [433.5];
-	=> nrel_y: [683.5];;
-@scgPair17 = (..scgNode21 _-> @scgPair16);;
+@scgPair17 = (..scgNode22 _-> ..scgNode24);;
 @pair17
 	=> nrel_scg_representation: @scgPair17;;
 @scgPair17
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.16895];;
-@scgPair18 = (..scgNode17 _=> ..scgNode20);;
+	=> nrel_end_ratio: [0];;
+@scgPair17 => nrel_decomposition: {
+	..point16
+};;
+..point16
+	=> nrel_x: [867];
+	=> nrel_y: [653.5];;
+@scgPair18 = (..scgNode24 _-> ..scgNode28);;
 @pair18
 	=> nrel_scg_representation: @scgPair18;;
 @scgPair18
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
 @scgPair18 => nrel_decomposition: {
-	..point14
+	..point17
 };;
-..point14
-	=> nrel_x: [433.5];
-	=> nrel_y: [709.5];;
-@scgPair19 = (..scgNode21 _-> @scgPair18);;
+..point17
+	=> nrel_x: [867.299];
+	=> nrel_y: [472];;
+@scgPair19 = (..scgNode16 _-> @scgPair18);;
 @pair19
 	=> nrel_scg_representation: @scgPair19;;
 @scgPair19
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.406393];;
-@scgPair19 => nrel_decomposition: {
-	..point15
-};;
-..point15
-	=> nrel_x: [368.5];
-	=> nrel_y: [771.5];;
-@scgPair20 = (..scgNode16 _=> ..scgNode20);;
+	=> nrel_end_ratio: [1.19092];;
+@scgPair20 = (..scgNode21 _-> ..scgNode24);;
 @pair20
 	=> nrel_scg_representation: @scgPair20;;
 @scgPair20
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair21 = (..scgNode21 _-> @scgPair20);;
+@scgPair21 = (..scgNode26 _-> ..scgNode20);;
 @pair21
 	=> nrel_scg_representation: @scgPair21;;
 @scgPair21
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.695];;
-@scgPair21 => nrel_decomposition: {
-	..point16
-};;
-..point16
-	=> nrel_x: [393.5];
-	=> nrel_y: [771.5];;
-@scgPair22 = (..scgNode22 _-> ..scgNode20);;
+	=> nrel_end_ratio: [0];;
+@scgPair22 = (..scgNode15 _-> ..scgNode24);;
 @pair22
 	=> nrel_scg_representation: @scgPair22;;
 @scgPair22
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair23 = (..scgNode22 _-> ..scgNode19);;
+@scgPair22 => nrel_decomposition: {
+	..point18
+};;
+..point18
+	=> nrel_x: [867.299];
+	=> nrel_y: [623];;
+@scgPair23 = (..scgNode26 _-> ..scgNode25);;
 @pair23
 	=> nrel_scg_representation: @scgPair23;;
 @scgPair23
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@contour1 <- concept_scg_contour;;
-@contour1 => nrel_including: {
+@scgPair24 = (..scgNode26 _=> ..scgNode24);;
+@pair24
+	=> nrel_scg_representation: @scgPair24;;
+@scgPair24
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair25 = (..scgNode18 _-> @scgPair24);;
+@pair25
+	=> nrel_scg_representation: @scgPair25;;
+@scgPair25
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.692929];;
+@scgPair26 = (..scgNode23 _-> ..scgNode24);;
+@pair26
+	=> nrel_scg_representation: @scgPair26;;
+@scgPair26
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair26 => nrel_decomposition: {
+	..point19
+};;
+..point19
+	=> nrel_x: [867.299];
+	=> nrel_y: [592];;
+@scgPair27 = (..scgNode26 _-> ..scgNode27);;
+@pair27
+	=> nrel_scg_representation: @scgPair27;;
+@scgPair27
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair28 = (..scgNode19 _-> ..scgNode24);;
+@pair28
+	=> nrel_scg_representation: @scgPair28;;
+@scgPair28
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair28 => nrel_decomposition: {
+	..point20
+};;
+..point20
+	=> nrel_x: [867.299];
+	=> nrel_y: [561];;
+@scgPair29 = (..scgNode24 _=> ..scgNode29);;
+@pair29
+	=> nrel_scg_representation: @scgPair29;;
+@scgPair29
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair30 = (..scgNode17 _-> @scgPair29);;
+@pair30
+	=> nrel_scg_representation: @scgPair30;;
+@scgPair30
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.373893];;
+@contour2 <- concept_scg_contour;;
+@contour2 => nrel_including: {
+	..scgNode14;
 	..scgNode15;
 	..scgNode16;
 	..scgNode17;
@@ -420,273 +531,176 @@ concept_scientist
 	..scgNode20;
 	..scgNode21;
 	..scgNode22;
-	@scgPair15;
-	@scgPair14;
-	@scgPair17;
-	@scgPair16;
-	@scgPair19;
-	@scgPair18;
-	@scgPair21;
-	@scgPair20;
-	@scgPair22;
-	@scgPair23
-};;
-@contour2 => nrel_decomposition: {
-	..point17;
-	..point18;
-	..point19;
-	..point20
-};;
-..point17
-	=> nrel_x: [217];
-	=> nrel_y: [451];
-	=> nrel_basic_sequence: ..point20;;
-..point18
-	=> nrel_x: [443];
-	=> nrel_y: [451];
-	=> nrel_basic_sequence: ..point17;;
-..point19
-	=> nrel_x: [443];
-	=> nrel_y: [639];
-	=> nrel_basic_sequence: ..point18;;
-..point20
-	=> nrel_x: [217];
-	=> nrel_y: [639];
-	=> nrel_basic_sequence: ..point19;;
-_nrel_inclusion
-	=> nrel_scg_representation: ..scgNode23;;
-..scgNode23
-	=> nrel_x: [350];
-	=> nrel_y: [532];
-	=> nrel_idtf_pos: [4];;
-concept_scientist
-	=> nrel_scg_representation: ..scgNode24;;
-..scgNode24
-	=> nrel_x: [418.5];
-	=> nrel_y: [546.5];
-	=> nrel_idtf_pos: [1];;
-_opn1
-	=> nrel_scg_representation: ..scgNode25;;
-..scgNode25
-	=> nrel_x: [300];
-	=> nrel_y: [469];
-	=> nrel_idtf_pos: [4];;
-_opcsn
-	=> nrel_scg_representation: ..scgNode26;;
-..scgNode26
-	=> nrel_x: [299.5];
-	=> nrel_y: [615.5];
-	=> nrel_idtf_pos: [4];;
-.._node2
-	=> nrel_scg_representation: ..scgNode27;;
-..scgNode27
-	=> nrel_x: [419.5];
-	=> nrel_y: [615.5];
-	=> nrel_idtf_pos: [0];;
-_opkqn
-	=> nrel_scg_representation: ..scgNode28;;
-..scgNode28
-	=> nrel_x: [419];
-	=> nrel_y: [469];
-	=> nrel_idtf_pos: [1];;
-@scgPair24 = (..scgNode24 _-> ..scgNode28);;
-@pair24
-	=> nrel_scg_representation: @scgPair24;;
-@scgPair24
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair25 = (..scgNode26 _=> ..scgNode27);;
-@pair25
-	=> nrel_scg_representation: @scgPair25;;
-@scgPair25
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair26 = (..scgNode23 _-> @scgPair25);;
-@pair26
-	=> nrel_scg_representation: @scgPair26;;
-@scgPair26
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.405941];;
-@scgPair27 = (..scgNode25 _=> ..scgNode28);;
-@pair27
-	=> nrel_scg_representation: @scgPair27;;
-@scgPair27
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair28 = (..scgNode23 _-> @scgPair27);;
-@pair28
-	=> nrel_scg_representation: @scgPair28;;
-@scgPair28
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.405];;
-@scgPair29 = (..scgNode24 _-> ..scgNode27);;
-@pair29
-	=> nrel_scg_representation: @scgPair29;;
-@scgPair29
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@contour2 <- concept_scg_contour;;
-@contour2 => nrel_including: {
 	..scgNode23;
 	..scgNode24;
 	..scgNode25;
 	..scgNode26;
 	..scgNode27;
 	..scgNode28;
-	@scgPair24;
+	..scgNode29;
+	@scgPair16;
+	@scgPair17;
+	@scgPair19;
+	@scgPair18;
+	@scgPair20;
+	@scgPair21;
+	@scgPair22;
+	@scgPair23;
 	@scgPair25;
+	@scgPair24;
 	@scgPair26;
-	@scgPair28;
 	@scgPair27;
+	@scgPair28;
+	@scgPair30;
 	@scgPair29
 };;
-multiple_choice_questions
-	=> nrel_scg_representation: ..scgNode29;;
-..scgNode29
-	=> nrel_x: [444.5];
-	=> nrel_y: [412.5];
-	=> nrel_idtf_pos: [4];;
-nrel_implication
+choice_the_incorrect_option
 	=> nrel_scg_representation: ..scgNode30;;
 ..scgNode30
-	=> nrel_x: [480.799];
-	=> nrel_y: [602.5];
-	=> nrel_idtf_pos: [5];;
-statement_element_relation1
+	=> nrel_x: [443.299];
+	=> nrel_y: [321];
+	=> nrel_idtf_pos: [4];;
+multiple_choice_questions_with_single_option
 	=> nrel_scg_representation: ..scgNode31;;
 ..scgNode31
-	=> nrel_x: [546.799];
-	=> nrel_y: [297.5];
-	=> nrel_idtf_pos: [0];;
-rrel_key_sc_element
+	=> nrel_x: [444.299];
+	=> nrel_y: [349];
+	=> nrel_idtf_pos: [4];;
+statement
 	=> nrel_scg_representation: ..scgNode32;;
 ..scgNode32
-	=> nrel_x: [486.799];
+	=> nrel_x: [546.799];
 	=> nrel_y: [237.5];
-	=> nrel_idtf_pos: [2];;
-rrel_main_key_sc_element
+	=> nrel_idtf_pos: [0];;
+nrel_author
 	=> nrel_scg_representation: ..scgNode33;;
 ..scgNode33
-	=> nrel_x: [606.799];
-	=> nrel_y: [342.5];
-	=> nrel_idtf_pos: [0];;
+	=> nrel_x: [445.5];
+	=> nrel_y: [382];
+	=> nrel_idtf_pos: [4];;
 multiple_choice_questions_based_on_binary_relation
 	=> nrel_scg_representation: ..scgNode34;;
 ..scgNode34
 	=> nrel_x: [441.799];
 	=> nrel_y: [297.5];
 	=> nrel_idtf_pos: [4];;
-nrel_author
+rrel_main_key_sc_element
 	=> nrel_scg_representation: ..scgNode35;;
 ..scgNode35
-	=> nrel_x: [445.5];
-	=> nrel_y: [382];
-	=> nrel_idtf_pos: [4];;
-statement
+	=> nrel_x: [606.799];
+	=> nrel_y: [342.5];
+	=> nrel_idtf_pos: [0];;
+rrel_key_sc_element
 	=> nrel_scg_representation: ..scgNode36;;
 ..scgNode36
-	=> nrel_x: [546.799];
+	=> nrel_x: [486.799];
 	=> nrel_y: [237.5];
-	=> nrel_idtf_pos: [0];;
-multiple_choice_questions_with_single_option
+	=> nrel_idtf_pos: [2];;
+statement_element_relation1
 	=> nrel_scg_representation: ..scgNode37;;
 ..scgNode37
-	=> nrel_x: [444.299];
-	=> nrel_y: [349];
-	=> nrel_idtf_pos: [4];;
-choice_the_incorrect_option
+	=> nrel_x: [546.799];
+	=> nrel_y: [297.5];
+	=> nrel_idtf_pos: [0];;
+nrel_implication
 	=> nrel_scg_representation: ..scgNode38;;
 ..scgNode38
-	=> nrel_x: [443.299];
-	=> nrel_y: [321];
+	=> nrel_x: [480.799];
+	=> nrel_y: [602.5];
+	=> nrel_idtf_pos: [5];;
+multiple_choice_questions
+	=> nrel_scg_representation: ..scgNode39;;
+..scgNode39
+	=> nrel_x: [444.5];
+	=> nrel_y: [412.5];
 	=> nrel_idtf_pos: [4];;
-@scgPair30 = (@contour2 => @contour0);;
-@pair30
-	=> nrel_scg_representation: @scgPair30;;
-@scgPair30
-	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair31 = (..scgNode31 -> @scgPair30);;
+@scgPair31 = (..scgNode37 -> ..scgNode33);;
 @pair31
 	=> nrel_scg_representation: @scgPair31;;
 @scgPair31
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.455258];;
-@scgPair32 = (..scgNode33 -> @scgPair31);;
+	=> nrel_end_ratio: [0];;
+@scgPair32 = (..scgNode36 -> @scgPair31);;
 @pair32
 	=> nrel_scg_representation: @scgPair32;;
 @scgPair32
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.149058];;
-@scgPair33 = (..scgNode30 -> @scgPair30);;
+	=> nrel_end_ratio: [0.504707];;
+@scgPair33 = (..scgNode37 -> ..scgNode31);;
 @pair33
 	=> nrel_scg_representation: @scgPair33;;
 @scgPair33
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.165791];;
-@scgPair34 = (..scgNode31 -> ..scgNode29);;
+	=> nrel_end_ratio: [0];;
+@scgPair34 = (..scgNode36 -> @scgPair33);;
 @pair34
 	=> nrel_scg_representation: @scgPair34;;
 @scgPair34
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair35 = (..scgNode32 -> @scgPair34);;
+	=> nrel_end_ratio: [0.758106];;
+@scgPair35 = (..scgNode37 -> ..scgNode30);;
 @pair35
 	=> nrel_scg_representation: @scgPair35;;
 @scgPair35
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.199734];;
-@scgPair36 = (..scgNode36 -> ..scgNode31);;
+	=> nrel_end_ratio: [0];;
+@scgPair36 = (..scgNode36 -> @scgPair35);;
 @pair36
 	=> nrel_scg_representation: @scgPair36;;
 @scgPair36
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair37 = (..scgNode31 -> ..scgNode34);;
+	=> nrel_end_ratio: [0.348534];;
+@scgPair37 = (..scgNode37 -> ..scgNode34);;
 @pair37
 	=> nrel_scg_representation: @scgPair37;;
 @scgPair37
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair38 = (..scgNode32 -> @scgPair37);;
+@scgPair38 = (..scgNode36 -> @scgPair37);;
 @pair38
 	=> nrel_scg_representation: @scgPair38;;
 @scgPair38
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0.587209];;
-@scgPair39 = (..scgNode31 -> ..scgNode38);;
+@scgPair39 = (..scgNode32 -> ..scgNode37);;
 @pair39
 	=> nrel_scg_representation: @scgPair39;;
 @scgPair39
 	=> nrel_start_ratio: [0];
 	=> nrel_end_ratio: [0];;
-@scgPair40 = (..scgNode32 -> @scgPair39);;
+@scgPair40 = (..scgNode37 -> ..scgNode39);;
 @pair40
 	=> nrel_scg_representation: @scgPair40;;
 @scgPair40
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.348534];;
-@scgPair41 = (..scgNode31 -> ..scgNode37);;
+	=> nrel_end_ratio: [0];;
+@scgPair41 = (..scgNode36 -> @scgPair40);;
 @pair41
 	=> nrel_scg_representation: @scgPair41;;
 @scgPair41
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair42 = (..scgNode32 -> @scgPair41);;
+	=> nrel_end_ratio: [0.199734];;
+@scgPair42 = (@contour0 => @contour2);;
 @pair42
 	=> nrel_scg_representation: @scgPair42;;
 @scgPair42
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.758106];;
-@scgPair43 = (..scgNode31 -> ..scgNode35);;
+	=> nrel_end_ratio: [0];;
+@scgPair43 = (..scgNode38 -> @scgPair42);;
 @pair43
 	=> nrel_scg_representation: @scgPair43;;
 @scgPair43
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0];;
-@scgPair44 = (..scgNode32 -> @scgPair43);;
+	=> nrel_end_ratio: [0.165791];;
+@scgPair44 = (..scgNode37 -> @scgPair42);;
 @pair44
 	=> nrel_scg_representation: @scgPair44;;
 @scgPair44
 	=> nrel_start_ratio: [0];
-	=> nrel_end_ratio: [0.504707];;
+	=> nrel_end_ratio: [0.455258];;
+@scgPair45 = (..scgNode35 -> @scgPair44);;
+@pair45
+	=> nrel_scg_representation: @scgPair45;;
+@scgPair45
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.149058];;
