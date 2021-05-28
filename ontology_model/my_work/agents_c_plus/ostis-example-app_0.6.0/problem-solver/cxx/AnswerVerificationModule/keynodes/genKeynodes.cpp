@@ -62,5 +62,6 @@ namespace answerVerificationModule
     ScAddr GenKeynodes::judgment_questions_based_on_axiomatics;
     ScAddr GenKeynodes::judgment_questions_based_on_image_examples;
     ScAddr GenKeynodes::judgment_questions_based_on_relation_attributes;
+    ScAddr GenKeynodes::ui_nrel_user_used_language;
 
 }

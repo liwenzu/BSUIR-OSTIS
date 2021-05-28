@@ -17,6 +17,8 @@ namespace answerVerificationModule
                                        const ScTemplateParams &templateParams, std::vector<ScAddr> &elemDuplicate,
                                        const ScAddr &answer, const ScAddr &keyElem);
 
+        static ScAddr usedLanguage(ScMemoryContext *ms_context);
+
     };
 }
 

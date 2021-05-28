@@ -183,5 +183,8 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("judgment_questions_based_on_relation_attributes"), ForceCreate)
         static ScAddr judgment_questions_based_on_relation_attributes;
+
+        SC_PROPERTY(Keynode("ui_nrel_user_used_language"), ForceCreate)
+        static ScAddr ui_nrel_user_used_language;
     };
 }

@@ -45,7 +45,7 @@ namespace answerVerificationModule {
         ScAddr param = IteratorUtils::getFirstByOutRelation(ms_context.get(), questionNode, Keynodes::rrel_1);
         ScAddr paramSubDom = IteratorUtils::getFirstByOutRelation(ms_context.get(), questionNode, Keynodes::rrel_2);
         ScAddr paramRolRel = IteratorUtils::getFirstByOutRelation(ms_context.get(), questionNode, Keynodes::rrel_3);
-
+        ScAddr paramLanguage = QuestionGenerationProcess::usedLanguage(ms_context.get());
         if (!param.IsValid() || !paramSubDom.IsValid() || !paramRolRel.IsValid())
             return SC_RESULT_ERROR_INVALID_PARAMS;
         ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
@@ -317,8 +317,8 @@ namespace answerVerificationModule {
                             }
                         }
                     } else if (ms_context->HelperCheckEdge(param, GenKeynodes::nrel_idtf, ScType::EdgeAccessConstPosPerm)) {
-                        elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        elemSubDomain = paramSubDom;
+                        roleStruct = paramRolRel;
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                         if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_based_on_set_identifier, ScType::EdgeAccessConstPosPerm)) {
                             if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_with_single_option, ScType::EdgeAccessConstPosPerm)) {
@@ -327,14 +327,18 @@ namespace answerVerificationModule {
                                     ScTemplateSearchResultItem searchResultItem = searchResult[i];
                                     ScAddr keyElem = searchResultItem["_opkq"];
                                     ScAddr elemOptionCS = searchResultItem["_opcsn"];
-                                    if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemOptionCS, ScType::EdgeAccessConstPosPerm)) {
+                                    if (!ms_context->HelperCheckEdge(paramLanguage, elemOptionCS, ScType::EdgeAccessConstPosPerm)) {
                                         ScIterator5Ptr it_5 = ms_context->Iterator5(keyElem, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, relationStruct);
+                                        bool flag = false;
                                         while (it_5->Next()) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5->Get(2), ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, it_5->Get(2), ScType::EdgeAccessConstPosPerm)) {
                                                 elemOptionCS = it_5->Get(2);
+                                                flag = true;
                                                 break;
                                             }
                                         }
+                                        if (!flag)
+                                            continue;
                                     }
                                     vector<ScAddr> keyElemList;
                                     ScIterator5Ptr it_5 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
@@ -346,7 +350,7 @@ namespace answerVerificationModule {
                                     } else {
                                         ScIterator5Ptr it_5l = ms_context->Iterator5(keyElem, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, relationStruct);
                                         while (it_5l->Next()) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5l->Get(2), ScType::EdgeAccessConstPosPerm))
+                                            if (ms_context->HelperCheckEdge(paramLanguage, it_5l->Get(2), ScType::EdgeAccessConstPosPerm))
                                                 keyElemList.push_back(it_5l->Get(2));
                                         }
                                         vector<ScAddr> keyElemListSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, roleStruct);
@@ -357,7 +361,7 @@ namespace answerVerificationModule {
                                         ScAddr elemSub = keyElemListSub[0];
                                         it_5l = ms_context->Iterator5(elemSub, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, GenKeynodes::nrel_main_idtf);
                                         while (it_5l->Next()) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5l->Get(2), ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, it_5l->Get(2), ScType::EdgeAccessConstPosPerm)) {
                                                 elemOptionCS = it_5l->Get(2);
                                                 break;
                                             }
@@ -378,7 +382,7 @@ namespace answerVerificationModule {
                                                 ScAddr elem = keyElemList[j];
                                                 vector<ScAddr> idtfList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elem, GenKeynodes::nrel_main_idtf);
                                                 for (auto elemCp : idtfList) {
-                                                    if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                    if (ms_context->HelperCheckEdge(paramLanguage, elemCp, ScType::EdgeAccessConstPosPerm)) {
                                                         elem = elemCp;
                                                         break;
                                                     }
@@ -402,7 +406,7 @@ namespace answerVerificationModule {
                                     vector<ScAddr> keyElemListCorrect;
                                     vector<ScAddr> keyElemListSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
                                     for (auto currElem : keyElemListSub){
-                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElem, ScType::EdgeAccessConstPosPerm))
+                                        if (ms_context->HelperCheckEdge(paramLanguage, currElem, ScType::EdgeAccessConstPosPerm))
                                             keyElemList.push_back(currElem);
                                     }
                                     vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, roleStruct);
@@ -413,7 +417,7 @@ namespace answerVerificationModule {
                                     for (auto j : keyElemListCorrectSub) {
                                         vector<ScAddr> idtfList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), j, relationStruct);
                                         for (auto elemCp : idtfList) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, elemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 keyElemListCorrect.push_back(elemCp);
                                             }
                                         }
@@ -454,14 +458,18 @@ namespace answerVerificationModule {
                                     ScTemplateSearchResultItem searchResultItem = searchResult[i];
                                     ScAddr keyElem = searchResultItem["_opkqr"];
                                     ScAddr elemOptionCS = searchResultItem["_opcsn"];
-                                    if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemOptionCS, ScType::EdgeAccessConstPosPerm)) {
+                                    if (!ms_context->HelperCheckEdge(paramLanguage, elemOptionCS, ScType::EdgeAccessConstPosPerm)) {
                                         ScIterator5Ptr it_5 = ms_context->Iterator5(keyElem, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, relationStruct);
+                                        bool flag = false;
                                         while (it_5->Next()) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5->Get(2), ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, it_5->Get(2), ScType::EdgeAccessConstPosPerm)) {
                                                 elemOptionCS = it_5->Get(2);
+                                                flag = true;
                                                 break;
                                             }
                                         }
+                                        if (!flag)
+                                            continue;
                                     }
                                     vector<ScAddr> keyElemList;
                                     ScIterator5Ptr it_5 = ms_context->Iterator5(param, ScType::EdgeAccessConstPosPerm, GenKeynodes::choice_the_correct_option, ScType::EdgeAccessConstPosPerm, GenKeynodes::rrel_key_sc_element);
@@ -473,7 +481,7 @@ namespace answerVerificationModule {
                                     } else {
                                         ScIterator5Ptr it_5l = ms_context->Iterator5(keyElem, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, relationStruct);
                                         while (it_5l->Next()) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5l->Get(2), ScType::EdgeAccessConstPosPerm))
+                                            if (ms_context->HelperCheckEdge(paramLanguage, it_5l->Get(2), ScType::EdgeAccessConstPosPerm))
                                                 keyElemList.push_back(it_5l->Get(2));
                                         }
                                         vector<ScAddr> keyElemListSub = IteratorUtilsLocal::getAllByOutRelationWithType(ms_context.get(), elemSubDomain, roleStruct, ScType::NodeConstNoRole);
@@ -484,7 +492,7 @@ namespace answerVerificationModule {
                                         ScAddr elemSub = keyElemListSub[0];
                                         it_5l = ms_context->Iterator5(elemSub, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, GenKeynodes::nrel_main_idtf);
                                         while (it_5l->Next()) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, it_5l->Get(2), ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, it_5l->Get(2), ScType::EdgeAccessConstPosPerm)) {
                                                 elemOptionCS = it_5l->Get(2);
                                                 break;
                                             }
@@ -505,7 +513,7 @@ namespace answerVerificationModule {
                                                 ScAddr elem = keyElemList[j];
                                                 vector<ScAddr> idtfList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elem, GenKeynodes::nrel_main_idtf);
                                                 for (auto elemCp : idtfList) {
-                                                    if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                    if (ms_context->HelperCheckEdge(paramLanguage, elemCp, ScType::EdgeAccessConstPosPerm)) {
                                                         templateParams.Add(str1 + str[j], elemCp);
                                                         break;
                                                     }
@@ -528,7 +536,7 @@ namespace answerVerificationModule {
                                     vector<ScAddr> keyElemListCorrect;
                                     vector<ScAddr> keyElemListSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
                                     for (auto currElem : keyElemListSub) {
-                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElem, ScType::EdgeAccessConstPosPerm))
+                                        if (ms_context->HelperCheckEdge(paramLanguage, currElem, ScType::EdgeAccessConstPosPerm))
                                             keyElemList.push_back(currElem);
                                     }
                                     vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelationWithType(ms_context.get(), elemSubDomain, roleStruct, ScType::NodeConstNoRole);
@@ -539,7 +547,7 @@ namespace answerVerificationModule {
                                     for (auto j : keyElemListCorrectSub) {
                                         vector<ScAddr> idtfList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), j, relationStruct);
                                         for (auto elemCp : idtfList) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, elemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, elemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 keyElemListCorrect.push_back(elemCp);
                                             }
                                         }
@@ -576,7 +584,7 @@ namespace answerVerificationModule {
                         }
                     } else if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_based_on_axiomatics, ScType::EdgeAccessConstPosPerm)) {
                         elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                         vector<ScAddr> elemDuplicate;
                         for (int i = 0; i < searchResult.Size(); i++) {
@@ -620,7 +628,7 @@ namespace answerVerificationModule {
                         }
                     } else if (ms_context->HelperCheckEdge(param, GenKeynodes::multiple_choice_questions_based_on_image_examples, ScType::EdgeAccessConstPosPerm)) {
                         elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstRole);
+                        roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstRole);
                         vector<ScAddr> elemDuplicate;
                         for (int i = 0; i < searchResult.Size(); i++) {
                             ScTemplateSearchResultItem searchResultItem = searchResult[i];
@@ -994,7 +1002,7 @@ namespace answerVerificationModule {
                                 if (keyElemList.size() == 1 && keyElemListCorrect.empty() && elemRelation == relationStruct && itDup == elemDuplicate.end()) {
                                     vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemList[0], GenKeynodes::nrel_main_idtf);
                                     for (auto currElem : keyElemListCorrectSub) {
-                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElem, ScType::EdgeAccessConstPosPerm)) {
+                                        if (ms_context->HelperCheckEdge(paramLanguage, currElem, ScType::EdgeAccessConstPosPerm)) {
                                             elemOptionCS = currElem;
                                             break;
                                         }
@@ -1023,7 +1031,7 @@ namespace answerVerificationModule {
                                     for (auto currElem : keyElemList) {
                                         vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), currElem, GenKeynodes::nrel_main_idtf);
                                         for (auto currElemCp : keyElemListCorrectSub) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 keyElemListCorrect.push_back(currElemCp);
                                                 break;
                                             }
@@ -1086,7 +1094,7 @@ namespace answerVerificationModule {
                                         shuffle(keyElemListSub.begin(), keyElemListSub.end(), std::mt19937(std::random_device()()));
                                         vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub.back(), GenKeynodes::nrel_main_idtf);
                                         for (auto currElemCp : keyElemListCorrectSub) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 templateParams.Add(str1+str[0], currElemCp);
                                                 break;
                                             }
@@ -1095,7 +1103,7 @@ namespace answerVerificationModule {
                                         for (int j = 0; j < keyElemListSub.size(); j++) {
                                             keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub[j], GenKeynodes::nrel_main_idtf);
                                             for (auto currElemCp : keyElemListCorrectSub) {
-                                                if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                     templateParams.Add(str1+str[j+1], currElemCp);
                                                     break;
                                                 }
@@ -1110,7 +1118,7 @@ namespace answerVerificationModule {
                                         shuffle(keyElemListSub2.begin(), keyElemListSub2.end(), std::mt19937(std::random_device()()));
                                         vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub1.back(), GenKeynodes::nrel_main_idtf);
                                         for (auto currElemCp : keyElemListCorrectSub) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 templateParams.Add(str1+str[0], currElemCp);
                                                 break;
                                             }
@@ -1118,7 +1126,7 @@ namespace answerVerificationModule {
                                         keyElemListSub1.pop_back();
                                         keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub2.back(), GenKeynodes::nrel_main_idtf);
                                         for (auto currElemCp : keyElemListCorrectSub) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 templateParams.Add(str1+str[1], currElemCp);
                                                 break;
                                             }
@@ -1128,7 +1136,7 @@ namespace answerVerificationModule {
                                         for (int j = 0; j < keyElemListSub1.size(); j++) {
                                             keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListSub1[j], GenKeynodes::nrel_main_idtf);
                                             for (auto currElemCp : keyElemListCorrectSub) {
-                                                if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                                if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                     templateParams.Add(str1+str[j+2], currElemCp);
                                                     break;
                                                 }
@@ -1167,7 +1175,7 @@ namespace answerVerificationModule {
                                     for (auto currElem : keyElemList) {
                                         vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), currElem, GenKeynodes::nrel_main_idtf);
                                         for (auto currElemCp : keyElemListCorrectSub) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 keyElemListCorrect.push_back(currElemCp);
                                                 break;
                                             }
@@ -1199,7 +1207,7 @@ namespace answerVerificationModule {
                                     templateParams.Add("_opkqn", keyElem);
                                     vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemOptionCS, GenKeynodes::nrel_main_idtf);
                                     for (auto currElemCp : keyElemListCorrectSub) {
-                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                        if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                             elemOptionCS =  currElemCp;
                                             break;
                                         }
@@ -1230,7 +1238,7 @@ namespace answerVerificationModule {
                                     for (auto currElem : keyElementCorrectList) {
                                         vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), currElem, GenKeynodes::nrel_main_idtf);
                                         for (auto currElemCp : keyElemListCorrectSub) {
-                                            if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                            if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                                 keyElemList.push_back(currElemCp);
                                                 break;
                                             }
@@ -1267,7 +1275,7 @@ namespace answerVerificationModule {
                                 string str = "123456";
                                 string str1 = "_opcsn";
                                 for (auto it = keyElementCorrectList.begin(); it != keyElementCorrectList.end();) {
-                                    if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, *it, ScType::EdgeAccessConstPosPerm))
+                                    if (!ms_context->HelperCheckEdge(paramLanguage, *it, ScType::EdgeAccessConstPosPerm))
                                         keyElementCorrectList.erase(it);
                                     else
                                         it++;
@@ -1302,7 +1310,7 @@ namespace answerVerificationModule {
                                 string str = "123456";
                                 string str1 = "_opcsn";
                                 for (auto it = keyElementCorrectList.begin(); it != keyElementCorrectList.end();) {
-                                    if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, *it, ScType::EdgeAccessConstPosPerm))
+                                    if (!ms_context->HelperCheckEdge(paramLanguage, *it, ScType::EdgeAccessConstPosPerm))
                                         keyElementCorrectList.erase(it);
                                     else
                                         it++;
@@ -1328,7 +1336,7 @@ namespace answerVerificationModule {
                             keyElem = IteratorUtilsLocal::getFirstFromSetWithType(ms_context.get(), keyElem, ScType::Link);
                             vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemOptionCS, GenKeynodes::nrel_main_idtf);
                             for (auto currElemCp : keyElemListCorrectSub) {
-                                if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                     elemOptionCS = currElemCp;
                                     break;
                                 }
@@ -1351,7 +1359,7 @@ namespace answerVerificationModule {
                             ScAddr elemOptionCS = searchResultItem["_opcs"];
                             vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemOptionCS, GenKeynodes::nrel_main_idtf);
                             for (auto currElemCp : keyElemListCorrectSub) {
-                                if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                     elemOptionCS = currElemCp;
                                     break;
                                 }
@@ -1404,7 +1412,7 @@ namespace answerVerificationModule {
                                 for (auto currElem : keyElemList) {
                                     vector<ScAddr> keyElemListCorrectSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), currElem, GenKeynodes::nrel_main_idtf);
                                     for (auto currElemCp : keyElemListCorrectSub) {
-                                        if (ms_context->HelperCheckEdge(GenKeynodes::lang_ru, currElemCp, ScType::EdgeAccessConstPosPerm)) {
+                                        if (ms_context->HelperCheckEdge(paramLanguage, currElemCp, ScType::EdgeAccessConstPosPerm)) {
                                             keyElemtCorrectList.push_back(currElemCp);
                                             break;
                                         }
@@ -1731,7 +1739,7 @@ namespace answerVerificationModule {
                             ScAddr keyElem = searchResultItem["_opkq"];
                             vector<ScAddr> keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
                             for (auto it = keyElemList.begin(); it != keyElemList.end();) {
-                                if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, *it, ScType::EdgeAccessConstPosPerm))
+                                if (!ms_context->HelperCheckEdge(paramLanguage, *it, ScType::EdgeAccessConstPosPerm))
                                     keyElemList.erase(it);
                                 else
                                     it++;
@@ -1765,7 +1773,7 @@ namespace answerVerificationModule {
                                     vector<ScAddr> idtfListSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListCorrect.front(), relationStruct);
                                     idtfList.insert(idtfList.end(), idtfListSub.begin(), idtfListSub.end());
                                     for (auto it1 = idtfList.begin(); it1 != idtfList.end();) {
-                                        if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, *it1, ScType::EdgeAccessConstPosPerm))
+                                        if (!ms_context->HelperCheckEdge(paramLanguage, *it1, ScType::EdgeAccessConstPosPerm))
                                             idtfList.erase(it1);
                                         else
                                             it1++;
@@ -1803,7 +1811,7 @@ namespace answerVerificationModule {
                             ScAddr keyElem = searchResultItem["_opkqr"];
                             vector<ScAddr> keyElemList = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElem, relationStruct);
                             for (auto it = keyElemList.begin(); it != keyElemList.end();) {
-                                if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, *it, ScType::EdgeAccessConstPosPerm))
+                                if (!ms_context->HelperCheckEdge(paramLanguage, *it, ScType::EdgeAccessConstPosPerm))
                                     keyElemList.erase(it);
                                 else
                                     it++;
@@ -1837,7 +1845,7 @@ namespace answerVerificationModule {
                                     vector<ScAddr> idtfListSub = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), keyElemListCorrect.front(), relationStruct);
                                     idtfList.insert(idtfList.end(), idtfListSub.begin(), idtfListSub.end());
                                     for (auto it1 = idtfList.begin(); it1 != idtfList.end();) {
-                                        if (!ms_context->HelperCheckEdge(GenKeynodes::lang_ru, *it1, ScType::EdgeAccessConstPosPerm))
+                                        if (!ms_context->HelperCheckEdge(paramLanguage, *it1, ScType::EdgeAccessConstPosPerm))
                                             idtfList.erase(it1);
                                         else
                                             it1++;

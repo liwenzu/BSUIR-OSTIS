@@ -43,6 +43,13 @@ namespace answerVerificationModule
         }
     }
 
+    ScAddr QuestionGenerationProcess::usedLanguage(ScMemoryContext *ms_context)
+    {
+        ScAddr edge = IteratorUtilsLocal::getFirstWithType(ms_context, GenKeynodes::ui_nrel_user_used_language, ScType::EdgeDCommonConst);
+        ScAddr element = ms_context->GetEdgeTarget(edge);
+        return element;
+    }
+
 
 
 }
