@@ -1432,8 +1432,8 @@ namespace answerVerificationModule {
                     if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_inclusion_relation, ScType::EdgeAccessConstPosPerm) ||
                         ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_strict_inclusion_relation, ScType::EdgeAccessConstPosPerm)) {
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
-                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        ScAddr elemSubDomain = paramSubDom;
+                        ScAddr roleStruct = paramRolRel;
                         std::random_device rd;
                         std::mt19937_64 eng(rd());
                         if (!ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_of_choosing_false, ScType::EdgeAccessConstPosPerm) &&
