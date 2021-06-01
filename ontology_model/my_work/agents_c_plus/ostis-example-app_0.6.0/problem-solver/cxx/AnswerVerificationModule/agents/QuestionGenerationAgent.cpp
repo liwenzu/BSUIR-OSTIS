@@ -1552,8 +1552,8 @@ namespace answerVerificationModule {
                             }
                         }
                     } else if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_subdividing_relation, ScType::EdgeAccessConstPosPerm)) {
-                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        ScAddr elemSubDomain = paramSubDom;
+                        ScAddr roleStruct = paramRolRel;
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                         std::random_device rd;
                         std::mt19937_64 eng(rd());
@@ -1728,8 +1728,8 @@ namespace answerVerificationModule {
                             }
                         }
                     } else if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_set_identifiers, ScType::EdgeAccessConstPosPerm)) {
-                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        ScAddr elemSubDomain = paramSubDom;
+                        ScAddr roleStruct = paramRolRel;
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                         std::random_device rd;
                         std::mt19937_64 eng(rd());
@@ -1800,8 +1800,8 @@ namespace answerVerificationModule {
                             }
                         }
                     } else if (ms_context->HelperCheckEdge(param, GenKeynodes::judgment_questions_based_on_relation_identifiers, ScType::EdgeAccessConstPosPerm)) {
-                        ScAddr elemSubDomain = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstStruct);
-                        ScAddr roleStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), initStruct, ScType::NodeConstRole);
+                        ScAddr elemSubDomain = paramSubDom;
+                        ScAddr roleStruct = paramRolRel;
                         ScAddr relationStruct = IteratorUtilsLocal::getFirstWithType(ms_context.get(), param, ScType::NodeConstNoRole);
                         std::random_device rd;
                         std::mt19937_64 eng(rd());
