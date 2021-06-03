@@ -1,0 +1,19 @@
+sc_node_not_relation -> concept_directed_multigraph;;
+concept_directed_multigraph => nrel_main_idtf:[ориентированный мультиграф](* <-lang_ru;; *);;
+concept_directed_multigraph => nrel_idtf:[directed multigraph](* <- lang_en;; *);;
+
+concept_directed_multigraph <- rrel_key_sc_element:
+...(*
+		<- definition;;
+		=> nrel_main_idtf: [Опр.(ориентированный мультиграф)] (* <- lang_ru;; *);;
+		<=nrel_using_constants:
+			{
+				rrel_multiple_arcs;
+				concept_directed_graph
+			};;
+		<= nrel_sc_text_translation: ...(*
+				-> [Ориентированный мультиграф —  орграф, в котором допускаются кратные дуги. ] (*<- lang_ru;;*);;
+			*);;
+*);;
+
+concept_digraph => nrel_inclusion:concept_directed_multigraph;;

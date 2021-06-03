@@ -1,0 +1,21 @@
+sc_node_role_relation ->rrel_edge;;
+rrel_edge
+=> nrel_main_idtf:
+[ ребро' ] (* <-lang_ru;; *);
+[ edge' ] (* <-lang_en;; *);;
+rrel_edge<-rrel_key_sc_element:
+			...
+			(*
+			<-definition;;
+			=> nrel_main_idtf: [Опр.(ребро)] (* <- lang_ru;; *);;
+			<=nrel_sc_text_translation:
+				...
+				(*
+				-> rrel_example:
+				[Ребро – связка, соединяющая две вершины графа.] (*<-lang_ru;;*);;	
+				*);;
+		*);;
+rrel_edge<= nrel_using_constants:
+				{
+					rrel_vertex
+				};;

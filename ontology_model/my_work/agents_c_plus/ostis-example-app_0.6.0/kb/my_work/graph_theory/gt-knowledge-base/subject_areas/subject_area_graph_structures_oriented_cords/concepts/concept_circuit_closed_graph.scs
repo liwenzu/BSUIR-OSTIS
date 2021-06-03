@@ -1,0 +1,22 @@
+sc_node_not_relation -> concept_circuit_closed_graph;;
+concept_circuit_closed_graph => nrel_main_idtf:[ориентированно-циклически замкнутый граф](* <-lang_ru;; *);;
+concept_circuit_closed_graph => nrel_idtf:[circuit closed graph](* <- lang_en;; *);;
+
+concept_circuit_closed_graph <- rrel_key_sc_element:
+...(*
+		<- definition;;
+		=> nrel_main_idtf: [Опр.(ориентированно-циклически замкнутый граф)] (* <- lang_ru;; *);;
+		<=nrel_using_constants:
+			{
+				concept_directed_graph;
+				nrel_subgraph;
+                nrel_contour;
+                concept_node;
+				nrel_inclusion
+			};;
+		<= nrel_sc_text_translation: ...(*
+				-> [Ориентированно-циклически замкнутый граф —   подграф G(L) орграфа G такой, что если простой контур C имеет общую вершину с G(L), то весь контур C принадлежит G(L). ](*<- lang_ru;;*);;
+			*);;
+*);;
+
+concept_graph => nrel_inclusion:concept_circuit_closed_graph;;
