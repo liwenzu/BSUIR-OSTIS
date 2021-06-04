@@ -1,0 +1,53 @@
+algorithm_dinitsa
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+	[алгоритм Диница]
+	(* <- lang_ru;; *);
+	[Dinitsa's algorithm]
+	(* <- lang_en;; *);
+<= nrel_inclusion: 	concept_graph_algorithm;
+<- rrel_key_sc_element:
+	...
+	(*
+		<- definition;;
+		<= nrel_using_constants:
+                        {
+                        	concept_flow_network;
+                        	concept_directed_graph
+                        };;
+		=> nrel_main_idtf:
+			[Опр.(алгоритм Диница)]
+			(* <- lang_ru;; *);
+			[Def.(Dinitsa's algorithm)]
+			(* <- lang_en;; *);;
+		<= nrel_sc_text_translation:
+			...
+			(*
+			-> rrel_example:
+				"file://content_html/definition_for_algorithm_dinitsa_ru.html"
+				(* <- lang_ru;;	*);
+                "file://content_html/definition_for_algorithm_dinitsa_en.html"
+				(* <- lang_en;;	*);;
+			*);;
+		<= nrel_bibliographical_source: emelichev_melnikov_lekcii_po_tg;;
+	*);
+<- rrel_key_sc_element:
+	...
+	(*
+		<- statement;;
+		=> nrel_main_idtf:
+			[Утв.(алгоритм Диница)]
+			(* <- lang_ru;; *);
+			[Stat.(Dinitsa's algorithm)]
+			(* <- lang_en;; *);;
+		<= nrel_sc_text_translation:
+			...
+			(*
+			-> rrel_example:
+				"file://content_html/statement_for_algorithm_dinitsa_ru.html"
+				(* <- lang_ru;;	*);
+                "file://content_html/statement_for_algorithm_dinitsa_en.html"
+				(* <- lang_en;;	*);;
+			*);;
+		<= nrel_bibliographical_source: emelichev_melnikov_lekcii_po_tg;;
+	*);;

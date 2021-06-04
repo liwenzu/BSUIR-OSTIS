@@ -1,0 +1,54 @@
+concept_subj_domain_graph_structures_planarity
+	=> nrel_scg_representation: ..scgNode0;;
+..scgNode0
+	=> nrel_x: [297];
+	=> nrel_y: [197];
+	=> nrel_idtf_pos: [3];;
+rrel_not_maximum_studied_object_class
+	=> nrel_scg_representation: ..scgNode1;;
+..scgNode1
+	=> nrel_x: [407.5];
+	=> nrel_y: [327.5];
+	=> nrel_idtf_pos: [4];;
+concept_planar_graph
+	=> nrel_scg_representation: ..scgNode2;;
+..scgNode2
+	=> nrel_x: [302];
+	=> nrel_y: [123];
+	=> nrel_idtf_pos: [0];;
+rrel_maximum_studied_object_class
+	=> nrel_scg_representation: ..scgNode3;;
+..scgNode3
+	=> nrel_x: [-19];
+	=> nrel_y: [163];
+	=> nrel_idtf_pos: [0];;
+concept_triangle_graph
+	=> nrel_scg_representation: ..scgNode4;;
+..scgNode4
+	=> nrel_x: [555.5];
+	=> nrel_y: [261.5];
+	=> nrel_idtf_pos: [0];;
+@scgPair0 = (..scgNode0 -> ..scgNode4);;
+@pair0
+	=> nrel_scg_representation: @scgPair0;;
+@scgPair0
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair1 = (..scgNode1 -> @scgPair0);;
+@pair1
+	=> nrel_scg_representation: @scgPair1;;
+@scgPair1
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.548775];;
+@scgPair2 = (..scgNode0 -> ..scgNode2);;
+@pair2
+	=> nrel_scg_representation: @scgPair2;;
+@scgPair2
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair3 = (..scgNode3 -> @scgPair2);;
+@pair3
+	=> nrel_scg_representation: @scgPair3;;
+@scgPair3
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.544981];;

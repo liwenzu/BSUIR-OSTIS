@@ -1,0 +1,72 @@
+concept_subj_domain_graph_structures_weighted
+//<- sc_node_struct;
+=> nrel_main_idtf:
+	[Предметная область взвешенных графовых структур]
+	(* <- lang_ru;; *);
+	[Subject domain of weighted graph structures]
+	(* <- lang_en;; *);
+
+-> rrel_not_maximum_studied_object_class: 
+	concept_vertex_weighted_graph;
+	concept_edge_weighted_graph;
+	concept_weighted_tree;
+	concept_shortest_steiner_tree;
+	concept_weighted_dycks_word;
+	concept_graph_algorithm;
+	concept_transportation_network;
+	concept_weighted_graph;
+	problem_allocation;
+	problem_chinese_postman;
+	problem_finding_min_weight_path;
+	problem_steiner;
+	problem_traveling_salesman;
+	problem_of_shortest_path;
+	problem_maximum_flow;
+	algorithm_dinitsa;
+	algorithm_ford_bellman;
+	algorithm_ford_falkerson;
+	algorithm_search_A_star;
+	algorithm_hungarian;
+	algorithm_little;
+	algorithm_dijkstra;
+	algorithm_kruskal;
+	greedy_algorithm;
+	algorithm_floyd_worshell;
+	algorithm_prim;
+	algorithm_boruvka;
+	algorithm_kuhn;
+	algorithm_for_pushing_the_pref;
+	algorithm_finding_the_largest_weighted_vertex_weighted_match;
+	algorithm_edmonds_Carp;
+	ant_algorithm;
+	algorithm_raise_to_start;
+-> rrel_explored_relation: 
+	nrel_weight;
+	nrel_vertex_weight;
+	nrel_edge_weight;
+	nrel_chain_weight;
+	nrel_cycle_weight;
+	nrel_path_weight;
+	nrel_tree_weight;
+	nrel_min_perfect_matching;
+	nrel_min_spanning_tree;
+	nrel_minimum_weight_cycle;
+	nrel_min_weight_eulerian_cycle;
+	nrel_min_weight_hamiltonian_cycle;
+	nrel_min_weight_path;
+	nrel_min_weight_tree;
+	nrel_weight_matrix;
+	nrel_circulation;
+	nrel_minimum_cut;
+<- rrel_key_sc_element: 
+	...
+	(*
+		<- explanation;; 
+		<= nrel_sc_text_translation: 
+			...
+			(*
+				-> rrel_example: 
+					"file://content_html/explanation_for_subject_domain.html"
+					(* <- lang_ru;; *);;
+			*);;
+	*);;

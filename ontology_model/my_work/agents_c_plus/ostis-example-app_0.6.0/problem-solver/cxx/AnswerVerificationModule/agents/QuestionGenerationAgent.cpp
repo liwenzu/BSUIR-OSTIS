@@ -1563,6 +1563,8 @@ namespace answerVerificationModule {
                             ScAddr keyElem = searchResultItem["_opkq"];
                             ScAddr elemRelation = searchResultItem["_nrel_inclusion"];
                             vector<ScAddr> tupleList = IteratorUtils::getAllByInRelation(ms_context.get(), keyElem, relationStruct);
+                            if (tupleList.empty())
+                                continue;
                             vector<ScAddr> keyElemListCorrect = IteratorUtilsLocal::getAllByOutRelation(ms_context.get(), elemSubDomain, roleStruct);
                             auto it = find(keyElemListCorrect.begin(), keyElemListCorrect.end(), keyElem);
                             if (it != keyElemListCorrect.end())

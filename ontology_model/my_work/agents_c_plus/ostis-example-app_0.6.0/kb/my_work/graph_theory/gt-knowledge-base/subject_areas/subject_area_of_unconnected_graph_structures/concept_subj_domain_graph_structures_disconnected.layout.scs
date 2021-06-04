@@ -1,0 +1,30 @@
+concept_disconnected_graph
+	=> nrel_scg_representation: ..scgNode0;;
+..scgNode0
+	=> nrel_x: [111.5];
+	=> nrel_y: [264.5];
+	=> nrel_idtf_pos: [0];;
+concept_subj_domain_graph_structures_disconnected
+	=> nrel_scg_representation: ..scgNode1;;
+..scgNode1
+	=> nrel_x: [378.5];
+	=> nrel_y: [261.5];
+	=> nrel_idtf_pos: [0];;
+rrel_maximum_studied_object_class
+	=> nrel_scg_representation: ..scgNode2;;
+..scgNode2
+	=> nrel_x: [260.5];
+	=> nrel_y: [206.5];
+	=> nrel_idtf_pos: [0];;
+@scgPair0 = (..scgNode1 -> ..scgNode0);;
+@pair0
+	=> nrel_scg_representation: @scgPair0;;
+@scgPair0
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0];;
+@scgPair1 = (..scgNode2 -> @scgPair0);;
+@pair1
+	=> nrel_scg_representation: @scgPair1;;
+@scgPair1
+	=> nrel_start_ratio: [0];
+	=> nrel_end_ratio: [0.433565];;
