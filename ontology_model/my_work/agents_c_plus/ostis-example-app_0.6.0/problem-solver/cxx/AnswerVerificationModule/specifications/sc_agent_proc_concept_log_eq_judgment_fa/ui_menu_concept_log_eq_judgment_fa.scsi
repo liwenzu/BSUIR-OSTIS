@@ -1,0 +1,24 @@
+ui_menu_concept_log_eq_judgment_fa
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+<- ui_one_argument_command_class;
+=> nrel_main_idtf:
+                      [Суждение о логической эквивалентности понятия фактического знания] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+                      [The judgment of the logical equivalence of the concept of factual knowledge] (* <- lang_en;; *);
+=> nrel_main_idtf:
+                      [事实知识概念的逻辑等价性判断] (* <- lang_ch;; *);
+=> ui_nrel_command_template:
+                      [*
+                         concept_log_eq_judgment_fa _-> ._concept_log_eq_judgment_fa_instance
+                                      (*
+                                       _-> ui_arg_1;;
+                                      *);;
+                         ._concept_log_eq_judgment_fa_instance _<- question;;
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Суждение о логической эквивалентности понятия фактического знания: $ui_arg_1] (* <- lang_ru;; *);
+=> ui_nrel_command_lang_template:
+                       [The judgment of the logical equivalence of the concept of factual knowledge: $ui_arg_1] (* <- lang_en;; *);
+=> ui_nrel_command_lang_template:
+                       [事实知识概念的逻辑等价性判断: $ui_arg_1] (* <- lang_ch;; *);;

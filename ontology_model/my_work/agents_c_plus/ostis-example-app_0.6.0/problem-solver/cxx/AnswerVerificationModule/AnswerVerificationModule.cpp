@@ -10,6 +10,7 @@
 #include "agents/FasimilarityAgent.hpp"
 #include "agents/LosimilarityAgent.hpp"
 #include "agents/QuestionGenerationAgent.hpp"
+#include "agents/FaEquivalenceJudgmentAgent.hpp"
 
 using namespace answerVerificationModule;
 
@@ -17,14 +18,13 @@ SC_IMPLEMENT_MODULE(AnswerVerificationModule)
 
 sc_result AnswerVerificationModule::InitializeImpl()
 {
-    if (!answerVerificationModule::Keynodes::InitGlobal())
-        return SC_RESULT_ERROR;
-    if (!answerVerificationModule::GenKeynodes::InitGlobal())
+    if (!answerVerificationModule::Keynodes::InitGlobal() || !answerVerificationModule::GenKeynodes::InitGlobal())
         return SC_RESULT_ERROR;
 
     SC_AGENT_REGISTER(FasimilarityAgent)
     SC_AGENT_REGISTER(LosimilarityAgent)
     SC_AGENT_REGISTER(QuestionGenerationAgent)
+    SC_AGENT_REGISTER(FaEquivalenceJudgmentAgent)
 
     return SC_RESULT_OK;
 }
@@ -34,6 +34,7 @@ sc_result AnswerVerificationModule::ShutdownImpl()
     SC_AGENT_UNREGISTER(FasimilarityAgent)
     SC_AGENT_UNREGISTER(LosimilarityAgent)
     SC_AGENT_UNREGISTER(QuestionGenerationAgent)
+    SC_AGENT_UNREGISTER(FaEquivalenceJudgmentAgent)
 
     return SC_RESULT_OK;
 }

@@ -86,6 +86,12 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("rrel_4"), ForceCreate)
         static ScAddr rrel_4;
+
+        SC_PROPERTY(Keynode("concept_log_eq_judgment_fa"), ForceCreate)
+        static ScAddr concept_log_eq_judgment_fa;
+
+        SC_PROPERTY(Keynode("equivalent_concept_template"), ForceCreate)
+        static ScAddr equivalent_concept_template;
     };
 
 } // namespace exampleModule
