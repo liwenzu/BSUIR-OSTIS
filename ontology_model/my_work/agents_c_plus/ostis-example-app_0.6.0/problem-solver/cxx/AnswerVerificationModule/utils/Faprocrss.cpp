@@ -10,6 +10,8 @@
 #include "keynodes/keynodes.hpp"
 #include <sc-agents-common/utils/CommonUtils.hpp>
 #include <algorithm>
+#include "utils/IteratorUtilsLocal.hpp"
+#include "utils/Display.hpp"
 
 using namespace utils;
 
@@ -41,15 +43,17 @@ namespace answerVerificationModule
         }
 
     }
+
      void Faprocess::decompositionCommon(ScMemoryContext * ms_context,
                                             ScAddr & mid_elems,
                                             ScAddr & mid_elem)
      {
          vector<ScAddr> _class_comm1 = IteratorUtils::getAllWithType(ms_context, mid_elems, ScType::EdgeDCommonConst);
-         for (auto i : _class_comm1)
-         {
+         for (auto i : _class_comm1) {
              ScAddr _els1 = ms_context->GetEdgeSource(i);
-             if(ms_context->GetElementType(_els1) == ScType::NodeConstTuple)
+             if(ms_context->GetElementType(_els1) == ScType::NodeConstTuple ||
+                ms_context->GetElementType(_els1) == ScType::EdgeDCommonConst ||
+                ms_context->GetElementType(_els1) == ScType::EdgeUCommonConst)
                  continue;
              ScAddr _els2 = ms_context->GetEdgeTarget(i);
              ScAddr _elem = ms_context->CreateNode(ScType::NodeConstStruct);
@@ -58,16 +62,26 @@ namespace answerVerificationModule
              ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els1);
              ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els2);
              ScIterator3Ptr it_3 = ms_context->Iterator3(ScType::NodeConstNoRole, ScType::EdgeAccessConstPosPerm, i);
-             while (it_3->Next())
-             {
+             if (it_3->Next()) {
                  ScAddr _els3 = it_3->Get(0);
                  ScAddr _arc = it_3->Get(1);
                  ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els3);
                  ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _arc);
-                 break;
+             }
+             ScIterator5Ptr it_5 = ms_context->Iterator5(i, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+             if (it_5->Next()) {
+                 ScAddr _arc = it_5->Get(1);
+                 ScAddr _els3 = it_5->Get(2);
+                 ScAddr _arc1 = it_5->Get(3);
+                 ScAddr _els4 = it_5->Get(4);
+                 ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els3);
+                 ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _arc);
+                 ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els4);
+                 ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _arc1);
              }
          }
      }
+
     void Faprocess::decompositionAccwithrole(ScMemoryContext * ms_context,
                                         ScAddr & mid_elems,
                                         ScAddr & mid_elem)
@@ -99,6 +113,7 @@ namespace answerVerificationModule
             }
         }
     }
+
     void Faprocess::decompositionTupleWithSub(ScMemoryContext * ms_context,
                                              ScAddr & mid_elems,
                                              ScAddr & mid_elem)
@@ -150,6 +165,7 @@ namespace answerVerificationModule
             }
         }
     }
+
     void Faprocess::decompositionTupleWithRelation(ScMemoryContext * ms_context,
                                               ScAddr & mid_elems,
                                               ScAddr & mid_elem)
@@ -194,13 +210,13 @@ namespace answerVerificationModule
             }
         }
     }
+
     void Faprocess::decompositionEdge(ScMemoryContext * ms_context,
                                                    ScAddr & mid_elems,
                                                    ScAddr & mid_elem)
     {
         vector<ScAddr> _class_edge1 = IteratorUtils::getAllWithType(ms_context, mid_elems, ScType::EdgeUCommonConst);
-        for (auto i : _class_edge1)
-        {
+        for (auto i : _class_edge1) {
             ScAddr _els1 = ms_context->GetEdgeSource(i);
             ScAddr _els2 = ms_context->GetEdgeTarget(i);
             ScAddr _elem = ms_context->CreateNode(ScType::NodeConstStruct);
@@ -209,16 +225,26 @@ namespace answerVerificationModule
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els1);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els2);
             ScIterator3Ptr it_3 = ms_context->Iterator3(ScType::NodeConstNoRole, ScType::EdgeAccessConstPosPerm, i);
-            while (it_3->Next())
-            {
+            if (it_3->Next()) {
                 ScAddr _els3 = it_3->Get(0);
                 ScAddr _arcr = it_3->Get(1);
                 ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els3);
                 ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _arcr);
-                break;
+            }
+            ScIterator5Ptr it_5 = ms_context->Iterator5(i, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+            if (it_5->Next()) {
+                ScAddr _arc = it_5->Get(1);
+                ScAddr _els3 = it_5->Get(2);
+                ScAddr _arc1 = it_5->Get(3);
+                ScAddr _els4 = it_5->Get(4);
+                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els3);
+                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _arc);
+                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _els4);
+                ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, _elem, _arc1);
             }
         }
     }
+
      void Faprocess::SubstructureClassification(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& allsst,
@@ -227,14 +253,20 @@ namespace answerVerificationModule
             std::vector<ScAddr>& classcomm,
             std::vector<ScAddr>& classretup,
             std::vector<ScAddr>& classpost5,
-            std::vector<ScAddr>& classpost3)
+            std::vector<ScAddr>& classpost3,
+            std::vector<ScAddr>& classcomm7,
+            std::vector<ScAddr>& classedge7)
      {
          for (auto i : allsst)
          {
              ScIterator3Ptr it_edge = ms_context->Iterator3(i, ScType::EdgeAccessConstPosPerm, ScType::EdgeUCommonConst);
              if (it_edge->Next())
              {
-                 classedge.push_back(i);
+                 ScIterator3Ptr it_edge1 = ms_context->Iterator3(i, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
+                 if (it_edge1->Next())
+                     classedge7.push_back(i);
+                 else
+                     classedge.push_back(i);
                  continue;
              }
              ScIterator3Ptr it_common = ms_context->Iterator3(i, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
@@ -243,11 +275,16 @@ namespace answerVerificationModule
                  ScAddr arc = it_common->Get(2);
                  ScAddr els1 = ms_context->GetEdgeSource(arc);
                  if (ms_context->GetElementType(els1) == ScType::NodeConstTuple)
-                 {
                      classtup.push_back(i);
-                     continue;
+                 else if (ms_context->GetElementType(els1) == ScType::EdgeDCommonConst)
+                     classcomm7.push_back(i);
+                 else {
+                     ScIterator3Ptr it_3 = ms_context->Iterator3(arc, ScType::EdgeDCommonConst, ScType::Unknown);
+                     if (it_3->Next())
+                         classcomm7.push_back(i);
+                     else
+                         classcomm.push_back(i);
                  }
-                 classcomm.push_back(i);
                  continue;
              }
              ScIterator3Ptr it_retup = ms_context->Iterator3(i, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
@@ -285,6 +322,7 @@ namespace answerVerificationModule
              classpost3.push_back(i);
          }
      }
+
     void Faprocess::CommonSimilarityCalculation(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& classcomm1,
@@ -312,14 +350,14 @@ namespace answerVerificationModule
             {
                 il++;
                 ScAddr _els32;
-                ScIterator3Ptr it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
+                it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
                 while (it_3->Next())
                 {
                     _comarc = it_3->Get(2);
                 }
                 ScAddr _els12 = ms_context->GetEdgeSource(_comarc);
                 ScAddr _els22 = ms_context->GetEdgeTarget(_comarc);
-                ScIterator3Ptr it_31 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+                it_31 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
                 while (it_31->Next())
                 {
                     _els32 = it_31->Get(2);
@@ -375,6 +413,7 @@ namespace answerVerificationModule
             }
         }
     }
+
     void Faprocess::Post5SimilarityCalculation(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& classpost51,
@@ -471,6 +510,7 @@ namespace answerVerificationModule
             }
         }
     }
+
      void Faprocess::Post3SimilarityCalculation(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& classpost31,
@@ -549,6 +589,7 @@ namespace answerVerificationModule
              }
          }
      }
+
      void Faprocess::TupSimilarityCalculation(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& classtup1,
@@ -698,6 +739,7 @@ namespace answerVerificationModule
              }
          }
      }
+
      void Faprocess::ReTupSimilarityCalculation(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& classretup1,
@@ -816,6 +858,7 @@ namespace answerVerificationModule
              }
          }
      }
+
     void Faprocess::EdgeSimilarityCalculation(
             ScMemoryContext * ms_context,
             std::vector<ScAddr>& classedge1,
@@ -909,6 +952,176 @@ namespace answerVerificationModule
             }
         }
     }
+
+    void Faprocess::Common7SimilarityCalculation(
+            ScMemoryContext * ms_context,
+            std::vector<ScAddr>& classcomm71,
+            std::vector<ScAddr>& classcomm72,
+            int & summa,
+            std::vector<ScAddr>& mathstru) {
+        for (auto elem : classcomm71) {
+            ScAddr _comarc, _els1, _els2, _els3, _els4;
+            _comarc = IteratorUtilsLocal::getFirstWithType(ms_context, elem, ScType::EdgeDCommonConst);
+            _els1 = ms_context->GetEdgeSource(_comarc);
+            if (ms_context->GetElementType(_els1) == ScType::EdgeDCommonConst) {
+                _els3 = ms_context->GetEdgeTarget(_comarc);
+                _els4 = IteratorUtilsLocal::getFirstFromSetByInReWithType(ms_context, _comarc, ScType::NodeConstNoRole);
+                _els2 = ms_context->GetEdgeTarget(_els1);
+                _els1 = ms_context->GetEdgeSource(_els1);
+            } else {
+                _els2 = ms_context->GetEdgeTarget(_comarc);
+                ScIterator5Ptr  it_5 = ms_context->Iterator5(_comarc, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+                if (it_5->Next()) {
+                    _els3 = it_5->Get(2);
+                    _els4 = it_5->Get(4);
+                }
+            }
+            for (auto elemcp : classcomm72) {
+                ScAddr _els12, _els22, _els32, _els42;
+                _comarc = IteratorUtilsLocal::getFirstWithType(ms_context, elemcp, ScType::EdgeDCommonConst);
+                _els12 = ms_context->GetEdgeSource(_comarc);
+                if (ms_context->GetElementType(_els12) == ScType::EdgeDCommonConst) {
+                    _els32 = ms_context->GetEdgeTarget(_comarc);
+                    _els42 = IteratorUtilsLocal::getFirstFromSetByInReWithType(ms_context, _comarc, ScType::NodeConstNoRole);
+                    _els22 = ms_context->GetEdgeTarget(_els12);
+                    _els12 = ms_context->GetEdgeSource(_els12);
+                } else {
+                    _els22 = ms_context->GetEdgeTarget(_comarc);
+                    ScIterator5Ptr  it_5 = ms_context->Iterator5(_comarc, ScType::EdgeDCommonConst, ScType::Unknown, ScType::EdgeAccessConstPosPerm, ScType::NodeConstNoRole);
+                    if (it_5->Next()) {
+                        _els32 = it_5->Get(2);
+                        _els42 = it_5->Get(4);
+                    }
+                }
+                if (_els4 != _els42)
+                    continue;
+                if (_els1 != _els12) {
+                    if (ms_context->GetElementType(_els1) == ScType::NodeConst
+                        && ms_context->GetElementType(_els12) == ScType::NodeConst) {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context, _els1, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context, _els12, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    } else
+                        continue;
+                }
+                if (_els2 != _els22) {
+                    if (ms_context->GetElementType(_els2) == ScType::NodeConst
+                        && ms_context->GetElementType(_els22) == ScType::NodeConst) {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context, _els2, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context, _els22, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    } else
+                        continue;
+                }
+                if (_els3 != _els32) {
+                    if (ms_context->GetElementType(_els3) == ScType::NodeConst
+                        && ms_context->GetElementType(_els32) == ScType::NodeConst) {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context, _els3, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context, _els32, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    } else
+                        continue;
+                }
+                summa++;
+                mathstru.push_back(elemcp);
+                auto iter = find(classcomm72.begin(), classcomm72.end(), elemcp);
+                if (iter != classcomm72.end())
+                    classcomm72.erase(iter);
+                break;
+            }
+        }
+    }
+
+    void Faprocess::Edge7SimilarityCalculation(
+            ScMemoryContext * ms_context,
+            std::vector<ScAddr>& classedge71,
+            std::vector<ScAddr>& classedge72,
+            int & summa,
+            std::vector<ScAddr>& mathstru) {
+        for (auto elem : classedge71) {
+            ScAddr _comarc, _els1, _els2, _els3, _els4;
+            _comarc = IteratorUtilsLocal::getFirstWithType(ms_context, elem, ScType::EdgeDCommonConst);
+            _els1 = ms_context->GetEdgeSource(ms_context->GetEdgeSource(_comarc));
+            _els2 = ms_context->GetEdgeTarget(ms_context->GetEdgeSource(_comarc));
+            _els3 = ms_context->GetEdgeTarget(_comarc);
+            _els4 = IteratorUtilsLocal::getFirstFromSetByInReWithType(ms_context, _comarc, ScType::NodeConstNoRole);
+            for(auto elemcp : classedge72) {
+                ScAddr _els12, _els22, _els32, _els42;
+                _comarc = IteratorUtilsLocal::getFirstWithType(ms_context, elemcp, ScType::EdgeDCommonConst);
+                _els12 = ms_context->GetEdgeSource(ms_context->GetEdgeSource(_comarc));
+                _els22 = ms_context->GetEdgeTarget(ms_context->GetEdgeSource(_comarc));
+                _els32 = ms_context->GetEdgeTarget(_comarc);
+                _els42 = IteratorUtilsLocal::getFirstFromSetByInReWithType(ms_context, _comarc, ScType::NodeConstNoRole);
+                if (_els4 != _els42)
+                    continue;
+                if (_els3 != _els32) {
+                    if (ms_context->GetElementType(_els3) == ScType::NodeConst
+                        && ms_context->GetElementType(_els32) == ScType::NodeConst) {
+                        ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context, _els3, Keynodes::nrel_system_identifier);
+                        ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context, _els32, Keynodes::nrel_system_identifier);
+                        if (elemid1.IsValid() || elemid2.IsValid())
+                            continue;
+                    } else
+                        continue;
+                }
+                ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context, _els1, Keynodes::nrel_system_identifier);
+                ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context, _els2, Keynodes::nrel_system_identifier);
+                ScAddr elemid12 = IteratorUtils::getFirstByOutRelation(ms_context, _els12, Keynodes::nrel_system_identifier);
+                ScAddr elemid22 = IteratorUtils::getFirstByOutRelation(ms_context, _els22, Keynodes::nrel_system_identifier);
+                if (elemid1.IsValid() && elemid12.IsValid() && elemid2.IsValid() && elemid22.IsValid()) {
+                    if ((_els1 == _els12 && _els2 == _els22) || (_els1 == _els22 && _els2 == _els12)) {
+                        summa++;
+                        mathstru.push_back(elemcp);
+                        auto iter = find(classedge72.begin(), classedge72.end(), elemcp);
+                        if (iter != classedge72.end())
+                            classedge72.erase(iter);
+                        break;
+                    } else
+                        continue;
+                } else if ((!elemid1.IsValid() && elemid2.IsValid() && ms_context->GetElementType(_els1) == ScType::NodeConst) &&
+                          ((!elemid12.IsValid() && elemid22.IsValid() && ms_context->GetElementType(_els12) == ScType::NodeConst) ||
+                          (elemid12.IsValid() && !elemid22.IsValid() && ms_context->GetElementType(_els22) == ScType::NodeConst))) {
+                    if ((!elemid12.IsValid() && _els2 == _els22) || (!elemid22.IsValid() && _els2 == _els12))
+                    {
+                        summa++;
+                        mathstru.push_back(elemcp);
+                        auto iter = find(classedge72.begin(), classedge72.end(), elemcp);
+                        if (iter != classedge72.end())
+                            classedge72.erase(iter);
+                        break;
+                    } else
+                        continue;
+                } else if ((elemid1.IsValid() && !elemid2.IsValid() && ms_context->GetElementType(_els2) == ScType::NodeConst) &&
+                            ((!elemid12.IsValid() && elemid22.IsValid() && ms_context->GetElementType(_els12) == ScType::NodeConst) ||
+                            (elemid12.IsValid() && !elemid22.IsValid() && ms_context->GetElementType(_els22) == ScType::NodeConst))) {
+                    if ((!elemid12.IsValid() && _els1 == _els22) || (!elemid22.IsValid() && _els1 == _els12))
+                    {
+                        summa++;
+                        mathstru.push_back(elemcp);
+                        auto iter = find(classedge72.begin(), classedge72.end(), elemcp);
+                        if (iter != classedge72.end())
+                            classedge72.erase(iter);
+                        break;
+                    } else
+                        continue;
+                } else if (!elemid1.IsValid() && !elemid12.IsValid() && !elemid2.IsValid() && !elemid22.IsValid() &&
+                           ms_context->GetElementType(_els1) == ScType::NodeConst && ms_context->GetElementType(_els2) == ScType::NodeConst &&
+                           ms_context->GetElementType(_els12) == ScType::NodeConst && ms_context->GetElementType(_els22) == ScType::NodeConst) {
+                    summa++;
+                    mathstru.push_back(elemcp);
+                    auto iter = find(classedge72.begin(), classedge72.end(), elemcp);
+                    if (iter != classedge72.end())
+                        classedge72.erase(iter);
+                    break;
+                } else
+                    continue;
+            }
+        }
+    }
+
     float Faprocess::SimilarityCalculation(
             int & summa,
             int & sumcand,

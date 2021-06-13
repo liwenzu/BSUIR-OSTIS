@@ -51,17 +51,27 @@ namespace answerVerificationModule {
     _sumcand = _allsst2.size();
     vector<ScAddr> _classtup1, _classtup2, _classretup1, _classretup2, _classcomm1,
                    _classcomm2, _classedge1, _classedge2, _classpost51, _classpost52,
-                   _classpost31, _classpost32, _mathstru, _mismathstru;
+                   _classpost31, _classpost32, _mathstru, _mismathstru, _classcomm71,
+                   _classcomm72, _classedge71, _classedge72;
     Faprocess::SubstructureClassification(ms_context.get(),_allsst1,_classedge1,_classtup1,
-                                         _classcomm1,_classretup1,_classpost51,_classpost31);
+                                         _classcomm1,_classretup1,_classpost51,_classpost31, _classcomm71, _classedge71);
     Faprocess::SubstructureClassification(ms_context.get(),_allsst2,_classedge2,_classtup2,
-                                       _classcomm2,_classretup2,_classpost52,_classpost32);
+                                       _classcomm2,_classretup2,_classpost52,_classpost32, _classcomm72, _classedge72);
     Faprocess::CommonSimilarityCalculation(ms_context.get(), _classcomm1, _classcomm2, _summa, _mathstru);
     Faprocess::Post5SimilarityCalculation(ms_context.get(), _classpost51, _classpost52, _summa, _mathstru);
     Faprocess::Post3SimilarityCalculation(ms_context.get(), _classpost31, _classpost32, _summa, _mathstru);
+
+
+
     Faprocess::TupSimilarityCalculation(ms_context.get(), _classtup1, _classtup2, _summa, _mathstru);
+
+
+
+
     Faprocess::ReTupSimilarityCalculation(ms_context.get(), _classretup1, _classretup2, _summa, _mathstru);
     Faprocess::EdgeSimilarityCalculation(ms_context.get(), _classedge1, _classedge2, _summa, _mathstru);
+    Faprocess::Common7SimilarityCalculation(ms_context.get(), _classcomm71, _classcomm72, _summa, _mathstru);
+    Faprocess::Edge7SimilarityCalculation(ms_context.get(), _classedge71, _classedge72, _summa, _mathstru);
     cout <<"Number of substructures of standard answers: "<<_sumsta << endl;
     cout <<"Number of substructures of user answers: "<<_sumcand << endl;
     cout <<"Number of substructures of matching answers: "<<_summa << endl;
