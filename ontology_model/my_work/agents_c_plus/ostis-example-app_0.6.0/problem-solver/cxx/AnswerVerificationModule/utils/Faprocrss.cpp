@@ -617,7 +617,7 @@ namespace answerVerificationModule
              {
                  il++;
                  ScAddr _els12, _els32, _elstup12;
-                 ScIterator3Ptr it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
+                 it_3 = ms_context->Iterator3(elemcp, ScType::EdgeAccessConstPosPerm, ScType::EdgeDCommonConst);
                  while (it_3->Next())
                  {
                      _comarc = it_3->Get(2);
@@ -629,19 +629,16 @@ namespace answerVerificationModule
                  {
                      _els32 = it_3->Get(2);
                  }
-                 if (_els1 != _els12)
-                 {
+                 if (_els1 != _els12) {
                      if (ms_context->GetElementType(_els1) == ScType::NodeConst
-                         && ms_context->GetElementType(_els12) == ScType::NodeConst)
-                     {
+                         && ms_context->GetElementType(_els12) == ScType::NodeConst) {
                          ScAddr elemid1 = IteratorUtils::getFirstByOutRelation(ms_context, _els1, Keynodes::nrel_system_identifier);
                          ScAddr elemid2 = IteratorUtils::getFirstByOutRelation(ms_context, _els12, Keynodes::nrel_system_identifier);
                          if (elemid1.IsValid() || elemid2.IsValid())
                              continue;
                      }
                      else if (ms_context->GetElementType(_els1).IsLink()
-                              && ms_context->GetElementType(_els12).IsLink())
-                     {
+                              && ms_context->GetElementType(_els12).IsLink()) {
                          std::string data1 = CommonUtils::readString(ms_context, _els1);
                          std::string data2 = CommonUtils::readString(ms_context, _els12);
                          if (data1 != data2)
@@ -651,15 +648,14 @@ namespace answerVerificationModule
                          continue;
                  }
                  if (_els3 != _els32)
-                 {
                      continue;
-                 }
                  vector<ScAddr> _elstup1cp, _elstup12cp;
                  _elstup1cp = IteratorUtils::getAllWithType(ms_context, _elstup1, ScType::Unknown);
                  _elstup12cp = IteratorUtils::getAllWithType(ms_context, _elstup12, ScType::Unknown);
                  int s1 = _elstup1cp.size(), s2 = _elstup12cp.size();
                  if (s1 != s2)
                      continue;
+                 set<ScAddr, ScAddLessFunc> dupSet;
                  for (auto currelem : _elstup1cp)
                  {
                      ScIterator5Ptr it_5 = ms_context->Iterator5(_elstup1, ScType::EdgeAccessConstPosPerm, currelem,
@@ -667,25 +663,37 @@ namespace answerVerificationModule
                      if(it_5->Next())
                      {
                          ScAddr _els4 = it_5->Get(4);
-                         vector<ScAddr>::iterator existence;
-                         existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
-                         if (existence == _elstup12cp.end())
-                         {
-                             if (ms_context->GetElementType(currelem).IsLink())
-                             {
+                         auto existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
+                         if (existence == _elstup12cp.end()) {
+                             if (ms_context->GetElementType(currelem).IsLink()) {
                                  vector<ScAddr> _elstup12cplink;
                                  _elstup12cplink = IteratorUtils::getAllWithType(ms_context, _elstup12, ScType::Link);
                                  for (auto elemlink : _elstup12cplink)
                                  {
                                      std::string data1 = CommonUtils::readString(ms_context, currelem);
                                      std::string data2 = CommonUtils::readString(ms_context, elemlink);
-                                     if (data1 != data2)
+                                     if (data1 != data2 || dupSet.count(elemlink))
                                          continue;
                                      ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemlink,
                                                                                   ScType::EdgeAccessConstPosPerm, _els4);
                                      if (!(it_51->Next()))
                                          continue;
+                                     dupSet.insert(elemlink);
                                      goto Step1;
+                                 }
+                                 goto Step;
+                             } else if (ms_context->GetElementType(currelem) == ScType::NodeConst &&
+                                        !IteratorUtils::getFirstByOutRelation(ms_context, currelem, Keynodes::nrel_system_identifier).IsValid()) {
+                                 vector<ScAddr> _elstup12cpNode = IteratorUtils::getAllWithType(ms_context, _elstup12, ScType::NodeConst);
+                                 for (auto elemNode : _elstup12cpNode) {
+                                    if (IteratorUtils::getFirstByOutRelation(ms_context, elemNode, Keynodes::nrel_system_identifier).IsValid() || dupSet.count(elemNode))
+                                        continue;
+                                    ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemNode,
+                                                                              ScType::EdgeAccessConstPosPerm, _els4);
+                                    if (!(it_51->Next()))
+                                     continue;
+                                    dupSet.insert(elemNode);
+                                    goto Step1;
                                  }
                                  goto Step;
                              }
@@ -699,24 +707,36 @@ namespace answerVerificationModule
                      }
                      else
                      {
-                         vector<ScAddr>::iterator existence;
-                         existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
+                         auto existence = find(_elstup12cp.begin(), _elstup12cp.end(), currelem);
                          if (existence == _elstup12cp.end())
                          {
-                             if (ms_context->GetElementType(currelem).IsLink())
-                             {
+                             if (ms_context->GetElementType(currelem).IsLink()) {
                                  vector<ScAddr> _elstup12cplink;
                                  _elstup12cplink = IteratorUtils::getAllWithType(ms_context, _elstup12, ScType::Link);
-                                 for (auto elemlink : _elstup12cplink)
-                                 {
+                                 for (auto elemlink : _elstup12cplink) {
                                      std::string data1 = CommonUtils::readString(ms_context, currelem);
                                      std::string data2 = CommonUtils::readString(ms_context, elemlink);
-                                     if (data1 != data2)
+                                     if (data1 != data2 || dupSet.count(elemlink))
                                          continue;
                                      ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemlink,
                                                                                   ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
                                      if (it_51->Next())
                                          continue;
+                                     dupSet.insert(elemlink);
+                                     goto Step1;
+                                 }
+                                 goto Step;
+                             } else if (ms_context->GetElementType(currelem) == ScType::NodeConst &&
+                                 !IteratorUtils::getFirstByOutRelation(ms_context, currelem, Keynodes::nrel_system_identifier).IsValid()) {
+                                 vector<ScAddr> _elstup12cpNode = IteratorUtils::getAllWithType(ms_context, _elstup12, ScType::NodeConst);
+                                 for (auto elemNode : _elstup12cpNode) {
+                                     if (IteratorUtils::getFirstByOutRelation(ms_context, elemNode, Keynodes::nrel_system_identifier).IsValid() || dupSet.count(elemNode))
+                                         continue;
+                                     ScIterator5Ptr it_51 = ms_context->Iterator5(_elstup12, ScType::EdgeAccessConstPosPerm, elemNode,
+                                                                                  ScType::EdgeAccessConstPosPerm, ScType::NodeConstRole);
+                                     if (it_51->Next())
+                                         continue;
+                                     dupSet.insert(elemNode);
                                      goto Step1;
                                  }
                                  goto Step;

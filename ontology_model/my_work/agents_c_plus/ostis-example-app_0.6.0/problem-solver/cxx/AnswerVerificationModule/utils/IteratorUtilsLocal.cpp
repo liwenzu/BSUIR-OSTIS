@@ -95,4 +95,17 @@ namespace answerVerificationModule
         }
         return element;
     }
+
+    ScAddr IteratorUtilsLocal::getFirstByInRelationWithType(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation, ScType scType)
+    {
+        ScAddr element;
+        bool isRole = CommonUtils::checkType(ms_context, relation, ScType::NodeConstRole);
+        ScType arcType = isRole ? ScType::EdgeAccessConstPosPerm : ScType::EdgeDCommonConst;
+        ScIterator5Ptr iterator5 = ms_context->Iterator5(scType, arcType, node, ScType::EdgeAccessConstPosPerm, relation);
+        if (iterator5->Next())
+        {
+            element = iterator5->Get(0);
+        }
+        return element;
+    }
 }

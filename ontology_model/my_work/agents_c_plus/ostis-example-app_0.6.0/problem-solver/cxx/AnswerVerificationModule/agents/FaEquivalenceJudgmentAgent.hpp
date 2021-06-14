@@ -13,6 +13,14 @@ namespace answerVerificationModule
     {
         SC_CLASS(Agent, Event(Keynodes::concept_log_eq_judgment_fa, ScEvent::Type::AddOutputEdge))
         SC_GENERATED_BODY()
+
+    private:
+        static void searchStructure(ScMemoryContext * ctx,
+                             ScAddr &struct1,
+                             ScAddr &struct2,
+                             const ScAddr & elems1,
+                             const ScAddr & elems2);
+
     };
 
 } // namespace answerVerificationModule

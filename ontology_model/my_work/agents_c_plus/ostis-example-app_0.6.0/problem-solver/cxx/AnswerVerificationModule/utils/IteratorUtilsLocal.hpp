@@ -32,5 +32,7 @@ namespace answerVerificationModule
         static ScAddr getFirstFromSetWithType(ScMemoryContext * ms_context, const ScAddr & set, ScType scType);
 
         static ScAddr getFirstFromSetByInReWithType(ScMemoryContext * ms_context, const ScAddr & set, ScType scType);
+
+        static ScAddr getFirstByInRelationWithType(ScMemoryContext * ms_context, const ScAddr & node, const ScAddr & relation, ScType scType);
     };
 }

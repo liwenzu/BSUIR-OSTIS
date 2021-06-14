@@ -60,14 +60,7 @@ namespace answerVerificationModule {
     Faprocess::CommonSimilarityCalculation(ms_context.get(), _classcomm1, _classcomm2, _summa, _mathstru);
     Faprocess::Post5SimilarityCalculation(ms_context.get(), _classpost51, _classpost52, _summa, _mathstru);
     Faprocess::Post3SimilarityCalculation(ms_context.get(), _classpost31, _classpost32, _summa, _mathstru);
-
-
-
     Faprocess::TupSimilarityCalculation(ms_context.get(), _classtup1, _classtup2, _summa, _mathstru);
-
-
-
-
     Faprocess::ReTupSimilarityCalculation(ms_context.get(), _classretup1, _classretup2, _summa, _mathstru);
     Faprocess::EdgeSimilarityCalculation(ms_context.get(), _classedge1, _classedge2, _summa, _mathstru);
     Faprocess::Common7SimilarityCalculation(ms_context.get(), _classcomm71, _classcomm72, _summa, _mathstru);
