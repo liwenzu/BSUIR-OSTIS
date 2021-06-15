@@ -108,4 +108,12 @@ namespace answerVerificationModule
         }
         return element;
     }
+
+    ScAddr IteratorUtilsLocal::getArc(ScMemoryContext * ms_contex, const ScAddr & startNode, const ScAddr & endNode) {
+        ScAddr arc;
+        ScIterator3Ptr iterator3 = ms_contex->Iterator3(startNode, ScType::EdgeAccessConstPosPerm, endNode);
+        if (iterator3->Next())
+            arc = iterator3->Get(1);
+        return arc;
+    }
 }
