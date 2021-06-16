@@ -1214,6 +1214,40 @@ namespace answerVerificationModule
         ScStreamPtr stream = ScStreamConverter::StreamFromString(to_string(Fsc));
         ms_context->SetLinkContent(link, stream);
     }
+
+    void Faprocess::reNonessentialEle(ScMemoryContext *ms_context, const ScAddr &param) {
+        vector<ScAddr> delSim = IteratorUtilsLocal::getAllByOutRelation(ms_context, param, Keynodes::nrel_coefficient);
+        for (auto & delElem : delSim)
+            ms_context->EraseElement(delElem);
+        vector<ScAddr> incoAnswer = IteratorUtilsLocal::getAllByOutRelation(ms_context, param, Keynodes::nrel_incorrect_answer);
+        for(auto & delElem : incoAnswer) {
+            vector<ScAddr> subStruct = IteratorUtils::getAllWithType(ms_context, delElem, ScType::NodeConstStruct);
+            for (auto & stu : subStruct)
+                ms_context->EraseElement(stu);
+            ms_context->EraseElement(delElem);
+        }
+        ScAddr stAnswetStr = IteratorUtils::getFirstByOutRelation(ms_context, param, Keynodes::nrel_correct_answer);
+        if (stAnswetStr.IsValid()) {
+            vector<ScAddr> tupleElem = IteratorUtils::getAllByInRelation(ms_context, stAnswetStr, Keynodes::nrel_relation_decomposition);
+            for(auto & delElem : tupleElem) {
+                vector<ScAddr> subStruct = IteratorUtils::getAllWithType(ms_context, delElem, ScType::NodeConstStruct);
+                for (auto & stu : subStruct)
+                    ms_context->EraseElement(stu);
+                ms_context->EraseElement(delElem);
+            }
+        }
+        ScAddr usAnswetStr = IteratorUtils::getFirstByOutRelation(ms_context, param, Keynodes::nrel_user_answer);
+        if (usAnswetStr.IsValid()) {
+            vector<ScAddr> tupleElem = IteratorUtils::getAllByInRelation(ms_context, usAnswetStr, Keynodes::nrel_relation_decomposition);
+            for(auto & delElem : tupleElem) {
+                vector<ScAddr> subStruct = IteratorUtils::getAllWithType(ms_context, delElem, ScType::NodeConstStruct);
+                for (auto & stu : subStruct)
+                    ms_context->EraseElement(stu);
+                ms_context->EraseElement(delElem);
+            }
+        }
+    }
+
 }
 
 

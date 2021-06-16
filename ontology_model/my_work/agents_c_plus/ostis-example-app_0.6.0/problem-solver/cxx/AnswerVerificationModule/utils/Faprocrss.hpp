@@ -11,6 +11,11 @@ namespace answerVerificationModule
     {
     public:
 
+        static void reNonessentialEle(
+                ScMemoryContext * ms_context,
+                const ScAddr & param
+                );
+
         static void generateTuple(
                 ScMemoryContext * ms_context,
                 const ScAddr & answer,

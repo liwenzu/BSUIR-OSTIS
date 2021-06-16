@@ -33,14 +33,15 @@ namespace answerVerificationModule {
     }
     SC_AGENT_IMPLEMENTATION(FasimilarityAgent) {
     if (!edgeAddr.IsValid())
-    return SC_RESULT_ERROR;
+        return SC_RESULT_ERROR;
     ScAddr questionNode = ms_context->GetEdgeTarget(edgeAddr);
     ScAddr param = IteratorUtils::getFirstFromSet(ms_context.get(),questionNode);
     if (!param.IsValid())
-    return SC_RESULT_ERROR_INVALID_PARAMS;
+        return SC_RESULT_ERROR_INVALID_PARAMS;
     ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
     ScAddr _elems_1, _elems_2, _elem1, _elem2;
     ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm,answer,param);
+    Faprocess::reNonessentialEle(ms_context.get(), param);
     Faprocess::generateTuple(ms_context.get(), answer, param, Keynodes::nrel_correct_answer, _elems_1, _elem1);
     Faprocess::generateTuple(ms_context.get(), answer, param, Keynodes::nrel_user_answer, _elems_2, _elem2);
     SubstructureDecomposition(ms_context.get(), _elems_1, _elem1, _elems_2,_elem2);
