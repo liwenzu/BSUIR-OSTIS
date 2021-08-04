@@ -11,6 +11,7 @@
 #include "agents/LosimilarityAgent.hpp"
 #include "agents/QuestionGenerationAgent.hpp"
 #include "agents/FaEquivalenceJudgmentAgent.hpp"
+#include "agents/FoStepsCheckAnswerAgent.hpp"
 
 using namespace answerVerificationModule;
 
@@ -25,6 +26,7 @@ sc_result AnswerVerificationModule::InitializeImpl()
     SC_AGENT_REGISTER(LosimilarityAgent)
     SC_AGENT_REGISTER(QuestionGenerationAgent)
     SC_AGENT_REGISTER(FaEquivalenceJudgmentAgent)
+    SC_AGENT_REGISTER(FoStepsCheckAnswerAgent)
 
     return SC_RESULT_OK;
 }
@@ -35,6 +37,7 @@ sc_result AnswerVerificationModule::ShutdownImpl()
     SC_AGENT_UNREGISTER(LosimilarityAgent)
     SC_AGENT_UNREGISTER(QuestionGenerationAgent)
     SC_AGENT_UNREGISTER(FaEquivalenceJudgmentAgent)
+    SC_AGENT_UNREGISTER(FoStepsCheckAnswerAgent)
 
     return SC_RESULT_OK;
 }

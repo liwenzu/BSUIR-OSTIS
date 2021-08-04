@@ -186,5 +186,6 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("ui_nrel_user_used_language"), ForceCreate)
         static ScAddr ui_nrel_user_used_language;
+
     };
 }

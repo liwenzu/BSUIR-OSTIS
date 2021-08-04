@@ -92,6 +92,9 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("equivalent_concept_template"), ForceCreate)
         static ScAddr equivalent_concept_template;
+
+        SC_PROPERTY(Keynode("following_st_check_answer"), ForceCreate)
+        static ScAddr following_st_check_answer;
     };
 
 } // namespace exampleModule

@@ -1,0 +1,20 @@
+ui_menu_fo_st_check_answer
+<- ui_user_command_class_atom;
+<- ui_user_command_class_view_kb;
+<- ui_one_argument_command_class;
+=> nrel_main_idtf:
+                      [Проверка ответов в соответствии с шагами] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+                      [Checking the answers according to the steps] (* <- lang_en;; *);
+=> ui_nrel_command_template:
+                      [*
+                         following_st_check_answer _-> ._following_st_check_answer_instance
+                                                                               (*
+                                                                                   _-> ui_arg_1;;
+                                                                                *);;
+                         ._following_st_check_answer_instance _<- question;;
+                      *];
+=> ui_nrel_command_lang_template:
+                       [Проверка ответов в соответствии с шагами: $ui_arg_1] (* <- lang_ru;; *);
+=> ui_nrel_command_lang_template:
+                       [Checking the answers according to the steps: $ui_arg_1] (* <- lang_en;; *);;
