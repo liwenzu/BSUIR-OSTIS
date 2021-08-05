@@ -5,6 +5,8 @@
 #include <sc-agents-common/utils/GenerationUtils.hpp>
 #include <sc-agents-common/utils/IteratorUtils.hpp>
 #include <sc-agents-common/utils/AgentUtils.hpp>
+#include "utils/Display.hpp"
+#include "utils/Foprocess.hpp"
 
 using namespace std;
 using namespace utils;
@@ -24,6 +26,26 @@ namespace answerVerificationModule
 
             ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
+
+
+
+            ScAddr templateSet = IteratorUtils::getFirstByOutRelation(ms_context.get(), param, Keynodes::nrel_template);
+            if (!templateSet.IsValid())
+                return SC_RESULT_ERROR_INVALID_PARAMS;
+            ScAddr firstTemplate = IteratorUtils::getFirstByOutRelation(ms_context.get(), templateSet, Keynodes::rrel_1);
+            if (!firstTemplate.IsValid())
+                return SC_RESULT_ERROR_INVALID_PARAMS;
+
+
+
+            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate);
+
+
+
+
+
+
+
 
 
 

@@ -36,4 +36,5 @@ namespace answerVerificationModule
     ScAddr Keynodes::concept_log_eq_judgment_fa;
     ScAddr Keynodes::equivalent_concept_template;
     ScAddr Keynodes::following_st_check_answer;
+    ScAddr Keynodes::nrel_template;
 }

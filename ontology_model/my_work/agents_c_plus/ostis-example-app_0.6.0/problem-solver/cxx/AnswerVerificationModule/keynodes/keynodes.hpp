@@ -95,6 +95,9 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("following_st_check_answer"), ForceCreate)
         static ScAddr following_st_check_answer;
+
+        SC_PROPERTY(Keynode("nrel_template"), ForceCreate)
+        static ScAddr nrel_template;
     };
 
 } // namespace exampleModule
