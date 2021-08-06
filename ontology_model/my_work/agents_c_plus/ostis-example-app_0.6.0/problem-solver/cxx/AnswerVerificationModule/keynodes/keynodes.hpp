@@ -98,6 +98,15 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("nrel_template"), ForceCreate)
         static ScAddr nrel_template;
+
+        SC_PROPERTY(Keynode("nrel_sequence_of_actions"), ForceCreate)
+        static ScAddr nrel_sequence_of_actions;
+
+        SC_PROPERTY(Keynode("nrel_decomposition_of_action"), ForceCreate)
+        static ScAddr nrel_decomposition_of_action;
+
+        SC_PROPERTY(Keynode("nrel_result"), ForceCreate)
+        static ScAddr nrel_result;
     };
 
 } // namespace exampleModule

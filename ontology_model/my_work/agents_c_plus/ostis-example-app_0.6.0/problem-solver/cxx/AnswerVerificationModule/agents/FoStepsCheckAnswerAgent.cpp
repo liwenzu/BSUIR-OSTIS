@@ -7,6 +7,7 @@
 #include <sc-agents-common/utils/AgentUtils.hpp>
 #include "utils/Display.hpp"
 #include "utils/Foprocess.hpp"
+#include <stack>
 
 using namespace std;
 using namespace utils;
@@ -24,11 +25,16 @@ namespace answerVerificationModule
             if (!param.IsValid())
                 return SC_RESULT_ERROR_INVALID_PARAMS;
 
+
             ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
 
 
 
+            ScAddr tupleSet = IteratorUtils::getFirstByInRelation(ms_context.get(), param, Keynodes::nrel_decomposition_of_action);
+            ScAddr firstStep = IteratorUtils::getFirstByOutRelation(ms_context.get(), tupleSet, Keynodes::rrel_1);
+            if (!firstStep.IsValid() || !tupleSet.IsValid())
+                return SC_RESULT_ERROR_INVALID_PARAMS;
             ScAddr templateSet = IteratorUtils::getFirstByOutRelation(ms_context.get(), param, Keynodes::nrel_template);
             if (!templateSet.IsValid())
                 return SC_RESULT_ERROR_INVALID_PARAMS;
@@ -37,16 +43,24 @@ namespace answerVerificationModule
                 return SC_RESULT_ERROR_INVALID_PARAMS;
 
 
-
-            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate);
-
-
+            unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> answerMap;
+            AnswerCheckProcess::answerNumbering(ms_context.get(), firstStep, answerMap);
 
 
 
 
+            stack<int> numberStruct;
 
 
+            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate, answerMap, numberStruct);
+
+
+
+
+
+
+
+            cout << numberStruct.size() << endl;
 
 
             cout << "Hello World!" << endl;

@@ -37,4 +37,7 @@ namespace answerVerificationModule
     ScAddr Keynodes::equivalent_concept_template;
     ScAddr Keynodes::following_st_check_answer;
     ScAddr Keynodes::nrel_template;
+    ScAddr Keynodes::nrel_sequence_of_actions;
+    ScAddr Keynodes::nrel_decomposition_of_action;
+    ScAddr Keynodes::nrel_result;
 }
