@@ -98,10 +98,10 @@ namespace answerVerificationModule
             return;
 
 
-//设置一个栈，在这里入栈
-        if (tempNum == -1)
+//设置一个栈，在这里入栈(如果第一个遍历的结构不存在，则跳过这步，如果中间结构不匹配则选上一个结构);
+        if (tempNum == -1 && !numberStructS.empty())
             numberStructS.push(numberStructS.top());
-        else
+        else if (tempNum != -1)
             numberStructS.push(tempNum);
 
 
@@ -110,7 +110,8 @@ namespace answerVerificationModule
             AnswerCheckProcess::traversalTemplate(ms_context, currElem, answerMapS, numberStructS);
 
 //循环结束出栈;
-        numberStructS.pop();
+        if (!numberStructS.empty())
+            numberStructS.pop();
 
     }
 
