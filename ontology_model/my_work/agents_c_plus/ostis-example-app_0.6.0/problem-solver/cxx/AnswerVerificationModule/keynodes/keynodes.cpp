@@ -40,4 +40,5 @@ namespace answerVerificationModule
     ScAddr Keynodes::nrel_sequence_of_actions;
     ScAddr Keynodes::nrel_decomposition_of_action;
     ScAddr Keynodes::nrel_result;
+    ScAddr Keynodes::nrel_axioms_used;
 }

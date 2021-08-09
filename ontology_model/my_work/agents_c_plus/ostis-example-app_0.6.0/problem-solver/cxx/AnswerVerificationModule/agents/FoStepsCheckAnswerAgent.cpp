@@ -25,11 +25,8 @@ namespace answerVerificationModule
             if (!param.IsValid())
                 return SC_RESULT_ERROR_INVALID_PARAMS;
 
-
             ScAddr answer = ms_context->CreateNode(ScType::NodeConstStruct);
             ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, param);
-
-
 
             ScAddr tupleSet = IteratorUtils::getFirstByInRelation(ms_context.get(), param, Keynodes::nrel_decomposition_of_action);
             ScAddr firstStep = IteratorUtils::getFirstByOutRelation(ms_context.get(), tupleSet, Keynodes::rrel_1);
@@ -42,25 +39,25 @@ namespace answerVerificationModule
             if (!firstTemplate.IsValid())
                 return SC_RESULT_ERROR_INVALID_PARAMS;
 
-
+//用户答案编号并且记录编号和有关属性的节点
             unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> answerMap;
             AnswerCheckProcess::answerNumbering(ms_context.get(), firstStep, answerMap);
-
-
-
-
+//用于验证解题步骤正确性的栈;
             stack<int> numberStruct;
+//用于记录答案匹配情况的向量
+//            vector<ScAddr> mathStru, incoStepStru, incoTheoremStru, incoConditionStru, incoResultStru;
+//用一个数组加链表将几种答案类型存储起来,0,      1,           2,               3,                     4
+            vector<list<ScAddr>> answerMatchStatus(5);
+//遍历每个模板，检查答案匹配情况
+            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate, answerMap, numberStruct, answerMatchStatus);
+
+            vector<ScAddr> templateList = IteratorUtils::getAllWithType(ms_context.get(), templateSet, ScType::Unknown);
+            int templateNumber = templateList.size();
+            int answerNumber = answerMap.size();
 
 
-            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate, answerMap, numberStruct);
 
-
-
-
-
-
-
-            cout << numberStruct.size() << endl;
+            cout << templateNumber  << " : " << answerNumber << endl;
 
 
             cout << "Hello World!" << endl;
