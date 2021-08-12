@@ -42,6 +42,10 @@ namespace answerVerificationModule
 //用户答案编号并且记录编号和有关属性的节点
             unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> answerMap;
             AnswerCheckProcess::answerNumbering(ms_context.get(), firstStep, answerMap);
+//答案中可能有多个相同的模板，因此设置一个标志位哈希表
+            unordered_map<ScAddr, bool, ScAddrHashFunc< uint32_t >> flagMap;
+            for(const auto &currElem : answerMap)
+                flagMap[currElem.first] = false;
 //用于验证解题步骤正确性的栈;
             stack<int> numberStruct;
 //用于记录答案匹配情况的向量
@@ -49,7 +53,7 @@ namespace answerVerificationModule
 //用一个数组加链表将几种答案类型存储起来,0,      1,           2,               3,                     4
             vector<list<ScAddr>> answerMatchStatus(5);
 //遍历每个模板，检查答案匹配情况
-            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate, answerMap, numberStruct, answerMatchStatus);
+            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate, answerMap, numberStruct, answerMatchStatus, flagMap);
 
             vector<ScAddr> templateList = IteratorUtils::getAllWithType(ms_context.get(), templateSet, ScType::Unknown);
             int templateNumber = templateList.size();
@@ -61,7 +65,6 @@ namespace answerVerificationModule
 
 
             cout << "Hello World!" << endl;
-
 
 
 

@@ -34,7 +34,8 @@ namespace answerVerificationModule
 
     void AnswerCheckProcess::traversalTemplate(ScMemoryContext *ms_context, const ScAddr &node,
                                                unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> &answerMapS,
-                                               stack<int> &numberStructS, vector<list<ScAddr>> &answerMatchStatusS) {
+                                               stack<int> &numberStructS, vector<list<ScAddr>> &answerMatchStatusS,
+                                               unordered_map<ScAddr, bool, ScAddrHashFunc< uint32_t >> &flagMapS) {
 //深度优先搜索
         cout << "-----------------------------" << endl;
 
@@ -55,33 +56,50 @@ namespace answerVerificationModule
                     ScAddr elemStru = IteratorUtilsLocal::getFirstFromSetByInReWithType(ms_context, currSearchResultItem[j], ScType::NodeConstStruct);
                     if (elemStru.IsValid() && answerMapS.count(elemStru)) {
                         if (AnswerCheckProcess::allEleInStru(ms_context, currSearchResult[i], elemStru)) {
-                            flag = true;
-                            tempNum = answerMapS[elemStru].second;
+                            ScIterator5Ptr it5 = ms_context->Iterator5(node, ScType::EdgeUCommonConst, ScType::NodeConstStruct, ScType::EdgeAccessConstPosPerm, Keynodes::nrel_equality);
+                            ScIterator5Ptr it51 = ms_context->Iterator5(ScType::NodeConstStruct, ScType::EdgeUCommonConst, node, ScType::EdgeAccessConstPosPerm, Keynodes::nrel_equality);
+                            if(it5->Next() || it51->Next()) {
+                                if (!flagMapS[elemStru] &&
+                                    AnswerCheckProcess::theoremChecking(ms_context, node, answerMapS[elemStru].first) &&
+                                    AnswerCheckProcess::conditionChecking(ms_context, node, elemStru) &&
+                                    AnswerCheckProcess::resultChecking(ms_context, node, currSearchResultItem) &&
+                                    (numberStructS.empty() || (!numberStructS.empty() && tempNum < numberStructS.top()))) {
+                                    flagMapS[elemStru] = true;
+                                    flag = true;
+                                    tempNum = answerMapS[elemStru].second;
+                                    answerMatchStatusS[0].push_back(elemStru);
+                                    cout << "BBBBBBBBBBBBB" << endl;
+                                } else
+                                    continue;
+                            } else {
+                                flag = true;
+                                tempNum = answerMapS[elemStru].second;
 //检查答案步骤逻辑是否正确(入过逻辑步骤不正确，或许可以将tempNum设为-1,即使用上一个编号替代当前编号，需要后续具体讨论)
-                            if (!numberStructS.empty() && tempNum >= numberStructS.top()) {
-                                answerMatchStatusS[1].push_back(elemStru);
-                                break;
-                            }
+                                if (!numberStructS.empty() && tempNum >= numberStructS.top()) {
+                                    answerMatchStatusS[1].push_back(elemStru);
+                                    break;
+                                }
 //检查答案使用的定理正确吗
-                            if(!AnswerCheckProcess::theoremChecking(ms_context, node, answerMapS[elemStru].first)) {
-                                answerMatchStatusS[2].push_back(elemStru);
-                                break;
-                            }
+                                if(!AnswerCheckProcess::theoremChecking(ms_context, node, answerMapS[elemStru].first)) {
+                                    answerMatchStatusS[2].push_back(elemStru);
+                                    break;
+                                }
 //检查使用的条件正确吗
-                            if(!AnswerCheckProcess::conditionChecking(ms_context, node, elemStru)) {
-                                answerMatchStatusS[3].push_back(elemStru);
-                                break;
-                            }
+                                if(!AnswerCheckProcess::conditionChecking(ms_context, node, elemStru)) {
+                                    answerMatchStatusS[3].push_back(elemStru);
+                                    break;
+                                }
 //检查结论正确吗,即链接正确吗
-                            if (!AnswerCheckProcess::resultChecking(ms_context, node, currSearchResultItem)) {
-                                answerMatchStatusS[4].push_back(elemStru);
-                                break;
-                            }
+                                if (!AnswerCheckProcess::resultChecking(ms_context, node, currSearchResultItem)) {
+                                    answerMatchStatusS[4].push_back(elemStru);
+                                    break;
+                                }
 //记录正确的答案
-                            answerMatchStatusS[0].push_back(elemStru);
+                                answerMatchStatusS[0].push_back(elemStru);
 
 
-                            cout << "AAAAAAAAAAAAAA" << endl;
+                                cout << "AAAAAAAAAAAAAA" << endl;
+                            }
                         }
                         break;
                     }
@@ -105,13 +123,11 @@ namespace answerVerificationModule
             numberStructS.push(tempNum);
 //递归调用
         for(auto const &currElem : elemVec)
-            AnswerCheckProcess::traversalTemplate(ms_context, currElem, answerMapS, numberStructS, answerMatchStatusS);
+            AnswerCheckProcess::traversalTemplate(ms_context, currElem, answerMapS, numberStructS, answerMatchStatusS, flagMapS);
 //循环结束出栈;
         if (!numberStructS.empty())
             numberStructS.pop();
     }
-
-
 
 
     bool AnswerCheckProcess::allEleInStru(ScMemoryContext *ms_context, ScTemplateSearchResultItem currSearchResultItemS, const ScAddr &node) {

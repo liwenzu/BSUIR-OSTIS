@@ -17,7 +17,8 @@ namespace answerVerificationModule
 
         static void traversalTemplate(ScMemoryContext *ms_context, const ScAddr &node,
                                       unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t > > &answerMapS,
-                                      stack<int> &numberStructS, vector<list<ScAddr>> &answerMatchStatusS);
+                                      stack<int> &numberStructS, vector<list<ScAddr>> &answerMatchStatusS,
+                                      unordered_map<ScAddr, bool, ScAddrHashFunc< uint32_t >> &flagMapS);
 
         static void answerNumbering(ScMemoryContext *ms_context, const ScAddr &node,
             unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> &answerMapS);

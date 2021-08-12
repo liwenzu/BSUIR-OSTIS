@@ -110,6 +110,9 @@ namespace answerVerificationModule
 
         SC_PROPERTY(Keynode("nrel_axioms_used"), ForceCreate)
         static ScAddr nrel_axioms_used;
+
+        SC_PROPERTY(Keynode("nrel_equality"), ForceCreate)
+        static ScAddr nrel_equality;
     };
 
 } // namespace exampleModule
