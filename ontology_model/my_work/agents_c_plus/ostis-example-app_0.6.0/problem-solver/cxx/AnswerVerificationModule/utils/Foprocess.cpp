@@ -35,11 +35,16 @@ namespace answerVerificationModule
     void AnswerCheckProcess::traversalTemplate(ScMemoryContext *ms_context, const ScAddr &node,
                                                unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> &answerMapS,
                                                stack<int> &numberStructS, vector<list<ScAddr>> &answerMatchStatusS,
-                                               unordered_map<ScAddr, bool, ScAddrHashFunc< uint32_t >> &flagMapS) {
+                                               unordered_map<ScAddr, bool, ScAddrHashFunc< uint32_t >> &flagMapS,
+                                               unordered_map<ScAddr, int, ScAddrHashFunc< uint32_t >> &tempMatchStatusS) {
 //深度优先搜索
         cout << "-----------------------------" << endl;
 
+
+        ScAddr elemStruFlag;
         int tempNum = -1;
+
+
         if (!numberStructS.empty())
             cout << "The last number of structur:"  << numberStructS.top() << endl;
 
@@ -68,6 +73,8 @@ namespace answerVerificationModule
                                     flag = true;
                                     tempNum = answerMapS[elemStru].second;
                                     answerMatchStatusS[0].push_back(elemStru);
+                                    elemStruFlag = elemStru;
+
                                     cout << "BBBBBBBBBBBBB" << endl;
                                 } else
                                     continue;
@@ -96,7 +103,7 @@ namespace answerVerificationModule
                                 }
 //记录正确的答案
                                 answerMatchStatusS[0].push_back(elemStru);
-
+                                elemStruFlag = elemStru;
 
                                 cout << "AAAAAAAAAAAAAA" << endl;
                             }
@@ -109,10 +116,12 @@ namespace answerVerificationModule
             }
         }
 
-
         cout << "*******************************" << endl;
 
 
+//记录模板和答案匹配关系
+        tempMatchStatusS[node] = tempNum;
+//判断是叶子节点吗
         vector<ScAddr> elemVec = IteratorUtils::getAllByInRelation(ms_context, node, Keynodes::nrel_basic_sequence);
         if (elemVec.empty())
             return;
@@ -122,8 +131,16 @@ namespace answerVerificationModule
         else if (tempNum != -1)
             numberStructS.push(tempNum);
 //递归调用
-        for(auto const &currElem : elemVec)
-            AnswerCheckProcess::traversalTemplate(ms_context, currElem, answerMapS, numberStructS, answerMatchStatusS, flagMapS);
+        for(auto const &currElem : elemVec) {
+            if (tempMatchStatusS.count(currElem)) {
+                if (elemStruFlag.IsValid() && (tempNum <= AnswerCheckProcess::traversalSubtree(ms_context, currElem, tempMatchStatusS))) {
+                    answerMatchStatusS[1].push_back(answerMatchStatusS[0].back());
+                    answerMatchStatusS[0].pop_back();
+                }
+                continue;
+            }
+            AnswerCheckProcess::traversalTemplate(ms_context, currElem, answerMapS, numberStructS, answerMatchStatusS, flagMapS, tempMatchStatusS);
+        }
 //循环结束出栈;
         if (!numberStructS.empty())
             numberStructS.pop();
@@ -184,6 +201,18 @@ namespace answerVerificationModule
         streamStr1 >> number1;
         streamStr2 >> number2;
         return number1 == number2;
+    }
+
+    int AnswerCheckProcess::traversalSubtree(ScMemoryContext *ms_context, const ScAddr &nodeS,
+            unordered_map<ScAddr, int, ScAddrHashFunc< uint32_t >> &tempMatchStatusSS) {
+        int number = tempMatchStatusSS[nodeS];
+        vector<ScAddr> elemVec = IteratorUtils::getAllByInRelation(ms_context, nodeS, Keynodes::nrel_basic_sequence);
+        if (elemVec.empty()) {
+            return number;
+        }
+        for(const auto &currElem : elemVec)
+            number = max(AnswerCheckProcess::traversalSubtree(ms_context, currElem, tempMatchStatusSS), number);
+        return number;
     }
 
 

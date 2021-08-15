@@ -38,7 +38,6 @@ namespace answerVerificationModule
             ScAddr firstTemplate = IteratorUtils::getFirstByOutRelation(ms_context.get(), templateSet, Keynodes::rrel_1);
             if (!firstTemplate.IsValid())
                 return SC_RESULT_ERROR_INVALID_PARAMS;
-
 //用户答案编号并且记录编号和有关属性的节点
             unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> answerMap;
             AnswerCheckProcess::answerNumbering(ms_context.get(), firstStep, answerMap);
@@ -52,9 +51,11 @@ namespace answerVerificationModule
 //            vector<ScAddr> mathStru, incoStepStru, incoTheoremStru, incoConditionStru, incoResultStru;
 //用一个数组加链表将几种答案类型存储起来,0,      1,           2,               3,                     4
             vector<list<ScAddr>> answerMatchStatus(5);
+//记录模板和答案的匹配关系
+            unordered_map<ScAddr, int, ScAddrHashFunc< uint32_t >> tempMatchStatus;
 //遍历每个模板，检查答案匹配情况
-            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate, answerMap, numberStruct, answerMatchStatus, flagMap);
-
+            AnswerCheckProcess::traversalTemplate(ms_context.get(), firstTemplate, answerMap, numberStruct, answerMatchStatus, flagMap, tempMatchStatus);
+//计算模板数，和所有答案数
             vector<ScAddr> templateList = IteratorUtils::getAllWithType(ms_context.get(), templateSet, ScType::Unknown);
             int templateNumber = templateList.size();
             int answerNumber = answerMap.size();
@@ -64,7 +65,8 @@ namespace answerVerificationModule
             cout << templateNumber  << " : " << answerNumber << endl;
 
 
-            cout << "Hello World!" << endl;
+
+
 
 
 

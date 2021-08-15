@@ -16,12 +16,13 @@ namespace answerVerificationModule
     public:
 
         static void traversalTemplate(ScMemoryContext *ms_context, const ScAddr &node,
-                                      unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t > > &answerMapS,
+                                      unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> &answerMapS,
                                       stack<int> &numberStructS, vector<list<ScAddr>> &answerMatchStatusS,
-                                      unordered_map<ScAddr, bool, ScAddrHashFunc< uint32_t >> &flagMapS);
+                                      unordered_map<ScAddr, bool, ScAddrHashFunc< uint32_t >> &flagMapS,
+                                      unordered_map<ScAddr, int, ScAddrHashFunc< uint32_t >> &tempMatchStatusS);
 
         static void answerNumbering(ScMemoryContext *ms_context, const ScAddr &node,
-            unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> &answerMapS);
+                                      unordered_map<ScAddr, pair<ScAddr,int>, ScAddrHashFunc< uint32_t >> &answerMapS);
 
         static bool allEleInStru(ScMemoryContext *ms_context, ScTemplateSearchResultItem currSearchResultItemS, const ScAddr &node);
 
@@ -30,6 +31,8 @@ namespace answerVerificationModule
         static bool conditionChecking(ScMemoryContext *ms_context, const ScAddr &nodeS, const ScAddr &actionNode);
 
         static bool resultChecking(ScMemoryContext *ms_context, const ScAddr &nodeS, const ScTemplateSearchResultItem &currSearchResultItemS);
+
+        static int traversalSubtree(ScMemoryContext *ms_context, const ScAddr &nodeS, unordered_map<ScAddr, int, ScAddrHashFunc< uint32_t >> &tempMatchStatusSS);
 
     };
 }
