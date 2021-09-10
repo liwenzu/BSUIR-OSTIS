@@ -579,6 +579,75 @@ judgment_questions_based_on_relation_attributes
 
 
 
+subjective_questions
+=> nrel_main_idtf:
+            [Субъективные вопросы] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Subjective questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [主观题] (* <- lang_ch;; *);
+<= nrel_subdividing:
+            {
+             axiomatic_interpretation_questions;
+             definition_interpretation_questions;
+             proof_questions
+            };;
+
+
+
+axiomatic_interpretation_questions
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+            [Вопросы на толкование теорем] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Axiomatic interpretation questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [公理解释题] (* <- lang_ch;; *);;
+
+
+
+definition_interpretation_questions
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+            [Вопросы на толкование определений] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Definition interpretation questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [定义解释题] (* <- lang_ch;; *);;
+
+
+
+proof_questions
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+            [Вопросы на доказательство] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [Proof questions] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [证明题] (* <- lang_ch;; *);;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
