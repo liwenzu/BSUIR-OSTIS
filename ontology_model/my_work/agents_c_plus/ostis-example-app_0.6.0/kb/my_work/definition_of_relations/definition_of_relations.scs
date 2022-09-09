@@ -214,6 +214,93 @@ concept_examination_paper
         [试卷] (* <- lang_ch;; *);;
 
 
+nrel_number
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [количество*] (* <- lang_ru;; *);
+        [quantity*] (* <- lang_en;; *);
+        [数量*] (* <- lang_ch;; *);;
+
+
+
+1
+<- sc_node;
+<- number;;
+
+
+
+5
+<- sc_node;
+<- number;;
+
+
+10
+<- sc_node;
+<- number;;
+
+
+set_power_of_1
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 1] (* <- lang_ru;; *);
+=> nrel_measure:
+        1;;
+
+
+
+set_power_of_2
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 2] (* <- lang_ru;; *);
+=> nrel_measure:
+        2;;
+
+
+
+set_power_of_5
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 5] (* <- lang_ru;; *);
+=> nrel_measure:
+        5;;
+
+
+
+set_power_of_10
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 10] (* <- lang_ru;; *);
+=> nrel_measure:
+        10;;
+
+
+
+concept_test_questions
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+        [тестовые вопросы] (* <- lang_ru;; *);;
+
+
+
+set_power_of_386
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 386] (* <- lang_ru;; *);
+=> nrel_measure:
+        386 (*<- sc_node; number;;*);;
+
+
+
+set_power_of_194
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 194] (* <- lang_ru;; *);
+=> nrel_measure:
+        194 (*<- sc_node; number;;*);;
+
+
 
 
 

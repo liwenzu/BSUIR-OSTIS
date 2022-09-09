@@ -116,4 +116,12 @@ namespace answerVerificationModule
             arc = iterator3->Get(1);
         return arc;
     }
+
+    ScAddr IteratorUtilsLocal::getEdge(ScMemoryContext *ms_contex, const ScAddr &startNode, const ScAddr &endNode) {
+        ScAddr edge;
+        ScIterator3Ptr iterator3 = ms_contex->Iterator3(startNode, ScType::EdgeDCommonConst, endNode);
+        if (iterator3->Next())
+            edge = iterator3->Get(1);
+        return edge;
+    }
 }

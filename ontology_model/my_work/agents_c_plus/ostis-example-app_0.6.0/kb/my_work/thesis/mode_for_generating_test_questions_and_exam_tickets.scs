@@ -1,0 +1,127 @@
+mode_for_generating_test_questions_and_exam_tickets
+<- sc_node;
+-> rrel_key_sc_element: 
+    logic_rules_for_generating_test_questions;
+    number_of_exam_tickets;
+    number_of_test_questions;
+    scope_of_test_questions;;
+
+mode_for_generating_test_questions_and_exam_tickets
+=> nrel_main_idtf:
+    [Режим генерации тестовых вопросов и экзаменационных билетов] 
+    (*<- lang_ru;;*);;
+
+logic_rules_for_generating_test_questions
+<- sc_node_class;
+=> nrel_main_idtf:
+    [логические правила для генерации тестовых вопросов]
+    (*<- lang_ru;;*);
+->  ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;
+    ...;;
+
+number_of_exam_tickets
+<-sc_node_class;
+=> nrel_main_idtf:
+    [количество экзаменационных билетов]
+    (*<- lang_ru;;*);
+-> 1;;
+
+number_of_test_questions
+<- sc_node_class;
+=> nrel_main_idtf:
+    [количество тестовых вопросов]
+    (*<- lang_ru;;*);
+->  5;
+    10;
+    2;;
+
+// ->  5 (*<= nrel_number: multiple_choice_questions_with_single_option ;;*);
+//     5 (*<= nrel_number: multiple_choice_questions_with_multiple_options ;;*);
+//     10 (*<= nrel_number: fill_in_the_blank_questions ;;*);
+//     10 (*<= nrel_number: judgment_questions ;;*);
+//     2 (*<= nrel_number: definition_interpretation_questions ;;*);
+//     2 (*<= nrel_number: proof_questions ;;*);;
+
+set_power_of_1
+-> concept_examination_paper;;
+
+set_power_of_2
+-> proof_questions;
+   definition_interpretation_questions;;
+
+set_power_of_5
+-> multiple_choice_questions_with_multiple_options;
+   multiple_choice_questions_with_single_option;;
+
+set_power_of_10
+-> fill_in_the_blank_questions;
+   judgment_questions;;
+
+
+scope_of_test_questions
+<- sc_node_class;
+=> nrel_main_idtf:
+    [диапазон тестовых вопросов]
+    (*<- lang_ru;;*);
+->  subject_domain_of_fuzzy_sets;
+    subject_domain_of_combination_theory;
+    concept_subj_domain_graph_structures_not_weighted;
+    concept_subj_domain_hamiltonian_graph;
+    concept_subj_domain_k_partite;
+    concept_subj_domain_eulerian_graph;
+    concept_subj_domain_graph_structures;
+    concept_subj_domain_graph_structures_connected;
+    concept_subj_domain_graph_structures_disconnected;
+    concept_subj_domain_graph_structures_oriented_cords;
+    concept_subj_domain_graph_structures_not_oriented_cords;
+    concept_subj_domain_graph_structures_mix;
+    concept_subj_domain_hypergraphs;
+    concept_subj_domain_pseudographs;
+    concept_subj_domain_multigraphs;
+    concept_subj_domain_graph_structures_weighted;
+    concept_subj_domain_graph_structures_acyclic;
+    concept_subj_domain_graph_structures_cyclic;
+    concept_subj_domain_graph_structures_tree;
+    concept_subj_domain_graph_structures_planarity;
+    concept_subj_domain_graph_structures_unplanarity;
+    subject_domain_of_sets;;
+
+
+

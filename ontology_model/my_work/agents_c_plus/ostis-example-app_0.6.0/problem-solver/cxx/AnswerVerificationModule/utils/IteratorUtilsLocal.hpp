@@ -37,5 +37,6 @@ namespace answerVerificationModule
 
         static ScAddr getArc(ScMemoryContext * ms_contex, const ScAddr & startNode, const ScAddr & endNode);
 
+        static ScAddr getEdge(ScMemoryContext * ms_contex, const ScAddr & startNode, const ScAddr & endNode);
     };
 }

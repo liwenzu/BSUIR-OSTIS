@@ -7,6 +7,8 @@
 #include "searchModule.hpp"
 #include "myodes/myodes.hpp"
 #include "agents/InclusionSearchAgent.hpp"
+#include "agents/GenQuestionsAndExamTicketsAgent.hpp"
+#include "agents/WhatIsThatAgent.hpp"
 
 using namespace searchModule;
 
@@ -18,6 +20,8 @@ sc_result SearchModule::InitializeImpl()
      return SC_RESULT_ERROR;
 
   SC_AGENT_REGISTER(InclusionSearchAgent)
+  SC_AGENT_REGISTER(GenQuestionsAndExamTicketsAgent)
+  SC_AGENT_REGISTER(WhatIsThatAgent)
 
   return SC_RESULT_OK;
 }
@@ -25,6 +29,8 @@ sc_result SearchModule::InitializeImpl()
 sc_result SearchModule::ShutdownImpl()
 {
   SC_AGENT_UNREGISTER(InclusionSearchAgent)
+  SC_AGENT_UNREGISTER(GenQuestionsAndExamTicketsAgent)
+  SC_AGENT_UNREGISTER(WhatIsThatAgent)
 
   return SC_RESULT_OK;
 }

@@ -1,7 +1,7 @@
 objective_questions
 <- sc_node_class;
 => nrel_main_idtf:
-            [Объективные вопросы] (* <- lang_ru;; *);
+            [объективные вопросы] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Objective questions] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -11,7 +11,7 @@ objective_questions
 multiple_choice_questions
 <- sc_node_class;
 => nrel_main_idtf:
-            [Вопросы на выбор] (* <- lang_ru;; *);
+            [вопрос на выбор] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Multiple choice questions] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -44,7 +44,7 @@ choice_the_incorrect_option
 multiple_choice_questions_with_multiple_options
 <- sc_node_class;
 => nrel_main_idtf:
-            [Вопросы на выбор с несколькими вариантами ответа] (* <- lang_ru;; *);
+            [вопрос на выбор с несколькими вариантами ответа] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Multiple choice questions with multiple options] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -54,7 +54,7 @@ multiple_choice_questions_with_multiple_options
 multiple_choice_questions_with_single_option
 <- sc_node_class;
 => nrel_main_idtf:
-            [Вопросы на выбор с одним вариантом ответа] (* <- lang_ru;; *);
+            [вопрос на выбор с одним вариантом ответа] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Multiple choice questions with single option] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -208,7 +208,7 @@ multiple_choice_questions_based_on_relation_attributes
 fill_in_the_blank_questions
 <- sc_node_class;
 => nrel_main_idtf:
-            [Вопросы на заполнение пробелов] (* <- lang_ru;; *);
+            [вопрос на заполнение пробелов] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Fill in the blank questions] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -406,7 +406,7 @@ fill_in_the_blank_questions_based_on_relation_attributes
 judgment_questions
 <- sc_node_class;
 => nrel_main_idtf:
-            [Вопросы суждения] (* <- lang_ru;; *);
+            [вопрос суждения] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Judgment questions] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -581,7 +581,7 @@ judgment_questions_based_on_relation_attributes
 
 subjective_questions
 => nrel_main_idtf:
-            [Субъективные вопросы] (* <- lang_ru;; *);
+            [субъективные вопросы] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Subjective questions] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -609,7 +609,7 @@ axiomatic_interpretation_questions
 definition_interpretation_questions
 <- sc_node_not_relation;
 => nrel_main_idtf:
-            [Вопросы на толкование определений] (* <- lang_ru;; *);
+            [вопрос на толкование определений] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Definition interpretation questions] (* <- lang_en;; *);
 => nrel_main_idtf:
@@ -620,11 +620,22 @@ definition_interpretation_questions
 proof_questions
 <- sc_node_not_relation;
 => nrel_main_idtf:
-            [Вопросы на доказательство] (* <- lang_ru;; *);
+            [вопрос на доказательство] (* <- lang_ru;; *);
 => nrel_main_idtf:
             [Proof questions] (* <- lang_en;; *);
 => nrel_main_idtf:
             [证明题] (* <- lang_ch;; *);;
+
+
+
+task_of_solving
+<- sc_node_not_relation;
+=> nrel_main_idtf:
+            [решение задачи] (* <- lang_ru;; *);
+=> nrel_main_idtf:
+            [task of solving] (* <- lang_en;; *);
+=> nrel_main_idtf:
+            [求解任务] (* <- lang_ch;; *);;
 
 
 
