@@ -301,6 +301,58 @@ set_power_of_194
         194 (*<- sc_node; number;;*);;
 
 
+set_power_of_236
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 236] (* <- lang_ru;; *);
+=> nrel_measure:
+        236 (*<- sc_node; number;;*);;
+
+
+set_power_of_377
+<- sc_node_class;
+=> nrel_main_idtf:
+        [множество мощности 377] (* <- lang_ru;; *);
+=> nrel_measure:
+        377 (*<- sc_node; number;;*);;
+
+
+nrel_standard_answer
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [стандартный ответ*] (* <- lang_ru;; *);
+        [standard answer*] (* <- lang_en;; *);
+        [标准答案*] (* <- lang_ch;; *);;
+
+
+
+concept_triangel
+<- sc_node_class;
+=> nrel_main_idtf:
+        [треугольник] (* <- lang_ru;; *);;
+
+
+concept_acute_triangle
+<- sc_node_class;
+=> nrel_main_idtf:
+        [острый треугольник] (* <- lang_ru;; *);;
+
+
+
+concept_obtuse_triangle
+<- sc_node_class;
+=> nrel_main_idtf:
+        [тупой треугольник] (* <- lang_ru;; *);;
+
+
+concept_right_triangle
+<- sc_node_class;
+=> nrel_main_idtf:
+        [прямоугольный треугольник] (* <- lang_ru;; *);;
+
+
 
 
 

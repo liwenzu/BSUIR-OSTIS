@@ -1,0 +1,37 @@
+Test_question_86
+<- sc_node;
+<- Test_paper_1;
+<- objective_questions;
+   fill_in_the_blank_questions;
+   fill_in_the_blank_questions_with_multiple_blanks;
+   fill_in_the_blank_questions_with_unique_answers;
+   fill_in_the_blank_questions_based_on_class;
+   fill_in_the_blank_questions_based_on_inclusion_relation;
+-> rrel_key_sc_element:
+    concept_triangel;
+<= nrel_correct_option:
+..temp (*<- sc_node_tuple;;*);;
+
+
+..temp
+-> rrel_known_answer:
+    [острый треугольник] (* <- lang_ru;; *);
+->  [тупой треугольник] (* <- lang_ru;; *);
+    [прямоугольный треугольник] (* <- lang_ru;; *);;
+
+
+Test_question_86
+=> nrel_standard_answer:
+    [*
+        ...
+            => nrel_correct_option:
+                [тупой треугольник];
+                [прямоугольный треугольник];;
+    *];;
+
+
+Test_question_86
+=> nrel_user_answer:
+    [*
+
+    *];;

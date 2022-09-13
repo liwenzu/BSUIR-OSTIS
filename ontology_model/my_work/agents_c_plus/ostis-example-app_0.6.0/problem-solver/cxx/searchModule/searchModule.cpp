@@ -9,6 +9,7 @@
 #include "agents/InclusionSearchAgent.hpp"
 #include "agents/GenQuestionsAndExamTicketsAgent.hpp"
 #include "agents/WhatIsThatAgent.hpp"
+#include "agents/AutomaticScoringExamTicketsAgent.hpp"
 
 using namespace searchModule;
 
@@ -22,6 +23,7 @@ sc_result SearchModule::InitializeImpl()
   SC_AGENT_REGISTER(InclusionSearchAgent)
   SC_AGENT_REGISTER(GenQuestionsAndExamTicketsAgent)
   SC_AGENT_REGISTER(WhatIsThatAgent)
+  SC_AGENT_REGISTER(AutomaticScoringExamTicketsAgent)
 
   return SC_RESULT_OK;
 }
@@ -31,6 +33,7 @@ sc_result SearchModule::ShutdownImpl()
   SC_AGENT_UNREGISTER(InclusionSearchAgent)
   SC_AGENT_UNREGISTER(GenQuestionsAndExamTicketsAgent)
   SC_AGENT_UNREGISTER(WhatIsThatAgent)
+  SC_AGENT_UNREGISTER(AutomaticScoringExamTicketsAgent)
 
   return SC_RESULT_OK;
 }

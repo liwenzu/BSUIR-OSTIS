@@ -59,9 +59,47 @@ namespace searchModule
         SC_PROPERTY(Keynode("set_power_of_194"), ForceCreate)
         static ScAddr set_power_of_194;
 
-
         SC_PROPERTY(Keynode("set_power_of_1"), ForceCreate)
         static ScAddr set_power_of_1;
+
+        SC_PROPERTY(Keynode("set_power_of_236"), ForceCreate)
+        static ScAddr set_power_of_236;
+
+        SC_PROPERTY(Keynode("set_power_of_377"), ForceCreate)
+        static ScAddr set_power_of_377;
+
+        SC_PROPERTY(Keynode("Test_paper_1"), ForceCreate)
+        static ScAddr Test_paper_1;
+
+        SC_PROPERTY(Keynode("rrel_1"), ForceCreate)
+        static ScAddr rrel_1;
+
+        SC_PROPERTY(Keynode("nrel_basic_sequence"), ForceCreate)
+        static ScAddr nrel_basic_sequence;
+
+        SC_PROPERTY(Keynode("Test_question_86"), ForceCreate)
+        static ScAddr Test_question_86;
+
+        SC_PROPERTY(Keynode("rrel_key_sc_element"), ForceCreate)
+        static ScAddr rrel_key_sc_element;
+
+        SC_PROPERTY(Keynode("nrel_standard_answer"), ForceCreate)
+        static ScAddr nrel_standard_answer;
+
+        SC_PROPERTY(Keynode("nrel_user_answer"), ForceCreate)
+        static ScAddr nrel_user_answer;
+
+        SC_PROPERTY(Keynode("nrel_correct_option"), ForceCreate)
+        static ScAddr nrel_correct_option;
+
+        SC_PROPERTY(Keynode("lang_ru"), ForceCreate)
+        static ScAddr lang_ru;
+
+        SC_PROPERTY(Keynode("semantic_model_exam_tickets"), ForceCreate)
+        static ScAddr semantic_model_exam_tickets;
+
+        SC_PROPERTY(Keynode("automatic_scoring_exam_tickets"), ForceCreate)
+        static ScAddr automatic_scoring_exam_tickets;
     };
 
 } // namespace exampleModule

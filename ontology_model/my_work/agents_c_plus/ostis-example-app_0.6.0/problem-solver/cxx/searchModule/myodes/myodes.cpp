@@ -24,4 +24,17 @@ namespace searchModule
     ScAddr Myodes::set_power_of_1;
     ScAddr Myodes::set_power_of_386;
     ScAddr Myodes::set_power_of_194;
+    ScAddr Myodes::set_power_of_236;
+    ScAddr Myodes::set_power_of_377;
+    ScAddr Myodes::Test_paper_1;
+    ScAddr Myodes::rrel_1;
+    ScAddr Myodes::nrel_basic_sequence;
+    ScAddr Myodes::Test_question_86;
+    ScAddr Myodes::rrel_key_sc_element;
+    ScAddr Myodes::nrel_standard_answer;
+    ScAddr Myodes::nrel_user_answer;
+    ScAddr Myodes::nrel_correct_option;
+    ScAddr Myodes::lang_ru;
+    ScAddr Myodes::semantic_model_exam_tickets;
+    ScAddr Myodes::automatic_scoring_exam_tickets;
 }

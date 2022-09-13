@@ -1,0 +1,36 @@
+maximum_score_test_questions
+<- sc_node_class;
+=> nrel_main_idtf:
+    [максимальный балл за тестовые вопросы] 
+    (*<- lang_ru;;*);
+->  2;
+    10;;
+
+
+semantic_model_exam_tickets
+<- sc_node_class;
+=> nrel_main_idtf:
+    [семантические модели экзаменационных билетов] 
+    (*<- lang_ru;;*);
+-> Test_paper_1;;
+
+
+mode_automatic_scoring
+<- sc_node;
+-> rrel_key_sc_element: 
+    semantic_model_exam_tickets;
+    maximum_score_test_questions;
+=> nrel_main_idtf:
+    [Режим автоматической оценки экзаменационных билетов] 
+    (*<- lang_ru;;*);;
+
+
+set_power_of_10
+-> objective_questions;;
+
+
+set_power_of_2
+-> subjective_questions;;
+
+
+
