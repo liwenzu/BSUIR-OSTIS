@@ -55,7 +55,7 @@ namespace searchModule {
 //创537测试问题
         ScAddr nodeQuestion = Myodes::Test_question_537;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
 //        linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -99,7 +99,7 @@ namespace searchModule {
 //创438测试问题
         nodeQuestion = Myodes::Test_question_438;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
         linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -144,7 +144,7 @@ namespace searchModule {
 //创574测试问题
         nodeQuestion = Myodes::Test_question_574;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
 //        linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -188,7 +188,7 @@ namespace searchModule {
 //创161测试问题
         nodeQuestion = Myodes::Test_question_161;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
 //        linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -231,7 +231,7 @@ namespace searchModule {
         //创11测试问题
         nodeQuestion = Myodes::Test_question_11;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //
         linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -255,7 +255,7 @@ namespace searchModule {
 
 //
 */
-
+///*
 //创建考试票节点(欧几里得几何)
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, Myodes::Test_paper_1);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, Myodes::concept_examination_paper);
@@ -283,7 +283,7 @@ namespace searchModule {
 //创537测试问题
         ScAddr nodeQuestion = Myodes::Test_question_121;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
 //        linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -327,7 +327,7 @@ namespace searchModule {
 //创438测试问题
         nodeQuestion = Myodes::Test_question_73;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
 //        linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -372,7 +372,7 @@ namespace searchModule {
 //创574测试问题
         nodeQuestion = Myodes::Test_question_478;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
 //        linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -416,7 +416,7 @@ namespace searchModule {
 //创161测试问题
         nodeQuestion = Myodes::Test_question_397;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //创建分数相似度等
         linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -459,7 +459,7 @@ namespace searchModule {
         //创11测试问题
         nodeQuestion = Myodes::Test_question_86;
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, nodeQuestion);
-        arcAddr = ms_context->CreateEdge(ScType::EdgeDCommonConst, Myodes::Test_paper_1, nodeQuestion);
+        arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::Test_paper_1, nodeQuestion);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
         //
         linkAddr = ms_context->CreateLink(ScType::LinkConst);
@@ -480,6 +480,7 @@ namespace searchModule {
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcEdgeAddr);
         arcAddr = ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, Myodes::nrel_score, arcEdgeAddr);
         ms_context->CreateEdge(ScType::EdgeAccessConstPosPerm, answer, arcAddr);
+//*/
 
         AgentUtils::finishAgentWork(ms_context.get(), questionNode, answer);
         return SC_RESULT_OK;
