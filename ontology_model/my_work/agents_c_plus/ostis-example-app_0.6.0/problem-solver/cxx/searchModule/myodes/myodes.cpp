@@ -37,4 +37,17 @@ namespace searchModule
     ScAddr Myodes::lang_ru;
     ScAddr Myodes::semantic_model_exam_tickets;
     ScAddr Myodes::automatic_scoring_exam_tickets;
+    ScAddr Myodes::nrel_score;
+    ScAddr Myodes::Test_question_537;
+    ScAddr Myodes::Test_question_438;
+    ScAddr Myodes::Test_question_574;
+    ScAddr Myodes::Test_question_161;
+    ScAddr Myodes::nrel_similarity;
+    ScAddr Myodes::nrel_precision;
+    ScAddr Myodes::nrel_recall;
+    ScAddr Myodes::Test_question_11;
+    ScAddr Myodes::Test_question_121;
+    ScAddr Myodes::Test_question_73;
+    ScAddr Myodes::Test_question_478;
+    ScAddr Myodes::Test_question_397;
 }

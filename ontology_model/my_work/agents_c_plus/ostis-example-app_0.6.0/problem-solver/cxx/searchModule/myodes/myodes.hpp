@@ -100,6 +100,45 @@ namespace searchModule
 
         SC_PROPERTY(Keynode("automatic_scoring_exam_tickets"), ForceCreate)
         static ScAddr automatic_scoring_exam_tickets;
+
+        SC_PROPERTY(Keynode("nrel_score"), ForceCreate)
+        static ScAddr nrel_score;
+
+        SC_PROPERTY(Keynode("Test_question_537"), ForceCreate)
+        static ScAddr Test_question_537;
+
+        SC_PROPERTY(Keynode("Test_question_438"), ForceCreate)
+        static ScAddr Test_question_438;
+
+        SC_PROPERTY(Keynode("Test_question_574"), ForceCreate)
+        static ScAddr Test_question_574;
+
+        SC_PROPERTY(Keynode("Test_question_161"), ForceCreate)
+        static ScAddr Test_question_161;
+
+        SC_PROPERTY(Keynode("nrel_similarity"), ForceCreate)
+        static ScAddr nrel_similarity;
+
+        SC_PROPERTY(Keynode("nrel_precision"), ForceCreate)
+        static ScAddr nrel_precision;
+
+        SC_PROPERTY(Keynode("nrel_recall"), ForceCreate)
+        static ScAddr nrel_recall;
+
+        SC_PROPERTY(Keynode("Test_question_11"), ForceCreate)
+        static ScAddr Test_question_11;
+//欧几里得几何教学系统主观题
+        SC_PROPERTY(Keynode("Test_question_121"), ForceCreate)
+        static ScAddr Test_question_121;
+
+        SC_PROPERTY(Keynode("Test_question_73"), ForceCreate)
+        static ScAddr Test_question_73;
+
+        SC_PROPERTY(Keynode("Test_question_478"), ForceCreate)
+        static ScAddr Test_question_478;
+
+        SC_PROPERTY(Keynode("Test_question_397"), ForceCreate)
+        static ScAddr Test_question_397;
     };
 
 } // namespace exampleModule

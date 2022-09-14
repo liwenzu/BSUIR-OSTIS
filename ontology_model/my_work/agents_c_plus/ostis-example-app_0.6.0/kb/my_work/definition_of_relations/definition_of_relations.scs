@@ -353,6 +353,41 @@ concept_right_triangle
         [прямоугольный треугольник] (* <- lang_ru;; *);;
 
 
+nrel_score
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [оценка*] (* <- lang_ru;; *);
+        [score*] (* <- lang_en;; *);;
+
+
+nrel_precision
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [точность*] (* <- lang_ru;; *);
+        [precision*] (* <- lang_en;; *);;
+
+
+nrel_recall
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [полнота*] (* <- lang_ru;; *);
+        [recall*] (* <- lang_en;; *);;
+
+
+nrel_similarity
+<- sc_node_norole_relation;
+<- binary_relation;
+<- relation;
+=> nrel_main_idtf:
+        [подобие*] (* <- lang_ru;; *);
+        [similarity*] (* <- lang_en;; *);;
+
 
 
 
